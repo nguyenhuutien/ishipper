@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       end
       namespace :shop do
         resources :invoices, except: [:edit, :new]
+        resources :user_invoices, only: :update
         resources :list_shippers, only: :index
       end
     end

@@ -24,7 +24,7 @@ class Api::BaseController < ActionController::API
 
   def find_object
     object = params[:controller].split("/").last.singularize
-    instance_variable_set("@#{object}", object.humanize.constantize.find_by_id(params[:id]))
+    instance_variable_set("@#{object}", object.classify.constantize.find_by_id(params[:id]))
     unless instance_variable_get "@#{object}"
       render json: {message: I18n.t("#{object.pluralize}.messages.#{object}_not_found"),
         data: {}, code: 0}, status: 200
