@@ -14,6 +14,7 @@ gem "config"
 gem "bcrypt"
 gem "devise"
 gem "simple_token_authentication"
+gem "active_model_serializers", "0.10.0"
 
 group :development, :test do
   gem "pry"
