@@ -41,7 +41,7 @@ namespace :db do
       name: "invoice7",
       latitude_start: 21.0089672, longitude_start: 105.8564231,
       latitude_finish: 21.0089171, longitude_finish: 105.8538589,
-      status: "init", user_id: 6,weight: 3, delivery_time: "17m",
+      status: "init", user_id: 10,weight: 3, delivery_time: "17m",
       distance: 18, price: 220000, shipping_price: 22000)
     Invoice.create!(
       name: "invoice8",
