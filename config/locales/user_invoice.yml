@@ -2,3 +2,5 @@ en:
   user_invoices:
     create_success: Receive invoice success, please waiting for shop accept
     create_danger: Receive invoice fail
+    update_success: Accept shipper success
+    update_fail: Accept shipper fail

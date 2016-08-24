@@ -29,4 +29,22 @@ class InvoiceStatus
     rescue => e
     return false
   end
+
+  def receive_shipper
+    Invoice.transaction do
+      UserInvoice.transaction do
+        @user_invoice.update_attributes status: @status
+        @invoice.update_attributes status: @status
+        InvoiceHistoryCreator.new(@invoice).create_invoice_history
+        @user_invoice.invoice.user_invoices.each do |user_invoice|
+          user_invoice.cancel! unless user_invoice == @user_invoice
+          InvoiceHistoryCreator.new(@invoice).create_user_history(@user_invoice,
+            @status)
+        end
+        true
+      end
+    end
+    rescue =>e
+    return false
+  end
 end

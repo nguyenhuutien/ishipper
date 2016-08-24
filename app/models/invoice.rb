@@ -14,7 +14,6 @@ class Invoice < ApplicationRecord
     :distance, :description, :price, :shipping_price, :status, :weight,
     :customer_name, :customer_number, :latitude_start, :longitude_start,
     :latitude_finish, :longitude_finish]
- 
 
   enum status: [:init, :waiting, :shipping, :shipped, :finished, :cancel]
 
