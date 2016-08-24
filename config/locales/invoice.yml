@@ -2,6 +2,8 @@ en:
   invoices:
     messages:
       get_invoices_success: "Get invoices success"
+      get_shippers_success: "Get shippers success"
+      get_shippers_fails: "No shippers receive"
       get_invoices_fails: "No invoices around here"
       invoice_not_found: "Invoice not found"
       update_success: "Update invoice successful"
@@ -9,6 +11,7 @@ en:
       missing_params: "Missing invoices parameter"
       not_found: "Could not found invoice"
       can_not_show: "You don't have permission to view this invoice"
+      invoice_not_exist: "This shop don't owned this invoice"
     create:
       success: "Invoice created"
       fail: "Could not create invoice"
