@@ -31,9 +31,8 @@ class Api::BaseController < ActionController::API
     end
   end
 
-  def active_serialize object
-    options = {}
-    @serialization = ActiveModelSerializers::SerializableResource.new(object, options)
+  def active_serialize object, params
+    @serialization = ActiveModelSerializers::SerializableResource.new object, params
     @serialization.as_json
   end
 end

@@ -66,7 +66,7 @@ namespace :db do
       status: "actived",
       latitude: 21.0066625,
       longitude: 105.8157497,
-      rate: 4.5)
+      rate: 3.5)
     User.create!(
       name: "Nguyen Thanh Hung",
       phone_number: "+84976990043",
@@ -77,7 +77,7 @@ namespace :db do
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
-      rate: 4.5)
+      rate: 2.5)
     User.create!(
       name: "Vu Duy Chuong",
       phone_number: "+84984063061",
@@ -88,7 +88,7 @@ namespace :db do
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
-      rate: 4.5)
+      rate: 1.5)
     User.create!(
       name: "Nguyen Van A",
       phone_number: "+841234567890",
@@ -99,7 +99,7 @@ namespace :db do
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
-      rate: 4.5)
+      rate: 5)
     User.create!(
       name: "Nguyen Van B",
       phone_number: "+841234567891",
@@ -110,6 +110,6 @@ namespace :db do
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
-      rate: 4.5)
+      rate: 1.5)
   end
 end

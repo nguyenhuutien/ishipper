@@ -4,7 +4,7 @@ class Api::V1::Shop::ListShippersController < Api::ShopBaseController
   def index
     invoice = current_user.invoices.find_by id: params[:invoice][:id]
     shippers = invoice.all_shipper
-    active_serialize shippers
+    active_serialize shippers, params
     if shippers.blank?
       render json: {message: I18n.t("invoices.messages.get_shippers_fails"),
       data: {}, code: 1}, status: 200
