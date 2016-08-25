@@ -5,24 +5,18 @@ class InvoiceStatus
     @status = status
   end
 
-  def update_status user
+  def shipper_update_status
     Invoice.transaction do
       UserInvoice.transaction do
         @invoice.update_attributes status: @status
         if @invoice.cancel?
-          if user.shipper?
-            @user_invoice.destroy
-          elsif user.shop?
-            @invoice.user_invoices.each do |user_invoice|
-              InvoiceHistoryCreator.new(@invoice).create_user_history(@user_invoice,
-                @status)
-              user_invoice.destroy if user_invoice.present?
-            end
-          end
+          InvoiceHistoryCreator.new(@invoice).create_user_history(@user_invoice,
+            @status)
+          @user_invoice.destroy
         else
+          @user_invoice.update_attributes status: @status
           InvoiceHistoryCreator.new(@invoice).create_all_history(@user_invoice,
             @status)
-          @user_invoice.update_attributes status: @status
         end
       end
     end
@@ -30,7 +24,28 @@ class InvoiceStatus
     return false
   end
 
-  def receive_shipper
+  def shop_update_status
+    Invoice.transaction do
+      UserInvoice.transaction do
+        @invoice.update_attributes status: @status
+        if @invoice.cancel?
+          @invoice.user_invoices.each do |user_invoice|
+            InvoiceHistoryCreator.new(@invoice).create_user_history(@user_invoice,
+              @status)
+            user_invoice.destroy if user_invoice.present?
+          end
+        else
+          @user_invoice.update_attributes status: @status
+          InvoiceHistoryCreator.new(@invoice).create_all_history(@user_invoice,
+            @status)
+        end
+      end
+    end
+    rescue => e
+    return false
+  end
+
+  def accept_shipper
     Invoice.transaction do
       UserInvoice.transaction do
         @user_invoice.update_attributes status: @status
