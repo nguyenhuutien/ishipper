@@ -1,0 +1,17 @@
+en:
+  report:
+    create_success: Create report success!!
+    create_fail: Create report fail!!
+    invoice:
+      status_fail: Can't report this invocie
+      shipper_fail: You must receive invoice to report
+  rate:
+    create_success: Create rate success!!
+    create_fail: Create rate fail!!
+    invoice:
+      status_fail: " Status fails, can't rate this invocie"
+      shipper_fail: You must receive invoice to rate
+      get_invoice_fail: "Invoice not exist"
+      get_user_invoice_fail: "User invoice not exist"
+    review_type_fail: "Fail type, you can't report this invoice"
+    exist_rate: "You are rated"
