@@ -3,5 +3,5 @@ class Review < ApplicationRecord
   belongs_to :recipient, class_name: User.name
   belongs_to :invoice
 
-  enum review_type: [:review, :report]
+  enum review_type: [:rate, :report]
 end
