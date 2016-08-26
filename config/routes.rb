@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         resources :invoices, except: [:edit, :new]
         resources :user_invoices, only: :update
         resources :list_shippers, only: :index
+        resources :reports, only: :create
       end
     end
   end
