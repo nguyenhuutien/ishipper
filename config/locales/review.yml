@@ -15,3 +15,10 @@ en:
       get_user_invoice_fail: "User invoice not exist"
     review_type_fail: "Fail type, you can't report this invoice"
     exist_rate: "You are rated"
+    not_found: "Could not found rate"
+    missing_params: "Missing rate parameter"
+    update:
+      success: "Rate update successfully"
+    delete:
+      success: "Rate delete successfully"
+      fails: "Could not delete rate"
