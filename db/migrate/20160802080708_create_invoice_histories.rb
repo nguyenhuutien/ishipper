@@ -18,6 +18,7 @@ class CreateInvoiceHistories < ActiveRecord::Migration[5.0]
       t.string :customer_name
       t.string :customer_number
       t.integer :invoice_id
+      t.integer :creater_id
 
       t.timestamps null: false
     end

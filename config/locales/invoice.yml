@@ -7,6 +7,8 @@ en:
       get_invoices_fails: "No invoices around here"
       invoice_not_found: "Invoice not found"
       update_success: "Update invoice successful"
+      update_fail: "Update invoice fail"
+      cant_update: "You can't update this invoice"
       invoice_error_status: "This status of invoice is error"
       missing_params: "Missing invoices parameter"
       not_found: "Could not found invoice"
@@ -19,5 +21,8 @@ en:
       success: "Invoice updated"
     delete:
       success: "Invoice deleted"
-    show: 
+    show:
       success: "Show invoice successfully"
+    accept_shipper:
+      success: "Accept shipper success"
+      fail: "Accept shipper fail"

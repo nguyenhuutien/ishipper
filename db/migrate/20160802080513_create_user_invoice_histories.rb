@@ -3,6 +3,7 @@ class CreateUserInvoiceHistories < ActiveRecord::Migration[5.0]
     create_table :user_invoice_histories do |t|
       t.integer :status
       t.integer :user_invoice_id
+      t.integer :creater_id
 
       t.timestamps
     end
