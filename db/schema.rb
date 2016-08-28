@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160803021915) do
     t.string   "customer_name"
     t.string   "customer_number"
     t.integer  "invoice_id"
+    t.integer  "creater_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
@@ -47,13 +48,13 @@ ActiveRecord::Schema.define(version: 20160803021915) do
     t.string   "description"
     t.float    "price",            limit: 24
     t.float    "shipping_price",   limit: 24
-    t.integer  "status"
+    t.integer  "status",                      default: 0
     t.float    "weight",           limit: 24
     t.string   "customer_name"
     t.string   "customer_number"
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["user_id"], name: "index_invoices_on_user_id", using: :btree
   end
 
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160803021915) do
   create_table "user_invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "status"
     t.integer  "user_invoice_id"
+    t.integer  "creater_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

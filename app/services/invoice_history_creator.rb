@@ -1,6 +1,7 @@
 class InvoiceHistoryCreator
-  def initialize invoice
+  def initialize invoice, current_user
     @invoice = invoice
+    @current_user = current_user
   end
 
   def create_history invoice_params
@@ -29,16 +30,18 @@ class InvoiceHistoryCreator
     weight: @invoice.weight,
     customer_name: @invoice.customer_name,
     customer_number: @invoice.customer_number,
-    invoice_id: @invoice.id
+    invoice_id: @invoice.id,
+    creater_id: @current_user.id
   end
 
-  def create_user_history user_invoice, status
+  def create_user_invoice_history user_invoice, status
     UserInvoiceHistory.create! status: status,
-      user_invoice_id: user_invoice.id
+      user_invoice_id: user_invoice.id,
+      creater_id: @current_user.id
   end
 
   def create_all_history user_invoice, status
     create_invoice_history
-    create_user_history user_invoice, status
+    create_user_invoice_history user_invoice, status
   end
 end
