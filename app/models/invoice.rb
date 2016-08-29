@@ -52,7 +52,7 @@ class Invoice < ApplicationRecord
         end
         invoices = Hash.new unless params[:invoice].keys.to_set.subset? INVOICE_PARAMS
       end
-      invoices.init if invoices.any?
+      invoices = invoices.init if invoices.any?
       invoices
     end
   end
