@@ -112,30 +112,30 @@ namespace :db do
       longitude: 105.8031754,
       rate: 3)
     User.create!(
-      name: "Nguyen Van A",
-      phone_number: "+841234567890",
+      name: "SHOP",
+      phone_number: "+841234567891",
       password: "12345678",
       password_confirmation: "12345678",
       email: "nguyen.van.a@framgia.com",
-      role: "shipper",
+      role: "shop",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
       rate: 5)
     User.create!(
-      name: "Nguyen Van B",
-      phone_number: "+841234567891",
+      name: "SHIPPER",
+      phone_number: "+841234567892",
       password: "12345678",
       password_confirmation: "12345678",
       email: "nguye.van.b@framgia.com",
-      role: "shop",
+      role: "shipper",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
       rate: 1.5)
     User.create!(
       name: "ADMIN",
-      phone_number: "+84123456789",
+      phone_number: "+841234567890",
       password: "12345678",
       password_confirmation: "12345678",
       email: "admin@framgia.com",

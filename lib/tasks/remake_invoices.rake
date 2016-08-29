@@ -1081,5 +1081,425 @@ namespace :db do
       address_finish: "finish 80", latitude_finish: 21.0163935, longitude_finish: 105.8565611,
       status: "cancel", user_id: 3,weight: 3, delivery_time: "17m",
       distance: 18, price: 220000, shipping_price: 22000)
+    Invoice.create!(
+      name: "invoice181",
+      address_start: "start 181", latitude_start: 21.00704936218812, longitude_start: 105.81643746002192,
+      address_finish: "finish 181", latitude_finish: 21.006288162622013, longitude_finish: 105.82716629608149,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice182",
+      address_start: "start 182", latitude_start: 21.009092562874073, longitude_start: 105.83017037017817,
+      address_finish: "finish 182", latitude_finish: 21.015903029723454, longitude_finish: 105.83253071411127,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice183",
+      address_start: "start 183", latitude_start: 21.01582290839173, longitude_start: 105.82390472991938,
+      address_finish: "finish 183", latitude_finish: 21.01678436153148, longitude_finish: 105.80433533294672,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice184",
+      address_start: "start 184", latitude_start: 21.015622604874103, longitude_start: 105.81489250762934,
+      address_finish: "finish 184", latitude_finish: 21.008932312851115, longitude_finish: 105.802404142456,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice185",
+      address_start: "start 185", latitude_start: 21.00416479594, longitude_start: 105.80897019012446,
+      address_finish: "finish 185", latitude_finish: 21.005246514817692, longitude_finish: 105.8168666134643,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice186",
+      address_start: "start 186", latitude_start: 21.011736663400807, longitude_start: 105.82021401031488,
+      address_finish: "finish 186", latitude_finish: 21.011736663400807, longitude_finish: 105.81266090972895,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice187",
+      address_start: "start 187", latitude_start: 21.012257465555606, longitude_start: 105.80266163452143,
+      address_finish: "finish 187", latitude_finish: 21.01253789673197, longitude_finish: 105.79459354980463,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice188",
+      address_start: "start 188", latitude_start: 21.01878736899727, longitude_start: 105.81785366638178,
+      address_finish: "finish 188", latitude_finish: 21.012017095556256, longitude_finish: 105.8434312115478,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice189",
+      address_start: "start 189", latitude_start: 21.01381986110979, longitude_start: 105.8327882061767,
+      address_finish: "finish 189", latitude_finish: 21.006408352285373, longitude_finish: 105.84154293640131,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice190",
+      address_start: "start 190", latitude_start: 21.001560625741096, longitude_start: 105.85124180419916,
+      address_finish: "finish 190", latitude_finish: 21.000919592261187, longitude_finish: 105.8342473278808,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice191",
+      address_start: "start 191", latitude_start: 21.00809099740665, longitude_start: 105.8351485501098,
+      address_finish: "finish 191", latitude_finish: 21.00332345361407, longitude_finish: 105.84785149200434,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice192",
+      address_start: "start 192", latitude_start: 21.001320238508796, longitude_start: 105.83549187286371,
+      address_finish: "finish 192", latitude_finish: 21.009012437884255, longitude_finish: 105.8342473278808,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice193",
+      address_start: "start 193", latitude_start: 21.005807403000656, longitude_start: 105.81536457641596,
+      address_finish: "finish 193", latitude_finish: 21.011215859427857, longitude_finish: 105.81858322723383,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice194",
+      address_start: "start 194", latitude_start: 21.010294432559697, longitude_start: 105.83386108978266,
+      address_finish: "finish 194", latitude_finish: 21.015201966611606, longitude_finish: 105.82806751831049,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice195",
+      address_start: "start 195", latitude_start: 21.016744301107924, longitude_start: 105.8324448834228,
+      address_finish: "finish 195", latitude_finish: 21.02553730602834, longitude_finish: 105.82656548126215,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice196",
+      address_start: "start 196", latitude_start: 21.025737596226822, longitude_start: 105.82053587539667,
+      address_finish: "finish 196", latitude_finish: 21.030203997731203, longitude_finish: 105.83594248397822,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice197",
+      address_start: "start 197", latitude_start: 21.03158595135035, longitude_start: 105.82632944686884,
+      address_finish: "finish 197", latitude_finish: 21.033748983459823, longitude_finish: 105.815192915039,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice198",
+      address_start: "start 198", latitude_start: 21.035911984168646, longitude_start: 105.80360577209467,
+      address_finish: "finish 198", latitude_finish: 21.038235172173422, longitude_finish: 105.81660912139887,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice199",
+      address_start: "start 199", latitude_start: 21.04222055685705, longitude_start: 105.80549404724115,
+      address_finish: "finish 199", latitude_finish: 21.015201966611606, longitude_finish: 105.82806751831049,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice200",
+      address_start: "start 200", latitude_start: 21.04534470344829, longitude_start: 105.80676004989618,
+      address_finish: "finish 200", latitude_finish: 21.0399174581113, longitude_finish: 105.79004452331537,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice201",
+      address_start: "start 201", latitude_start: 21.00704936218812, longitude_start: 105.81643746002192,
+      address_finish: "finish 201", latitude_finish: 21.006288162622013, longitude_finish: 105.82716629608149,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice202",
+      address_start: "start 202", latitude_start: 21.009092562874073, longitude_start: 105.83017037017817,
+      address_finish: "finish 202", latitude_finish: 21.015903029723454, longitude_finish: 105.83253071411127,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice203",
+      address_start: "start 203", latitude_start: 21.01582290839173, longitude_start: 105.82390472991938,
+      address_finish: "finish 203", latitude_finish: 21.01678436153148, longitude_finish: 105.80433533294672,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice204",
+      address_start: "start 204", latitude_start: 21.015622604874103, longitude_start: 105.81489250762934,
+      address_finish: "finish 204", latitude_finish: 21.008932312851115, longitude_finish: 105.802404142456,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice205",
+      address_start: "start 205", latitude_start: 21.00416479594, longitude_start: 105.80897019012446,
+      address_finish: "finish 205", latitude_finish: 21.005246514817692, longitude_finish: 105.8168666134643,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice206",
+      address_start: "start 206", latitude_start: 21.011736663400807, longitude_start: 105.82021401031488,
+      address_finish: "finish 206", latitude_finish: 21.011736663400807, longitude_finish: 105.81266090972895,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice207",
+      address_start: "start 207", latitude_start: 21.012257465555606, longitude_start: 105.80266163452143,
+      address_finish: "finish 207", latitude_finish: 21.01253789673197, longitude_finish: 105.79459354980463,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice208",
+      address_start: "start 208", latitude_start: 21.01878736899727, longitude_start: 105.81785366638178,
+      address_finish: "finish 208", latitude_finish: 21.012017095556256, longitude_finish: 105.8434312115478,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice209",
+      address_start: "start 209", latitude_start: 21.01381986110979, longitude_start: 105.8327882061767,
+      address_finish: "finish 209", latitude_finish: 21.006408352285373, longitude_finish: 105.84154293640131,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice210",
+      address_start: "start 210", latitude_start: 21.001560625741096, longitude_start: 105.85124180419916,
+      address_finish: "finish 210", latitude_finish: 21.000919592261187, longitude_finish: 105.8342473278808,
+      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice211",
+      address_start: "start 201", latitude_start: 21.00704936218812, longitude_start: 105.81643746002192,
+      address_finish: "finish 201", latitude_finish: 21.006288162622013, longitude_finish: 105.82716629608149,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice212",
+      address_start: "start 202", latitude_start: 21.009092562874073, longitude_start: 105.83017037017817,
+      address_finish: "finish 202", latitude_finish: 21.015903029723454, longitude_finish: 105.83253071411127,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice213",
+      address_start: "start 203", latitude_start: 21.01582290839173, longitude_start: 105.82390472991938,
+      address_finish: "finish 203", latitude_finish: 21.01678436153148, longitude_finish: 105.80433533294672,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice214",
+      address_start: "start 204", latitude_start: 21.015622604874103, longitude_start: 105.81489250762934,
+      address_finish: "finish 204", latitude_finish: 21.008932312851115, longitude_finish: 105.802404142456,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice215",
+      address_start: "start 205", latitude_start: 21.00416479594, longitude_start: 105.80897019012446,
+      address_finish: "finish 205", latitude_finish: 21.005246514817692, longitude_finish: 105.8168666134643,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice216",
+      address_start: "start 206", latitude_start: 21.011736663400807, longitude_start: 105.82021401031488,
+      address_finish: "finish 206", latitude_finish: 21.011736663400807, longitude_finish: 105.81266090972895,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice217",
+      address_start: "start 207", latitude_start: 21.012257465555606, longitude_start: 105.80266163452143,
+      address_finish: "finish 207", latitude_finish: 21.01253789673197, longitude_finish: 105.79459354980463,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice218",
+      address_start: "start 208", latitude_start: 21.01878736899727, longitude_start: 105.81785366638178,
+      address_finish: "finish 208", latitude_finish: 21.012017095556256, longitude_finish: 105.8434312115478,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice219",
+      address_start: "start 209", latitude_start: 21.01381986110979, longitude_start: 105.8327882061767,
+      address_finish: "finish 209", latitude_finish: 21.006408352285373, longitude_finish: 105.84154293640131,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice220",
+      address_start: "start 220", latitude_start: 21.001560625741096, longitude_start: 105.85124180419916,
+      address_finish: "finish 220", latitude_finish: 21.000919592261187, longitude_finish: 105.8342473278808,
+      status: "shipping", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice221",
+      address_start: "start 211", latitude_start: 21.00704936218812, longitude_start: 105.81643746002192,
+      address_finish: "finish 211", latitude_finish: 21.006288162622013, longitude_finish: 105.82716629608149,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice222",
+      address_start: "start 212", latitude_start: 21.009092562874073, longitude_start: 105.83017037017817,
+      address_finish: "finish 212", latitude_finish: 21.015903029723454, longitude_finish: 105.83253071411127,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice223",
+      address_start: "start 213", latitude_start: 21.01582290839173, longitude_start: 105.82390472991938,
+      address_finish: "finish 213", latitude_finish: 21.01678436153148, longitude_finish: 105.80433533294672,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice224",
+      address_start: "start 214", latitude_start: 21.015622604874103, longitude_start: 105.81489250762934,
+      address_finish: "finish 214", latitude_finish: 21.008932312851115, longitude_finish: 105.802404142456,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice225",
+      address_start: "start 215", latitude_start: 21.00416479594, longitude_start: 105.80897019012446,
+      address_finish: "finish 215", latitude_finish: 21.005246514817692, longitude_finish: 105.8168666134643,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice226",
+      address_start: "start 216", latitude_start: 21.011736663400807, longitude_start: 105.82021401031488,
+      address_finish: "finish 216", latitude_finish: 21.011736663400807, longitude_finish: 105.81266090972895,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice227",
+      address_start: "start 217", latitude_start: 21.012257465555606, longitude_start: 105.80266163452143,
+      address_finish: "finish 217", latitude_finish: 21.01253789673197, longitude_finish: 105.79459354980463,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice228",
+      address_start: "start 218", latitude_start: 21.01878736899727, longitude_start: 105.81785366638178,
+      address_finish: "finish 218", latitude_finish: 21.012017095556256, longitude_finish: 105.8434312115478,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice229",
+      address_start: "start 219", latitude_start: 21.01381986110979, longitude_start: 105.8327882061767,
+      address_finish: "finish 219", latitude_finish: 21.006408352285373, longitude_finish: 105.84154293640131,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice230",
+      address_start: "start 230", latitude_start: 21.001560625741096, longitude_start: 105.85124180419916,
+      address_finish: "finish 230", latitude_finish: 21.000919592261187, longitude_finish: 105.8342473278808,
+      status: "shipped", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice231",
+      address_start: "start 231", latitude_start: 21.00704936218812, longitude_start: 105.81643746002192,
+      address_finish: "finish 231", latitude_finish: 21.006288162622013, longitude_finish: 105.82716629608149,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice232",
+      address_start: "start 232", latitude_start: 21.009092562874073, longitude_start: 105.83017037017817,
+      address_finish: "finish 232", latitude_finish: 21.015903029723454, longitude_finish: 105.83253071411127,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice233",
+      address_start: "start 233", latitude_start: 21.01582290839173, longitude_start: 105.82390472991938,
+      address_finish: "finish 233", latitude_finish: 21.01678436153148, longitude_finish: 105.80433533294672,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice234",
+      address_start: "start 234", latitude_start: 21.015622604874103, longitude_start: 105.81489250762934,
+      address_finish: "finish 234", latitude_finish: 21.008932312851115, longitude_finish: 105.802404142456,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice235",
+      address_start: "start 235", latitude_start: 21.00416479594, longitude_start: 105.80897019012446,
+      address_finish: "finish 235", latitude_finish: 21.005246514817692, longitude_finish: 105.8168666134643,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice236",
+      address_start: "start 236", latitude_start: 21.011736663400807, longitude_start: 105.82021401031488,
+      address_finish: "finish 236", latitude_finish: 21.011736663400807, longitude_finish: 105.81266090972895,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice237",
+      address_start: "start 237", latitude_start: 21.012257465555606, longitude_start: 105.80266163452143,
+      address_finish: "finish 237", latitude_finish: 21.01253789673197, longitude_finish: 105.79459354980463,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice238",
+      address_start: "start 238", latitude_start: 21.01878736899727, longitude_start: 105.81785366638178,
+      address_finish: "finish 238", latitude_finish: 21.012017095556256, longitude_finish: 105.8434312115478,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice239",
+      address_start: "start 239", latitude_start: 21.01381986110979, longitude_start: 105.8327882061767,
+      address_finish: "finish 239", latitude_finish: 21.006408352285373, longitude_finish: 105.84154293640131,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice240",
+      address_start: "start 240", latitude_start: 21.001560625741096, longitude_start: 105.85124180419916,
+      address_finish: "finish 240", latitude_finish: 21.000919592261187, longitude_finish: 105.8342473278808,
+      status: "finished", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice241",
+      address_start: "start 241", latitude_start: 21.00704936218812, longitude_start: 105.81643746002192,
+      address_finish: "finish 241", latitude_finish: 21.006288162622013, longitude_finish: 105.82716629608149,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice242",
+      address_start: "start 242", latitude_start: 21.009092562874073, longitude_start: 105.83017037017817,
+      address_finish: "finish 242", latitude_finish: 21.015903029723454, longitude_finish: 105.83253071411127,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice243",
+      address_start: "start 243", latitude_start: 21.01582290839173, longitude_start: 105.82390472991938,
+      address_finish: "finish 243", latitude_finish: 21.01678436153148, longitude_finish: 105.80433533294672,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice244",
+      address_start: "start 244", latitude_start: 21.015622604874103, longitude_start: 105.81489250762934,
+      address_finish: "finish 244", latitude_finish: 21.008932312851115, longitude_finish: 105.802404142456,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice245",
+      address_start: "start 245", latitude_start: 21.00416479594, longitude_start: 105.80897019012446,
+      address_finish: "finish 245", latitude_finish: 21.005246514817692, longitude_finish: 105.8168666134643,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice246",
+      address_start: "start 246", latitude_start: 21.011736663400807, longitude_start: 105.82021401031488,
+      address_finish: "finish 246", latitude_finish: 21.011736663400807, longitude_finish: 105.81266090972895,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice247",
+      address_start: "start 247", latitude_start: 21.012257465555606, longitude_start: 105.80266163452143,
+      address_finish: "finish 247", latitude_finish: 21.01253789673197, longitude_finish: 105.79459354980463,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice248",
+      address_start: "start 248", latitude_start: 21.01878736899727, longitude_start: 105.81785366638178,
+      address_finish: "finish 248", latitude_finish: 21.012017095556256, longitude_finish: 105.8434312115478,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice249",
+      address_start: "start 249", latitude_start: 21.01381986110979, longitude_start: 105.8327882061767,
+      address_finish: "finish 249", latitude_finish: 21.006408352285373, longitude_finish: 105.84154293640131,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
+    Invoice.create!(
+      name: "invoice250",
+      address_start: "start 250", latitude_start: 21.001560625741096, longitude_start: 105.85124180419916,
+      address_finish: "finish 250", latitude_finish: 21.000919592261187, longitude_finish: 105.8342473278808,
+      status: "cancel", user_id: 11,weight: 3, delivery_time: "30m",
+      distance: 25, price: 200000, shipping_price: 20000)
   end
 end
