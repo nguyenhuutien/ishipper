@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         resources :invoices, only: [:update, :index, :show]
         resources :user_invoices, only: :create
         resources :rates, only: [:create, :update, :destroy]
+        resources :reports, only: :create
       end
       namespace :shop do
         resources :invoices, except: [:edit, :new]
