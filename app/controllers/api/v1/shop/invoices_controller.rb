@@ -14,8 +14,15 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
   end
 
   def show
-    render json: {message: I18n.t("invoices.show.success"),
-      data: {invoice: @invoice}, code: 1}, status: 200
+    if @invoice.present?
+      serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
+        each_serializer: InvoiceSerializer, scope: current_user).as_json
+      render json: {message: I18n.t("invoices.show.success"),
+        data: {invoice: serializer}, code: 1}, status: 200
+    else
+      render json: {message: I18n.t("invoices.messages.not_found"),
+        data: {}, code: 0}, status: 200
+    end
   end
 
   def create

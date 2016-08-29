@@ -1,13 +1,13 @@
-class Api::V1::Shipper::RatesController < Api::ShipperBaseController
+class Api::V1::Shop::RatesController < Api::ShopBaseController
   before_action :ensure_params_exist, :find_invoice, :find_user_invoice,
-   :check_rate_conditions, except: :destroy
+    :check_rate_conditions, except: :destroy
   before_action :check_exist_rate, only: :create
   before_action :find_rate, except: :create
 
   def create
     rate = Review.new rate_params
     rate.owner = current_user
-    rate.recipient = @invoice.user
+    rate.recipient = @user_invoice.user
     if rate.save
       render json: {message: I18n.t("rate.create_success"),
         data: {rate: rate}, code: 1}, status: 200
@@ -70,7 +70,7 @@ class Api::V1::Shipper::RatesController < Api::ShipperBaseController
 
   def check_rate_conditions
     if CheckRateConditions.new(@invoice, @user_invoice,
-      params[:rate][:review_type], current_user).ship_check_rate?
+      params[:rate][:review_type], current_user).shop_check_rate?
       render json: {message: I18n.t("rate.create_fail"), data: {}, code: 0}, status: 200
     end
   end

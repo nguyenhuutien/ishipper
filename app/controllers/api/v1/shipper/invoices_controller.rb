@@ -16,7 +16,7 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
    def show
     if @invoice.present?
       serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
-        each_serializer: InvoiceSerializer).as_json
+        each_serializer: InvoiceSerializer, scope: current_user).as_json
       render json: {message: I18n.t("invoices.show.success"),
         data: {invoice: serializer}, code: 1}, status: 200
     else
