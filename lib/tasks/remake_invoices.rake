@@ -1085,121 +1085,121 @@ namespace :db do
       name: "invoice181",
       address_start: "start 181", latitude_start: 21.00704936218812, longitude_start: 105.81643746002192,
       address_finish: "finish 181", latitude_finish: 21.006288162622013, longitude_finish: 105.82716629608149,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice182",
       address_start: "start 182", latitude_start: 21.009092562874073, longitude_start: 105.83017037017817,
       address_finish: "finish 182", latitude_finish: 21.015903029723454, longitude_finish: 105.83253071411127,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice183",
       address_start: "start 183", latitude_start: 21.01582290839173, longitude_start: 105.82390472991938,
       address_finish: "finish 183", latitude_finish: 21.01678436153148, longitude_finish: 105.80433533294672,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice184",
       address_start: "start 184", latitude_start: 21.015622604874103, longitude_start: 105.81489250762934,
       address_finish: "finish 184", latitude_finish: 21.008932312851115, longitude_finish: 105.802404142456,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice185",
       address_start: "start 185", latitude_start: 21.00416479594, longitude_start: 105.80897019012446,
       address_finish: "finish 185", latitude_finish: 21.005246514817692, longitude_finish: 105.8168666134643,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice186",
       address_start: "start 186", latitude_start: 21.011736663400807, longitude_start: 105.82021401031488,
       address_finish: "finish 186", latitude_finish: 21.011736663400807, longitude_finish: 105.81266090972895,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice187",
       address_start: "start 187", latitude_start: 21.012257465555606, longitude_start: 105.80266163452143,
       address_finish: "finish 187", latitude_finish: 21.01253789673197, longitude_finish: 105.79459354980463,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice188",
       address_start: "start 188", latitude_start: 21.01878736899727, longitude_start: 105.81785366638178,
       address_finish: "finish 188", latitude_finish: 21.012017095556256, longitude_finish: 105.8434312115478,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice189",
       address_start: "start 189", latitude_start: 21.01381986110979, longitude_start: 105.8327882061767,
       address_finish: "finish 189", latitude_finish: 21.006408352285373, longitude_finish: 105.84154293640131,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice190",
       address_start: "start 190", latitude_start: 21.001560625741096, longitude_start: 105.85124180419916,
       address_finish: "finish 190", latitude_finish: 21.000919592261187, longitude_finish: 105.8342473278808,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice191",
       address_start: "start 191", latitude_start: 21.00809099740665, longitude_start: 105.8351485501098,
       address_finish: "finish 191", latitude_finish: 21.00332345361407, longitude_finish: 105.84785149200434,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice192",
       address_start: "start 192", latitude_start: 21.001320238508796, longitude_start: 105.83549187286371,
       address_finish: "finish 192", latitude_finish: 21.009012437884255, longitude_finish: 105.8342473278808,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice193",
       address_start: "start 193", latitude_start: 21.005807403000656, longitude_start: 105.81536457641596,
       address_finish: "finish 193", latitude_finish: 21.011215859427857, longitude_finish: 105.81858322723383,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice194",
       address_start: "start 194", latitude_start: 21.010294432559697, longitude_start: 105.83386108978266,
       address_finish: "finish 194", latitude_finish: 21.015201966611606, longitude_finish: 105.82806751831049,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice195",
       address_start: "start 195", latitude_start: 21.016744301107924, longitude_start: 105.8324448834228,
       address_finish: "finish 195", latitude_finish: 21.02553730602834, longitude_finish: 105.82656548126215,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice196",
       address_start: "start 196", latitude_start: 21.025737596226822, longitude_start: 105.82053587539667,
       address_finish: "finish 196", latitude_finish: 21.030203997731203, longitude_finish: 105.83594248397822,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice197",
       address_start: "start 197", latitude_start: 21.03158595135035, longitude_start: 105.82632944686884,
       address_finish: "finish 197", latitude_finish: 21.033748983459823, longitude_finish: 105.815192915039,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice198",
       address_start: "start 198", latitude_start: 21.035911984168646, longitude_start: 105.80360577209467,
       address_finish: "finish 198", latitude_finish: 21.038235172173422, longitude_finish: 105.81660912139887,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice199",
       address_start: "start 199", latitude_start: 21.04222055685705, longitude_start: 105.80549404724115,
       address_finish: "finish 199", latitude_finish: 21.015201966611606, longitude_finish: 105.82806751831049,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice200",
       address_start: "start 200", latitude_start: 21.04534470344829, longitude_start: 105.80676004989618,
       address_finish: "finish 200", latitude_finish: 21.0399174581113, longitude_finish: 105.79004452331537,
-      status: "waiting", user_id: 11,weight: 3, delivery_time: "30m",
+      status: "init", user_id: 11,weight: 3, delivery_time: "30m",
       distance: 25, price: 200000, shipping_price: 20000)
     Invoice.create!(
       name: "invoice201",

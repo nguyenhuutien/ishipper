@@ -2,7 +2,7 @@ class InvoiceSerializer < ActiveModel::Serializer
   attributes :id, :name, :address_start, :latitude_start, :longitude_start,
     :address_finish, :latitude_finish, :longitude_finish, :delivery_time,
     :distance, :description, :price, :shipping_price, :status, :weight,
-    :customer_name, :customer_number, :user
+    :customer_name, :customer_number, :user, :received
 
   def user
     if scope.shipper?
@@ -13,8 +13,25 @@ class InvoiceSerializer < ActiveModel::Serializer
       else
         status = object.status
         user_invoice = UserInvoice.find_by invoice_id: object.id, status: status
-        user_invoice.user
+        if user_invoice
+          user_invoice.user
+        else
+          nil
+        end
       end
+    end
+  end
+
+  def received
+    if scope.shipper?
+      user_invoice = UserInvoice.find_by invoice_id: object.id, user: scope
+      if user_invoice
+        true
+      else
+        false
+      end
+    else
+      false
     end
   end
 end
