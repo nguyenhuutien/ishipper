@@ -1,5 +1,6 @@
 class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
-  before_action :ensure_params_exist, :check_received_invoice
+  before_action :ensure_params_exist, :check_received_invoice, only: :create
+  before_action :check_delete_user_invoice, only: :destroy
 
   def create
     @user_invoice = current_user.user_invoices.build user_invoice_params
@@ -11,6 +12,16 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
     else
       render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
         code: 0}, status: 200
+    end
+  end
+
+  def destroy
+    if @user_invoice_delete.destroy
+      render json: {message: I18n.t("user_invoices.delete.success"), data: {},
+        code:1}, status: 200
+    else
+      render json: {message: I18n.t("user_invoices.delete.fails"), data: {},
+        code:0},status: 200
     end
   end
 
@@ -29,6 +40,15 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
     if user_invoice
       render json: {message: I18n.t("user_invoices.receive_invoice.received"),
         data: {}, code: 0}, status: 200
+    end
+  end
+
+  def check_delete_user_invoice
+    user_invoices = Invoice.find_by(id: params[:id]).user_invoices
+    @user_invoice_delete = user_invoices.find_by user: current_user
+    if @user_invoice_delete.nil?
+      render json: {message: I18n.t("user_invoices.delete.nil"), data: {},
+        code:0},status: 200
     end
   end
 end
