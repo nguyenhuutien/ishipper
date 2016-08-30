@@ -4,8 +4,10 @@ class Api::V1::InvoicesController < Api::BaseController
   def index
     invoices = Invoice.search params
     if invoices.any?
+      serializers = ActiveModelSerializers::SerializableResource.new(invoices,
+        each_serializer: InvoiceSerializer, scope: current_user).as_json
       render json: {message: I18n.t("invoices.messages.get_invoices_success"),
-        data: {invoices: invoices}, code: 1}, status: 200
+        data: {invoices: serializers}, code: 1}, status: 200
     else
       render json: {message: I18n.t("invoices.messages.get_invoices_fails"),
         data: {}, code: 1}, status: 200
