@@ -12,7 +12,7 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
       render json: {message: I18n.t("rate.create_success"),
         data: {rate: rate}, code: 1}, status: 200
     else
-      render json: {message: I18n.t("rate.create_fail"), data: {},
+      render json: {message: error_messages(rate.errors.messages), data: {},
         code: 0}, status: 200
     end
   end
@@ -39,7 +39,7 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
 
   private
   def rate_params
-    params.require(:rate).permit :invoice_id, :review_type, :rating_point, :content
+    params.require(:rate).permit Review::RATE_ATTRIBUTES_PARAMS
   end
 
   def ensure_params_exist
@@ -52,7 +52,7 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   end
 
   def find_invoice
-    @invoice = Invoice.find_by id: params[:rate][:invoice_id]
+    @invoice = Invoice.find_by id: params[:rate][:invoice_id], user: current_user
     if @invoice.nil?
       render json: {message: I18n.t("rate.invoice.get_invoice_fail"), data: {},
         code: 0}, status: 200
@@ -61,7 +61,7 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
 
   def find_user_invoice
     status = @invoice.status
-    @user_invoice = UserInvoice.find_by invoice_id: params[:rate][:invoice_id], status: status
+    @user_invoice = @invoice.user_invoices.find_by_status status
     if @user_invoice.nil?
       render json: {message: I18n.t("rate.invoice.get_user_invoice_fail"), data: {},
         code: 0}, status: 200
@@ -76,8 +76,7 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   end
 
   def check_exist_rate
-    rate = Review.find_by review_type: params[:rate][:review_type], owner: current_user,
-      invoice_id: params[:rate][:invoice_id]
+    rate = @invoice.reviews.find_by review_type: params[:rate][:review_type], owner: current_user
     unless rate.nil?
       render json: {message: I18n.t("rate.exist_rate"), data: {},
         code: 0}, status: 200

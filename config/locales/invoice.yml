@@ -14,6 +14,7 @@ en:
       not_found: "Could not found invoice"
       can_not_show: "You don't have permission to view this invoice"
       invoice_not_exist: "This shop don't owned this invoice"
+      invalid_customer_number: "Invalid CustomerNumber"
     create:
       success: "Invoice created"
       fail: "Could not create invoice"

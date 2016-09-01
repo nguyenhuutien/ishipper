@@ -32,7 +32,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       render json: {message: I18n.t("invoices.create.success"),
         data: {invoice: invoice}, code: 1}, status: 201
     else
-      render json: {message: I18n.t("invoices.create.fail"), data: {},
+      render json: {message: error_messages(invoice.errors.messages), data: {},
         code: 0}, status: 200
     end
   end
