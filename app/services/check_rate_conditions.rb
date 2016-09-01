@@ -23,15 +23,11 @@ class CheckRateConditions
     @user_invoice.user != @current_user
   end
 
-  def check_correct_shop?
-    @user_invoice.invoice.user != @current_user
-  end
-
   def ship_check_rate?
     check_review_type? || check_ship_invoice_status? || check_correct_shipper?
   end
 
   def shop_check_rate?
-    check_review_type? || check_shop_invoice_status? || check_correct_shop?
+    check_review_type? || check_shop_invoice_status?
   end
 end

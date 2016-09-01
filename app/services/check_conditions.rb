@@ -26,9 +26,9 @@ class CheckConditions
 
   def shipper_conditions?
     @user_invoice.nil? || @invoice.init? || @invoice.shipped? ||
-    !check_current_status ||
-    !check_update_status_shipper? ||
-    @user_invoice.status != @invoice.status
+      !check_current_status ||
+      !check_update_status_shipper? ||
+      @user_invoice.status != @invoice.status
   end
 
   def check_update_status_shop?
@@ -37,8 +37,8 @@ class CheckConditions
 
   def shop_conditions? current_user
     @invoice.user != current_user || @user_invoice.nil? ||
-    !check_current_status ||
-    !check_update_status_shop? ||
-    (@update_status == "cancel" && @invoice.shipped?)
+      !check_current_status ||
+      !check_update_status_shop? ||
+      (@update_status == "cancel" && @invoice.shipped?)
   end
 end
