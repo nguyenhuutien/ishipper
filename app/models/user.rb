@@ -51,16 +51,12 @@ class User < ApplicationRecord
       Rails.application.secrets.twilio_auth_token
     if self.valid_phone_number?
       begin
-        # pin = SecureRandom.urlsafe_base64[0..7]
-        pin = "12345678"
+        pin = SecureRandom.urlsafe_base64[0..7]
         self.update_attributes pin: pin
         twilio_client.messages.create to: "#{self.phone_number}",
           from: "#{Settings.from_phone_number}", body: I18n.t("your_pin", pin: pin)
         rescue => e
-        # Neu SDT khong ho tro thi tam thoi cho active, Loi la : Twilio::REST::RequestError
-        # TODO
-        self.activate
-        return true
+        return false
         true
       end
     else
@@ -74,7 +70,7 @@ class User < ApplicationRecord
 
   def activate
     self.actived!
-    # self.pin = nil
+    self.pin = nil
     return self.save
   end
 
