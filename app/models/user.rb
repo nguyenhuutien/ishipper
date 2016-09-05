@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :recoverable, :confirmable,
     :rememberable, :trackable, :validatable
+  VALID_PHONE_REGEX = /\+84\d{9,10}\)*\z/
 
   geocoded_by :current_location
   reverse_geocoded_by :latitude, :longitude, address: :current_location,
@@ -25,10 +26,16 @@ class User < ApplicationRecord
   enum role: ["admin", "shop", "shipper"]
 
   ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
-    :longitude, :plate_number, :status, :role, :rate, :pin,
-    :password, :password_confirmation, :current_password]
+    :longitude, :plate_number, :role, :password, :password_confirmation]
 
-  validates :phone_number, uniqueness: true
+  UPDATE_ATTRIBUTES_PARAMS = [:name, :email, :address, :plate_number,
+    :current_password]
+
+  validates :phone_number, uniqueness: true,
+    format: {with: VALID_PHONE_REGEX}
+
+  validates :plate_number, uniqueness: true,
+    length: {minimum: 8, maximum: 10}, allow_nil: true
 
   def email_required?
     false
@@ -84,7 +91,7 @@ class User < ApplicationRecord
   end
 
   def check_pin pin
-    return self.pin == pin
+    return self.pin == pin unless self.pin.nil?
   end
 
   def valid_phone_number?

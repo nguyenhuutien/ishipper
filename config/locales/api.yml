@@ -12,6 +12,7 @@ en:
     sign_up:
       success: "Sign up successfully"
       fails: "Invalid sign up"
+      error_role: "Role unavailable"
     send_pin_success: Send pin successful, please check the your phone!
     pin_invalid: PIN is invalid
     pin_valid: PIN is valid
@@ -21,6 +22,7 @@ en:
     update:
       success: Update success
       fail:  Update failure
+      can't_update_role: You can't update role
     user_block: User is blocked!
     user_actived: User has actived before!
     invalid: " is invalid!"
