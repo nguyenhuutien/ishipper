@@ -4,6 +4,7 @@ en:
       success: Receive invoice success, please waiting for shop accept
       fail: Receive invoice fail
       received: You are received this invoice, can't receive again
+      limit: Shipper limited invoice
     delete:
       success: "Cancel receive invoice"
       fails: "Delete request receive invoice fails"

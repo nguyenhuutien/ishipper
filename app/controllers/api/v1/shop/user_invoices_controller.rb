@@ -1,5 +1,5 @@
 class Api::V1::Shop::UserInvoicesController < Api::ShopBaseController
-  before_action :find_object, :check_conditions_to_accept_shipper?
+  before_action :find_object, :check_limited_shipper, :check_conditions_to_accept_shipper?
 
   def update
     if InvoiceStatus.new(@invoice, @user_invoice, "waiting", current_user).accept_shipper
@@ -14,6 +14,17 @@ class Api::V1::Shop::UserInvoicesController < Api::ShopBaseController
   private
   def user_invoice_params
     params.require(:user_invoice).permit :invoice_id
+  end
+
+  def check_limited_shipper
+    @user_invoices = UserInvoice.find_by(id: params[:id]).user.user_invoices
+    user_invoices_init = @user_invoices.init
+    @admin = User.admin.first
+    unless @user_invoices.waiting.count < Settings.max_invoice
+      ShipperReceiveLimit.new(user_invoices_init, @admin).update_status
+      render json: {message: I18n.t("user_invoices.receive_invoice.limit"),
+        data: {user_invoice: @user_invoice}, code: 1}, status: 200
+    end
   end
 
   def check_conditions_to_accept_shipper?
