@@ -23,6 +23,7 @@ class Invoice < ApplicationRecord
 
   scope :filter_by, -> column, min, max{
     where "#{column} BETWEEN ? AND ?", min, max}
+  scope :search_invoice, -> search {where "name LIKE ?", "%#{search}%"}
 
   class << self
     def filtering_column params

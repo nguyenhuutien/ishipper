@@ -5,9 +5,9 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
 
   def index
     invoices = if params[:status] == "all"
-      current_user.all_user_invoices
+      current_user.all_user_invoices.search_invoice params[:querry]
     else
-      current_user.all_user_invoices.send params[:status]
+      current_user.all_user_invoices.send params[:status].search_invoice params[:querry]
     end
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
       data: {invoices: invoices}, code: 1}, status: 200
@@ -44,6 +44,10 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
       params.has_key?(:status)
       render json: {message: I18n.t("invoices.messages.missing_params"),
       data: {}, code: 0}, status: 422
+    end
+    unless params.has_key? :querry
+      render json: {message: I18n.t("invoices.messages.missing_params"),
+        data: {}, code: 0}, status: 422
     end
   end
 
