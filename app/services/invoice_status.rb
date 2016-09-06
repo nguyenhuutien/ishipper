@@ -11,7 +11,7 @@ class InvoiceStatus
       UserInvoice.transaction do
         @invoice.update_attributes status: @status
         @user_invoice.update_attributes status: @status
-        InvoiceHistoryCreator.new(@invoice, @current_user).
+        InvoiceHistoryCreator.new(@invoice, @current_user.id).
           create_all_history @user_invoice, @status
       end
     end
@@ -24,18 +24,18 @@ class InvoiceStatus
       UserInvoice.transaction do
         if @invoice.init?
           @invoice.update_attributes status: @status
-          InvoiceHistoryCreator.new(@invoice, @current_user).create_invoice_history
+          InvoiceHistoryCreator.new(@invoice, @current_user.id).create_invoice_history
           if @invoice.cancel?
             @invoice.user_invoices.each do |user_invoice|
               user_invoice.reject!
-              InvoiceHistoryCreator.new(@invoice, @current_user).
+              InvoiceHistoryCreator.new(@invoice, @current_user.id).
                 create_user_invoice_history user_invoice, "reject"
             end
           end
         else
           @invoice.update_attributes status: @status
           @user_invoice.update_attributes status: @status
-          InvoiceHistoryCreator.new(@invoice, @current_user).
+          InvoiceHistoryCreator.new(@invoice, @current_user.id).
             create_all_history @user_invoice, @status
         end
       end
@@ -92,12 +92,12 @@ class InvoiceStatus
       UserInvoice.transaction do
         @user_invoice.update_attributes status: @status
         @invoice.update_attributes status: @status
-        InvoiceHistoryCreator.new(@invoice, @current_user).
+        InvoiceHistoryCreator.new(@invoice, @current_user.id).
           create_all_history @user_invoice, @status
         @invoice.user_invoices.each do |user_invoice|
           unless @user_invoice == user_invoice
             user_invoice.reject!
-            InvoiceHistoryCreator.new(@invoice, @current_user).
+            InvoiceHistoryCreator.new(@invoice, @current_user.id).
               create_user_invoice_history user_invoice, "reject"
           end
         end

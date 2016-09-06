@@ -4,9 +4,9 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
 
   def create
     @user_invoice = current_user.user_invoices.build user_invoice_params
-    if ShipperReceiveLimit.new(@user_invoice, current_user).check_new_shipper?
+    if ShipperReceiveLimit.new(@user_invoice, current_user.id).check_new_shipper?
       if @user_invoice.save
-        InvoiceHistoryCreator.new(@invoice, current_user).
+        InvoiceHistoryCreator.new(@invoice, current_user.id).
           create_user_invoice_history @user_invoice, "init"
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
           data: {user_invoice: @user_invoice}, code: 1}, status: 200
@@ -15,9 +15,9 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
           code: 0}, status: 200
       end
     else
-      if ShipperReceiveLimit.new(@user_invoice, current_user).check_old_shipper?
+      if ShipperReceiveLimit.new(@user_invoice, current_user.id).check_old_shipper?
         if @user_invoice.save
-          InvoiceHistoryCreator.new(@invoice, current_user).
+          InvoiceHistoryCreator.new(@invoice, current_user.id).
             create_user_invoice_history @user_invoice, "init"
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
             data: {user_invoice: @user_invoice}, code: 1}, status: 200
