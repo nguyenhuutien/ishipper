@@ -41,6 +41,10 @@ class Invoice < ApplicationRecord
     where "#{column} BETWEEN ? AND ?", min, max}
   scope :search_invoice, -> search {where "name LIKE ?", "%#{search}%"}
 
+  scope :invoice_by_status, -> status, user_id{
+    where(id: UserInvoice.select(:invoice_id).where(status: status, user_id: user_id))
+  }
+
   class << self
     def filtering_column params
       params.slice :price, :shipping_price, :distance, :weight
