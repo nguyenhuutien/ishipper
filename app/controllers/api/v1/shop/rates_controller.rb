@@ -43,9 +43,7 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   end
 
   def ensure_params_exist
-    if params[:rate].nil? || params[:rate][:invoice_id].nil? ||
-      params[:rate][:review_type].nil? || params[:rate][:content].nil? ||
-      params[:rate][:rating_point].nil?
+    unless CheckParams.new(Review::RATE_ATTRIBUTES_PARAMS, params[:rate]).params_exist?
       render json: {message: I18n.t("rate.missing_params"), data: {}, code: 0},
         status: 422
     end

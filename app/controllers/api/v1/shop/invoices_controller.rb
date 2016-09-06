@@ -3,6 +3,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
   before_action :ensure_params_exist,  only: :create
   before_action :find_object, only: [:update, :destroy, :show]
   before_action :check_conditions_to_update_status?, only: :update
+  before_action :ensure_params_exist, only: :create
 
   def index
     invoices = if params[:status] == "all"
@@ -103,15 +104,9 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       end
     end
   end
+
   def ensure_params_exist
-    if params[:invoice].nil? || params[:invoice][:name].nil? ||
-      params[:invoice][:address_start].nil? || params[:invoice][:latitude_start].nil? ||
-      params[:invoice][:longitude_start].nil? || params[:invoice][:address_finish].nil? ||
-      params[:invoice][:latitude_finish].nil? || params[:invoice][:longitude_finish].nil? ||
-      params[:invoice][:delivery_time].nil? || params[:invoice][:distance].nil? ||
-      params[:invoice][:description].nil? || params[:invoice][:price].nil? ||
-      params[:invoice][:shipping_price].nil? || params[:invoice][:weight].nil? ||
-      params[:invoice][:customer_name].nil? ||  params[:invoice][:customer_number].nil?
+    unless CheckParams.new(Invoice::ATTRIBUTES_PARAMS, params[:invoice]).params_exist?
       render json: {message: I18n.t("invoices.messages.missing_params"),
         data: {}, code: 0}, status: 422
     end

@@ -23,10 +23,9 @@ class Api::V1::Shipper::ReportsController < Api::ShipperBaseController
   end
 
   def ensure_params_true
-    if params[:report].nil? || params[:report][:invoice_id].nil? ||
-      params[:report][:review_type].nil? || params[:report][:content].nil?
-      return render json: {message: I18n.t("api.missing_params"),
-        data: {}, code: 0}, status: 422
+    unless CheckParams.new(Review::REPORT_ATTRIBUTES_PARAMS, params[:report]).params_exist?
+      render json: {message: I18n.t("rate.missing_params"), data: {}, code: 0},
+        status: 422
     end
   end
 

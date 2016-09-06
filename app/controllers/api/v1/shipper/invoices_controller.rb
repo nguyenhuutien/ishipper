@@ -7,7 +7,7 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
     invoices = if params[:status] == "all"
       current_user.all_user_invoices.search_invoice params[:querry]
     else
-      current_user.all_user_invoices.send params[:status].search_invoice params[:querry]
+      Invoice.invoice_by_status(params[:status], current_user.id).search_invoice params[:querry]
     end
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
       data: {invoices: invoices}, code: 1}, status: 200
