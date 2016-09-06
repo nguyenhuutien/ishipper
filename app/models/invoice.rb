@@ -9,6 +9,22 @@ class Invoice < ApplicationRecord
 
   belongs_to :user
 
+  validates :name, presence: true
+  validates :address_start, presence: true
+  validates :address_finish, presence: true
+  validates :delivery_time, presence: true
+  validates :distance, presence: true
+  validates :price, presence: true
+  validates :shipping_price, presence: true
+  validates :weight, presence: true
+  validates :customer_name, presence: true
+  validates :customer_number, presence: true
+  validates :latitude_start, presence: true
+  validates :longitude_start, presence: true
+  validates :latitude_finish, presence: true
+  validates :longitude_finish, presence: true
+
+
   ATTRIBUTES_PARAMS = [:name, :address_start, :address_finish, :delivery_time,
     :distance, :description, :price, :shipping_price, :weight,
     :customer_name, :customer_number, :latitude_start, :longitude_start,
@@ -51,7 +67,8 @@ class Invoice < ApplicationRecord
           invoices = invoices.filter_by key, value[:min], value[:max] if
             value[:min].present? && value[:max].present?
         end
-        invoices = Hash.new unless params[:invoice].keys.to_set.subset? INVOICE_PARAMS
+        invoices = Hash.new unless params[:invoice].keys.to_set.subset?(INVOICE_PARAMS) &&
+          invoices != Invoice.all
       end
       invoices = invoices.init if invoices.any?
       invoices

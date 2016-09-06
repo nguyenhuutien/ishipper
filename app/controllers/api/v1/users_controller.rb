@@ -2,7 +2,7 @@ class Api::V1::UsersController < Api::BaseController
   before_action :ensure_params_exist
   before_action :find_object, only: [:show, :update]
   before_action :correct_user, only: :update
-  before_action :ensure_params_exist, only: [:index, :update]
+  before_action :ensure_params_true, :verify_shop, only: :index
 
   def show
     render json: {message: I18n.t("users.show.success"), data: {user: @user}, code: 1}, status: 200
@@ -34,5 +34,20 @@ class Api::V1::UsersController < Api::BaseController
   private
   def user_params
     params.require(:user).permit User::UPDATE_ATTRIBUTES_PARAMS
+  end
+
+  def ensure_params_true
+    if params[:user].nil? || params[:user][:distance].nil? ||
+      params[:user][:latitude].nil? || params[:user][:longitude].nil?
+      render json: {message: I18n.t("api.missing_params"), data: {}, code: 0},
+        status: 422
+    end
+  end
+
+  def verify_shop
+    unless current_user.shop?
+      render json: {message: I18n.t("users.messages.not_authorize"), data: {},
+        code: 0}, status: 403
+    end
   end
 end

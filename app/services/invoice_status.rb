@@ -9,10 +9,16 @@ class InvoiceStatus
   def shipper_update_status
     Invoice.transaction do
       UserInvoice.transaction do
-        @invoice.update_attributes status: @status
-        @user_invoice.update_attributes status: @status
-        InvoiceHistoryCreator.new(@invoice, @current_user.id).
-          create_all_history @user_invoice, @status
+        if @user_invoice.init? && @status == "reject"
+          @user_invoice.update_attributes status: @status
+          InvoiceHistoryCreator.new(@invoice, @current_user.id).
+            create_user_invoice_history @user_invoice, "reject"
+        else
+          @invoice.update_attributes status: @status
+          @user_invoice.update_attributes status: @status
+          InvoiceHistoryCreator.new(@invoice, @current_user.id).
+            create_all_history @user_invoice, @status
+        end
       end
     end
     rescue => e

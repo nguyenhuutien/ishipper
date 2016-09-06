@@ -52,7 +52,8 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
   end
 
   def check_conditions_to_update_status?
-    @user_invoice = @invoice.user_invoices.find_by user_id: current_user.id
+    @user_invoice = @invoice.user_invoices.find_by user_id: current_user.id,
+      status: @invoice.status
     if CheckConditions.new(@invoice, @user_invoice, params[:status]).shipper_conditions?
       render json: {message: I18n.t("invoices.messages.cant_update"),
         data: {}, code: 0}, status: 200
