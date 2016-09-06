@@ -1,5 +1,6 @@
 class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
-  before_action :ensure_params_exist, :check_received_invoice, only: :create
+  before_action :ensure_params_exist, :check_received_invoice,
+    :check_invoice_status, only: :create
   before_action :check_delete_user_invoice, only: :destroy
 
   def create
@@ -53,9 +54,16 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       render json: {message: I18n.t("invoices.messages.invoice_not_found"),
         data: {}, code: 0}, status: 200
     end
-    user_invoice = current_user.user_invoices.find_by invoice: @invoice
+    user_invoice = current_user.user_invoices.find_by invoice: @invoice, status: "init"
     if user_invoice
       render json: {message: I18n.t("user_invoices.receive_invoice.received"),
+        data: {}, code: 0}, status: 200
+    end
+  end
+
+  def check_invoice_status
+    unless @invoice.init?
+      render json: {message: I18n.t("user_invoices.receive_invoice.fail"),
         data: {}, code: 0}, status: 200
     end
   end
