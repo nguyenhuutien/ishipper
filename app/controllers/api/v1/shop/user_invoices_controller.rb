@@ -19,9 +19,8 @@ class Api::V1::Shop::UserInvoicesController < Api::ShopBaseController
   def check_limited_shipper
     @user_invoices = UserInvoice.find_by(id: params[:id]).user.user_invoices
     user_invoices_init = @user_invoices.init
-    @admin = User.admin.first
     unless @user_invoices.waiting.count < Settings.max_invoice
-      ShipperReceiveLimit.new(user_invoices_init, @admin).update_status
+      ShipperReceiveLimit.new(user_invoices_init, 0).update_status
       render json: {message: I18n.t("user_invoices.receive_invoice.limit"),
         data: {user_invoice: @user_invoice}, code: 1}, status: 200
     end

@@ -28,7 +28,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
   def create
     invoice = current_user.invoices.build invoice_params
     if invoice.save
-      InvoiceHistoryCreator.new(invoice, current_user).create_history invoice_params
+      InvoiceHistoryCreator.new(invoice, current_user.id).create_history invoice_params
       render json: {message: I18n.t("invoices.create.success"),
         data: {invoice: invoice}, code: 1}, status: 201
     else
@@ -49,7 +49,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       end
     else
       if @invoice.init?
-        if InvoiceHistoryCreator.new(@invoice, current_user).create_history invoice_params
+        if InvoiceHistoryCreator.new(@invoice, current_user.id).create_history invoice_params
           render json: {message: I18n.t("invoices.update.success"),
             data:{invoice: @invoice}, code: 1}, status: 200
         else
