@@ -45,10 +45,6 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
       render json: {message: I18n.t("invoices.messages.missing_params"),
       data: {}, code: 0}, status: 422
     end
-    unless params.has_key? :query
-      render json: {message: I18n.t("invoices.messages.missing_params"),
-        data: {}, code: 0}, status: 422
-    end
   end
 
   def check_conditions_to_update_status?
