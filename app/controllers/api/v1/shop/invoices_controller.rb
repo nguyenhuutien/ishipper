@@ -84,10 +84,6 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       render json: {message: I18n.t("invoices.messages.missing_params"),
         data: {}, code: 0}, status: 422
     end
-    unless params.has_key? :query
-      render json: {message: I18n.t("invoices.messages.missing_params"),
-        data: {}, code: 0}, status: 422
-    end
   end
 
   def invoice_params
