@@ -5,16 +5,23 @@ class Api::V1::UsersController < Api::BaseController
   before_action :ensure_params_true, :verify_shop, only: :index
 
   def show
-    render json: {message: I18n.t("users.show.success"), data: {user: @user}, code: 1}, status: 200
+    serializer = ActiveModelSerializers::SerializableResource.new(@user,
+      params).as_json
+    render json: {message: I18n.t("users.show.success"),
+      data: {user: serializer}, code: 1}, status: 200
   end
 
   def index
     users = User.near [params[:user][:latitude], params[:user][:longitude]],
       params[:user][:distance]
-    users = users.shipper
+    users = users.shipper.collect do |shipper|
+      ActiveModelSerializers::SerializableResource.new(shipper,
+        params)
+    end
+
     if users.any?
       render json: {message: I18n.t("users.messages.get_shipper_success"),
-        data: {users: users}, code: 1}, status: 200
+        data: {users: users.as_json}, code: 1}, status: 200
     else
       render json: {message: I18n.t("users.messages.get_shipper_fails"),
         data: {}, code: 1}, status: 200
@@ -23,8 +30,10 @@ class Api::V1::UsersController < Api::BaseController
 
   def update
     if @user.update_with_password user_params
+      serializer = ActiveModelSerializers::SerializableResource.new(@user,
+        params).as_json
       render json: {message: I18n.t("users.messages.update_success"),
-        data: {user: @user}, code: 1}, status: 200
+        data: {user: serializer}, code: 1}, status: 200
     else
       render json: {message: error_messages(@user.errors.messages),
         data: {}, code: 0}, status: 200
