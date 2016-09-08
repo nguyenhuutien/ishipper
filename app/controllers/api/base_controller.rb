@@ -2,7 +2,6 @@ class Api::BaseController < ActionController::API
   include Authenticable
   include Confirm
   acts_as_token_authentication_handler_for User, {fallback: :none}
-  # skip_before_action :authenticate_user_from_token
 
   respond_to :json
 

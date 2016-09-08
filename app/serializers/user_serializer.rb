@@ -8,7 +8,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def user_invoice_id
-    if @object.shipper?
+    if @object.shipper? && @params[:invoice].present?
       @object.user_invoices.find_by_invoice_id(@params[:invoice][:id]).id
     else
       nil
