@@ -21,8 +21,14 @@ class User < ApplicationRecord
     foreign_key: "owner_id", dependent: :destroy
   has_many :passive_notifications, class_name: Notification.name,
     foreign_key: "recipient_id", dependent: :destroy
-  has_many :black_lists, dependent: :destroy
-  has_many :favorite_list, dependent: :destroy
+
+  has_many :owner_black_lists, class_name: BlackList.name,
+    foreign_key: "owner_id", dependent: :destroy
+  has_many :black_list_users, through: :owner_black_lists, source: :black_list_user
+
+  has_many :owner_favorite_lists, class_name: FavoriteList.name,
+    foreign_key: "owner_id", dependent: :destroy
+  has_many :favorite_list_users, through: :owner_favorite_lists, source: :favorite_list_user
 
   enum status: [:unactive, :actived, :block_temporary, :blocked]
   enum role: ["admin", "shop", "shipper"]

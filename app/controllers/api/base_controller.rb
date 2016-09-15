@@ -29,9 +29,4 @@ class Api::BaseController < ActionController::API
         data: {}, code: 0}, status: 200
     end
   end
-
-  def active_serialize object, params
-    @serialization = ActiveModelSerializers::SerializableResource.new object, params
-    @serialization.as_json
-  end
 end

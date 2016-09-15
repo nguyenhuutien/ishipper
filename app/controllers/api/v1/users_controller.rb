@@ -14,18 +14,12 @@ class Api::V1::UsersController < Api::BaseController
   def index
     users = User.near [params[:user][:latitude], params[:user][:longitude]],
       params[:user][:distance]
-    users = users.shipper.collect do |shipper|
-      ActiveModelSerializers::SerializableResource.new(shipper,
-        params)
-    end
+    users = users.shipper
+    users = ActiveModelSerializers::SerializableResource.new(users,
+      each_serializer: UserSerializer)
 
-    if users.any?
-      render json: {message: I18n.t("users.messages.get_shipper_success"),
-        data: {users: users.as_json}, code: 1}, status: 200
-    else
-      render json: {message: I18n.t("users.messages.get_shipper_fails"),
-        data: {}, code: 1}, status: 200
-    end
+    render json: {message: I18n.t("users.messages.get_shipper_success"),
+      data: {users: users.as_json}, code: 1}, status: 200
   end
 
   def update

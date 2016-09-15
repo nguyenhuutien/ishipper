@@ -24,13 +24,13 @@ Rails.application.routes.draw do
         resources :user_invoices, only: [:create, :destroy]
         resources :rates, only: [:create, :update, :destroy]
         resources :reports, only: :create
-        resources :black_lists, only: :create
+        resources :black_lists, only: [:create, :index]
       end
       namespace :shop do
         resources :invoices, except: [:edit, :new]
         resources :user_invoices, only: :update
         resources :list_shippers, only: :index
-        resources :reports, only: :create
+        resources :reports, only: [:create, :show]
         resources :rates, only: [:create, :update, :destroy]
       end
     end
