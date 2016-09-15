@@ -1,0 +1,6 @@
+en:
+  black_list:
+    missing_params: Missing BlackList parameter
+    black_user_invalid: You can't add a shipper to Blacklist
+    create_success: Add shop to Blacklist successful
+    create_fail: Add shop to Blacklist fail

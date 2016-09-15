@@ -5,7 +5,7 @@ class CheckParams
   end
 
   def params_exist?
-    if @params.nil?
+    if @params.class.to_s != "ActionController::Parameters" || @params.nil?
       return false
     else
       @attributes_params.each do |attribute|

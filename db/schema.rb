@@ -10,20 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915015816) do
+ActiveRecord::Schema.define(version: 20160915042125) do
 
   create_table "black_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "owner_id"
-    t.integer  "blacklist_user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "black_list_user_id"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["user_id"], name: "index_black_lists_on_user_id", using: :btree
   end
 
   create_table "favorite_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "owner_id"
-    t.integer  "favoritelist_user_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "favorite_list_user_id"
+    t.integer  "user_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["user_id"], name: "index_favorite_lists_on_user_id", using: :btree
   end
 
   create_table "invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -144,6 +146,8 @@ ActiveRecord::Schema.define(version: 20160915015816) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "black_lists", "users"
+  add_foreign_key "favorite_lists", "users"
   add_foreign_key "invoices", "users"
   add_foreign_key "reviews", "invoices"
   add_foreign_key "user_invoices", "invoices"
