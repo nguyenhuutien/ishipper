@@ -1,9 +1,18 @@
 class Api::V1::Shipper::BlackListsController < Api::ShipperBaseController
-  before_action :ensure_params_exist, :check_black_user, :check_exist_black_list
+  before_action :ensure_params_exist, :check_black_user,
+    :check_exist_black_list, only: :create
+
+  def index
+    users = current_user.black_list_users
+    users = ActiveModelSerializers::SerializableResource.new(users,
+      each_serializer: UserSerializer, scope: {current_user: current_user})
+    render json: {message: I18n.t("black_list.get_black_list_success"),
+      data: {users: users}, code: 1}, status: 200
+  end
 
   def create
     black_list = BlackList.new black_list_params
-    black_list.user = current_user
+    black_list.owner = current_user
     if black_list.save
       render json: {message: I18n.t("black_list.create_success"),
         data: {black_list: black_list}, code: 1}, status: 200
@@ -33,8 +42,8 @@ class Api::V1::Shipper::BlackListsController < Api::ShipperBaseController
   end
 
   def check_exist_black_list
-    black_list_user = current_user.black_lists.
-      find_by black_list_user_id: black_list_params[:black_list_user_id]
+    black_list_user = current_user.black_list_users.
+      find_by id: black_list_params[:black_list_user_id]
     if black_list_user
       render json: {message: I18n.t("black_list.black_list_shop_exist"), data: {},
         code: 0}, status: 200

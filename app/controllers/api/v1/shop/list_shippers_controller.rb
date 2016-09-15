@@ -4,13 +4,14 @@ class Api::V1::Shop::ListShippersController < Api::ShopBaseController
   def index
     invoice = current_user.invoices.find_by id: params[:invoice][:id]
     shippers = invoice.all_shipper
-    active_serialize shippers, params
+    shippers = ActiveModelSerializers::SerializableResource.new(shippers,
+      each_serializer: UserSerializer, scope: {invoice_id: params[:invoice][:id]})
     if shippers.blank?
       render json: {message: I18n.t("invoices.messages.get_shippers_fails"),
       data: {}, code: 1}, status: 200
     else
       render json: {message: I18n.t("invoices.messages.get_shippers_success"),
-      data: {shippers: @serialization}, code: 1}, status: 200
+      data: {shippers: shippers}, code: 1}, status: 200
     end
   end
 

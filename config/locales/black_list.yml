@@ -4,3 +4,5 @@ en:
     black_user_invalid: You can't add a shipper to Blacklist
     create_success: Add shop to Blacklist successful
     create_fail: Add shop to Blacklist fail
+    get_black_list_success: Get Blacklist successful
+    get_black_list_fail: Get Blacklist fail
