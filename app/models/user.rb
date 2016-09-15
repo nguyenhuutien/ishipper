@@ -13,14 +13,22 @@ class User < ApplicationRecord
   has_many :invoices, dependent: :destroy
   has_many :user_invoices, dependent: :destroy
   has_many :all_user_invoices, through: :user_invoices, source: :invoice
-  has_many :active_reviews, class_name: "Review", foreign_key: "owner_id",
+  has_many :active_reviews, class_name: Review.name, foreign_key: "owner_id",
     dependent: :destroy
-  has_many :passive_reviews, class_name: "Review", foreign_key: "recipient_id",
+  has_many :passive_reviews, class_name: Review.name, foreign_key: "recipient_id",
     dependent: :destroy
-  has_many :active_notifications, class_name: "Notification",
+  has_many :active_notifications, class_name: Notification.name,
     foreign_key: "owner_id", dependent: :destroy
-  has_many :passive_notifications, class_name: "Notification",
+  has_many :passive_notifications, class_name: Notification.name,
     foreign_key: "recipient_id", dependent: :destroy
+  has_many :user_black_lists, class_name: BlackList.name, foreign_key: "owner_id",
+    dependent: :destroy
+  has_many :black_list_users, class_name: BlackList.name, foreign_key: "black_list_user_id",
+    dependent: :destroy
+  has_many :user_favorite_lists, class_name: FavoriteList.name, foreign_key: "owner_id",
+    dependent: :destroy
+  has_many :favorite_list_users, class_name: FavoriteList.name, foreign_key: "favorite_list_user_id",
+    dependent: :destroy
 
   enum status: [:unactive, :actived, :block_temporary, :blocked]
   enum role: ["admin", "shop", "shipper"]
