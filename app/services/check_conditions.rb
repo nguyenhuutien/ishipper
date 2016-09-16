@@ -11,7 +11,7 @@ class CheckConditions
     if "cancel" == @update_status && "finished" != @invoice.status &&
       "cancel" != @invoice.status
       true
-    elsif "reject" == @update_status && "init" == @invoice.status
+    elsif "rejected" == @update_status && "init" == @invoice.status
       true
     elsif statuses[@update_status].pred == statuses[@invoice.status] &&
       "finished" != @invoice.status
@@ -23,7 +23,7 @@ class CheckConditions
 
   def check_update_status_shipper?
     @update_status == "shipping" || @update_status == "shipped" ||
-    @update_status == "cancel" || @update_status == "reject"
+    @update_status == "cancel" || @update_status == "rejected"
   end
 
   def shipper_conditions?

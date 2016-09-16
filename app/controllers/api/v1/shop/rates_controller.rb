@@ -3,6 +3,7 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
     :check_rate_conditions, except: :destroy
   before_action :check_exist_rate, only: :create
   before_action :find_rate, except: :create
+  before_action :check_black_list
 
   def create
     rate = Review.new rate_params
