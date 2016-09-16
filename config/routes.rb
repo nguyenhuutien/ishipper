@@ -32,6 +32,7 @@ Rails.application.routes.draw do
         resources :list_shippers, only: :index
         resources :reports, only: [:create, :show]
         resources :rates, only: [:create, :update, :destroy]
+        resources :black_lists, only: :create
       end
     end
   end
