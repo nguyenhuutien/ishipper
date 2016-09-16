@@ -1,6 +1,7 @@
 class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
   before_action :ensure_params_exist, :check_favorite_user,
     :check_exist_favorite_list, only: :create
+  before_action :load_and_check_favorite_list, only: :destroy
 
   def index
     users = current_user.favorite_list_users
@@ -20,6 +21,12 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
       render json: {message: I18n.t("favorite_list.create_fail"), data: {},
         code: 0}, status: 200
     end
+  end
+
+  def destroy
+    @favorite_list.destroy
+    render json: {message: I18n.t("favorite_list.destroy_success"), data: {},
+      code: 1}, status: 200
   end
 
   private
@@ -47,6 +54,14 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
     if favorite_list_user
       render json: {message: I18n.t("favorite_list.favorite_list_shop_exist"),
         data: {}, code: 0}, status: 200
+    end
+  end
+
+  def load_and_check_favorite_list
+    @favorite_list = FavoriteList.find_by_id params[:id]
+    unless @favorite_list && @favorite_list.owner == current_user
+      render json: {message: I18n.t("favorite_list.destroy_fail"), data: {},
+        code: 1}, status: 200
     end
   end
 end
