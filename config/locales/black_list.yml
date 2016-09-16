@@ -6,3 +6,5 @@ en:
     create_fail: Add shop to Blacklist fail
     get_black_list_success: Get Blacklist successful
     get_black_list_fail: Get Blacklist fail
+    destroy_success: Remove Blacklist successful
+    destroy_fail: You are not permission to destroy
