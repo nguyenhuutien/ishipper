@@ -1,6 +1,6 @@
 class Api::V1::Shipper::ReportsController < Api::ShipperBaseController
   before_action :ensure_params_true, :find_invoice, :find_user_invoice,
-    :check_exist_report, :check_conditions_to_report
+    :check_exist_report, :check_conditions_to_report, :check_black_list
 
   def create
     @report = @invoice.reviews.build report_params
