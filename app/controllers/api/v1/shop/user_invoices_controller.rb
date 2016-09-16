@@ -1,5 +1,6 @@
 class Api::V1::Shop::UserInvoicesController < Api::ShopBaseController
-  before_action :find_object, :check_limited_shipper, :check_conditions_to_accept_shipper?
+  before_action :find_object, :check_limited_shipper, :check_conditions_to_accept_shipper?,
+    :check_black_list
 
   def update
     if InvoiceStatus.new(@invoice, @user_invoice, "waiting", current_user).accept_shipper

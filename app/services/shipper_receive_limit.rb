@@ -6,9 +6,9 @@ class ShipperReceiveLimit
 
   def update_status
     @user_invoices.each do |user_invoice|
-      user_invoice.reject!
+      user_invoice.rejected!
       InvoiceHistoryCreator.new(@invoice, @id).
-        create_user_invoice_history user_invoice, "reject"
+        create_user_invoice_history user_invoice, "rejected"
     end
   end
 

@@ -9,10 +9,10 @@ class InvoiceStatus
   def shipper_update_status
     Invoice.transaction do
       UserInvoice.transaction do
-        if @user_invoice.init? && @status == "reject"
+        if @user_invoice.init? && @status == "rejected"
           @user_invoice.update_attributes status: @status
           InvoiceHistoryCreator.new(@invoice, @current_user.id).
-            create_user_invoice_history @user_invoice, "reject"
+            create_user_invoice_history @user_invoice, "rejected"
         else
           @invoice.update_attributes status: @status
           @user_invoice.update_attributes status: @status
@@ -33,9 +33,9 @@ class InvoiceStatus
           InvoiceHistoryCreator.new(@invoice, @current_user.id).create_invoice_history
           if @invoice.cancel?
             @invoice.user_invoices.each do |user_invoice|
-              user_invoice.reject!
+              user_invoice.rejected!
               InvoiceHistoryCreator.new(@invoice, @current_user.id).
-                create_user_invoice_history user_invoice, "reject"
+                create_user_invoice_history user_invoice, "rejected"
             end
           end
         else
@@ -102,9 +102,9 @@ class InvoiceStatus
           create_all_history @user_invoice, @status
         @invoice.user_invoices.each do |user_invoice|
           unless @user_invoice == user_invoice
-            user_invoice.reject!
+            user_invoice.rejected!
             InvoiceHistoryCreator.new(@invoice, @current_user.id).
-              create_user_invoice_history user_invoice, "reject"
+              create_user_invoice_history user_invoice, "rejected"
           end
         end
         true
