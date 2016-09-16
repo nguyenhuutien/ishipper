@@ -1,6 +1,14 @@
 class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
   before_action :ensure_params_exist, :check_favorite_user,
-    :check_exist_favorite_list
+    :check_exist_favorite_list, only: :create
+
+  def index
+    users = current_user.favorite_list_users
+    users = ActiveModelSerializers::SerializableResource.new(users,
+      each_serializer: UserSerializer, scope: {current_user: current_user})
+    render json: {message: I18n.t("favorite_list.get_favorite_list_success"),
+      data: {users: users}, code: 1}, status: 200
+  end
 
   def create
     favorite_list = FavoriteList.new favorite_list_params
