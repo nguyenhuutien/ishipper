@@ -25,7 +25,7 @@ Rails.application.routes.draw do
         resources :rates, only: [:create, :update, :destroy]
         resources :reports, only: :create
         resources :black_lists, only: [:create, :index, :destroy]
-        resources :favorite_lists, only: [:create, :index]
+        resources :favorite_lists, only: [:create, :index, :destroy]
       end
       namespace :shop do
         resources :invoices, except: [:edit, :new]
