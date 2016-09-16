@@ -4,6 +4,7 @@ class Api::V1::Shop::ListShippersController < Api::ShopBaseController
   def index
     invoice = current_user.invoices.find_by id: params[:invoice][:id]
     shippers = invoice.all_shipper
+    shippers = shippers - current_user.black_list_users
     shippers = ActiveModelSerializers::SerializableResource.new(shippers,
       each_serializer: UserSerializer, scope: {invoice_id: params[:invoice][:id]})
     if shippers.blank?
