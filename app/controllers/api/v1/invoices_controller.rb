@@ -2,6 +2,7 @@ class Api::V1::InvoicesController < Api::BaseController
   before_action :ensure_params_exist, only: :index
 
   def index
+    params[:black_list_user_id] = current_user.id
     invoices = Invoice.search params
     if invoices.any?
       serializers = ActiveModelSerializers::SerializableResource.new(invoices,

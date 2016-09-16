@@ -2,6 +2,7 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
   before_action :find_object, only: [:update, :show]
   before_action :ensure_params_true, only: [:index, :update]
   before_action :check_conditions_to_update_status?, only: :update
+  before_action :check_black_list, only: [:show, :update]
 
   def index
     invoices = if params[:status] == "all"

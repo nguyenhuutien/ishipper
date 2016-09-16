@@ -10,3 +10,4 @@ en:
     destroy_fail: You are not permission to destroy
     black_list_shop_exist: "This shipper has been added black list"
     user: "This user doesn't add in black list"
+    permission_denied: Permission denied

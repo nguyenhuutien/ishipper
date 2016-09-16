@@ -51,8 +51,11 @@ class Invoice < ApplicationRecord
     end
 
     def search params = {}
+      valid_invoices = Invoice.joins("LEFT JOIN black_lists ON
+        invoices.user_id = black_lists.owner_id")
+        .where("black_lists.black_list_user_id != ?", params[:black_list_user_id])
       if params[:user].present?
-        invoices = Invoice.near [params[:user][:latitude],
+        invoices = valid_invoices.near [params[:user][:latitude],
         params[:user][:longitude]], params[:user][:distance] if
         params[:user][:latitude] && params[:user][:longitude] &&
         params[:user][:distance]
@@ -60,9 +63,9 @@ class Invoice < ApplicationRecord
         invoices = Hash.new unless params[:user].keys.to_set.subset? USER_PARAMS
 
       elsif params[:invoice].present?
-        invoices = Invoice.all
+        invoices = valid_invoices
 
-        invoices = Invoice.near [params[:invoice][:latitude],
+        invoices = valid_invoices.near [params[:invoice][:latitude],
           params[:invoice][:longitude]], params[:invoice][:radius] if
           params[:invoice][:latitude] && params[:invoice][:longitude] &&
           params[:invoice][:radius]
@@ -72,7 +75,7 @@ class Invoice < ApplicationRecord
             value[:min].present? && value[:max].present?
         end
         invoices = Hash.new unless params[:invoice].keys.to_set.subset?(INVOICE_PARAMS) &&
-          invoices != Invoice.all
+          invoices != valid_invoices
       end
       invoices = invoices.init if invoices.any?
       invoices

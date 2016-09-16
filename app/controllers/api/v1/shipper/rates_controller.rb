@@ -3,6 +3,7 @@ class Api::V1::Shipper::RatesController < Api::ShipperBaseController
    :check_rate_conditions, except: :destroy
   before_action :check_exist_rate, only: :create
   before_action :find_rate, except: :create
+  before_action :check_black_list
 
   def create
     rate = @invoice.reviews.build rate_params
