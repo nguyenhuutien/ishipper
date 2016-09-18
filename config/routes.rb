@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         resources :reports, only: [:create, :show]
         resources :rates, only: [:create, :update, :destroy]
         resources :black_lists, only: [:create, :index, :destroy]
+        resources :favorite_lists, only: [:create, :index, :destroy]
       end
     end
   end
