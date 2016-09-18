@@ -2,13 +2,13 @@ en:
   favorite_list:
     missing_params: Missing FavoriteList parameter
     favorite_user_invalid: You can't add a shipper to Favoritelist
-    create_success: Add shop to Favoritelist successful
-    create_fail: Add shop to Favoritelist fail
+    create_success: Add to Favoritelist successful
+    create_fail: Add to Favoritelist fail
     get_favorite_list_success: Get Favoritelist successful
     get_favorite_list_fail: Get Favoritelist fail
     destroy_success: Remove Favoritelist successful
     destroy_fail: You are not permission to destroy
     favorite_list_shop_exist: "This shop has been added Favoritelist"
     favorite_list_shipper_exist: "This shipper has been added Favoritelist"
-    user: "This user doesn't add in Favoritelist"
+    user: "This user can't add in Favoritelist"
     permission_denied: Permission denied
