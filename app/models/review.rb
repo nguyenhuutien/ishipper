@@ -7,4 +7,5 @@ class Review < ApplicationRecord
 
   RATE_ATTRIBUTES_PARAMS = [:review_type, :rating_point, :content]
   REPORT_ATTRIBUTES_PARAMS = [:review_type, :content]
+  REVIEW_ATTRIBUTES_PARAMS = [:recipient_id]
 end

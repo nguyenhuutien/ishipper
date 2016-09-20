@@ -24,3 +24,6 @@ en:
     delete:
       success: "Rate delete successfully"
       fails: "Could not delete rate"
+  review:
+    missing_params: "Missing review parameter"
+    success: "Get reviews successfully"
