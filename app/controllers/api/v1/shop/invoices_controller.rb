@@ -1,10 +1,9 @@
 class Api::V1::Shop::InvoicesController < Api::ShopBaseController
   before_action :ensure_params_true, only: :index
   before_action :ensure_params_exist,  only: :create
-  before_action :find_object, only: [:update, :destroy, :show]
+  before_action :find_object, :check_black_list, only: [:update, :destroy, :show]
   before_action :check_conditions_to_update_status?, only: :update
   before_action :ensure_params_exist, only: :create
-  before_action :check_black_list
 
   def index
     invoices = if params[:status] == "all"
