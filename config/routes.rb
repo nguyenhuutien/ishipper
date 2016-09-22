@@ -27,6 +27,8 @@ Rails.application.routes.draw do
         resources :black_lists, only: [:create, :index, :destroy]
         resources :favorite_lists, only: [:create, :index, :destroy]
         resources :reviews, only: :index
+        resources :destroy_all_black_lists, only: :index
+        resources :destroy_all_favorite_lists, only: :index
       end
       namespace :shop do
         resources :invoices, except: [:edit, :new]
@@ -37,6 +39,8 @@ Rails.application.routes.draw do
         resources :black_lists, only: [:create, :index, :destroy]
         resources :favorite_lists, only: [:create, :index, :destroy]
         resources :reviews, only: :index
+        resources :destroy_all_favorite_lists, only: :index
+        resources :destroy_all_black_lists, only: :index
       end
     end
   end

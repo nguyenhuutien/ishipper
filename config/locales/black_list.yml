@@ -7,7 +7,9 @@ en:
     get_black_list_success: Get Blacklist successful
     get_black_list_fail: Get Blacklist fail
     destroy_success: Remove from Blacklist successful
+    destroy_all_success: Remove all from Blacklist successful
     destroy_fail: You are not permission to destroy
+    destroy_all_fail: Your black list is empty
     black_list_shop_exist: "This shop has been added black list"
     black_list_shipper_exist: "This shipper has been added black list"
     user: "This user can't add in black list"
