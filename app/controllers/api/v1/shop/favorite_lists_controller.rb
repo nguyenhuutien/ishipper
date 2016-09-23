@@ -1,7 +1,7 @@
 class Api::V1::Shop::FavoriteListsController < Api::ShopBaseController
   before_action :ensure_params_exist, :check_exist_favorite_list,
     :check_user_exist, only: :create
-  before_action :load_and_check_favorite_list, :destroy
+  before_action :load_and_check_favorite_list, only: :destroy
 
   def index
     users = current_user.favorite_list_users
