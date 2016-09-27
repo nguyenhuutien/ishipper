@@ -6,7 +6,8 @@ class Api::V1::Shop::ListShippersController < Api::ShopBaseController
     shippers = invoice.all_shipper
     shippers = shippers - current_user.black_list_users
     shippers = ActiveModelSerializers::SerializableResource.new(shippers,
-      each_serializer: UserSerializer, scope: {invoice_id: params[:invoice][:id]})
+      each_serializer: UserSerializer, scope: {invoice_id: params[:invoice][:id],
+      current_user: current_user})
     if shippers.blank?
       render json: {message: I18n.t("invoices.messages.get_shippers_fails"),
       data: {}, code: 1}, status: 200
