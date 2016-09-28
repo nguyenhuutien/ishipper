@@ -5,7 +5,7 @@ class InvoiceSerializer < ActiveModel::Serializer
     :customer_name, :customer_number, :user, :received
 
   def user
-    if scope.shipper?
+    if scope && scope.shipper?
       object.user
     else
       if object.init?
@@ -23,7 +23,7 @@ class InvoiceSerializer < ActiveModel::Serializer
   end
 
   def received
-    if scope.shipper?
+    if scope && scope.shipper?
       user_invoice = UserInvoice.find_by invoice_id: object.id, user: scope
       if user_invoice
         true
