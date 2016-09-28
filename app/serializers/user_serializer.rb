@@ -4,9 +4,8 @@ class UserSerializer < ActiveModel::Serializer
     :black_list_id, :favorite_list_id, :favorite_user
 
   def user_invoice_id
-    invoice = Invoice.find_by_id scope[:invoice_id]
     current_user = object
-    if scope && current_user && invoice
+    if scope && current_user && (invoice = Invoice.find_by_id scope[:invoice_id])
       user_invoice = UserInvoice.find_by user_id: current_user.id, invoice_id: invoice.id
       user_invoice ? user_invoice.id : nil
     else
