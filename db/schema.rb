@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.float    "latitude_finish",  limit: 24
     t.float    "longitude_finish", limit: 24
     t.string   "delivery_time"
-    t.float    "distance",         limit: 24
+    t.float    "distance_invoice", limit: 24
     t.string   "description"
     t.float    "price",            limit: 24
     t.float    "shipping_price",   limit: 24
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.float    "latitude_finish",  limit: 24
     t.float    "longitude_finish", limit: 24
     t.string   "delivery_time"
-    t.float    "distance",         limit: 24
+    t.float    "distance_invoice", limit: 24
     t.string   "description"
     t.float    "price",            limit: 24
     t.float    "shipping_price",   limit: 24

@@ -7,7 +7,7 @@ class InvoiceHistoryCreator
   def create_history invoice_params
     if @invoice.update_attributes invoice_params
       create_invoice_history
-      return true 
+      return true
     else
       return false
     end
@@ -15,15 +15,15 @@ class InvoiceHistoryCreator
 
   def create_invoice_history
     InvoiceHistory.create! name: @invoice.name,
-    address_start: @invoice.address_start, 
+    address_start: @invoice.address_start,
     latitude_start: @invoice.latitude_start,
     longitude_start: @invoice.longitude_start,
     address_finish: @invoice.address_finish,
     latitude_finish: @invoice.latitude_finish,
     longitude_finish: @invoice.longitude_finish,
     delivery_time: @invoice.delivery_time,
-    distance: @invoice.distance,
-    description: @invoice.distance,
+    distance_invoice: @invoice.distance_invoice,
+    description: @invoice.distance_invoice,
     price: @invoice.price,
     shipping_price: @invoice.shipping_price,
     status: @invoice.status,

@@ -13,7 +13,7 @@ class Invoice < ApplicationRecord
   validates :address_start, presence: true
   validates :address_finish, presence: true
   validates :delivery_time, presence: true
-  validates :distance, presence: true
+  validates :distance_invoice, presence: true
   validates :price, presence: true
   validates :shipping_price, presence: true
   validates :weight, presence: true
@@ -26,14 +26,14 @@ class Invoice < ApplicationRecord
 
 
   ATTRIBUTES_PARAMS = [:name, :address_start, :address_finish, :delivery_time,
-    :distance, :description, :price, :shipping_price, :weight,
+    :distance_invoice, :description, :price, :shipping_price, :weight,
     :customer_name, :customer_number, :latitude_start, :longitude_start,
     :latitude_finish, :longitude_finish]
 
-  INVOICE_PARAMS = Set.new ["price", "shipping_price", "distance", "weight",
+  INVOICE_PARAMS = Set.new ["price", "shipping_price", "distance_invoice", "weight",
     "latitude", "longitude", "radius"]
 
-  USER_PARAMS = Set.new ["latitude", "longitude", "distance"]
+  USER_PARAMS = Set.new ["latitude", "longitude", "distance_invoice"]
 
   enum status: [:init, :waiting, :shipping, :shipped, :finished, :cancel]
 
@@ -47,7 +47,7 @@ class Invoice < ApplicationRecord
 
   class << self
     def filtering_column params
-      params.slice :price, :shipping_price, :distance, :weight
+      params.slice :price, :shipping_price, :distance_invoice, :weight
     end
 
     def search params = {}
@@ -57,9 +57,9 @@ class Invoice < ApplicationRecord
         black_lists.black_list_user_id IS NULL", params[:black_list_user_id])
       if params[:user].present?
         invoices = valid_invoices.near [params[:user][:latitude],
-        params[:user][:longitude]], params[:user][:distance] if
+        params[:user][:longitude]], params[:user][:distance_invoice] if
         params[:user][:latitude] && params[:user][:longitude] &&
-        params[:user][:distance]
+        params[:user][:distance_invoice]
 
         invoices = Hash.new unless params[:user].keys.to_set.subset? USER_PARAMS
 
