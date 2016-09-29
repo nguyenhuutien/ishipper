@@ -9,7 +9,7 @@ class CreateInvoices < ActiveRecord::Migration[5.0]
       t.float :latitude_finish
       t.float :longitude_finish
       t.string :delivery_time
-      t.float :distance
+      t.float :distance_invoice
       t.string :description
       t.float :price
       t.float :shipping_price
