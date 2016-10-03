@@ -33,7 +33,7 @@ class Invoice < ApplicationRecord
   INVOICE_PARAMS = Set.new ["price", "shipping_price", "distance_invoice", "weight",
     "latitude", "longitude", "radius"]
 
-  USER_PARAMS = Set.new ["latitude", "longitude", "distance_invoice"]
+  USER_PARAMS = Set.new ["latitude", "longitude", "distance"]
 
   enum status: [:init, :waiting, :shipping, :shipped, :finished, :cancel]
 
@@ -57,9 +57,9 @@ class Invoice < ApplicationRecord
         black_lists.black_list_user_id IS NULL", params[:black_list_user_id])
       if params[:user].present?
         invoices = valid_invoices.near [params[:user][:latitude],
-        params[:user][:longitude]], params[:user][:distance_invoice] if
+        params[:user][:longitude]], params[:user][:distance] if
         params[:user][:latitude] && params[:user][:longitude] &&
-        params[:user][:distance_invoice]
+        params[:user][:distance]
 
         invoices = Hash.new unless params[:user].keys.to_set.subset? USER_PARAMS
 
