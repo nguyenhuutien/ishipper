@@ -6,9 +6,10 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
 
   def index
     invoices = if params[:status] == "all"
-      current_user.all_user_invoices.search_invoice params[:query]
+      current_user.all_user_invoices.search_invoice(params[:query]).order_by_time
     else
-      Invoice.invoice_by_status(params[:status], current_user.id).search_invoice params[:query]
+      Invoice.invoice_by_status(params[:status], current_user.id).
+        search_invoice(params[:query]).order_by_time
     end
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
       data: {invoices: invoices}, code: 1}, status: 200

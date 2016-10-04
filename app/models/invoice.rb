@@ -44,6 +44,7 @@ class Invoice < ApplicationRecord
   scope :invoice_by_status, -> status, user_id{
     where(id: UserInvoice.select(:invoice_id).where(status: status, user_id: user_id))
   }
+  scope :order_by_time, -> {order created_at: :desc}
 
   class << self
     def filtering_column params

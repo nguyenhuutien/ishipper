@@ -7,9 +7,10 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
 
   def index
     invoices = if params[:status] == "all"
-      current_user.invoices.search_invoice params[:query]
+      current_user.invoices.search_invoice(params[:query]).order_by_time
     else
-      current_user.invoices.send(params[:status]).search_invoice params[:query]
+      current_user.invoices.send(params[:status]).
+        search_invoice(params[:query]).order_by_time
     end
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
       data: {invoices: invoices}, code: 1}, status: 200
