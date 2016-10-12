@@ -31,11 +31,10 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    token = @user.user_tokens.find_by authentication_token:
-      user_params[:authentication_token]
+    token = @user.user_tokens.find_by authentication_token: params[:user][:authentication_token]
     if token
       sign_out @user
-      destroy_user_token
+      token.destroy
       render json: {message: t("api.sign_out.success"), data: {}, code: 1}, status: 200
     else
       render json: {message: t("api.invalid_token"), data: {}, code: 0}, status: 200
@@ -44,7 +43,7 @@ class Api::SessionsController < Devise::SessionsController
 
   private
   def user_params
-    params.require(:user).permit :phone_number, :password, :notification_token, :device_id
+    params.require(:user).permit :phone_number, :password
   end
 
   def invalid_login_attempt
@@ -55,10 +54,5 @@ class Api::SessionsController < Devise::SessionsController
     @user_token = @user.user_tokens.create! authentication_token: Devise.friendly_token,
       notification_token: user_params[:notification_token],
       device_id: user_params[:device_id]
-  end
-
-  def destroy_user_token
-    user_token = @user.user_tokens.find_by authentication_token: user_params[:authentication_token]
-    user_token.destroy
   end
 end
