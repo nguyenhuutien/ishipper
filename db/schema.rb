@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915042125) do
+ActiveRecord::Schema.define(version: 20161012030137) do
 
   create_table "black_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "black_list_user_id"
@@ -110,6 +110,16 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.index ["user_id"], name: "index_user_invoices_on_user_id", using: :btree
   end
 
+  create_table "user_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "authentication_token"
+    t.string   "device_id"
+    t.string   "notification_token"
+    t.integer  "user_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["user_id"], name: "index_user_tokens_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
@@ -123,7 +133,6 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.integer  "role"
     t.float    "rate",                   limit: 24
     t.string   "pin"
-    t.string   "authentication_token"
     t.boolean  "signed_in"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
@@ -148,4 +157,5 @@ ActiveRecord::Schema.define(version: 20160915042125) do
   add_foreign_key "reviews", "invoices"
   add_foreign_key "user_invoices", "invoices"
   add_foreign_key "user_invoices", "users"
+  add_foreign_key "user_tokens", "users"
 end

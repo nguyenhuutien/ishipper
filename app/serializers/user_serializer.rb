@@ -1,7 +1,8 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :address, :current_location, :latitude,
     :longitude, :phone_number, :plate_number, :role, :rate, :user_invoice_id,
-    :black_list_id, :favorite_list_id, :favorite_user
+    :black_list_id, :favorite_list_id, :favorite_user, :authentication_token,
+    :device_id, :notification_token
 
   def user_invoice_id
     current_user = object
@@ -33,6 +34,17 @@ class UserSerializer < ActiveModel::Serializer
       current_user.owner_favorite_lists.find_by(favorite_list_user_id: object.id).present?
     else
       false
+    end
+  end
+
+  ["authentication_token", "notification_token", "device_id"].each do |arg|
+    define_method("#{arg}") do
+      if scope && scope[:authentication] && scope[:user_token]
+        user_token = scope[:user_token]
+        user_token.send("#{arg}")
+      else
+        nil
+      end
     end
   end
 end

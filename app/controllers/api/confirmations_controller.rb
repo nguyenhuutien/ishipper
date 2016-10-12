@@ -26,8 +26,11 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
     if @user.check_pin user_params[:pin]
       if @user.unactive?
         @user.activate
+        generate_user_token
+        serializer = ActiveModelSerializers::SerializableResource.new(@user,
+          scope: {authentication: true, user_token: @user_token}).as_json
         render json:
-          {message: t("api.update.success"), data: {user: @user}, code: 1},
+          {message: t("api.update.success"), data: {user: serializer}, code: 1},
           status: 200
       elsif @user.actived?
         render json:
@@ -44,6 +47,12 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
 
   private
   def user_params
-    params.require(:user).permit :phone_number, :pin
+    params.require(:user).permit :phone_number, :pin, :notification_token, :device_id
+  end
+
+  def generate_user_token
+    @user_token = @user.user_tokens.create! authentication_token: Devise.friendly_token,
+      notification_token: user_params[:notification_token],
+      device_id: user_params[:device_id]
   end
 end
