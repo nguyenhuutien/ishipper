@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  acts_as_token_authenticatable
-
   devise :database_authenticatable, :recoverable, :confirmable,
     :rememberable, :trackable, :validatable
   VALID_PHONE_REGEX = /\+84\d{9,10}\)*\z/
@@ -8,6 +6,7 @@ class User < ApplicationRecord
   geocoded_by :current_location
   reverse_geocoded_by :latitude, :longitude, address: :current_location,
     if: :address_changed?
+
   after_validation :geocode, :reverse_geocode
 
   has_many :invoices, dependent: :destroy
@@ -28,6 +27,7 @@ class User < ApplicationRecord
   has_many :owner_favorite_lists, class_name: FavoriteList.name,
     foreign_key: "owner_id", dependent: :destroy
   has_many :favorite_list_users, through: :owner_favorite_lists, source: :favorite_list_user
+  has_many :user_tokens, dependent: :destroy
 
   enum status: [:unactive, :actived, :block_temporary, :blocked]
   enum role: ["admin", "shop", "shipper"]

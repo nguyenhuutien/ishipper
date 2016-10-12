@@ -14,9 +14,12 @@ class Api::SessionsController < Devise::SessionsController
     if @user.valid_password? user_params[:password]
       if @user.actived?
         sign_in @user, store: false
+        generate_user_token
         @user.update_attributes signed_in: true
+        serializer = ActiveModelSerializers::SerializableResource.new(@user,
+          scope: {authentication: true, user_token: @user_token}).as_json
         render json: {message: t("api.sign_in.success"),
-          data: {user: @user}, code: 1}, status: 200
+          data: {user: serializer}, code: 1}, status: 200
         return
       else
         render json: {message: t("api.sign_in.not_actived"), data: {}, code: 0},
@@ -28,9 +31,11 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    if @user.authentication_token == user_params[:authentication_token]
+    token = @user.user_tokens.find_by authentication_token:
+      user_params[:authentication_token]
+    if token
       sign_out @user
-      generate_authentication_token
+      destroy_user_token
       render json: {message: t("api.sign_out.success"), data: {}, code: 1}, status: 200
     else
       render json: {message: t("api.invalid_token"), data: {}, code: 0}, status: 200
@@ -39,14 +44,21 @@ class Api::SessionsController < Devise::SessionsController
 
   private
   def user_params
-    params.require(:user).permit :phone_number, :password, :authentication_token
+    params.require(:user).permit :phone_number, :password, :notification_token, :device_id
   end
 
   def invalid_login_attempt
     render json: {message: t("api.sign_in.fails"), data: {}, code: 0}, status: 200
   end
 
-  def generate_authentication_token
-    @user.update_attributes authentication_token: Devise.friendly_token
+  def generate_user_token
+    @user_token = @user.user_tokens.create! authentication_token: Devise.friendly_token,
+      notification_token: user_params[:notification_token],
+      device_id: user_params[:device_id]
+  end
+
+  def destroy_user_token
+    user_token = @user.user_tokens.find_by authentication_token: user_params[:authentication_token]
+    user_token.destroy
   end
 end
