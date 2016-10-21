@@ -44,4 +44,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get "/pages/:page", to: "pages#show"
+  resources :feed_backs
 end

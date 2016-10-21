@@ -1,0 +1,23 @@
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top nht-navbar">
+  <div class="container">
+    <div class="navbar-header page-scroll">
+    <%= link_to t(:title), "#page-top", class: "navbar-brand page-scroll" %>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li class="active" id="_home">
+          <%= link_to t(:home), "#home", class: "page-scroll" %>
+        </li>
+        <li id="_about">
+          <%= link_to t(:about), "#about", class: "page-scroll" %>
+        </li>
+        <li id="_feed_back">
+          <%= link_to t(:_feed_back), "#feed_back", class: "page-scroll" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
