@@ -15,6 +15,8 @@ gem "bcrypt"
 gem "devise"
 gem "simple_token_authentication"
 gem "active_model_serializers", "0.10.0"
+gem "bootstrap-sass", "3.2.0.0"
+gem "font-awesome-rails"
 
 group :development, :test do
   gem "pry"
