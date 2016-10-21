@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     end
   end
 
+  root "pages#index"
   get "/pages/:page", to: "pages#show"
-  resources :feed_backs
+  resources :feed_backs, only: [:new, :create]
 end
