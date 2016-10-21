@@ -17,18 +17,27 @@ document.addEventListener("turbolinks:load", function() {
   $(window).on('scroll', function(){
     var scroll_top = $(window).scrollTop();
     var about_top = $('#about').position().top;
-    var contact_top = $('#contact').position().top;
+    var feed_back_top = $('#feed_back').position().top;
     if (scroll_top < about_top - dis_top) {
       $('.page-scroll').parent().removeClass('active');
       $('#_home').addClass('active');
     }
-    else if (contact_top - dis_top > scroll_top && scroll_top > about_top - dis_top) {
+    else if (feed_back_top - dis_top > scroll_top && scroll_top > about_top - dis_top) {
       $('.page-scroll').parent().removeClass('active');
       $('#_about').addClass('active');
     }
-    else if (scroll_top > contact_top - dis_top) {
+    else if (scroll_top > feed_back_top - dis_top) {
       $('.page-scroll').parent().removeClass('active');
-      $('#_contact').addClass('active');
+      $('#_feed_back').addClass('active');
     }
   });
+
+  var flash = function(){
+    setTimeout(function(){
+      $('#flash').slideDown(1000);
+    }, 1500);
+  };
+  $(document).ready(flash);
+  $(document).on('page:load', flash);
+  $(document).on('page:change', flash);
 });
