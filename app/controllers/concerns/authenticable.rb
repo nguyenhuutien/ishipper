@@ -1,7 +1,9 @@
 module Authenticable
   def current_user
     user_token = UserToken.find_by authentication_token: request.headers["Authorization"]
-    @current_user ||= user_token.user
+    if user_token
+      @current_user ||= user_token.user
+    end
   end
 
   def authenticate_with_token!
