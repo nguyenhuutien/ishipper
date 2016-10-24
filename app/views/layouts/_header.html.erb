@@ -17,6 +17,19 @@
         <li id="_feed_back">
           <%= link_to t(:_feed_back), "#feed_back", class: "page-scroll" %>
         </li>
+        <% unless user_signed_in? %>
+          <li>
+            <%= link_to t("devise.login"), new_user_session_path %>
+          </li>
+          <li>
+            <%= link_to t("devise.sign_up"), sign_up_path %>
+          </li>
+        <% end %>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to t(:log_out), destroy_user_session_path, method: :delete %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -1,7 +1,13 @@
 require "api_constraints"
 
 Rails.application.routes.draw do
-  devise_for :users
+  root "pages#index"
+
+  devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"}
+  devise_scope :user do
+    post "sign_up", to: "registrations#create"
+    get "sign_up", to: "registrations#new"
+  end
 
   namespace :api, defaults: {format: "json"} do
     devise_scope :user do
