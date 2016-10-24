@@ -1,0 +1,75 @@
+<section class="td-signin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-sm-7 col-xs-12 td-col-left">
+        <h2 class="text-center"><%= t "devise.update" %></h2>
+
+        <%= form_for resource, as: resource_name, url: registration_path(resource_name),
+          html: {method: :put} do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="input">
+            <%= f.label :phone_number %><br />
+            <%= f.text_field :phone_number, autofocus: true,
+              class: "form-control signin-input" %>
+          </div>
+
+          <div class="input">
+            <%= f.label :email %><br />
+            <%= f.email_field :email,
+              class: "form-control signin-input" %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div><%= t "devise.currently" %> :<%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="input">
+            <%= f.label :name %><br />
+            <%= f.text_field :name,
+              class: "form-control signin-input" %>
+          </div>
+
+          <div class="input">
+            <%= f.label :address %><br />
+            <%= f.text_field :address,
+              class: "form-control signin-input" %>
+          </div>
+
+          <div class="input">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %><%= t "devise.character" %>)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off",
+              class: "form-control signin-input" %>
+          </div>
+
+          <div class="input">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off",
+              class: "form-control signin-input" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit t("devise.update"),
+              class: "hvr-pulse-shrink btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <h3><%= t "devise.cancel" %></h3>
+
+        <p>
+          <%= t "devise.unhappy" %>
+          <%= button_to t("devise.cancel"), registration_path(resource_name),
+            data: {confirm: t("devise.confirm")}, method: :delete %>
+        </p>
+
+        <%= link_to t("devise.back"), :back %>
+
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</section>
+
