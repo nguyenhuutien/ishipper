@@ -3,7 +3,7 @@ class CreateUserTokens < ActiveRecord::Migration[5.0]
     create_table :user_tokens do |t|
       t.string :authentication_token
       t.string :device_id
-      t.string :notification_token
+      t.string :registration_id
       t.references :user, foreign_key: true
 
       t.timestamps

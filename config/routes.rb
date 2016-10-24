@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get "password", to: "passwords#new"
       post "password", to: "passwords#create"
       put "password", to: "passwords#update"
+      put "user_token", to: "user_tokens#update"
     end
 
     scope module: :v1, constraints: ApiConstraints.new(version: 1,

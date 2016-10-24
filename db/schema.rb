@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20161021020621) do
   create_table "user_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "authentication_token"
     t.string   "device_id"
-    t.string   "notification_token"
+    t.string   "registration_id"
     t.integer  "user_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
