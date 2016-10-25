@@ -50,56 +50,19 @@ class InvoiceStatus
     return false
   end
 
-# phan nay la phan xu ly update status + create history cua Tien, em de lai de so sanh,
-# neu dc merge thi pull tiep theo se xoa
-  # def shipper_update_status
-  #   Invoice.transaction do
-  #     UserInvoice.transaction do
-  #       @invoice.update_attributes status: @status
-  #       @user_invoice.update_attributes status: @status
-  #       if @invoice.cancel?
-  #         InvoiceHistoryCreator.new(@invoice, @current_user).create_user_invoice_history(@user_invoice,
-  #           @status)
-  #         @user_invoice.destroy
-  #       else
-  #         @user_invoice.update_attributes status: @status
-  #         InvoiceHistoryCreator.new(@invoice, @current_user).create_all_history(@user_invoice,
-  #           @status)
-  #       end
-  #     end
-  #   end
-  #   rescue => e
-  #   return false
-  # end
-
-  # def shop_update_status
-  #   Invoice.transaction do
-  #     UserInvoice.transaction do
-  #       @invoice.update_attributes status: @status
-  #       if @invoice.cancel?
-  #         @invoice.user_invoices.each do |user_invoice|
-  #           InvoiceHistoryCreator.new(@invoice, @current_user).create_user_invoice_history(@user_invoice,
-  #             @status)
-  #           user_invoice.destroy if user_invoice.present?
-  #         end
-  #       else
-  #         @user_invoice.update_attributes status: @status
-  #         InvoiceHistoryCreator.new(@invoice, @current_user).create_all_history(@user_invoice,
-  #           @status)
-  #       end
-  #     end
-  #   end
-  #   rescue => e
-  #   return false
-  # end
-
   def accept_shipper
     Invoice.transaction do
       UserInvoice.transaction do
         @user_invoice.update_attributes status: @status
         @invoice.update_attributes status: @status
+        # sau se transaction  cho history, notification va 1 service phuc vu 1 tac vu
         InvoiceHistoryCreator.new(@invoice, @current_user.id).
           create_all_history @user_invoice, @status
+        content = I18n.t("accept", invoice_name: @invoice.name)
+        click_action = Settings.invoice_detail
+        CreateNotification.new(owner: @current_user, recipient: @user_invoice.user,
+          content: content, invoice: @invoice, user_invoice: @user_invoice,
+          click_action: click_action).perform
         @invoice.user_invoices.each do |user_invoice|
           unless @user_invoice == user_invoice
             user_invoice.rejected!

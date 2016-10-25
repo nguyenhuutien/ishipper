@@ -1,3 +1,4 @@
 en:
   app_name: IShipper
   receive: "%{user_name} đã nhận đơn hàng %{invoice_name} của bạn"
+  accept: "Bạn đã được chấp nhận giao đơn hàng %{invoice_name}"

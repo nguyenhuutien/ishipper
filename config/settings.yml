@@ -3,3 +3,4 @@ max_invoice: 5
 new_shipper_invoice: 15
 check_shipped_invoice: 3
 list_invocie_register: "com.framgia.ishipper.LIST_SHIPPER_REGISTER"
+invoice_detail: "com.framgia.ishipper.INVOICE_DETAIL"
