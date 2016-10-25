@@ -18,6 +18,10 @@ class InvoiceStatus
           @user_invoice.update_attributes status: @status
           InvoiceHistoryCreator.new(@invoice, @current_user.id).
             create_all_history @user_invoice, @status
+          click_action = Settings.invoice_detail
+          CreateNotification.new(owner: @current_user, recipient: @invoice.user,
+            content: @status, invoice: @invoice, user_invoice: @user_invoice,
+            click_action: click_action).perform
         end
       end
     end
@@ -58,10 +62,9 @@ class InvoiceStatus
         # sau se transaction  cho history, notification va 1 service phuc vu 1 tac vu
         InvoiceHistoryCreator.new(@invoice, @current_user.id).
           create_all_history @user_invoice, @status
-        content = I18n.t("accept", invoice_name: @invoice.name)
         click_action = Settings.invoice_detail
         CreateNotification.new(owner: @current_user, recipient: @user_invoice.user,
-          content: content, invoice: @invoice, user_invoice: @user_invoice,
+          content: @status, invoice: @invoice, user_invoice: @user_invoice,
           click_action: click_action).perform
         @invoice.user_invoices.each do |user_invoice|
           unless @user_invoice == user_invoice

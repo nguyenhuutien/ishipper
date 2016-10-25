@@ -10,11 +10,9 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       if @user_invoice.save
         InvoiceHistoryCreator.new(@invoice, current_user.id).
           create_user_invoice_history @user_invoice, "init"
-        content = I18n.t("receive", user_name: current_user.name,
-          invoice_name: @invoice.name)
-        click_action = Settings.list_invocie_register
+        click_action = Settings.list_shipper_register
         CreateNotification.new(owner: current_user, recipient: @invoice.user,
-          content: content, invoice: @invoice, user_invoice: @user_invoice,
+          content: "receive", invoice: @invoice, user_invoice: @user_invoice,
           click_action: click_action).perform
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
           data: {user_invoice: @user_invoice}, code: 1}, status: 200
@@ -27,11 +25,9 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
         if @user_invoice.save
           InvoiceHistoryCreator.new(@invoice, current_user.id).
             create_user_invoice_history @user_invoice, "init"
-          content = I18n.t("receive", user_name: current_user.name,
-            invoice_name: @invoice.name)
-          click_action = Settings.list_invocie_register
+          click_action = Settings.list_shipper_register
           CreateNotification.new(owner: @owner, recipient: @recipient,
-            content: @content, invoice: @invoice, user_invoice: @user_invoice,
+            content: "receive", invoice: @invoice, user_invoice: @user_invoice,
             click_action: click_action).perform
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
             data: {user_invoice: @user_invoice}, code: 1}, status: 200
