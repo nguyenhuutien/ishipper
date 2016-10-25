@@ -2,7 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :address, :current_location, :latitude,
     :longitude, :phone_number, :plate_number, :role, :rate, :user_invoice_id,
     :black_list_id, :favorite_list_id, :favorite_user, :authentication_token,
-    :device_id, :notification_token
+    :device_id, :registration_id
 
   def user_invoice_id
     current_user = object
@@ -37,7 +37,7 @@ class UserSerializer < ActiveModel::Serializer
     end
   end
 
-  ["authentication_token", "notification_token", "device_id"].each do |arg|
+  ["authentication_token", "registration_id", "device_id"].each do |arg|
     define_method("#{arg}") do
       if scope && scope[:authentication] && scope[:user_token]
         user_token = scope[:user_token]
