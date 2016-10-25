@@ -6,6 +6,7 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.string :content
       t.integer :invoice_id
       t.integer :user_invoice_id
+      t.string :click_action
 
       t.timestamps
     end
