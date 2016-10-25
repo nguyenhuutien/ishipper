@@ -84,9 +84,11 @@ ActiveRecord::Schema.define(version: 20161021020621) do
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "owner_id"
     t.integer  "recipient_id"
-    t.string   "key"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "content"
+    t.integer  "invoice_id"
+    t.integer  "user_invoice_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -52,7 +52,7 @@ class Api::SessionsController < Devise::SessionsController
 
   def generate_user_token
     @user_token = @user.user_tokens.create! authentication_token: Devise.friendly_token,
-      notification_token: user_params[:notification_token],
+      registration_id: user_params[:registration_id],
       device_id: user_params[:device_id]
   end
 end

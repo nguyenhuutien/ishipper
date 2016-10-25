@@ -4,6 +4,8 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.integer :owner_id
       t.integer :recipient_id
       t.string :content
+      t.integer :invoice_id
+      t.integer :user_invoice_id
 
       t.timestamps
     end
