@@ -28,3 +28,16 @@ en:
     accept_shipper:
       success: "Accept shipper success"
       fail: "Accept shipper fail"
+    name: Enter name of invoice
+    weight: Enter weight of invoice
+    price: Enter price of invoice
+    shipping_price: Enter shipping price of invoice
+    delivery_time: Enter delivery time of invoice
+    customer_name: Enter customer name
+    customer_number: Enter phone number of customer
+    description: Enter description of invoice
+    title: Invoice
+    customer: Customer
+    new: New Invoice
+  vnd: VND
+  kg: Kg

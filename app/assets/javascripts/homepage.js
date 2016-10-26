@@ -7,8 +7,6 @@ document.addEventListener("turbolinks:load", function() {
       var position_top = $(position_div).position().top;
       $('html, body').stop().animate({scrollTop: position_top}, 1000);
     }
-    $('.page-scroll').parent().removeClass('active');
-    $(this).parent().addClass('active');
     return false;
   });
 

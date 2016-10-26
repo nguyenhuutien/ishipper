@@ -32,3 +32,5 @@ en:
   ship_ability: "You are not a shipper, you can not perform this action"
   error:
     _error: error
+  _create: Create
+  _cancel: Cancel
