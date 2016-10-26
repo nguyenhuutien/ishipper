@@ -4,6 +4,10 @@ class Shop::InvoicesController < Shop::ShopBaseController
   def new
   end
 
+  def index
+    @supports = Supports::Invoice.new current_user
+  end
+
   def create
     if @invoice.save
       InvoiceHistoryCreator.new(@invoice, current_user.id).create_history invoice_params

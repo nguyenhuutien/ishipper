@@ -10,7 +10,7 @@
           <span class="input-group-addon">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :name, class: "form-control",
+          <%= f.text_field :name, class: "form-control td-fix-input",
             placeholder: t("invoices.name") %>
           <span class="input-group-addon nht-unit">
             <i><%= t :vnd %></i>
@@ -21,7 +21,7 @@
           <span class="input-group-addon">
             <i class="fa fa-balance-scale" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :weight, class: "form-control",
+          <%= f.text_field :weight, class: "form-control td-fix-input",
             placeholder: t("invoices.weight") %>
           <span class="input-group-addon nht-unit">
             <i><%= t :kg %></i>
@@ -32,7 +32,7 @@
           <span class="input-group-addon">
             <i class="fa fa-dollar" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :price, class: "form-control",
+          <%= f.text_field :price, class: "form-control td-fix-input",
             placeholder: t("invoices.price") %>
           <span class="input-group-addon nht-unit">
             <i><%= t :vnd %></i>
@@ -43,7 +43,7 @@
           <span class="input-group-addon">
             <i class="fa fa-dollar" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :shipping_price, class: "form-control",
+          <%= f.text_field :shipping_price, class: "form-control td-fix-input",
             placeholder: t("invoices.shipping_price") %>
           <span class="input-group-addon nht-unit">
             <i><%= t :vnd %></i>
@@ -54,7 +54,7 @@
           <span class="input-group-addon">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :delivery_time, class: "form-control",
+          <%= f.text_field :delivery_time, class: "form-control td-fix-input",
             placeholder: t("invoices.delivery_time") %>
         </div>
 
@@ -64,7 +64,7 @@
           <span class="input-group-addon">
             <i class="fa fa-user" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :customer_name, class: "form-control",
+          <%= f.text_field :customer_name, class: "form-control td-fix-input",
             placeholder: t("invoices.customer_name") %>
         </div>
 
@@ -72,7 +72,7 @@
           <span class="input-group-addon">
             <i class="fa fa-phone" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :customer_number, class: "form-control",
+          <%= f.text_field :customer_number, class: "form-control td-fix-input",
             placeholder: t("invoices.customer_number") %>
         </div>
 
@@ -80,13 +80,13 @@
           <span class="input-group-addon">
             <i class="fa fa-edit" aria-hidden="true"></i>
           </span>
-          <%= f.text_field :description, class: "form-control",
+          <%= f.text_field :description, class: "form-control td-fix-input",
             placeholder: t("invoices.description") %>
         </div>
 
         <div class="nht-btn-invoice">
-          <%= f.submit t(:_create), class: "btn btn-primary" %>
-          <%= link_to t(:_cancel), "#", class: "btn btn-danger",
+          <%= f.submit t(:_create), class: "btn btn-primary td-fix-button-1" %>
+          <%= link_to t(:_cancel), "#", class: "btn btn-danger td-fix-button-2",
             data: {dismiss: "modal"} %>
         </div>
       <% end %>
