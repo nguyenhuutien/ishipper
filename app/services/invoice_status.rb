@@ -47,6 +47,10 @@ class InvoiceStatus
           @user_invoice.update_attributes status: @status
           InvoiceHistoryCreator.new(@invoice, @current_user.id).
             create_all_history @user_invoice, @status
+          click_action = Settings.invoice_detail
+          CreateNotification.new(owner: @current_user, recipient: @user_invoice.user,
+            content: @status, invoice: @invoice, user_invoice: @user_invoice,
+            click_action: click_action).perform
         end
       end
     end
