@@ -88,8 +88,9 @@ ActiveRecord::Schema.define(version: 20161021020621) do
     t.integer  "invoice_id"
     t.integer  "user_invoice_id"
     t.string   "click_action"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
