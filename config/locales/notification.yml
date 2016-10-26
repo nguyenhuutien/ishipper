@@ -1,4 +1,8 @@
 en:
   app_name: IShipper
   receive: "%{user_name} đã nhận đơn hàng %{invoice_name} của bạn"
-  accept: "Bạn đã được chấp nhận giao đơn hàng %{invoice_name}"
+  waiting: "Bạn đã được chấp nhận giao đơn hàng %{invoice_name}"
+  shipping: "Đơn hàng %{invoice_name} đang được giao"
+  shipped: "Đơn hàng %{invoice_name} đã được giao"
+  finished: "Đơn hàng %{invoice_name} đã được xác nhận"
+  cancel: "Đơn hàng %{invoice_name} đã bị hủy"

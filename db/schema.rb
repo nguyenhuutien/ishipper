@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20161021020621) do
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "owner_id"
     t.integer  "recipient_id"
-    t.string   "content"
+    t.integer  "content"
     t.integer  "invoice_id"
     t.integer  "user_invoice_id"
     t.string   "click_action"

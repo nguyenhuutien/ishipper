@@ -27,7 +27,8 @@ class CreateNotification
     @recipient.user_tokens.each do |user_token|
       registration_ids << user_token.registration_id unless user_token.registration_id.nil?
     end
-    options = {notification: {title: I18n.t("app_name"), text: @content,
+    text = I18n.t("#{@content}", user_name: @owner.name, invoice_name: @invoice.name)
+    options = {notification: {title: I18n.t("app_name"), text: text,
       click_action: @click_action}, data: {invoice_id: @invoice.id,
       user_invocie_id: @user_invoice.id}}
     response = fcm.send registration_ids, options
