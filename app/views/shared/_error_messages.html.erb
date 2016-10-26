@@ -1,5 +1,5 @@
 <% if object.errors.any? %>
-  <div id="error_explanation" class="container">
+  <div id="error_explanation">
     <div class="alert alert-danger">
       <%= t "error.title" %>
       <%= pluralize object.errors.count, t("error._error") %>.
