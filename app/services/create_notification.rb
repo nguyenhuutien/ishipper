@@ -11,9 +11,10 @@ class CreateNotification
   end
 
   def perform
-    if Notification.create! owner_id: @owner.id, recipient_id: @recipient.id,
+    @notification = Notification.create! owner_id: @owner.id, recipient_id: @recipient.id,
       content: @content, invoice_id: @invoice.id, user_invoice_id: @user_invoice.id,
       click_action: @click_action
+    if @notification
       if @recipient.receive_notification?
         send_noti
       end
@@ -27,9 +28,9 @@ class CreateNotification
     @recipient.user_tokens.each do |user_token|
       registration_ids << user_token.registration_id unless user_token.registration_id.nil?
     end
-    text = I18n.t("#{@content}", user_name: @owner.name, invoice_name: @invoice.name)
-    options = {notification: {title: I18n.t("app_name"), text: text,
-      click_action: @click_action}, data: {invoice_id: @invoice.id,
+    text = I18n.t("notifications.#{@content}", user_name: @owner.name, invoice_name: @invoice.name)
+    options = {notification: {title: I18n.t("notifications.app_name"), text: text,
+      click_action: @click_action}, data: {notification_id: @notification.id, invoice_id: @invoice.id,
       user_invocie_id: @user_invoice.id}}
     response = fcm.send registration_ids, options
   end

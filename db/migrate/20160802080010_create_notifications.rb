@@ -7,6 +7,7 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.integer :invoice_id
       t.integer :user_invoice_id
       t.string :click_action
+      t.boolean :read, default: false
 
       t.timestamps
     end
