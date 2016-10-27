@@ -1,5 +1,163 @@
-<div id="invoice-modal" class="modal fade"></div>
-<div class="new-invoice">
-  <%= link_to t("invoices.new"), new_shop_invoice_path,
-    class: "btn btn-primary btn-md", remote: true %>
+<div class="td-invoice-index">
+  <nav class="w3-sidenav w3-collapse w3-white w3-animate-left w3-card-2"
+    id="mySidenav">
+    <div class="w3-accordion">
+      <a id="myBtn" href="javascript:void(0)">
+        <i class="fa fa-inbox w3-padding-right"></i><%= t "invoices.title-2" %>
+        <i class="w3-padding-left fa fa-caret-down"></i>
+      </a>
+      <div id="Demo1" class="w3-accordion-content w3-animate-left">
+        <a href="javascript:void(0)" data-check="all"
+          class="w3-border-bottom test w3-hover-light-grey all" id="firstTab">
+          <div class="w3-container">
+            <%= t "invoices.all" %>
+          </div>
+        </a>
+        <a href="javascript:void(0)" data-check="init"
+          class="w3-border-bottom test w3-hover-light-grey init">
+          <div class="w3-container">
+            <%= t "invoices.init" %>
+          </div>
+        </a>
+        <a href="javascript:void(0)" data-check="waiting"
+          class="w3-border-bottom test w3-hover-light-grey waiting">
+          <div class="w3-container">
+            <%= t "invoices.waiting" %>
+          </div>
+        </a>
+        <a href="javascript:void(0)" data-check="shipping"
+          class="w3-border-bottom test w3-hover-light-grey shipping">
+          <div class="w3-container">
+            <%= t "invoices.shipping" %>
+          </div>
+        </a>
+        <a href="javascript:void(0)" data-check="shipped"
+          class="w3-border-bottom test w3-hover-light-grey shipped">
+          <div class="w3-container">
+            <%= t "invoices.shipped" %>
+          </div>
+        </a>
+        <a href="javascript:void(0)" data-check="finished"
+          class="w3-border-bottom test w3-hover-light-grey finished">
+          <div class="w3-container">
+            <%= t "invoices.finished" %>
+          </div>
+        </a>
+        <a href="javascript:void(0)" data-check="cancel"
+          class="w3-border-bottom test w3-hover-light-grey cancel">
+          <div class="w3-container">
+            <%= t "invoices.cancel" %>
+          </div>
+        </a>
+        <a class="w3-border-bottom test w3-hover-light-grey cancel">
+          <div class="new-invoice">
+            <%= link_to t("invoices.new"), new_shop_invoice_path,
+              class: "btn btn-primary btn-md", remote: true %>
+          </div>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="w3-overlay w3-hide-large w3-animate-opacity close_side_menu"
+    title="Close Sidemenu" id="myOverlay"></div>
+
+  <div class="w3-main td-nav-hide">
+    <i class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left
+      w3-margin-top td-menu-hide">
+    </i>
+
+    <div id="all" class="w3-container status">
+      <br>
+      <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+        w3-animate-top" %>
+      <hr>
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8
+        col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+        <% @supports.all.each do |f| %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="init" class="w3-container status">
+      <br>
+      <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+        w3-animate-top" %>
+      <hr>
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8
+        col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+        <% @supports.init.each do |f| %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="waiting" class="w3-container status">
+      <br>
+      <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+        w3-animate-top" %>
+      <hr>
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8
+        col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+        <% @supports.waiting.each do |f| %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="shipping" class="w3-container status">
+      <br>
+      <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+        w3-animate-top" %>
+      <hr>
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8 col-xs-offset-2
+        col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+        <% @supports.shipping.each do |f| %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="shipped" class="w3-container status">
+      <br>
+      <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+        w3-animate-top" %>
+      <hr>
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8
+        col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+        <% @supports.shipped.each do |f| %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="finished" class="w3-container status">
+      <br>
+      <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+        w3-animate-top" %>
+      <hr>
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8
+        col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+        <% @supports.finished.each do |f| %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="cancel" class="w3-container status">
+      <br>
+      <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+        w3-animate-top" %>
+      <hr>
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8
+        col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+        <% @supports.cancel.each do |f| %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
 </div>
+<div id="invoice-modal" class="modal fade"></div>

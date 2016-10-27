@@ -39,5 +39,19 @@ en:
     title: Invoice
     customer: Customer
     new: New Invoice
+    title-2: Your Invoices (6)
+    all: All Invoices
+    init: Init Invoices
+    waiting: Waiting Invoices
+    shipping: Shipping Invoices
+    shipped: Shipped Invoices
+    finished: Finished Invoices
+    cancel: Invoices Cancel
+    index:
+      ship_price: Ship Price
+    distance: DISTANCE
+    delivery_time: DELIVERY TIME
+    cost: COST
+    km: Km
   vnd: VND
   kg: Kg
