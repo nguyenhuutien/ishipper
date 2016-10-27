@@ -9,6 +9,7 @@ en:
     cancel: "Đơn hàng %{invoice_name} đã bị hủy"
     messages:
       noti_not_exist: Không tìm thấy thông báo!!
+      get_noti_success: Get all noti success
     update:
       success: Update success
       failed: Update fales

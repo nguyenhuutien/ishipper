@@ -19,6 +19,7 @@ gem "active_model_serializers", "0.10.0"
 gem "bootstrap-sass", "3.2.0.0"
 gem "font-awesome-rails"
 gem "cancancan", "~> 1.10"
+gem "kaminari"
 
 group :development, :test do
   gem "pry"
