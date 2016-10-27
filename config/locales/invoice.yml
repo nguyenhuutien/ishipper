@@ -53,5 +53,21 @@ en:
     delivery_time: DELIVERY TIME
     cost: COST
     km: Km
+    show:
+      shipping_price: Shipping price
+    _info_invoice: Information of invoice
+    _detail: Detail
+    _name: Name of invoice
+    _status: Status
+    _distance: Distance
+    _customer: Customer
+    _shipping_price: Shipping price
+    _price: Price
+    _delivery_time: Delivery time
+    _description: Description
+    _show_route: Show route
+    _name_customer: Customer name
+    _number_customer: Customer number
   vnd: VND
   kg: Kg
+  km: KM
