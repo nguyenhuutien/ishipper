@@ -1,0 +1,127 @@
+<div class="nht-invoice-show container">
+  <div class="nht-invoice-box">
+    <div class="nht-text-center">
+      <%= t "invoices._info_invoice" %>
+    </div>
+    <div class="nht-invoice-status">
+      <span class="nht-invoice-proper nht-status">
+        <%= t "invoices._status" %>:
+      </span>
+      <span class="nht-invoice-value">
+        <span>
+          <i class="fa fa-shopping-cart"></i>
+        </span>
+      </span>
+      <hr>
+    </div>
+
+    <div class="nht-invoice-road">
+      <div class="nht-invoice-road-left">
+        <p class="nht-text-center">
+          <%= t "invoices._distance" %>
+        </p>
+        <p class="nht-text-center nht-color nht-number">
+          <%= @invoice.distance_invoice.to_i %> <%= t :km %>
+        </p>
+      </div>
+
+      <div class="nht-invoice-road-right">
+        <div class="nht-line">
+          <i class="fa fa-circle-o nht-circle-first nht-color"
+            aria-hidden="true"></i>
+          <i class="fa fa-circle-o nht-circle-second nht-color"
+            aria-hidden="true"></i>
+        </div>
+
+        <div class="nht-invoice-road-right-detail">
+          <p class="nht-invoice-address-top"><%= @invoice.address_start %></p>
+          <p class="nht-invoice-address-bottom"><%= @invoice.address_finish %></p>
+        </div>
+
+        <div class="nht-invoice-btn-road">
+          <%= link_to t("invoices._show_route"), "#", class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <hr>
+    </div>
+
+    <div class="nht-invoice-content">
+      <p class="nht-text-center-2">
+        <%= t "invoices._detail" %>
+      </p>
+
+      <div class="nht-invoice-detail">
+        <span class="nht-invoice-proper">
+          <%= t "invoices._name" %>
+        </span>
+        <span class="nht-invoice-value">
+          <%= @invoice.name %>
+        </span>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="nht-invoice-detail">
+        <span class="nht-invoice-proper">
+          <%= t "invoices._shipping_price" %>
+        </span>
+        <span class="nht-invoice-value">
+          <%= @invoice.shipping_price %>
+        </span>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="nht-invoice-detail">
+        <span class="nht-invoice-proper">
+          <%= t "invoices._price" %>
+        </span>
+        <span class="nht-invoice-value">
+          <%= @invoice.price %>
+        </span>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="nht-invoice-detail">
+        <span class="nht-invoice-proper">
+          <%= t "invoices._delivery_time" %>
+        </span>
+        <span class="nht-invoice-value">
+          <%= @invoice.delivery_time %>
+        </span>
+        <div class="clearfix"></div>
+      </div>
+      <hr>
+    </div>
+
+
+    <div class="nht-invoice-customer">
+      <p class="nht-text-center-2">
+        <%= t "invoices._customer" %>
+      </p>
+      <div class="nht-invoice-detail">
+        <span class="nht-invoice-proper">
+          <%= @invoice.customer_name %>
+        </span>
+        <span class="nht-invoice-value">
+          <span>
+            <i class="fa fa-info-circle"></i>
+          </span>
+        </span>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="nht-invoice-detail">
+        <span class="nht-invoice-proper">
+          <%= @invoice.customer_number %>
+        </span>
+        <span class="nht-invoice-value">
+          <span>
+            <i class="fa fa-phone"></i>
+          </span>
+        </span>
+        <span class="clearfix"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

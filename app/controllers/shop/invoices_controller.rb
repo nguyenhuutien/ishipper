@@ -1,6 +1,9 @@
 class Shop::InvoicesController < Shop::ShopBaseController
   load_and_authorize_resource
 
+  def show
+  end
+
   def new
   end
 
