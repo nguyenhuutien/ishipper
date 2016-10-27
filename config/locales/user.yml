@@ -10,3 +10,11 @@ en:
       not_authorize: You are not authorized to perform this action!
     show:
       success: "Get user successfully"
+    sum_invoice: "Sum invoice:"
+    success_invoice: "Success invoice:"
+    edit_user: Edit user
+    save: Save change
+    save_success: Save successful!
+    name: Enter your name
+    address: Enter your address
+    email: Enter your email

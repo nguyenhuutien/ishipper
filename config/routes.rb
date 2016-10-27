@@ -59,4 +59,5 @@ Rails.application.routes.draw do
   namespace :shop do
     resources :invoices
   end
+  resources :users
 end
