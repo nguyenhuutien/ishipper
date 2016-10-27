@@ -1,0 +1,50 @@
+.nht-profile {
+  max-width: 1400px !important;
+  margin-top: 100px !important;
+
+  .nht-profile-title {
+    font-size: 30px;
+  }
+
+  .nht-profile-box {
+    margin: -16px;
+
+    #avatar {
+      width: 100%;
+      height: 300px;
+    }
+
+    .nht-user-invoice {
+      .nht-user-sum-invoice {
+        float: left;
+        margin-right: 50px;
+      }
+
+      .nht-user-sucess-invoice {
+        float: right;
+      }
+    }
+  }
+
+  .nht-user-info {
+    padding: 10px;
+
+    .user-name {
+      font-size: 20px;
+    }
+
+    .user-home {
+      font-size: 20px;
+    }
+
+    .nht-user-submit {
+      float: right;
+      padding: 5px;
+    }
+
+    .change-password {
+      margin-right: 5px;
+      text-decoration: underline;
+    }
+  }
+}
