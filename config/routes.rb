@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         resources :reviews, only: :index
         resources :destroy_all_black_lists, only: :index
         resources :destroy_all_favorite_lists, only: :index
-        resources :notifications, only: :update
+        resources :notifications, only: [:index, :update]
       end
       namespace :shop do
         resources :invoices, except: [:edit, :new]
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
         resources :reviews, only: :index
         resources :destroy_all_favorite_lists, only: :index
         resources :destroy_all_black_lists, only: :index
-        resources :notifications, only: :update
+        resources :notifications, only: [:index, :update]
       end
     end
   end
