@@ -43,3 +43,6 @@ en:
         separator: "."
         precision: 0
         format: "%n%u"
+  _your_invoices: Your invoices
+  _profile: Profile
+

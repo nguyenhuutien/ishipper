@@ -11,6 +11,7 @@ class Ability
       end
     else
       can :manage, User, id: user.id
+      can :read, User
     end
   end
 end

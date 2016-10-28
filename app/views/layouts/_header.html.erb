@@ -1,7 +1,7 @@
-<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top nht-navbar">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top nht-navbar">
   <div class="container">
     <div class="navbar-header page-scroll">
-    <%= link_to t(:title), "#page-top", class: "navbar-brand page-scroll" %>
+    <%= link_to t(:title), root_path, class: "navbar-brand page-scroll" %>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -9,27 +9,25 @@
           <a href="#page-top"></a>
         </li>
         <li class="active" id="_home">
-          <%= link_to t(:home), "#home", class: "page-scroll" %>
+          <%= link_to t(:home), root_path, class: "header-item" %>
         </li>
-        <li id="_about">
-          <%= link_to t(:about), "#about", class: "page-scroll" %>
+        <li id="_your-invoice">
+          <%= link_to t("_your_invoices"), shop_invoices_path, class: "header-item" %>
         </li>
-        <li id="_feed_back">
-          <%= link_to t(:_feed_back), "#feed_back", class: "page-scroll" %>
+        <li class="dropdown header-item" id="_profile">
+          <a href="#" class="dropdown-toggle logo" data-toggle="dropdown">
+            <%= current_user.name %><b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to t("_profile"), current_user %></li>
+            <li>
+              <%= link_to t("users.list"), users_path %>
+            </li>
+            <li>
+              <%= link_to t(:log_out), destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
         </li>
-        <% unless user_signed_in? %>
-          <li>
-            <%= link_to t("devise.login"), new_user_session_path %>
-          </li>
-          <li>
-            <%= link_to t("devise.sign_up"), sign_up_path %>
-          </li>
-        <% end %>
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to t(:log_out), destroy_user_session_path, method: :delete %>
-          </li>
-        <% end %>
       </ul>
     </div>
   </div>

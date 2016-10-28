@@ -48,3 +48,158 @@
     }
   }
 }
+
+.nht-list-user {
+  margin-left: 30%;
+  width: 50%;
+
+  .nht-tabs {
+    border: none;
+
+    .nht-search-icon {
+      position: absolute;
+      top: 62px;
+      z-index: 10;
+      left: 20px;
+      background-color: transparent;
+
+      .nht-searchicon {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+      }
+    }
+
+    #search-user {
+      background-size: 20px;
+      background-position: 10px 12px;
+      background-repeat: no-repeat;
+      width: 90%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+      margin-top: 10px;
+      position: relative;
+    }
+  }
+}
+
+.nht-index-user {
+  padding-top: 1em !important;
+
+  hr {
+    margin-top: 0px;
+  }
+
+  #favorite-users {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    #user-avatar {
+      border: 1px solid #2c9c00;
+    }
+
+    li {
+      float: left;
+      a {
+        border: 1px solid #ddd;
+        margin-top: -1px;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        color: black;
+        display: block;
+      }
+
+      a.header {
+        background-color: #e2e2e2;
+        cursor: default;
+      }
+
+      a:hover:not(.header) {
+        background-color: #FFA07A;
+      }
+    }
+
+    .user-favorite-form {
+      position: relative;
+      background-color: #FFFACD;
+      margin-right: 50px;
+
+      .user-avatar {
+        float: left;
+
+        #user-avatar {
+          position: absolute;
+          margin-right: 30px;
+          margin-top: -7px;
+          height: 80%;
+          border-radius: 100%;
+        }
+      }
+
+      .user-name {
+        margin-left: 50px;
+        border: none !important;
+      }
+    }
+  }
+
+  #black-users {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    #user-avatar {
+      border: 1px solid #000000;
+    }
+
+    li {
+      float: left;
+
+      a {
+        border: 1px solid #ddd;
+        margin-top: -1px;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        color: black;
+        display: block;
+      }
+
+      a.header {
+        background-color: #e2e2e2;
+        cursor: default;
+      }
+
+      a:hover:not(.header) {
+        background-color: #b5adad;
+      }
+    }
+
+    .user-black-form {
+      position: relative;
+      background-color: #F5F5F5;
+      margin-right: 50px;
+
+      .user-avatar {
+        float: left;
+
+        #user-avatar {
+          position: absolute;
+          margin-right: 30px;
+          margin-top: -7px;
+          height: 80%;
+          border-radius: 100%;
+        }
+      }
+
+      .user-name {
+        margin-left: 50px;
+        border: none !important;
+      }
+    }
+  }
+}

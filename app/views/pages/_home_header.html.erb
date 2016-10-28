@@ -1,0 +1,28 @@
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top nht-navbar">
+  <div class="container">
+    <div class="navbar-header page-scroll">
+    <%= link_to t(:title), "#page-top", class: "navbar-brand page-scroll" %>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+
+        <% ["home", "about", "feed_back"].each do |list_item| %>
+          <li id="_<%= list_item %>" class="<%= list_item == 'home' ? 'active' : '' %>">
+            <%= link_to t("#{list_item}"), "##{list_item}",
+              class: "page-scroll" %>
+          </li>
+        <% end %>
+
+        <li>
+          <%= link_to t("devise.login"), new_user_session_path %>
+        </li>
+        <li>
+          <%= link_to t("devise.sign_up"), sign_up_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

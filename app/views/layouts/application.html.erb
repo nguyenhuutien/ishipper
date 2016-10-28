@@ -10,15 +10,18 @@
   </head>
 
   <body>
-    <div class="nht-header">
-      <%= render "layouts/header" %>
-    </div>
+    <% if user_signed_in? %>
+      <div class="nht-header">
+        <%= render "layouts/header" %>
+      </div>
+    <% end %>
     <div class="container-fluid" id="main">
       <div class="row">
         <div id="flash">
           <% flash.each do |message_type, message| %>
             <div class="alert alert-<%= message_type %> nht-flash"><%= message %></div>
           <% end %>
+          <div class="clearfix"></div>
         </div>
         <%= yield %>
       </div>
