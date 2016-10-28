@@ -116,8 +116,16 @@ section#feed_back .text-danger {
   color: #e74c3c;
 }
 
+.nht-footer {
+  padding-bottom: 3em !important;
+}
+
 footer {
-  padding: 25px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  z-index: 10;
   text-align: center;
 }
 footer span.copyright {
@@ -177,7 +185,11 @@ img::-moz-selection {
   background: transparent;
 }
 body {
-  webkit-tap-highlight-color: #fed136;
+  -webkit-tap-highlight-color: #fed136;
+  -moz-tap-highlight-color: #fed136;
+  -o-tap-highlight-color: #fed136;
+  position: relative;
+  min-height: 100vh;
 }
 .btn-primary .badge {
   color: #fed136;

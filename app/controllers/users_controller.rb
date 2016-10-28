@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
+  skip_load_and_authorize_resource only: :index
+
+  def index
+    @supports = Supports::User.new current_user
+  end
 
   def show
   end

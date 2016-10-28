@@ -2,13 +2,13 @@ en:
   title: IShipper
   home: Home
   about: About
-  _feed_back: Feed back
+  feed_back: Feed back
   information: The information of System
   copyright: Copyright
   team: IShipper-Team
   privacy_policy:  Privacy Policy
   terms: Terms of Use
-  feed_back:
+  _feed_back:
     feed_back_us: Feed back Us
     feed_back_with_email: Feed back us with email
     your_name: Your Name *
