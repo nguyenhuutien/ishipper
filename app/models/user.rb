@@ -8,6 +8,7 @@ class User < ApplicationRecord
     if: :address_changed?
 
   after_validation :geocode, :reverse_geocode
+  has_one :user_setting, dependent: :destroy
 
   has_many :invoices, dependent: :destroy
   has_many :user_invoices, dependent: :destroy

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021020621) do
+ActiveRecord::Schema.define(version: 20161031032142) do
 
   create_table "black_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "black_list_user_id"
@@ -123,6 +123,16 @@ ActiveRecord::Schema.define(version: 20161021020621) do
     t.index ["user_id"], name: "index_user_invoices_on_user_id", using: :btree
   end
 
+  create_table "user_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.boolean  "receive_notification",            default: true
+    t.integer  "unread_notification"
+    t.float    "radius_display",       limit: 24, default: 5.0
+    t.integer  "user_id"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.index ["user_id"], name: "index_user_settings_on_user_id", using: :btree
+  end
+
   create_table "user_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "authentication_token"
     t.string   "device_id"
@@ -147,14 +157,13 @@ ActiveRecord::Schema.define(version: 20161021020621) do
     t.float    "rate",                   limit: 24
     t.string   "pin"
     t.boolean  "signed_in"
-    t.boolean  "receive_notification",              default: true
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.string   "encrypted_password",                default: "",   null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,    null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -171,5 +180,6 @@ ActiveRecord::Schema.define(version: 20161021020621) do
   add_foreign_key "reviews", "invoices"
   add_foreign_key "user_invoices", "invoices"
   add_foreign_key "user_invoices", "users"
+  add_foreign_key "user_settings", "users"
   add_foreign_key "user_tokens", "users"
 end

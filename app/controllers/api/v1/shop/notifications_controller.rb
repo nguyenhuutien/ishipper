@@ -2,17 +2,18 @@ class Api::V1::Shop::NotificationsController < Api::ShopBaseController
   before_action :check_param_exist, :find_notification, only: :update
 
   def index
-    @notifications = current_user.passive_notifications
-    @unread_count = @notifications.unread.size
+    user_setting = current_user.user_setting
+    unread_notification = user_setting.unread_notification
+    user_setting.update! unread_notification: 0
     if params[:notification] && params[:notification][:page] &&
       params[:notification][:per_page]
-      @notifications = @notifications.page(params[:notification][:page]).
+      @notifications = current_user.passive_notifications.page(params[:notification][:page]).
         per params[:notification][:per_page]
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
-        data: {notifications: @notifications, unread: @unread_count}, code: 1}, status: 200
+        data: {notifications: @notifications, unread: unread_notification}, code: 1}, status: 200
     else
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
-        data: {notifications: [], unread: @unread_count}, code: 1}, status: 200
+        data: {notifications: [], unread: unread_notification}, code: 1}, status: 200
     end
   end
 
