@@ -14,8 +14,10 @@ class CreateNotification
     @notification = Notification.create! owner_id: @owner.id, recipient_id: @recipient.id,
       content: @content, invoice_id: @invoice.id, user_invoice_id: @user_invoice.id,
       click_action: @click_action
+    user_setting = @recipient.user_setting
     if @notification
-      if @recipient.receive_notification?
+      user_setting.update! unread_notification: user_setting.unread_notification + 1
+      if user_setting.receive_notification?
         send_noti
       end
     end

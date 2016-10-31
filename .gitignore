@@ -25,6 +25,7 @@ config/environments/*.local.yml
 config/secrets.yml
 .DS_Store
 /.idea
+/test/*
 
 # Ignore application configuration
 /config/application.yml
