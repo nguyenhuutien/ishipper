@@ -17,10 +17,6 @@ module Confirm
     return phone_number_invalid unless @user
   end
 
-  def load_user_token
-    @user_token = UserToken.find_by authentication_token: request.headers["Authorization"]
-  end
-
   def phone_number_invalid
     render json:
       {message: I18n.t("api.phone_number_invalid"), data: {}, code: 0},

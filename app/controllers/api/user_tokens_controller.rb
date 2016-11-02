@@ -4,7 +4,7 @@ class Api::UserTokensController < Api::BaseController
 
   before_action :authenticate_with_token!
   before_action :ensure_params_true
-  before_action :load_user_token
+  before_action :find_user_token
 
   def update
     if @user_token.update_attributes user_token_params
@@ -26,5 +26,11 @@ class Api::UserTokensController < Api::BaseController
       render json: {message: I18n.t("api.missing_params"), data: {}, code: 0},
         status: 422
     end
+  end
+
+  def find_user_token
+    user_token = UserToken.find_by registration_id: params[:user_token][:registration_id]
+    user_token.destroy unless user_token.nil?
+    @user_token = UserToken.find_by authentication_token: request.headers["Authorization"]
   end
 end
