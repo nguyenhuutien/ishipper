@@ -24,10 +24,12 @@ class User < ApplicationRecord
   has_many :owner_black_lists, class_name: BlackList.name,
     foreign_key: "owner_id", dependent: :destroy
   has_many :black_list_users, through: :owner_black_lists, source: :black_list_user
-
   has_many :owner_favorite_lists, class_name: FavoriteList.name,
     foreign_key: "owner_id", dependent: :destroy
   has_many :favorite_list_users, through: :owner_favorite_lists, source: :favorite_list_user
+  has_many :passive_favorite_lists, class_name: FavoriteList.name,
+    foreign_key: "favorite_list_user_id", dependent: :destroy
+  has_many :passive_favorites, through: :passive_favorite_lists, source: :owner
   has_many :user_tokens, dependent: :destroy
 
   enum status: [:unactive, :actived, :block_temporary, :blocked]

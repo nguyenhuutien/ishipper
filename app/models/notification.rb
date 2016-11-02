@@ -2,7 +2,7 @@ class Notification < ApplicationRecord
   belongs_to :owner, class_name: User.name
   belongs_to :recipient, class_name: User.name
 
-  enum content: [:receive, :waiting, :shipping, :shipped, :finished, :cancel]
+  enum content: [:receive, :waiting, :shipping, :shipped, :finished, :cancel, :favorite]
 
-  scope :unread, -> {where read: false}
+  scope :order_by_time, -> {order created_at: :desc}
 end
