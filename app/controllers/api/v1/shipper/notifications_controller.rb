@@ -4,11 +4,11 @@ class Api::V1::Shipper::NotificationsController < Api::ShipperBaseController
   def index
     user_setting = current_user.user_setting
     unread_notification = user_setting.unread_notification
-    user_setting.update! unread_notification: 0
     if params[:notification] && params[:notification][:page] &&
       params[:notification][:per_page]
-      @notifications = current_user.passive_notifications.page(params[:notification][:page]).
-        per params[:notification][:per_page]
+      @notifications = current_user.passive_notifications.order_by_time.
+        page(params[:notification][:page]).per params[:notification][:per_page]
+      user_setting.update! unread_notification: 0
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
         data: {notifications: @notifications, unread: unread_notification}, code: 1}, status: 200
     else
