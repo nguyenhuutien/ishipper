@@ -19,8 +19,8 @@ class InvoiceStatus
           InvoiceHistoryCreator.new(@invoice, @current_user.id).
             create_all_history @user_invoice, @status
           click_action = Settings.invoice_detail
-          CreateNotification.new(owner: @current_user, recipient: @invoice.user,
-            content: @status, invoice: @invoice, user_invoice: @user_invoice,
+          NotificationServices::CreateNotificationService.new(owner: @current_user,
+            recipient: @invoice.user, content: @status, invoice: @invoice,
             click_action: click_action).perform
         end
       end
@@ -48,8 +48,8 @@ class InvoiceStatus
           InvoiceHistoryCreator.new(@invoice, @current_user.id).
             create_all_history @user_invoice, @status
           click_action = Settings.invoice_detail
-          CreateNotification.new(owner: @current_user, recipient: @user_invoice.user,
-            content: @status, invoice: @invoice, user_invoice: @user_invoice,
+          NotificationServices::CreateNotificationService.new(owner: @current_user,
+            recipient: @user_invoice.user, content: @status, invoice: @invoice,
             click_action: click_action).perform
         end
       end
@@ -67,8 +67,8 @@ class InvoiceStatus
         InvoiceHistoryCreator.new(@invoice, @current_user.id).
           create_all_history @user_invoice, @status
         click_action = Settings.invoice_detail
-        CreateNotification.new(owner: @current_user, recipient: @user_invoice.user,
-          content: @status, invoice: @invoice, user_invoice: @user_invoice,
+        NotificationServices::CreateNotificationService.new(owner: @current_user,
+          recipient: @user_invoice.user, content: @status, invoice: @invoice,
           click_action: click_action).perform
         @invoice.user_invoices.each do |user_invoice|
           unless @user_invoice == user_invoice

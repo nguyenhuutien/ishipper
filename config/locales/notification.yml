@@ -7,6 +7,7 @@ en:
     shipped: "Đơn hàng %{invoice_name} đã được giao"
     finished: "Đơn hàng %{invoice_name} đã được xác nhận"
     cancel: "Đơn hàng %{invoice_name} đã bị hủy"
+    favorite: "Cửa hàng %{user_name} vừa đăng đơn mới"
     messages:
       noti_not_exist: Không tìm thấy thông báo!!
       get_noti_success: Get all noti success

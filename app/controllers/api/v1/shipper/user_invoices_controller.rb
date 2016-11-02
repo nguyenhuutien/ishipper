@@ -11,8 +11,8 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
         InvoiceHistoryCreator.new(@invoice, current_user.id).
           create_user_invoice_history @user_invoice, "init"
         click_action = Settings.list_shipper_register
-        CreateNotification.new(owner: current_user, recipient: @invoice.user,
-          content: "receive", invoice: @invoice, user_invoice: @user_invoice,
+        NotificationServices::CreateNotificationService.new(owner: current_user,
+          recipient: @invoice.user, content: "receive", invoice: @invoice,
           click_action: click_action).perform
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
           data: {user_invoice: @user_invoice}, code: 1}, status: 200
@@ -26,8 +26,8 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
           InvoiceHistoryCreator.new(@invoice, current_user.id).
             create_user_invoice_history @user_invoice, "init"
           click_action = Settings.list_shipper_register
-          CreateNotification.new(owner: @owner, recipient: @recipient,
-            content: "receive", invoice: @invoice, user_invoice: @user_invoice,
+          NotificationServices::CreateNotificationService.new(owner: current_user,
+            recipient: @invoice.user, content: "receive", invoice: @invoice,
             click_action: click_action).perform
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
             data: {user_invoice: @user_invoice}, code: 1}, status: 200
