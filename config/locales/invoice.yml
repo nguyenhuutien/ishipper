@@ -68,6 +68,12 @@ en:
     _show_route: Show route
     _name_customer: Customer
     _number_customer: Phone number
+    enter_address_start: Enter address start
+    enter_address_finish: Enter address finish
+    cannot_blank: can't blank
+    next: Next
+    draw: Draw routes
+    invalid: Invalid
   vnd: VND
   kg: Kg
   km: KM

@@ -4,3 +4,27 @@ new_shipper_invoice: 15
 check_shipped_invoice: 3
 list_shipper_register: "com.framgia.ishipper.LIST_SHIPPER_REGISTER"
 invoice_detail: "com.framgia.ishipper.INVOICE_DETAIL"
+invoice:
+  latitude_start: "map-lat0"
+  longitude_start: "map-lng0"
+  latitude_finish: "map-lat1"
+  longitude_finish: "map-lng1"
+  invoice_attributes_map_marker:
+    - latitude_start
+    - longitude_start
+    - latitude_finish
+    - longitude_finish
+  invoice_attributes_info:
+    - latitude_start
+    - longitude_start
+    - latitude_finish
+    - longitude_finish
+    - address_start
+    - address_finish
+    - distance_invoice
+  epsilon_distance: 0.1
+degree: 180
+earth_radius: 6378137
+constant_1: 1
+constant_2: 2
+constant_1000: 1000

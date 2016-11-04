@@ -13,27 +13,17 @@
   <body>
     <% if user_signed_in? %>
       <div class="nht-header">
-        <%= render "layouts/header" %>
+        <%= render "layouts/sidebar" %>
       </div>
+      <div class="w3-main td-nav-hide">
+        <div class="nht-header">
+          <%= render "layouts/header" %>
+        </div>
+        <%= render "layouts/body_form" %>
+      </div>
+    <% else %>
+      <%= render "layouts/body_form" %>
     <% end %>
-    <div class="container-fluid status" id="main">
-      <div class="row">
-        <div id="flash">
-          <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %> nht-flash"><%= message %></div>
-          <% end %>
-          <div class="clearfix"></div>
-        </div>
-        <% if user_signed_in? %>
-          <%= render "layouts/sidebar" %>
-        <% end %>
-        <div class="w3-main td-nav-hide">
-          <%= yield %>
-        </div>
-      </div>
-    </div>
-    <footer class="footer">
-      <%= render "layouts/footer" %>
-    </footer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAik8OVJ3_JisisBdw7aS20dQDt3lD1bG0&sensor=false&libraries=places&callback=initAutocomplete" data-turbolinks-eval="false" ></script>
   </body>
 </html>
