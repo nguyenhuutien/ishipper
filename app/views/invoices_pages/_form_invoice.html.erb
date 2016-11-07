@@ -1,0 +1,64 @@
+<div class="td-invoice-box">
+  <div class="td-invoice-show-top">
+    <span></span>
+    <hr>
+  </div>
+
+  <div class="td-invoice-content">
+    <div class="td-invoice-content-left">
+      <p class="text-center">
+        <%= t "invoices.index.ship_price" %>
+      </p>
+      <p class="text-center td-color">
+        <%= number_to_currency f.shipping_price %>
+      </p>
+    </div>
+    <div class="td-invoice-content-right">
+      <div class="td-line">
+        <i class="fa fa-circle-o td-circle-first td-color"
+          aria-hidden="true"></i>
+        <i class="fa fa-circle-o td-circle-second td-color"
+          aria-hidden="true"></i>
+      </div>
+
+      <div class="td-invoice-content-right-detail">
+        <p class="td-invoice-address-top"><%= f.address_start %></p>
+        <p class="td-invoice-address-bottom"><%= f.address_finish %></p>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <hr>
+
+  <div class="td-invoice-content-2">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <p class="td-text-top text-center">
+        <%= t "invoices.distance" %>
+      </p>
+      <p class="td-text-bottom text-center">
+        <%= f.distance_invoice %> <%= t "invoices.km" %>
+      </p>
+    </div>
+
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <p class="td-text-top text-center">
+        <%= t "invoices.delivery_time" %>
+      </p>
+      <p class="td-text-bottom text-center">
+        <%= f.delivery_time %>
+      </p>
+    </div>
+
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <p class="td-text-top text-center">
+        <%= t "invoices.cost" %>
+      </p>
+      <p class="td-text-bottom text-center">
+        <%= number_to_currency f.price %>
+      </p>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>

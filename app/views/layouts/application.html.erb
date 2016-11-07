@@ -7,6 +7,7 @@
       "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application",
       "data-turbolinks-track": "reload" %>
+    <meta name="turbolinks-cache-control" content="no-cache">
   </head>
 
   <body>
@@ -15,7 +16,7 @@
         <%= render "layouts/header" %>
       </div>
     <% end %>
-    <div class="container-fluid" id="main">
+    <div class="container-fluid status" id="main">
       <div class="row">
         <div id="flash">
           <% flash.each do |message_type, message| %>
@@ -23,7 +24,12 @@
           <% end %>
           <div class="clearfix"></div>
         </div>
-        <%= yield %>
+        <% if user_signed_in? %>
+          <%= render "layouts/sidebar" %>
+        <% end %>
+        <div class="w3-main td-nav-hide">
+          <%= yield %>
+        </div>
       </div>
     </div>
     <footer class="footer">

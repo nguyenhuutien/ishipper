@@ -1,0 +1,19 @@
+<div class="td-waiting">
+  <i class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left
+    w3-margin-top td-menu-hide">
+  </i>
+  <div id="waiting" class="w3-container status padding block">
+    <br>
+    <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
+      w3-animate-top" %>
+    <hr>
+    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10
+      col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+      <% @supports.waiting.each do |f| %>
+        <%= link_to [:shop, f] do %>
+          <%= render "form_invoice", f: f %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

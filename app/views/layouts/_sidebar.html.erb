@@ -1,0 +1,69 @@
+<nav class="w3-sidenav w3-collapse w3-white w3-animate-left w3-card-2 padding"
+  id="mySidenav">
+  <div class="w3-accordion">
+    <a id="myBtn" href="javascript:void(0)">
+      <i class="fa fa-inbox w3-padding-right"></i><%= t "invoices.title-2" %>
+      <i class="w3-padding-left fa fa-caret-down"></i>
+    </a>
+    <div id="Demo1" class="w3-accordion-content w3-animate-left">
+      <div href="javascript:void(0)" data-check="all"
+        class="w3-border-bottom list-category w3-hover-light-grey all"
+        id="firstTab">
+        <%= link_to t("invoices.all"), "/invoices_pages/all",
+          class: "hvr-sweep-to-top" %>
+        <div class="clearfix"></div>
+      </div>
+      <div href="javascript:void(0)" data-check="init"
+        class="w3-border-bottom list-category w3-hover-light-grey init
+        hvr-sweep-to-top">
+        <%= link_to t("invoices.init"), "/invoices_pages/init",
+          class: "hvr-sweep-to-top" %>
+        <div class="clearfix"></div>
+      </div>
+      <div href="javascript:void(0)" data-check="waiting"
+        class="w3-border-bottom list-category w3-hover-light-grey waiting
+        hvr-sweep-to-top">
+        <%= link_to t("invoices.waiting"), "/invoices_pages/waiting",
+          class: "hvr-sweep-to-top" %>
+        <div class="clearfix"></div>
+      </div>
+      <div href="javascript:void(0)" data-check="shipping"
+        class="w3-border-bottom list-category w3-hover-light-grey shipping
+        hvr-sweep-to-top">
+        <%= link_to t("invoices.shipping"), "/invoices_pages/shipping",
+          class: "hvr-sweep-to-top" %>
+        <div class="clearfix"></div>
+      </div>
+      <div href="javascript:void(0)" data-check="shipped"
+        class="w3-border-bottom list-category w3-hover-light-grey shipped
+        hvr-sweep-to-top">
+        <%= link_to t("invoices.shipped"), "/invoices_pages/shipped",
+          class: "hvr-sweep-to-top" %>
+        <div class="clearfix"></div>
+      </div>
+      <div href="javascript:void(0)" data-check="finished"
+        class="w3-border-bottom list-category w3-hover-light-grey finished
+        hvr-sweep-to-top">
+        <%= link_to t("invoices.finished"), "/invoices_pages/finished",
+          class: "hvr-sweep-to-top" %>
+        <div class="clearfix"></div>
+      </div>
+      <div href="javascript:void(0)" data-check="cancel"
+        class="w3-border-bottom list-category w3-hover-light-grey cancel
+        hvr-sweep-to-top">
+        <%= link_to t("invoices.cancel"), "/invoices_pages/cancel",
+          class: "hvr-sweep-to-top" %>
+        <div class="clearfix"></div>      </div>
+      <div class=" w3-hover-light-grey">
+        <div class="w3-container new-invoice">
+          <%= link_to t("invoices.new"), new_shop_invoice_path,
+            class: "btn btn-primary btn-md", remote: true %>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="w3-overlay w3-hide-large w3-animate-opacity close_side_menu"
+  title="Close Sidemenu" id="myOverlay"></div>

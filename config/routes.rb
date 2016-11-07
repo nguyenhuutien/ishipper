@@ -48,6 +48,7 @@ Rails.application.routes.draw do
 
   root "pages#index"
   get "/pages/:page", to: "pages#show"
+  get "/invoices_pages/:status", to: "invoices_pages#show"
 
   devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"}
   devise_scope :user do
