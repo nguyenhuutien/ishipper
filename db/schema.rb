@@ -84,13 +84,9 @@ ActiveRecord::Schema.define(version: 20161031032142) do
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "owner_id"
     t.integer  "recipient_id"
-    t.integer  "content"
-    t.integer  "invoice_id"
-    t.integer  "user_invoice_id"
-    t.string   "click_action"
-    t.boolean  "read",            default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "key"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -136,7 +132,7 @@ ActiveRecord::Schema.define(version: 20161031032142) do
   create_table "user_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "authentication_token"
     t.string   "device_id"
-    t.string   "registration_id"
+    t.string   "notification_token"
     t.integer  "user_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
