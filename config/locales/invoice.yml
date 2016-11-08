@@ -55,19 +55,19 @@ en:
     km: Km
     show:
       shipping_price: Shipping price
-    _info_invoice: Information of invoice
-    _detail: Detail
+    _info_invoice: INFORMATION OF INVOICE
+    _detail: DETAIL
     _name: Name of invoice
     _status: Status
     _distance: Distance
-    _customer: Customer
+    _customer: CUSTOMER
     _shipping_price: Shipping price
     _price: Price
     _delivery_time: Delivery time
     _description: Description
     _show_route: Show route
-    _name_customer: Customer name
-    _number_customer: Customer number
+    _name_customer: Customer
+    _number_customer: Phone number
   vnd: VND
   kg: Kg
   km: KM

@@ -140,26 +140,32 @@
     .nht-invoice-detail{
       padding-bottom: 5px;
       padding-top: 5px;
+      hr {
+        margin: 5px 0 !important;
+      }
 
       .nht-invoice-proper {
         float: left;
         width: 30%;
         font-size: 15px;
         text-transform: uppercase;
-        font-style: italic;
-        color: gray;
       }
 
       .nht-invoice-value {
         float: right;
         width: 70%;
+        font-size: 17px;
         word-wrap: break-word;
         text-align: right;
+        color: gray;
       }
     }
 
     .nht-invoice-customer {
       height: 100%;
+      hr {
+        margin: 5px 0 !important;
+      }
     }
   }
 }
