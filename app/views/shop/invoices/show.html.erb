@@ -1,4 +1,4 @@
-<div class="nht-invoice-show container w3-main td-nav-hide">
+<div class="nht-invoice-show container">
   <div class="nht-invoice-box margin10">
     <div class="nht-text-center">
       <%= t "invoices._info_invoice" %>
@@ -35,11 +35,13 @@
 
         <div class="nht-invoice-road-right-detail">
           <p class="nht-invoice-address-top"><%= @invoice.address_start %></p>
-          <p class="nht-invoice-address-bottom"><%= @invoice.address_finish %></p>
+          <p class="nht-invoice-address-bottom"><%= @invoice.address_finish %>
+          </p>
         </div>
 
         <div class="nht-invoice-btn-road">
-          <%= link_to t("invoices._show_route"), "#", class: "btn btn-primary" %>
+          <%= link_to t("invoices._show_route"), "#",
+            class: "btn btn-primary" %>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -56,9 +58,10 @@
           <%= t "invoices._name" %>
         </span>
         <span class="nht-invoice-value">
-          <%= @invoice.name %>
+          <%= @invoice.name.capitalize %>
         </span>
         <div class="clearfix"></div>
+        <hr>
       </div>
 
       <div class="nht-invoice-detail">
@@ -66,9 +69,10 @@
           <%= t "invoices._shipping_price" %>
         </span>
         <span class="nht-invoice-value">
-          <%= @invoice.shipping_price %>
+          <%= number_to_currency @invoice.shipping_price %>
         </span>
         <div class="clearfix"></div>
+        <hr>
       </div>
 
       <div class="nht-invoice-detail">
@@ -76,9 +80,10 @@
           <%= t "invoices._price" %>
         </span>
         <span class="nht-invoice-value">
-          <%= @invoice.price %>
+          <%= number_to_currency @invoice.price %>
         </span>
         <div class="clearfix"></div>
+        <hr>
       </div>
 
       <div class="nht-invoice-detail">
@@ -89,8 +94,8 @@
           <%= @invoice.delivery_time %>
         </span>
         <div class="clearfix"></div>
+        <hr>
       </div>
-      <hr>
     </div>
 
 
@@ -100,23 +105,25 @@
       </p>
       <div class="nht-invoice-detail">
         <span class="nht-invoice-proper">
-          <%= @invoice.customer_name %>
+          <%= t "invoices._name_customer" %>
         </span>
         <span class="nht-invoice-value">
           <span>
-            <i class="fa fa-info-circle"></i>
+            <i class="glyphicon glyphicon-user"></i>
+            <%= @invoice.customer_name.capitalize %>
           </span>
         </span>
         <div class="clearfix"></div>
-      </div>
+      </div><hr>
 
       <div class="nht-invoice-detail">
         <span class="nht-invoice-proper">
-          <%= @invoice.customer_number %>
+          <%= t "invoices._number_customer" %>
         </span>
         <span class="nht-invoice-value">
           <span>
-            <i class="fa fa-phone"></i>
+            <i class="glyphicon glyphicon-phone"></i>
+            <%= @invoice.customer_number %>
           </span>
         </span>
         <div class="clearfix"></div>
