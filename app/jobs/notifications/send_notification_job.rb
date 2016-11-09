@@ -1,5 +1,5 @@
-class SendNotificationJob < ActiveJob::Base
-  queue_as :urgent
+class Notifications::SendNotificationJob < ActiveJob::Base
+  queue_as :default
 
   def perform notification, owner, recipient, content, invoice, click_action
     fcm = FCM.new Rails.application.secrets.firebase_api_key

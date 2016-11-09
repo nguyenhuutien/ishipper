@@ -19,6 +19,7 @@ gem "bootstrap-sass", "3.2.0.0"
 gem "font-awesome-rails"
 gem "cancancan", "~> 1.10"
 gem "kaminari"
+gem "redis"
 
 group :development, :test do
   gem "pry"
