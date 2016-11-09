@@ -22,3 +22,6 @@ en:
     favorite: Favorite list
     black: Black list
     search: Search for names..
+    reviews: Reviews
+  load_more: Load More
+  show_less: Show Less

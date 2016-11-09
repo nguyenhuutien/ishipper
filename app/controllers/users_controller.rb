@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @reviews = @user.passive_reviews
   end
 
   def edit
