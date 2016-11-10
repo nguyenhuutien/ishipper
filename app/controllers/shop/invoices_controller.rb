@@ -12,12 +12,19 @@ class Shop::InvoicesController < Shop::ShopBaseController
   end
 
   def create
-    if @invoice.save
-      InvoiceHistoryCreator.new(@invoice, current_user.id).create_history invoice_params
-      flash[:danger] = t "invoices.create.success"
-      redirect_to root_path
+    if params[:invoice_form_id] == "form_map_marker"
+      @invoice = Invoice.new invoice_params
+      error = CheckInvoiceMapMarker.new(@invoice).perform
+      if error.present?
+        flash[:danger] = error
+        redirect_to new_shop_invoice_path
+      end
     else
-      render :new
+      if @invoice.save
+        InvoiceHistoryCreator.new(@invoice, current_user.id).create_history invoice_params
+        flash[:success] = t "invoices.create.success"
+        redirect_to root_path
+      end
     end
   end
 

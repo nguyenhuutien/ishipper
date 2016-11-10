@@ -3,15 +3,14 @@
 @import "font-awesome";
 
 #flash {
-  margin-top: 40px;
-  left: 20px;
-  z-index: 10000;
-  padding: 10px;
+  position: absolute;
+  top: 40px;
+  right: 7%;
+  z-index: 100;
   width: 30%;
   word-wrap: break-word;
   float: right !important;
   text-align: right;
-  margin-right: 5%;
 
   .nht-flash {
     display: inline-block;

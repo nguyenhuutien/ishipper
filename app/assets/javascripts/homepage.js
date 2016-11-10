@@ -32,7 +32,7 @@ document.addEventListener("turbolinks:load", function() {
 
   var flash = function(){
     setTimeout(function(){
-      $('#flash').slideDown(1000);
+      $('#flash').slideUp(2000);
     }, 1500);
   };
   $(document).ready(flash);
