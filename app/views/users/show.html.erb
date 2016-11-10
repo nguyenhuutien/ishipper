@@ -31,11 +31,10 @@
         </div>
       </div><br>
     </div>
-    <% if can? :update, @user %>
-      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+      <% if can? :update, @user %>
         <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-5 col-sm-offset-5
-            col-md-offset-5 col-lg-offset-5 nht-profile-title">
+          <div class="text-center nht-profile-title">
               <%= t "users.edit_user" %>
           </div>
 
@@ -73,7 +72,24 @@
             <% end %>
           </div>
         </div>
+      <% end %>
+
+      <div class="col-xs-8 col-sm-8 col-md-10 col-lg-10
+        col-xs-offset-2 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="map-profile">
       </div>
-    <% end %>
+      <div class="none">
+        <%= hidden_field_tag "td-latitude", @user.latitude %>
+        <%= hidden_field_tag "td-longitude", @user.longitude %>
+      </div>
+      <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+        <div class="text-center nht-profile-title">
+            <%= t "users.reviews" %>
+        </div>
+
+        <div class="td-user-info">
+          <%= render "reviews" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
