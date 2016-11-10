@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   resources :feed_backs, only: [:new, :create]
   namespace :shop do
     resources :invoices
+    resources :list_shippers, only: :index
   end
   resources :users
 end
