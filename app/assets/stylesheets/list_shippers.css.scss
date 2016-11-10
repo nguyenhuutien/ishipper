@@ -1,0 +1,21 @@
+.nht-list-shippers {
+  padding-bottom: 150px;
+  margin-top: 60px;
+
+  #map_list_shippers {
+    height: 80vh;
+    width: auto;
+    margin-bottom: 20px;
+  }
+}
+
+.nht-invoice-content {
+  position: relative;
+
+  .nht-btn-list-shippers {
+    position: absolute;
+    float: right;
+    top: 40px;
+    right: 40px;
+  }
+}

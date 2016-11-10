@@ -74,6 +74,7 @@ en:
     next: Next
     draw: Draw routes
     invalid: Invalid
+    list_shippers: Shipper near by
   vnd: VND
   kg: Kg
   km: KM
