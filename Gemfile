@@ -20,6 +20,8 @@ gem "font-awesome-rails"
 gem "cancancan", "~> 1.10"
 gem "kaminari"
 gem "redis"
+gem "carrierwave"
+gem "cloudinary"
 
 group :development, :test do
   gem "pry"

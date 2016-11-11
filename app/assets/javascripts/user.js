@@ -52,4 +52,9 @@ document.addEventListener("turbolinks:load", function() {
     $('.two .bar').css("width", (rate_two / sum)*100 + '%');
     $('.one .bar').css("width", (rate_one / sum)*100 + '%');
   }
+
+  $("#current_location").keyup(function(){
+    var address = $("#current_location").val();
+    $("#current_location").val(address);
+  });
 });
