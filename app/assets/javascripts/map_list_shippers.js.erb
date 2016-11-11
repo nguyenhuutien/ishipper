@@ -20,7 +20,6 @@ function addShipper(addresses, map) {
     });
   }
   position = {lat: lat / i, lng: lng / i};
-  console.log(position);
   map.setCenter(position);
 }
 
@@ -31,6 +30,5 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   var addresses = JSON.parse($('#address-list-shippers').val());
-  console.log(addresses);
   addShipper(addresses, map);
 });

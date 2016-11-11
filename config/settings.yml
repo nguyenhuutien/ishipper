@@ -28,3 +28,15 @@ earth_radius: 6378137
 constant_1: 1
 constant_2: 2
 constant_1000: 1000
+rate:
+  load_five_star: 5
+  load_four_star: 4
+  load_three_star: 3
+  load_two_star: 2
+  load_one_star: 1
+  list_rate:
+    - load_five_star
+    - load_four_star
+    - load_three_star
+    - load_two_star
+    - load_one_star

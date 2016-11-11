@@ -7,6 +7,7 @@
   }
 
   .nht-profile-box {
+    margin-bottom: 200px !important;
     margin: -16px;
 
     #avatar {
@@ -22,6 +23,79 @@
 
       .nht-user-sucess-invoice {
         float: right;
+      }
+    }
+
+    .nht-user-rate {
+      .nht-user-rate-left {
+        float: left;
+        margin-top: 5px;
+      }
+
+      .nht-user-rate-right {
+        float: right;
+
+        .bar-content {
+          width: 100%;
+          margin-bottom: 5px;
+
+          .star {
+            display: inline;
+            width: 20%;
+            float: left;
+            padding-top: 3px;
+          }
+        }
+
+        .five {
+          .bar {
+            padding-left: 5px;
+            display: inline;
+            float: left;
+            width: 80%;
+            background-color: #88b131;
+          }
+        }
+
+        .four {
+          .bar {
+            padding-left: 5px;
+            display: inline;
+            float: left;
+            width: 80%;
+            background-color: #99cc00;
+          }
+        }
+
+        .three {
+          .bar {
+            padding-left: 5px;
+            display: inline;
+            float: left;
+            width: 80%;
+            background-color: #ffcf02;
+          }
+        }
+
+        .two {
+          .bar {
+            padding-left: 5px;
+            display: inline;
+            float: left;
+            width: 80%;
+            background-color: #ff9f02;
+          }
+        }
+
+        .one {
+          .bar {
+            padding-left: 5px;
+            display: inline;
+            float: left;
+            width: 80%;
+            background-color: #ff6f31;
+          }
+        }
       }
     }
   }
