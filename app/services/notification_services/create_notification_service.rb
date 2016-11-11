@@ -15,8 +15,14 @@ class NotificationServices::CreateNotificationService
     user_setting = @recipient.user_setting
     if @notification
       user_setting.update! unread_notification: user_setting.unread_notification + 1
+      channel = "#{@recipient.phone_number}_realtime_channel"
+      data = Hash.new
+      data[:unread_notification] = user_setting.unread_notification
+      RealtimeBroadcastJob.perform_now channel: channel,
+        action: Settings.realtime.unread_notification, data: data
       if user_setting.receive_notification?
-        SendNotificationJob.perform_later @notification, @owner, @recipient, @content, @invoice, @click_action
+        Notifications::SendNotificationJob.perform_now @notification, @owner,
+          @recipient, @content, @invoice, @click_action
       end
     end
   end

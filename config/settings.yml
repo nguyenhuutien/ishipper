@@ -40,3 +40,6 @@ rate:
     - load_three_star
     - load_two_star
     - load_one_star
+realtime:
+  unread_notification: "unread_notification"
+  basic: "Basic "
