@@ -198,3 +198,25 @@
 .none {
   display: none;
 }
+
+.td-menu-hide {
+  position: absolute;
+  top: 140px;
+  left: 0;
+}
+
+#loadMore,#showLess {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #D9D9D9;
+  border-radius: 5px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#showLess {
+  margin-top: 10px;
+}

@@ -10,6 +10,10 @@
     margin-bottom: 200px !important;
     margin: -16px;
 
+    .td-user-profile-detail {
+      padding-bottom: 30px;
+    }
+
     #avatar {
       width: 100%;
       height: 300px;
@@ -98,6 +102,11 @@
         }
       }
     }
+  }
+
+  .nht-profile-box .td-p-flex {
+    display: flex;
+    overflow: hidden;
   }
 
   .nht-user-info {
