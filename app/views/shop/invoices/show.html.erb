@@ -39,10 +39,29 @@
           </p>
         </div>
 
-        <div class="nht-invoice-btn-road">
-          <%= link_to t("invoices._show_route"), "#",
-            class: "btn btn-primary" %>
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+          data-target="#myModal"><%= t"invoice._show_route" %></button>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                </button>
+                <h5 class="modal-title"><%= t :from %>
+                  <%= @invoice.address_start %><%= t :to %>
+                  <%= @invoice.address_finish %></h5>
+              </div>
+              <div class="modal-body">
+                <div id="map-on-invoice"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                  data-dismiss="modal"><%= t :close %></button>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
       <div class="clearfix"></div>
       <hr>
@@ -98,7 +117,6 @@
       </div>
     </div>
 
-
     <div class="nht-invoice-customer">
       <p class="nht-text-center-2">
         <%= t "invoices._customer" %>
@@ -130,5 +148,10 @@
       </div>
     </div>
     <div class="clearfix"></div>
+    <%= form_for [:shop, @invoice] do |f| %>
+      <% Settings.invoice.invoice_attributes_map_marker.each do |attribute| %>
+        <%= f.hidden_field attribute, id: Settings.invoice.send(attribute) %>
+      <% end %>
+    <% end %>
   </div>
 </div>

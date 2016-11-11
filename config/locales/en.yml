@@ -45,4 +45,6 @@ en:
         format: "%n%u"
   _your_invoices: Your invoices
   _profile: Profile
-
+  close: Close
+  from: "From "
+  to: " to "
