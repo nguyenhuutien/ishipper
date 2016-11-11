@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+
   devise :database_authenticatable, :recoverable, :confirmable,
-    :rememberable, :trackable, :validatable
+    :rememberable, :trackable, :validatable, :registerable
+
   VALID_PHONE_REGEX = /\+84\d{9,10}\)*\z/
 
   geocoded_by :current_location
@@ -39,16 +42,18 @@ class User < ApplicationRecord
     name LIKE ?)", role, data, "%#{data}%")}
 
   ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
-    :longitude, :plate_number, :role, :password, :password_confirmation]
+    :longitude, :plate_number, :role, :password, :password_confirmation, :avatar,
+    :current_location]
 
   UPDATE_ATTRIBUTES_PARAMS = [:name, :email, :address, :plate_number,
-    :current_password, :receive_notification]
+    :current_password, :receive_notification, :avatar, :current_location]
 
   validates :phone_number, uniqueness: true,
     format: {with: VALID_PHONE_REGEX}
 
   # validates :plate_number, uniqueness: true,
   #   length: {minimum: 8, maximum: 10}, allow_nil: true
+
 
   def email_required?
     false
