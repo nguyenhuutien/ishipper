@@ -35,6 +35,8 @@ class Invoice < ApplicationRecord
 
   USER_PARAMS = Set.new ["latitude", "longitude", "distance"]
 
+  REJECT_ATTRIBUTES = "id", "user_id", "creater_id", "updated_at", "created_at"
+
   enum status: [:init, :waiting, :shipping, :shipped, :finished, :cancel]
 
   scope :filter_by, -> column, min, max{

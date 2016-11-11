@@ -9,22 +9,27 @@ class InvoiceStatus
   def shipper_update_status
     Invoice.transaction do
       UserInvoice.transaction do
-        if @user_invoice.init? && @status == "rejected"
-          @user_invoice.update_attributes status: @status
-          InvoiceHistoryCreator.new(@invoice, @current_user.id).
-            create_user_invoice_history @user_invoice, "rejected"
+        if @status
+          if @user_invoice.init? && @status == "rejected"
+            @user_invoice.update_attributes status: @status
+            InvoiceHistoryCreator.new(@invoice, @current_user.id).
+              create_user_invoice_history @user_invoice, "rejected"
+          else
+            @invoice.update_attributes status: @status
+            @user_invoice.update_attributes status: @status
+            InvoiceHistoryCreator.new(@invoice, @current_user.id).
+              create_all_history @user_invoice, @status
+            click_action = Settings.invoice_detail
+            NotificationServices::CreateNotificationService.new(owner: @current_user,
+              recipient: @invoice.user, content: @status, invoice: @invoice,
+              click_action: click_action).perform
+          end
         else
-          @invoice.update_attributes status: @status
-          @user_invoice.update_attributes status: @status
-          InvoiceHistoryCreator.new(@invoice, @current_user.id).
-            create_all_history @user_invoice, @status
-          click_action = Settings.invoice_detail
-          NotificationServices::CreateNotificationService.new(owner: @current_user,
-            recipient: @invoice.user, content: @status, invoice: @invoice,
-            click_action: click_action).perform
+          return false
         end
       end
     end
+    return true
     rescue => e
     return false
   end
@@ -32,28 +37,33 @@ class InvoiceStatus
   def shop_update_status
     Invoice.transaction do
       UserInvoice.transaction do
-        if @invoice.init?
-          @invoice.update_attributes status: @status
-          InvoiceHistoryCreator.new(@invoice, @current_user.id).create_invoice_history
-          if @invoice.cancel?
-            @invoice.user_invoices.each do |user_invoice|
-              user_invoice.rejected!
-              InvoiceHistoryCreator.new(@invoice, @current_user.id).
-                create_user_invoice_history user_invoice, "rejected"
+        if @status
+          if @invoice.init?
+            @invoice.update_attributes status: @status
+            InvoiceHistoryCreator.new(@invoice, @current_user.id).create_invoice_history
+            if @invoice.cancel?
+              @invoice.user_invoices.each do |user_invoice|
+                user_invoice.rejected!
+                InvoiceHistoryCreator.new(@invoice, @current_user.id).
+                  create_user_invoice_history user_invoice, "rejected"
+              end
             end
+          else
+            @invoice.update_attributes status: @status
+            @user_invoice.update_attributes status: @status
+            InvoiceHistoryCreator.new(@invoice, @current_user.id).
+              create_all_history @user_invoice, @status
+            click_action = Settings.invoice_detail
+            NotificationServices::CreateNotificationService.new(owner: @current_user,
+              recipient: @user_invoice.user, content: @status, invoice: @invoice,
+              click_action: click_action).perform
           end
         else
-          @invoice.update_attributes status: @status
-          @user_invoice.update_attributes status: @status
-          InvoiceHistoryCreator.new(@invoice, @current_user.id).
-            create_all_history @user_invoice, @status
-          click_action = Settings.invoice_detail
-          NotificationServices::CreateNotificationService.new(owner: @current_user,
-            recipient: @user_invoice.user, content: @status, invoice: @invoice,
-            click_action: click_action).perform
+          return false
         end
       end
     end
+    return true
     rescue => e
     return false
   end
@@ -80,7 +90,34 @@ class InvoiceStatus
         true
       end
     end
+    return true
     rescue =>e
     return false
+  end
+
+  def shop_update_attributes invoice_params
+    (@status || !@invoice.init?) ? false : @invoice.update_attributes(invoice_params)
+  end
+
+  def check_conditions_to_update_status?
+    if @status && Invoice.statuses.include?(@status)
+      @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
+      !CheckConditions.new(@invoice, @user_invoice, @status).shop_conditions? (@current_user)
+    end
+  end
+
+  def shop_update?
+    if check_conditions_to_update_status?
+      if shop_update_status
+        true
+      elsif shop_update_attributes(@status)
+        InvoiceHistoryCreator.new(@invoice, @current_user.id).create_invoice_history
+        true
+      else
+        false
+      end
+    else
+      false
+    end
   end
 end

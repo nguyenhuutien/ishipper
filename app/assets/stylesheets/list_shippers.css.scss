@@ -15,7 +15,46 @@
   .nht-btn-list-shippers {
     position: absolute;
     float: right;
-    top: 40px;
+    top: 5px;
     right: 40px;
   }
+
+  .nht-btn-update-invoice {
+    position: absolute;
+    float: right;
+    top: 80px;
+    right: 40px;
+  }
+}
+
+.td-all {
+  margin-bottom: 150px;
+}
+
+.td-init {
+  margin-bottom: 150px;
+}
+
+.td-waiting {
+  margin-bottom: 150px;
+}
+
+.td-shipping {
+  margin-bottom: 150px;
+}
+
+.td-shipped {
+  margin-bottom: 150px;
+}
+
+.td-finished {
+  margin-bottom: 150px;
+}
+
+.td-cancel {
+  margin-bottom: 150px;
+}
+
+.td-reject {
+  margin-bottom: 150px;
 }

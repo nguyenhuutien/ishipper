@@ -5,19 +5,27 @@ class CheckConditions
     @update_status = update_status
   end
 
-  def check_current_status
-    statuses = Invoice.statuses
-    false unless statuses.has_key?(@invoice.status) || statuses.has_key?(@update_status)
-    if "cancel" == @update_status && "finished" != @invoice.status &&
-      "cancel" != @invoice.status
-      true
-    elsif "rejected" == @update_status && "init" == @invoice.status
-      true
-    elsif statuses[@update_status].pred == statuses[@invoice.status] &&
-      "finished" != @invoice.status
+  def check_status?
+    @update_status.class.to_s == "String"
+  end
+
+  def check_current_status?
+    if check_status?
       true
     else
-      false
+      statuses = Invoice.statuses
+      false unless statuses.has_key?(@invoice.status) || statuses.has_key?(@update_status)
+      if "cancel" == @update_status && "finished" != @invoice.status &&
+        "cancel" != @invoice.status
+        true
+      elsif "rejected" == @update_status && "init" == @invoice.status
+        true
+      elsif statuses[@update_status].pred == statuses[@invoice.status] &&
+        "finished" != @invoice.status
+        true
+      else
+        false
+      end
     end
   end
 
@@ -28,7 +36,7 @@ class CheckConditions
 
   def shipper_conditions?
     @user_invoice.nil? || @invoice.shipped? || @invoice.finished? || @invoice.cancel? ||
-      !check_current_status ||
+      !check_current_status? ||
       !check_update_status_shipper? ||
       @user_invoice.status != @invoice.status
   end
@@ -39,7 +47,7 @@ class CheckConditions
 
   def shop_conditions? current_user
     @invoice.user != current_user || @user_invoice.nil? ||
-      !check_current_status ||
+      !check_current_status? ||
       !check_update_status_shop?
   end
 end

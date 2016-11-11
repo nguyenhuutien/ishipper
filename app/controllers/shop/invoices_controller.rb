@@ -28,6 +28,16 @@ class Shop::InvoicesController < Shop::ShopBaseController
     end
   end
 
+  def update
+    if InvoiceStatus.new(@invoice, @user_invoice, params[:status] || invoice_params,
+      current_user).shop_update?
+      flash[:success] = t "invoices.messages.update_success"
+    else
+      flash[:danger] = t "invoices.messages.cant_update"
+    end
+    redirect_to :back
+  end
+
   private
   def invoice_params
     params.require(:invoice).permit Invoice::ATTRIBUTES_PARAMS

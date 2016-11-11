@@ -75,6 +75,9 @@ en:
     draw: Draw routes
     invalid: Invalid
     list_shippers: Shipper near by
+    update:
+      cancel: Cancel
+      finished: Finished
   vnd: VND
   kg: Kg
   km: KM
