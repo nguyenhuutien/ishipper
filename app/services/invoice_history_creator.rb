@@ -14,30 +14,14 @@ class InvoiceHistoryCreator
   end
 
   def create_invoice_history
-    InvoiceHistory.create! name: @invoice.name,
-    address_start: @invoice.address_start,
-    latitude_start: @invoice.latitude_start,
-    longitude_start: @invoice.longitude_start,
-    address_finish: @invoice.address_finish,
-    latitude_finish: @invoice.latitude_finish,
-    longitude_finish: @invoice.longitude_finish,
-    delivery_time: @invoice.delivery_time,
-    distance_invoice: @invoice.distance_invoice,
-    description: @invoice.distance_invoice,
-    price: @invoice.price,
-    shipping_price: @invoice.shipping_price,
-    status: @invoice.status,
-    weight: @invoice.weight,
-    customer_name: @invoice.customer_name,
-    customer_number: @invoice.customer_number,
-    invoice_id: @invoice.id,
-    creater_id: @id
+    invoice_params = @invoice.attributes.without *Invoice::REJECT_ATTRIBUTES
+    invoice_params.merge "creater_id" => @id
+    @invoice.invoice_histories.create! invoice_params
   end
 
   def create_user_invoice_history user_invoice, status
     UserInvoiceHistory.create! status: status,
-      user_invoice_id: user_invoice.id,
-      creater_id: @id
+      user_invoice_id: user_invoice.id, creater_id: @id
   end
 
   def create_all_history user_invoice, status

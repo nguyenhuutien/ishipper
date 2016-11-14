@@ -45,6 +45,26 @@
     width: 70%;
     margin-left: 15%;
 
+    .nht-invoice-btn-update-status {
+      float: right;
+
+      .cancel {
+        float: right;
+        right: 0px;
+        color: #FFF;
+
+        .btn-cancel {
+          background-color: red;
+        }
+      }
+
+      .finished {
+        float: right;
+        right: 40px;
+        margin-left: 10px;
+      }
+    }
+
     .nht-color {
       color: #56d31d;
     }

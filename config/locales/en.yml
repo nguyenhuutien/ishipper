@@ -48,3 +48,5 @@ en:
   close: Close
   from: "From "
   to: " to "
+  confirm:
+    you_sure: Are you sure?

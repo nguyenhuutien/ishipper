@@ -23,6 +23,14 @@ invoice:
     - address_finish
     - distance_invoice
   epsilon_distance: 0.1
+  status:
+    - init
+    - waiting
+    - shipping
+    - shipped
+    - finished
+    - reject
+    - cancel
 degree: 180
 earth_radius: 6378137
 constant_1: 1

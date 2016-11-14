@@ -153,5 +153,28 @@
         <%= f.hidden_field attribute, id: Settings.invoice.send(attribute) %>
       <% end %>
     <% end %>
+
+    <% unless @invoice.finished? || @invoice.cancel? %>
+      <hr>
+      <div class="nht-invoice-btn-update-status">
+        <div class="finished">
+          <% if @invoice.shipped? %>
+            <%= form_for [:shop, @invoice], method: :patch do |f| %>
+              <%= hidden_field_tag :status, Settings.invoice.status[4] %>
+              <%= f.submit t("invoices.update.finished"), class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="cancel">
+          <%= form_for [:shop, @invoice], method: :patch do |f| %>
+            <%= hidden_field_tag :status, Settings.invoice.status[6] %>
+            <%= f.submit t("invoices.update.cancel"), class: "btn btn-cancel",
+              data: {confirm: t("confirm.you_sure")} %>
+          <% end %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    <% end %>
   </div>
 </div>
