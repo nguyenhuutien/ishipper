@@ -40,6 +40,7 @@ class User < ApplicationRecord
 
   scope :search_user, -> role, data {where("role = ? AND (phone_number = ? OR
     name LIKE ?)", role, data, "%#{data}%")}
+  scope :is_online, -> {where online: true}
 
   ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
     :longitude, :plate_number, :role, :password, :password_confirmation, :avatar,

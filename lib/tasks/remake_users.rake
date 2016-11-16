@@ -184,7 +184,7 @@ namespace :db do
     user14.create_user_setting unread_notification: 0
 
     user15 = User.create!(
-      name: "SHIPPER",
+      name: "SHIPPER98",
       phone_number: "+841234567898",
       password: "12345678",
       password_confirmation: "12345678",
@@ -198,7 +198,7 @@ namespace :db do
     user15.create_user_setting unread_notification: 0
 
     user16 = User.create!(
-      name: "SHIPPER",
+      name: "SHIPPER97",
       phone_number: "+841234567897",
       password: "12345678",
       password_confirmation: "12345678",

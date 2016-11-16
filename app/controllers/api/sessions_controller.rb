@@ -35,6 +35,7 @@ class Api::SessionsController < Devise::SessionsController
     if token
       sign_out @user
       token.destroy
+      @user.update_attribute "signed_in", false
       render json: {message: t("api.sign_out.success"), data: {}, code: 1}, status: 200
     else
       render json: {message: t("api.invalid_token"), data: {}, code: 0}, status: 200

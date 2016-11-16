@@ -13,6 +13,7 @@ class RealtimeChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
+    self.current_user.update_attribute "online", false
     # Any cleanup needed when channel is unsubscribed
   end
 end

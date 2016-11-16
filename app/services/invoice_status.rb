@@ -47,6 +47,12 @@ class InvoiceStatus
                 InvoiceHistoryCreator.new(@invoice, @current_user.id).
                   create_user_invoice_history user_invoice, "rejected"
               end
+              near_shippers = User.near([@invoice.latitude_start, @invoice.longitude_start],
+                Settings.max_distance).shipper.is_online
+              if near_shippers.any?
+                InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
+                  invoice: @invoice, action: Settings.realtime.remove_invoice).perform
+              end
             end
           else
             @invoice.update_attributes status: @status
@@ -86,6 +92,12 @@ class InvoiceStatus
             InvoiceHistoryCreator.new(@invoice, @current_user.id).
               create_user_invoice_history user_invoice, "rejected"
           end
+        end
+        near_shippers = User.near([@invoice.latitude_start, @invoice.longitude_start],
+          Settings.max_distance).shipper.is_online
+        if near_shippers.any?
+          InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
+            invoice: @invoice, action: Settings.realtime.remove_invoice).perform
         end
         true
       end
