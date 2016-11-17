@@ -1,6 +1,6 @@
 var center_default = {lat: 21.0119842, lng: 105.8471442};
 
-function addShipper(addresses, map) {
+function addShipper(addresses, address_invoice, map) {
   var position, lat = 0, lng = 0, i;
   for (i = 0; i < addresses.length; i++) {
     position = {lat: addresses[i].latitude, lng: addresses[i].longitude};
@@ -19,6 +19,18 @@ function addShipper(addresses, map) {
       window.location.assign('../users/' + this.user_id);
     });
   }
+
+  position = {lat: address_invoice.latitude_start, lng: address_invoice.longitude_start};
+  marker = new google.maps.Marker({
+    map: map,
+    animation: google.maps.Animation.DROP,
+    position: position,
+  });
+  marker.setIcon("<%= asset_path 'blue-dot.png' %>");
+  lat += position.lat;
+  lng += position.lng;
+  i++;
+
   position = {lat: lat / i, lng: lng / i};
   map.setCenter(position);
 }
@@ -30,5 +42,6 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   var addresses = JSON.parse($('#address-list-shippers').val());
-  addShipper(addresses, map);
+  var address_invoice = JSON.parse($('#address-invoice').val());
+  addShipper(addresses, address_invoice, map);
 });
