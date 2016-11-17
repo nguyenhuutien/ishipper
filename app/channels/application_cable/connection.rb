@@ -8,6 +8,7 @@ module ApplicationCable
         request.headers["HTTP_AUTHORIZATION"].slice! Settings.realtime.basic
         authorization = request.headers["HTTP_AUTHORIZATION"]
         self.current_user = find_verified_user phone_number, authorization
+        self.current_user.update_attribute "online", true
         logger.add_tags self.current_user.phone_number
       else
         reject_unauthorized_connection
