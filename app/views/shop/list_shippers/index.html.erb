@@ -2,4 +2,6 @@
   <div id="map_list_shippers"></div>
   <div style="display: none"><%= text_field_tag "address-list-shippers",
     @shippers.serializable_hash.to_json %></div>
+  <div style="display: none"><%= text_field_tag "address-invoice",
+    @invoice.to_json %></div>
 </div>
