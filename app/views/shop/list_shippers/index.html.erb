@@ -5,3 +5,82 @@
   <div style="display: none"><%= text_field_tag "address-invoice",
     @invoice.to_json %></div>
 </div>
+
+<div class="modal fade" id="user-map" role="dialog">
+  <div class="modal-dialog">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-8 col-lg-8
+      col-md-offset-2 col-lg-offset-2 modal-content">
+
+      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+        col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0 nht-user-left">
+        <div class="nht-user-cover">
+          <img src="" id="nht-user-avatar" class="img-responsive">
+
+          <div class="nht-user-invoice">
+            <div class="nht-user-sum-invoice">
+              <%= t "users.sum_invoices" %>
+            </div>
+            <div class="nht-user-success-invoice">
+              <%= t "users.success_invoices" %>
+            </div>
+          </div>
+
+        </div>
+        <div class="nht-user-info-left">
+          <h1 class="nht-user_name">
+          </h1>
+          <h4 class="nht-user_phone_number">
+          </h4>
+        </div>
+      </div>
+
+      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+        col-md-6 col-md-offset-0 col-lg-6 col-lg-offset-0 nht-user-right">
+
+        <div class="nht-user-rate">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4
+            nht-user-rate-left">
+            <div class="nht-user-rate-content">
+              <h1 class="nht-user_rate"></h1>
+            </div>
+            <div class="nht-user-rate-sum">
+              <%= t "users.sum" %>
+              <span class="nht-user_sum_rate"></span>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8
+            nht-user-rate-right">
+            <% Settings.rate.list_stars.each do |star| %>
+              <div class="bar-content <%= star %>">
+                <i class="fa fa-star star"> <%= Settings.rate.send("load_#{star}_star") %></i>
+                <span class="bar nht-user_rate_<%= star %>">
+                </span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <hr>
+
+        <div class="nht-user-info-right">
+          <p class="td-p-flex">
+            <i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal">
+            </i>
+            <span class="nht-user_role"></span>
+          </p>
+          <p class="td-p-flex">
+            <i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal">
+            </i>
+            <span class="nht-user_address"></span>
+          </p>
+          <p class="td-p-flex">
+            <i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal">
+            </i>
+            <span class="nht-user_email"></span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

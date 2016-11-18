@@ -1,6 +1,3 @@
-var markers = [];
-var map;
-
 function calcRoute() {
   var start = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng());
   var end = new google.maps.LatLng(markers[1].getPosition().lat(), markers[1].getPosition().lng());
@@ -26,6 +23,9 @@ function calcRoute() {
 }
 
 document.addEventListener("turbolinks:load", function initializeMap() {
+  var markers = [];
+  var map;
+
   var center_default = {lat: 21.0119842, lng: 105.8471442};
   var start_latitude = parseFloat(document.getElementById('map-lat0').value);
   var start_longitude = parseFloat(document.getElementById('map-lng0').value);

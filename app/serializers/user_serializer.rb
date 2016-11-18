@@ -2,7 +2,8 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :address, :current_location, :latitude,
     :longitude, :phone_number, :plate_number, :role, :rate, :user_invoice_id,
     :black_list_id, :favorite_list_id, :favorite_user, :authentication_token,
-    :device_id, :registration_id
+    :device_id, :registration_id, :load_five_star, :load_four_star, :load_three_star,
+    :load_two_star, :load_one_star, :sum_rate
 
   def user_invoice_id
     current_user = object
@@ -46,5 +47,19 @@ class UserSerializer < ActiveModel::Serializer
         nil
       end
     end
+  end
+
+  def supports
+    Supports::User.new scope[:current_user]
+  end
+
+  Settings.rate.list_rate.each do |rate|
+    define_method rate do
+      supports.send(rate) if supports
+    end
+  end
+
+  def sum_rate
+    supports.sum_rate
   end
 end
