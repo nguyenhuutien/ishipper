@@ -1,5 +1,8 @@
 en:
   report:
+    title: Report
+    content: Content
+    enter_content: Enter your content
     create_success: Create report success!!
     create_fail: Create report fail!!
     invoice:

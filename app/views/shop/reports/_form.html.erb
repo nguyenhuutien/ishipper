@@ -1,0 +1,22 @@
+<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+  col-md-8 col-md-offset-2 col-lg-8 col-md-offset-2 nht-report-form">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+        <i class='fa fa-times' aria-hidden='true'></i>
+      <% end %>
+      <h1><%= t "report.title" %></h1>
+      <%= form_for [:shop, @report], as: :report, url: shop_reports_path,
+        remote: true do |f| %>
+        <div id="nht-report-errors">
+        </div>
+        <%= f.label :content, t("report.content") %>
+        <%= f.text_area :content, placeholder: t("report.enter_content"),
+          class: "form-control nht-content" %>
+        <%= f.hidden_field :invoice_id %>
+        <%= f.submit t("report.title"), class: "btn btn-danger nht-btn-report" %>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

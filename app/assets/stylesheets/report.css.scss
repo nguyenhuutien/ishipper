@@ -1,0 +1,23 @@
+.nht-report-form {
+  .modal-dialog {
+    width: 100% !important;
+    .modal-content {
+      padding: 20px;
+      min-height: 300px;
+
+      .nht-content {
+        min-height: 250px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.nht-btn-report {
+  float: right;
+  margin-right: 10px;
+}

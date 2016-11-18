@@ -176,5 +176,14 @@
       </div>
       <div class="clearfix"></div>
     <% end %>
+    <div id="nht-report-invoice">
+      <% if @invoice.cancel? && !current_user.report?(@invoice)  %>
+        <hr>
+        <%= link_to t("report.title"), new_shop_report_path(invoice_id: @invoice.id),
+          remote: true, class: "btn btn-danger nht-btn-report" %>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
   </div>
 </div>
+<div id="report-modal" class="modal fade"></div>
