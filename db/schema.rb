@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20161111070442) do
     t.string   "phone_number"
     t.string   "plate_number"
     t.integer  "status",                            default: 0
-    t.integer  "role"
+    t.string   "role"
     t.float    "rate",                   limit: 24
     t.string   "pin"
     t.boolean  "signed_in"

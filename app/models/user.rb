@@ -36,7 +36,6 @@ class User < ApplicationRecord
   has_many :user_tokens, dependent: :destroy
 
   enum status: [:unactive, :actived, :block_temporary, :blocked]
-  enum role: ["admin", "shop", "shipper"]
 
   scope :search_user, -> role, data {where("role = ? AND (phone_number = ? OR
     name LIKE ?)", role, data, "%#{data}%")}
@@ -51,10 +50,11 @@ class User < ApplicationRecord
 
   validates :phone_number, uniqueness: true,
     format: {with: VALID_PHONE_REGEX}
-
   # validates :plate_number, uniqueness: true,
   #   length: {minimum: 8, maximum: 10}, allow_nil: true
 
+  self.inheritance_column = :_type_disabled
+  self.inheritance_column = :role
 
   def email_required?
     false
@@ -120,5 +120,9 @@ class User < ApplicationRecord
       rescue => e
       return false
     end
+  end
+
+  def shop?
+    self.role == "Shop"
   end
 end

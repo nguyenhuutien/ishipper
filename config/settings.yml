@@ -56,3 +56,4 @@ realtime:
   remove_invoice: "remove_invoice"
   shipper_online: "shipper_online"
   shipper_offline: "shipper_offline"
+role: "Shop"
