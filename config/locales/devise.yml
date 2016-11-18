@@ -18,3 +18,5 @@ en:
     confirm: Are you sure?
     back: Back
     character: characters minimum
+    cant_signup: You can't Sign Up!!!
+    signup: Sign Up successfully
