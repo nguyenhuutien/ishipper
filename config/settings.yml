@@ -25,13 +25,14 @@ invoice:
     - distance_invoice
   epsilon_distance: 0.1
   status:
-    - init
-    - waiting
-    - shipping
-    - shipped
-    - finished
-    - reject
-    - cancel
+    all: all
+    init: init
+    waiting: waiting
+    shipping: shipping
+    shipped: shipped
+    finished: finished
+    reject: reject
+    cancel: cancel
 degree: 180
 earth_radius: 6378137
 constant_1: 1

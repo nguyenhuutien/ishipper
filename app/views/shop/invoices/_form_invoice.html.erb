@@ -10,7 +10,7 @@
         <%= t "invoices.index.ship_price" %>
       </p>
       <p class="text-center td-color">
-        <%= number_to_currency f.shipping_price %>
+        <%= number_to_currency invoice.shipping_price %>
       </p>
     </div>
     <div class="td-invoice-content-right">
@@ -22,8 +22,8 @@
       </div>
 
       <div class="td-invoice-content-right-detail">
-        <p class="td-invoice-address-top"><%= f.address_start %></p>
-        <p class="td-invoice-address-bottom"><%= f.address_finish %></p>
+        <p class="td-invoice-address-top"><%= invoice.address_start %></p>
+        <p class="td-invoice-address-bottom"><%= invoice.address_finish %></p>
         <div class="clearfix"></div>
       </div>
     </div>
@@ -37,7 +37,7 @@
         <%= t "invoices.distance" %>
       </p>
       <p class="td-text-bottom text-center">
-        <%= f.distance_invoice %> <%= t "invoices.km" %>
+        <%= invoice.distance_invoice %> <%= t "invoices.km" %>
       </p>
     </div>
 
@@ -46,7 +46,7 @@
         <%= t "invoices.delivery_time" %>
       </p>
       <p class="td-text-bottom text-center">
-        <%= f.delivery_time %>
+        <%= invoice.delivery_time %>
       </p>
     </div>
 
@@ -55,7 +55,7 @@
         <%= t "invoices.cost" %>
       </p>
       <p class="td-text-bottom text-center">
-        <%= number_to_currency f.price %>
+        <%= number_to_currency invoice.price %>
       </p>
     </div>
   </div>
