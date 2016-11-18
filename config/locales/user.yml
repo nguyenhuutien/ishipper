@@ -24,6 +24,7 @@ en:
     search: Search for names..
     reviews: Reviews
     sum_rate: "Sum: %{sum}"
+    sum: "Sum: "
     rate: Rate
   load_more: Load More
   show_less: Show Less

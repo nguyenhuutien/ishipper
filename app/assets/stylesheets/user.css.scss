@@ -312,3 +312,106 @@
 .td-user-review {
   display:none;
 }
+
+#user-map {
+  height: 100%;
+
+  .modal-dialog {
+    width: 100%;
+
+    .modal-content {
+      height: 100%;
+      padding: 10px;
+
+      .nht-user-left {
+
+        .nht-user-cover {
+          position: relative;
+          padding: 20px;
+
+          #nht-user-avatar {
+            border-radius: 100%;
+          }
+
+          .nht-user-invoice {
+            position: absolute;
+            bottom: 50px;
+            left: 22%;
+          }
+        }
+
+        .nht-user-info-left {
+          text-align: center ;
+        }
+      }
+
+      .nht-user-right {
+        padding: 20px;
+        padding-top: 60px;
+
+        .nht-user-rate {
+          margin: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .nht-user-rate-left {
+            h1 {
+              font-size: 3em;
+              color: #009688 !important;
+            }
+          }
+
+          .nht-user-rate-right {
+
+            .five {
+              .bar {
+                padding-left: 5px;
+                display: inline;
+                width: 80%;
+                background-color: #88b131;
+              }
+            }
+
+            .four {
+              .bar {
+                padding-left: 5px;
+                display: inline;
+                width: 80%;
+                background-color: #99cc00;
+              }
+            }
+
+            .three {
+              .bar {
+                padding-left: 5px;
+                display: inline;
+                width: 80%;
+                background-color: #ffcf02;
+              }
+            }
+
+            .two {
+              .bar {
+                padding-left: 5px;
+                display: inline;
+                width: 80%;
+                background-color: #ff9f02;
+              }
+            }
+
+            .one {
+              .bar {
+                padding-left: 5px;
+                display: inline;
+                width: 80%;
+                background-color: #ff6f31;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
