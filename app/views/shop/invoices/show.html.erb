@@ -160,7 +160,7 @@
         <div class="finished">
           <% if @invoice.shipped? %>
             <%= form_for [:shop, @invoice], method: :patch do |f| %>
-              <%= hidden_field_tag :status, Settings.invoice.status[4] %>
+              <%= hidden_field_tag :status, Settings.invoice.status[:finished] %>
               <%= f.submit t("invoices.update.finished"), class: "btn btn-primary" %>
             <% end %>
           <% end %>
@@ -168,7 +168,7 @@
 
         <div class="cancel">
           <%= form_for [:shop, @invoice], method: :patch do |f| %>
-            <%= hidden_field_tag :status, Settings.invoice.status[6] %>
+            <%= hidden_field_tag :status, Settings.invoice.status[:cancel] %>
             <%= f.submit t("invoices.update.cancel"), class: "btn btn-cancel",
               data: {confirm: t("confirm.you_sure")} %>
           <% end %>

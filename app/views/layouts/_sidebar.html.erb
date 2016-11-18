@@ -6,54 +6,17 @@
       <i class="w3-padding-left fa fa-caret-down"></i>
     </a>
     <div id="Demo1" class="w3-accordion-content w3-animate-left">
-      <div href="javascript:void(0)" data-check="all"
-        class="w3-border-bottom list-category w3-hover-light-grey all"
-        id="firstTab">
-        <%= link_to t("invoices.all"), "/invoices_pages/all",
-          class: "hvr-sweep-to-top" %>
-        <div class="clearfix"></div>
-      </div>
-      <div href="javascript:void(0)" data-check="init"
-        class="w3-border-bottom list-category w3-hover-light-grey init
-        hvr-sweep-to-top">
-        <%= link_to t("invoices.init"), "/invoices_pages/init",
-          class: "hvr-sweep-to-top" %>
-        <div class="clearfix"></div>
-      </div>
-      <div href="javascript:void(0)" data-check="waiting"
-        class="w3-border-bottom list-category w3-hover-light-grey waiting
-        hvr-sweep-to-top">
-        <%= link_to t("invoices.waiting"), "/invoices_pages/waiting",
-          class: "hvr-sweep-to-top" %>
-        <div class="clearfix"></div>
-      </div>
-      <div href="javascript:void(0)" data-check="shipping"
-        class="w3-border-bottom list-category w3-hover-light-grey shipping
-        hvr-sweep-to-top">
-        <%= link_to t("invoices.shipping"), "/invoices_pages/shipping",
-          class: "hvr-sweep-to-top" %>
-        <div class="clearfix"></div>
-      </div>
-      <div href="javascript:void(0)" data-check="shipped"
-        class="w3-border-bottom list-category w3-hover-light-grey shipped
-        hvr-sweep-to-top">
-        <%= link_to t("invoices.shipped"), "/invoices_pages/shipped",
-          class: "hvr-sweep-to-top" %>
-        <div class="clearfix"></div>
-      </div>
-      <div href="javascript:void(0)" data-check="finished"
-        class="w3-border-bottom list-category w3-hover-light-grey finished
-        hvr-sweep-to-top">
-        <%= link_to t("invoices.finished"), "/invoices_pages/finished",
-          class: "hvr-sweep-to-top" %>
-        <div class="clearfix"></div>
-      </div>
-      <div href="javascript:void(0)" data-check="cancel"
-        class="w3-border-bottom list-category w3-hover-light-grey cancel
-        hvr-sweep-to-top">
-        <%= link_to t("invoices.cancel"), "/invoices_pages/cancel",
-          class: "hvr-sweep-to-top" %>
-        <div class="clearfix"></div>      </div>
+      <% Settings.invoice.status.to_h.without(:reject).values.each do |status| %>
+        <div href="javascript:void(0)" data-check="<%= status %>"
+          class="w3-border-bottom list-category w3-hover-light-grey <%= status %>"
+          id="firstTab">
+          <%= link_to t("invoices.#{status}"),
+            shop_invoices_path(invoice: {status: status}),
+            class: "hvr-sweep-to-top" %>
+          <div class="clearfix"></div>
+        </div>
+      <% end %>
+
       <div class="">
         <div class="w3-container new-invoice">
           <%= link_to t("invoices.new"), new_shop_invoice_path,
