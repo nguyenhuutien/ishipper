@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   namespace :shop do
     resources :invoices
     resources :list_shippers, only: :index
+    resources :reports, only: [:new, :create]
   end
   resources :users
 end

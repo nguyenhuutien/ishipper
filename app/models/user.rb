@@ -121,4 +121,8 @@ class User < ApplicationRecord
       return false
     end
   end
+
+  def report? invoice
+    active_reviews.report.find_by invoice_id: invoice.id
+  end
 end

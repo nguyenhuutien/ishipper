@@ -61,3 +61,6 @@ realtime:
   basic: "Basic "
   new_invoice: "new_invoice"
   remove_invoice: "remove_invoice"
+report:
+  rating_point: 1
+  max_length_content: 200
