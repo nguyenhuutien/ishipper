@@ -54,3 +54,5 @@ realtime:
   basic: "Basic "
   new_invoice: "new_invoice"
   remove_invoice: "remove_invoice"
+  shipper_online: "shipper_online"
+  shipper_offline: "shipper_offline"

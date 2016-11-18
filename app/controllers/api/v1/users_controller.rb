@@ -22,7 +22,7 @@ class Api::V1::UsersController < Api::BaseController
     else
       users = User.near [params[:user][:latitude], params[:user][:longitude]],
         params[:user][:distance]
-      users = users.shipper
+      users = users.shipper.is_online
     end
     users = ActiveModelSerializers::SerializableResource.new(users,
       each_serializer: UserSerializer)
