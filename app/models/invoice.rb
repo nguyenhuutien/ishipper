@@ -5,9 +5,9 @@ class Invoice < ApplicationRecord
   has_many :user_invoices, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :invoice_histories, dependent: :destroy
-  has_many :all_shipper, through: :user_invoices, source: :user
+  has_many :all_shipper, through: :user_invoices, source: :shipper
 
-  belongs_to :user
+  belongs_to :shop, foreign_key: "user_id"
 
   validates :name, presence: true
   validates :address_start, presence: true

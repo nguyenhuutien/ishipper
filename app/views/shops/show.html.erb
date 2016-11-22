@@ -5,14 +5,14 @@
       col-md-offset-0 col-lg-offset-0">
       <div class="w3-white w3-text-grey w3-card-4 td-user-profile-detail">
         <div class="w3-display-container">
-          <% unless @user.avatar_url.nil? %>
-            <%= image_tag @user.avatar_url, id: "avatar"%>
+          <% if @shop.avatar_url.present? %>
+            <%= image_tag @shop.avatar_url, id: "avatar"%>
             <br />
           <% else %>
             <%= image_tag "profile.jpg", id: "avatar" %>
           <% end %>
           <div class="w3-display-bottomleft w3-container w3-text-black">
-            <h3><%= @user.name %></h3>
+            <h3><%= @shop.name %></h3>
             <div class="nht-user-invoice">
               <div class="nht-user-sum-invoice">
                 <%= t "users.sum_invoices" %>
@@ -27,71 +27,41 @@
         <div class="w3-container">
           <p class="td-p-flex">
             <i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal">
-            </i><%= @user.role %>
+            </i><%= @shop.role %>
           </p>
           <p class="td-p-flex">
             <i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal">
-            </i><%= @user.address %>
+            </i><%= @shop.address %>
           </p>
           <p class="td-p-flex">
             <i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal">
-            </i><%= @user.email %>
+            </i><%= @shop.email %>
           </p>
           <p class="td-p-flex">
             <i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal">
-            </i><%= @user.phone_number %>
+            </i><%= @shop.phone_number %>
           </p>
           <hr>
           <div class="nht-user-rate">
             <h4><%= t "users.rate" %></h4>
             <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 nht-user-rate-left">
               <div class="nht-user-rate-content">
-                <h1><%= @user.rate %></h1>
+                <h1><%= number_with_precision @shop.rate %></h1>
               </div>
               <div class="nht-user-rate-sum">
                 <%= t "users.sum_rate", sum: @supports.sum_rate %>
               </div>
             </div>
             <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8 nht-user-rate-right">
-              <div class="bar-content five">
-                <i class="fa fa-star star"> <%= Settings.rate.load_five_star %></i>
-                <span class="bar" data-id="<%= @supports.load_five_star %>">
-                  <%= @supports.load_five_star %>
-                </span>
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="bar-content four">
-                <i class="fa fa-star star"> <%= Settings.rate.load_four_star %></i>
-                <span class="bar" data-id="<%= @supports.load_four_star %>">
-                <%= @supports.load_four_star %></span>
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="bar-content three">
-                <i class="fa fa-star star"> <%= Settings.rate.load_three_star %></i>
-                <span class="bar" data-id="<%= @supports.load_three_star %>">
-                  <%= @supports.load_three_star %>
-                </span>
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="bar-content two">
-                <i class="fa fa-star star"> <%= Settings.rate.load_two_star %></i>
-                <span class="bar" data-id="<%= @supports.load_two_star %>">
-                  <%= @supports.load_two_star %>
-                </span>
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="bar-content one">
-                <i class="fa fa-star star"> <%= Settings.rate.load_one_star %></i>
-                <span class="bar" data-id="<%= @supports.load_one_star %>">
-                  <%= @supports.load_one_star %>
-                </span>
-                <div class="clearfix"></div>
-              </div>
-
+              <% ["five", "four", "three", "two", "one"].each do |star| %>
+                <div class="bar-content <%= star %>">
+                  <i class="fa fa-star star"> <%= Settings.rate.send "load_#{star}_star" %></i>
+                  <span class="bar" data-id="<%= @supports.send "load_#{star}_star" %>">
+                    <%= @supports.send "load_#{star}_star" %>
+                  </span>
+                  <div class="clearfix"></div>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -99,14 +69,14 @@
     </div>
     <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-lg-8
       col-md-offset-0 col-lg-offset-0">
-      <% if can? :update, @user %>
+      <% if can? :update, @shop %>
         <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
           <div class="text-center nht-profile-title">
               <%= t "users.edit_user" %>
           </div>
 
           <div class="nht-user-info">
-            <%= form_for @user do |f| %>
+             <%= form_for @shop, url: shop_path(@shop) do |f| %>
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="fa fa-user user-name" aria-hidden="true"></i>
@@ -153,8 +123,8 @@
         col-xs-offset-2 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="map-profile">
       </div>
       <div class="none">
-        <%= hidden_field_tag "td-latitude", @user.latitude %>
-        <%= hidden_field_tag "td-longitude", @user.longitude %>
+        <%= hidden_field_tag "td-latitude", @shop.latitude %>
+        <%= hidden_field_tag "td-longitude", @shop.longitude %>
       </div>
       <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
         <div class="text-center nht-profile-title">
@@ -162,7 +132,7 @@
         </div>
 
         <div class="td-user-info">
-          <%= render "reviews" %>
+          <%= render "shared/reviews" %>
         </div>
       </div>
     </div>

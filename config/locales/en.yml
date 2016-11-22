@@ -43,6 +43,9 @@ en:
         separator: "."
         precision: 0
         format: "%n%u"
+    precision:
+      format:
+        precision: 1
   _your_invoices: Your invoices
   _profile: Profile
   close: Close
@@ -50,3 +53,7 @@ en:
   to: " to "
   confirm:
     you_sure: Are you sure?
+  rate:
+    format:
+    delimiter: ","
+    separator: "."
