@@ -126,10 +126,14 @@ ActiveRecord::Schema.define(version: 20161111070442) do
   create_table "user_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "receive_notification",            default: true
     t.integer  "unread_notification"
-    t.float    "radius_display",       limit: 24, default: 5.0
+    t.boolean  "favorite_location",               default: false
+    t.string   "favorite_address"
+    t.float    "favorite_latitude",    limit: 24
+    t.float    "favorite_longitude",   limit: 24
+    t.integer  "radius_display",                  default: 5
     t.integer  "user_id"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.index ["user_id"], name: "index_user_settings_on_user_id", using: :btree
   end
 

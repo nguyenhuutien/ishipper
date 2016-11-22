@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       default: true) do
       resources :users, only: [:show, :update, :index]
       resources :invoices, only: :index
+      resource :user_setting, only: [:update, :show]
       namespace :shipper do
         resources :invoices, only: [:update, :index, :show]
         resources :user_invoices, only: [:create, :destroy]

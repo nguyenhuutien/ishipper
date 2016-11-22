@@ -14,9 +14,9 @@ class Api::V1::UsersController < Api::BaseController
   def index
     if params[:user][:search]
       role = if current_user.shop?
-        2
+        "Shipper"
       elsif current_user.shipper?
-        1
+        "Shop"
       end
       users = User.search_user role, params[:user][:search]
     else

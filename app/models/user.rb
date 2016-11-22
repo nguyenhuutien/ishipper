@@ -11,6 +11,8 @@ class User < ApplicationRecord
     if: :address_changed?
 
   after_validation :geocode, :reverse_geocode
+  after_create :create_usersetting
+
   has_one :user_setting, dependent: :destroy
 
   has_many :all_user_invoices, through: :user_invoices, source: :invoice
@@ -38,6 +40,8 @@ class User < ApplicationRecord
   scope :search_user, -> role, data {where("role = ? AND (phone_number = ? OR
     name LIKE ?)", role, data, "%#{data}%")}
   scope :is_online, -> {where online: true}
+  scope :shipper, -> {where role: "Shipper"}
+  scope :shop, -> {where role: "Shop"}
 
   ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
     :longitude, :plate_number, :role, :password, :password_confirmation, :avatar,
@@ -122,5 +126,14 @@ class User < ApplicationRecord
 
   def shop?
     self.role == "Shop"
+  end
+
+  def shipper?
+    self.role == "Shipper"
+  end
+
+  private
+  def create_usersetting
+    self.create_user_setting!
   end
 end
