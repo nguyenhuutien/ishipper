@@ -11,8 +11,10 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       current_user.invoices.send(params[:status]).
         search_invoice(params[:query]).order_by_time
     end
+    serializers = ActiveModelSerializers::SerializableResource.new(invoices,
+      each_serializer: InvoiceSerializer).as_json
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
-      data: {invoices: invoices}, code: 1}, status: 200
+      data: {invoices: serializers}, code: 1}, status: 200
   end
 
   def show
