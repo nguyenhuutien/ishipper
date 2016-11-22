@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class ShopsController < ApplicationController
   load_and_authorize_resource
   skip_load_and_authorize_resource only: :index
   before_action :load_support, only: [:index, :show]
@@ -7,16 +7,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @reviews = @user.passive_reviews
+    @reviews = @shop.passive_reviews
   end
 
   def edit
   end
 
   def update
-    if @user.update_attributes user_params
+    if @shop.update_attributes user_params
       flash[:success] = t "users.save_success"
-      redirect_to @user
+      redirect_to shop_url @shop
     else
       render :edit
     end

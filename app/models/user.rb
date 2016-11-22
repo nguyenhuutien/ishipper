@@ -13,8 +13,6 @@ class User < ApplicationRecord
   after_validation :geocode, :reverse_geocode
   has_one :user_setting, dependent: :destroy
 
-  has_many :invoices, dependent: :destroy
-  has_many :user_invoices, dependent: :destroy
   has_many :all_user_invoices, through: :user_invoices, source: :invoice
   has_many :active_reviews, class_name: Review.name, foreign_key: "owner_id",
     dependent: :destroy

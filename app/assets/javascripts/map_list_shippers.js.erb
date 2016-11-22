@@ -16,7 +16,7 @@ function addShipper(addresses, map) {
     lng += position.lng;
 
     marker.addListener('click', function() {
-      window.location.assign('../users/' + this.user_id);
+      window.location.assign('../shippers/' + this.user_id);
     });
   }
   position = {lat: lat / i, lng: lng / i};
