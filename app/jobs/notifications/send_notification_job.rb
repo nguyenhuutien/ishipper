@@ -9,7 +9,8 @@ class Notifications::SendNotificationJob < ActiveJob::Base
     end
     text = I18n.t("notifications.#{content}", user_name: owner.name, invoice_name: invoice.name)
     options = {notification: {title: I18n.t("notifications.app_name"), text: text,
-      click_action: click_action}, data: {notification_id: notification.id, invoice_id: invoice.id}}
+      click_action: click_action}, data: {notification_id: notification.id,
+      invoice_id: invoice.id, user: owner}}
     response = fcm.send registration_ids, options
   end
 end
