@@ -42,6 +42,7 @@ class User < ApplicationRecord
   scope :is_online, -> {where online: true}
   scope :shipper, -> {where role: "Shipper"}
   scope :shop, -> {where role: "Shop"}
+  scope :order_by_time, -> {order created_at: :desc}
 
   ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
     :longitude, :plate_number, :role, :password, :password_confirmation, :avatar,
@@ -130,6 +131,10 @@ class User < ApplicationRecord
 
   def shipper?
     self.role == "Shipper"
+  end
+
+  def admin?
+    self.role == "Admin"
   end
 
   private

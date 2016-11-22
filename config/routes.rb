@@ -64,4 +64,8 @@ Rails.application.routes.draw do
   end
   resources :shops
   resources :shippers, only: :show
+  namespace :admin do
+    root to: "users#index", as: :root
+    resources :users
+  end
 end

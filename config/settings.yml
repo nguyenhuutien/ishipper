@@ -57,3 +57,10 @@ realtime:
   shipper_online: "shipper_online"
   shipper_offline: "shipper_offline"
 role: "Shop"
+per_page: 10
+update_status:
+  status:
+    - unactive
+    - actived
+    - block_temporary
+    - blocked
