@@ -85,12 +85,13 @@ ActiveRecord::Schema.define(version: 20161111070442) do
     t.integer  "owner_id"
     t.integer  "recipient_id"
     t.integer  "content"
-    t.integer  "invoice_id"
     t.integer  "user_invoice_id"
     t.string   "click_action"
     t.boolean  "read",            default: false
+    t.integer  "invoice_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.index ["invoice_id"], name: "index_notifications_on_invoice_id", using: :btree
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -183,6 +184,7 @@ ActiveRecord::Schema.define(version: 20161111070442) do
   end
 
   add_foreign_key "invoices", "users"
+  add_foreign_key "notifications", "invoices"
   add_foreign_key "reviews", "invoices"
   add_foreign_key "user_invoices", "invoices"
   add_foreign_key "user_invoices", "users"
