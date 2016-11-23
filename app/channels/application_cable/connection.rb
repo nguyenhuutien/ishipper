@@ -11,7 +11,8 @@ module ApplicationCable
         self.current_user.update_attribute "online", true
         logger.add_tags self.current_user.phone_number
       else
-        reject_unauthorized_connection
+        self.current_user = find_verified_user_web
+        logger.add_tags self.current_user.phone_number
       end
     end
 
@@ -27,6 +28,14 @@ module ApplicationCable
           end
           reject_unauthorized_connection
         end
+      end
+    end
+
+    def find_verified_user_web
+      if current_user = User.find_by_id(cookies[:user_id])
+        current_user
+      else
+        reject_unauthorized_connection
       end
     end
   end

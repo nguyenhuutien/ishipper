@@ -8,6 +8,7 @@ class Invoice < ApplicationRecord
   has_many :all_shipper, through: :user_invoices, source: :shipper
 
   belongs_to :shop, foreign_key: "user_id"
+  belongs_to :user
 
   validates :name, presence: true
   validates :address_start, presence: true
