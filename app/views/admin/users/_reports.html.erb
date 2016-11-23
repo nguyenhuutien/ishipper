@@ -1,0 +1,12 @@
+<% @reports.each do |report| %>
+  <div class="td-user-review">
+    <div class="td-user-review-title">
+      <span class="pull-left td-user-review-name">
+        <%= report.owner.name %>
+      </span>
+      <div class="clearfix"></div>
+    </div>
+    <hr>
+    <i class="td-review-content"><%= report.content %></i>
+  </div>
+<% end %>

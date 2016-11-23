@@ -1,0 +1,14 @@
+<div class="td-manage-user-edit">
+  <h3 class="text-center"><%= @user.status %></h3>
+  <% Settings.update_status.status.each do |status| %>
+    <% if @user.send "#{status}?" %>
+      <% Settings.update_status.status.without(status, "unactive").each do |f| %>
+        <div class="td-manage-user-button col-xs-6 col-sm-6 col-md-6 col-lg-6"
+          data-key="<%= User.statuses[f] %>">
+          <%= link_to t("manage_users.edit.#{f}"), admin_user_path(user: {status: f}),
+            method: :patch %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -5,28 +5,37 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "application", media: "all",
       "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "application",
-      "data-turbolinks-track": "reload" %>
     <meta name="turbolinks-cache-control" content="no-cache">
   </head>
 
   <body>
     <% if user_signed_in? %>
-      <div class="nht-header">
-        <%= render "layouts/sidebar" %>
-      </div>
-      <div class="w3-main td-nav-hide">
+      <% if current_user.admin? %>
         <div class="nht-header">
-          <%= render "layouts/header" %>
+          <%= render "layouts/admin_sidebar" %>
         </div>
-        <i class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left
-          w3-margin-top td-menu-hide">
-        </i>
-        <%= render "layouts/body_form" %>
-      </div>
+        <div class="w3-main td-nav-hide td-admin">
+          <%= render "layouts/body_form" %>
+        </div>
+      <% else %>
+        <div class="nht-header">
+          <%= render "layouts/sidebar" %>
+        </div>
+        <div class="w3-main td-nav-hide">
+          <div class="nht-header">
+            <%= render "layouts/header" %>
+          </div>
+          <i class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left
+            w3-margin-top td-menu-hide">
+          </i>
+          <%= render "layouts/body_form" %>
+        </div>
+      <% end %>
     <% else %>
       <%= render "layouts/body_form" %>
     <% end %>
+    <%= javascript_include_tag "application",
+      "data-turbolinks-track": "reload" %>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAik8OVJ3_JisisBdw7aS20dQDt3lD1bG0&sensor=false&libraries=places&callback=initAutocomplete" data-turbolinks-eval="false" ></script>
   </body>
 </html>

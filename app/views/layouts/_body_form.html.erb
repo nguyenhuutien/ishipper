@@ -9,6 +9,8 @@
       <%= yield %>
   </div>
 </div>
-<footer class="footer">
-  <%= render "layouts/footer" %>
-</footer>
+<% unless admin_signed_in? %>
+  <footer class="footer">
+    <%= render "layouts/footer" %>
+  </footer>
+<% end %>

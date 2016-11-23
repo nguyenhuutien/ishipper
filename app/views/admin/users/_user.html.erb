@@ -1,0 +1,12 @@
+<% @users.each do |user| %>
+  <tr class="td-table-data">
+    <td><%= link_to user.name, admin_user_path(user) %></td>
+    <td><%= user.email %></td>
+    <td><%= user.phone_number %></td>
+    <td><%= user.role %></td>
+    <td class="td-manage-status" data-key="<%= User.statuses[user.status] %>">
+      <%= user.status %>
+    </td>
+    <td></td>
+  </tr>
+<% end %>
