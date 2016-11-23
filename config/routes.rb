@@ -51,7 +51,10 @@ Rails.application.routes.draw do
   get "/pages/:page", to: "pages#show"
   get "/invoices_pages/:status", to: "invoices_pages#show"
 
-  devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"}
+  devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"},
+    controllers: {
+      sessions: "sessions"
+  }
   devise_scope :user do
     post "sign_up", to: "registrations#create"
     get "sign_up", to: "registrations#new"
