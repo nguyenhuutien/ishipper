@@ -41,6 +41,7 @@ class InvoiceStatus
           if @invoice.init?
             @invoice.update_attributes status: @status
             InvoiceHistoryCreator.new(@invoice, @current_user.id).create_invoice_history
+            InvoiceServices::CreateStatusInvoiceHistoryService.new(invoice: @invoice).perform
             if @invoice.cancel?
               @invoice.user_invoices.each do |user_invoice|
                 user_invoice.rejected!

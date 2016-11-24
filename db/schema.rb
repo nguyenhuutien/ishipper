@@ -121,6 +121,15 @@ ActiveRecord::Schema.define(version: 20161125104513) do
     t.index ["invoice_id"], name: "index_reviews_on_invoice_id", using: :btree
   end
 
+  create_table "status_invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "time"
+    t.integer  "status"
+    t.integer  "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_status_invoice_histories_on_invoice_id", using: :btree
+  end
+
   create_table "user_invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "status"
     t.integer  "user_invoice_id"
@@ -141,7 +150,7 @@ ActiveRecord::Schema.define(version: 20161125104513) do
 
   create_table "user_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "receive_notification",            default: true
-    t.integer  "unread_notification"
+    t.integer  "unread_notification",             default: 0
     t.boolean  "favorite_location",               default: false
     t.string   "favorite_address"
     t.float    "favorite_latitude",    limit: 24
@@ -201,6 +210,7 @@ ActiveRecord::Schema.define(version: 20161125104513) do
   add_foreign_key "invoices", "users"
   add_foreign_key "notifications", "invoices"
   add_foreign_key "reviews", "invoices"
+  add_foreign_key "status_invoice_histories", "invoices"
   add_foreign_key "user_invoices", "invoices"
   add_foreign_key "user_invoices", "users"
   add_foreign_key "user_settings", "users"

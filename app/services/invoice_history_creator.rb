@@ -27,5 +27,6 @@ class InvoiceHistoryCreator
   def create_all_history user_invoice, status
     create_invoice_history
     create_user_invoice_history user_invoice, status
+    InvoiceServices::CreateStatusInvoiceHistoryService.new(invoice: @invoice).perform
   end
 end
