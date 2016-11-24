@@ -14,7 +14,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.float :rate
       t.string :pin
       t.boolean :signed_in
-      t.boolean :online, default: false
 
       t.timestamps
     end

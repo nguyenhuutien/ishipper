@@ -15,7 +15,7 @@ class NotificationServices::CreateNotificationService
     user_setting = @recipient.user_setting
     if @notification
       user_setting.update! unread_notification: user_setting.unread_notification + 1
-      if @recipient.online
+      if @recipient.online?
         channel = "#{@recipient.phone_number}_realtime_channel"
         data = Hash.new
         data[:unread_notification] = user_setting.unread_notification
