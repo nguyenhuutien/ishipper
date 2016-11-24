@@ -8,11 +8,29 @@
         <li class="hidden">
           <a href="#page-top"></a>
         </li>
-        <li class="active" id="_home">
-          <%= link_to t(:home), root_path, class: "header-item" %>
-        </li>
         <li id="_your-invoice">
           <%= link_to t("_your_invoices"), shop_invoices_path, class: "header-item" %>
+        </li>
+        <li class="nht-notification-icon">
+          <i class="fa fa-globe"></i>
+          <div class="nht-notifications">
+            <ul class="nht-noti-list">
+              <% @notifications.each do |notification| %>
+                <%= link_to shop_invoice_path(notification.invoice) do %>
+                  <li class="nht-notification notification-<%= notification.id %>">
+                    <div class="nht-notification-avatar">
+                      <%= image_tag notification.owner.avatar.url, class: "img-responsive" %>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="nht-notification-content">
+                      <%= notification_content notification %>
+                    </div>
+                    <div class="clearfix"></div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
         </li>
         <li class="dropdown header-item" id="_profile">
           <a href="#" class="dropdown-toggle logo" data-toggle="dropdown">
