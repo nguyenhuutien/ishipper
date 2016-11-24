@@ -11,16 +11,8 @@ class NotificationServices::SendAllNotificationService
 
   def perform
     @recipients.each do |recipient|
-      @notification = Notification.create! owner_id: @owner.id, recipient_id: recipient.id,
-        content: @content, invoice_id: @invoice.id, click_action: @click_action
-      user_setting = recipient.user_setting
-      if @notification
-        user_setting.update! unread_notification: user_setting.unread_notification + 1
-        if user_setting.receive_notification?
-          Notifications::SendNotificationJob.perform_now @notification, @owner,
-            recipient, @content, @invoice, @click_action
-        end
-      end
+      NotificationServices::CreateNotificationService.new(owner: @owner, recipient: recipient,
+        content: @content, invoice: @invoice, click_action: @click_action).perform
     end
   end
 end

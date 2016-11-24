@@ -3,15 +3,15 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      if request.headers["HTTP_PHONE_NUMBER"] && request.headers["HTTP_AUTHORIZATION"]
+      if request.headers["HTTP_PHONE_NUMBER"].nil? && request.headers["HTTP_AUTHORIZATION"].nil?
+        self.current_user = find_verified_user_web
+        logger.add_tags self.current_user.user.phone_number
+      else
         phone_number = request.headers["HTTP_PHONE_NUMBER"]
         request.headers["HTTP_AUTHORIZATION"].slice! Settings.realtime.basic
         authorization = request.headers["HTTP_AUTHORIZATION"]
         self.current_user = find_verified_user phone_number, authorization
         logger.add_tags self.current_user.user.phone_number
-      else
-        self.current_user = find_verified_user_web
-        logger.add_tags self.current_user.phone_number
       end
       if self.current_user.user.shipper?
         serializer = ActiveModelSerializers::SerializableResource.
@@ -40,8 +40,11 @@ module ApplicationCable
     end
 
     def find_verified_user_web
-      if current_user = User.find_by_id(cookies[:user_id])
-        current_user
+      if cookies[:user_token_id]
+        if user_token = UserToken.find_by_id(cookies[:user_token_id])
+          user_token.update_attribute "online", true
+          user_token
+        end
       else
         reject_unauthorized_connection
       end
