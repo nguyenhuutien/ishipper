@@ -18,12 +18,6 @@ class Api::SessionsController < Devise::SessionsController
         @user.update_attributes signed_in: true
         serializer = ActiveModelSerializers::SerializableResource.new(@user,
           scope: {authentication: true, user_token: @user_token}).as_json
-        if @user.shipper?
-          @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
-          @near_shops = User.near([@user.latitude, @user.longitude],
-            Settings.max_distance).shop.is_online
-          shipper_is_online
-        end
         render json: {message: t("api.sign_in.success"),
           data: {user: serializer}, code: 1}, status: 200
         return
@@ -40,14 +34,14 @@ class Api::SessionsController < Devise::SessionsController
     token = @user.user_tokens.find_by authentication_token: params[:user][:authentication_token]
     if token
       sign_out @user
-      token.destroy
-      @user.update_columns signed_in: false, online: false
       if @user.shipper?
         @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
         @near_shops = User.near([@user.latitude, @user.longitude],
-          Settings.max_distance).shop.is_online
+          Settings.max_distance).shop.users_online
         shipper_is_offline
       end
+      token.destroy
+      @user.update_columns signed_in: false
       render json: {message: t("api.sign_out.success"), data: {}, code: 1}, status: 200
     else
       render json: {message: t("api.invalid_token"), data: {}, code: 0}, status: 200

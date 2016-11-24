@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   scope :search_user, -> role, data {where("role = ? AND (phone_number = ? OR
     name LIKE ?)", role, data, "%#{data}%")}
-  scope :is_online, -> {where online: true}
+  scope :users_online, -> {eager_load(:user_tokens).where user_tokens: {online: true}}
   scope :shipper, -> {where role: "Shipper"}
   scope :shop, -> {where role: "Shop"}
   scope :order_by_time, -> {order created_at: :desc}
@@ -135,6 +135,10 @@ class User < ApplicationRecord
 
   def admin?
     self.role == "Admin"
+  end
+
+  def online?
+    self.user_tokens.find_by online: true
   end
 
   private

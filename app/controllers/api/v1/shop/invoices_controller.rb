@@ -33,7 +33,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     invoice = current_user.invoices.build invoice_params
     passive_favorites = current_user.passive_favorites
     near_shippers = User.near([invoice.latitude_start, invoice.longitude_start],
-      Settings.max_distance).shipper.is_online
+      Settings.max_distance).shipper.users_online
     if invoice.save
       InvoiceHistoryCreator.new(invoice, current_user.id).create_history invoice_params
       click_action = Settings.invoice_detail
