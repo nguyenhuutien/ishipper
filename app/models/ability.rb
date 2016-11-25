@@ -8,6 +8,7 @@ class Ability
     when "Shop"
       if user.shop?
         can :manage, Invoice, user_id: user.id
+        can :manage, Review, owner_id: user.id
       end
     when "Admin"
       if user.admin?

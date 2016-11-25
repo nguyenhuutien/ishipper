@@ -99,10 +99,10 @@ ActiveRecord::Schema.define(version: 20161111070442) do
     t.integer  "recipient_id"
     t.integer  "invoice_id"
     t.integer  "review_type"
-    t.float    "rating_point", limit: 24
+    t.float    "rating_point", limit: 24, default: 1.0
     t.string   "content"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["invoice_id"], name: "index_reviews_on_invoice_id", using: :btree
   end
 
