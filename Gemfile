@@ -22,6 +22,7 @@ gem "kaminari"
 gem "redis"
 gem "carrierwave"
 gem "cloudinary"
+gem "ckeditor"
 
 group :development, :test do
   gem "pry"

@@ -16,7 +16,7 @@
           <%= f.hidden_field :rating_point, value: @rate.rating_point %>
           <%= f.hidden_field :invoice_id %>
           <%= f.text_area :content, placeholder: t("rate.enter_content"),
-            class: "form-control" %>
+            class: "form-control ckeditor", id: "ckeditor" %>
           <%= f.submit t("rate.create"), class: "btn btn-primary nht-btn-rate" %>
           <%= link_to t("rate.cancel"), "#", data: {dismiss: "modal"},
             class: "btn btn-danger nht-btn-rate" %>
