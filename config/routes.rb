@@ -1,6 +1,7 @@
 require "api_constraints"
 
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => "/ckeditor"
   namespace :api, defaults: {format: "json"} do
     devise_scope :user do
       post "sign_up", to: "registrations#create"
