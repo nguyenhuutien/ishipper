@@ -1,0 +1,11 @@
+document.addEventListener("turbolinks:load", function() {
+  $('.td-manage-invoice-status').each(function(datakey){
+    var check_key = $(this).data('status');
+    if(check_key == 0) {$(this).addClass('btn btn-default')}
+    if(check_key == 1) {$(this).addClass('btn btn-info')}
+    if(check_key == 2) {$(this).addClass('btn btn-primary')}
+    if(check_key == 3) {$(this).addClass('btn btn-success')}
+    if(check_key == 4) {$(this).addClass('btn btn-warning')}
+    if(check_key == 5) {$(this).addClass('btn btn-danger')}
+  });
+});

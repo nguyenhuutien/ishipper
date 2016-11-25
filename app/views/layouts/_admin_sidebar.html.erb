@@ -31,20 +31,30 @@
 </nav>
 
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-  <form role="search">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Search">
-    </div>
-  </form>
   <ul class="nav menu">
+    <form role="search">
+      <div class="form-group">
+      </div>
+    </form>
     <li class="active">
-      <a href="">
-        <svg class="glyph stroked dashboard-dial">
-          <use xlink:href="#stroked-dashboard-dial"></use>
-        </svg>
+      <%= link_to admin_root_path, class: "text-center
+        hvr-shutter-out-horizontal" do %>
         <%= t :title %>
-      </a>
+      <% end %>
     </li>
     <li role="presentation" class="divider"></li>
+    <li>
+      <%= link_to admin_users_path, class: "td-manage-list text-center
+        hvr-shutter-out-horizontal" do %>
+        <%= t "manage_users.index.title" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_invoices_path, class: "td-manage-list text-center
+        hvr-shutter-out-horizontal" do %>
+        <%= t "manage_invoices.index.title" %>
+      <% end %>
+    </li>
+
   </ul>
 </div>

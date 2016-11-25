@@ -1,0 +1,18 @@
+en:
+  manage_invoices:
+    edit:
+      init: Init
+      waiting: Waiting
+      shipping: Shipping
+      shipped: Shipped
+      finished: Finished
+      cancel: Cancel
+    index:
+      title: Manage All Invoices
+      invoice:
+        name: Name
+        description: Description
+        price: Price
+        shipping_price: Shipping_price
+        status: Status
+        distance_invoice: Distance

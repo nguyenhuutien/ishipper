@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load", function initializeMap() {
-  var markers = [];
   var map;
+  var markers = [];
 
   var center_default = {lat: 21.0119842, lng: 105.8471442};
   var start_latitude = parseFloat(document.getElementById('map-lat0').value);
@@ -19,28 +19,30 @@ document.addEventListener("turbolinks:load", function initializeMap() {
   directionsDisplay = new google.maps.DirectionsRenderer();
 
   function calcRoute() {
-    var start = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng());
-    var end = new google.maps.LatLng(markers[1].getPosition().lat(), markers[1].getPosition().lng());
-    var bounds = new google.maps.LatLngBounds();
-    bounds.extend(start);
-    bounds.extend(end);
-    map.fitBounds(bounds);
-    var request = {
-      origin: start,
-      destination: end,
-      travelMode: google.maps.TravelMode.DRIVING,
-    };
+    debugger
+  var start = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng());
+  var end = new google.maps.LatLng(markers[1].getPosition().lat(), markers[1].getPosition().lng());
+  var bounds = new google.maps.LatLngBounds();
+  bounds.extend(start);
+  bounds.extend(end);
+  map.fitBounds(bounds);
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: google.maps.TravelMode.DRIVING,
+  };
 
-    directionsService.route(request, function (response, status) {
-      if (status == google.maps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(response);
-        directionsDisplay.setOptions( { suppressMarkers: true } );
-        directionsDisplay.setMap(map);
-      } else {
-        alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
-      }
-    });
-  }
+  directionsService.route(request, function (response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      directionsDisplay.setOptions( { suppressMarkers: true } );
+      directionsDisplay.setMap(map);
+    } else {
+      alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+    }
+  });
+}
+
 
   function addMarkerWithTimeout(i, position) {
     marker = new google.maps.Marker({
@@ -87,7 +89,7 @@ document.addEventListener("turbolinks:load", function initializeMap() {
     markers = [];
   }
 
-  map = new google.maps.Map(document.getElementById('map-on-invoice'), {
+  map = new google.maps.Map(document.getElementById('td-admin-map-invoice'), {
     center: center_default,
     zoom: 13,
   });
@@ -100,8 +102,7 @@ document.addEventListener("turbolinks:load", function initializeMap() {
   for (var i = 0; i < locations_invoice.length; i++) {
     addMarkerWithTimeout(i, locations_invoice[i]);
   }
+
   center_default = markers[0].position;
-  var distance = getDistance(markers[0].getPosition(), markers[1].getPosition()).toFixed(2);
-  $('#distance_invoice').val(distance);
   calcRoute();
 });
