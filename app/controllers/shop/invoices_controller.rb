@@ -22,7 +22,21 @@ class Shop::InvoicesController < Shop::ShopBaseController
       end
     else
       if @invoice.save
+        passive_favorites = current_user.passive_favorites
+        near_shippers = User.near([@invoice.latitude_start, @invoice.longitude_start],
+          Settings.max_distance).shipper.users_online
         InvoiceHistoryCreator.new(@invoice, current_user.id).create_history invoice_params
+        if passive_favorites.any?
+          NotificationServices::SendAllNotificationService.new(owner: current_user,
+            recipients: passive_favorites, content: "favorite", invoice: @invoice,
+            click_action: Settings.invoice_detail).perform
+        end
+        serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
+          each_serializer: InvoiceSerializer, scope: current_user).as_json
+        if near_shippers.any?
+          InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
+            invoice: serializer, action: Settings.realtime.new_invoice).perform
+        end
         flash[:success] = t "invoices.create.success"
         redirect_to root_path
       end

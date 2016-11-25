@@ -12,10 +12,14 @@ class SessionsController < Devise::SessionsController
 
   private
   def create_cookie
-    cookies[:user_id] = @user.id
+    user_token = @user.user_tokens.create! authentication_token: Devise.friendly_token
+    cookies[:user_token_id] = user_token.id
   end
 
   def delete_cookie
-    cookies.delete :user_id
+    if user_token = UserToken.find_by_id(cookies[:user_token_id])
+      user_token.destroy
+    end
+    cookies.delete :user_token_id
   end
 end

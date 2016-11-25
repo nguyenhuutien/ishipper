@@ -1,4 +1,4 @@
-if (getCookie("user_id")) {
+if (getCookie("user_token_id")) {
   var channel = "NotificationChannel";
   App.cable.subscriptions.create({
     channel: channel}, {
@@ -7,7 +7,8 @@ if (getCookie("user_id")) {
         content = data.content;
         invoice = data.invoice;
         owner = data.owner;
-        notification = owner.name + ' ' + content + ' ' + invoice.name;
+        notification = data.notification;
+        message = '<strong>' +owner.name + ' </strong>' + content + ' <strong>' + invoice.name + '</strong>';
 
         html = '<li class="nht-notification notification-' + data.id + '">';
         html += '<div class="nht-notification-avatar">';
@@ -18,7 +19,7 @@ if (getCookie("user_id")) {
         }
         html += '<div class="clearfix"></div></div>';
         html += '<div class="nht-notification-content">';
-        html += 'notification<div class="small">' + jQuery.timeago(invoice.created_at) + '</div></div>';
+        html += message + '<div class="small">' + jQuery.timeago(notification.created_at) + '</div></div>';
         html += '<div class="clearfix"></div></li>';
         $('.nht-noti-list').prepend(html);
 

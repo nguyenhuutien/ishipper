@@ -24,6 +24,9 @@
                     </div>
                     <div class="nht-notification-content">
                       <%= notification_content notification %>
+                      <div>
+                        <%= time_ago_in_words notification.created_at %>
+                      </div>
                     </div>
                     <div class="clearfix"></div>
                   </li>
