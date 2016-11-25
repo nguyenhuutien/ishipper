@@ -1,0 +1,35 @@
+.nht-rate-form {
+  .modal-dialog {
+    .modal-content {
+      padding: 20px !important;
+
+      .nht-rate-content {
+        margin-top: 10px;
+        width: 100%;
+
+        .nht-review-rate {
+          margin-top: 5px;
+          margin-bottom: 10px;
+
+          .nht-star-0 {
+            color: #f3ce51;
+          }
+
+          .nht-star {
+            color: #f3ce51;
+          }
+
+          .fa-star {
+            font-size: 2em !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nht-btn-rate {
+  float: right;
+  margin: 20px;
+  margin-right: 0px;
+}

@@ -57,3 +57,4 @@ en:
     format:
     delimiter: ","
     separator: "."
+  time_ago: ago

@@ -1,0 +1,14 @@
+$('#rate-modal').html('<%= j render "form" %>');
+$('#rate-modal').modal('show');
+$('.nht-review-rate i').on('mouseover', function(evt){
+  var name = this.className.split('-');
+  var number = parseInt(name[name.length-1]);
+  number++;
+  $('.nht-review-rate i').removeClass('nht-star');
+  var a = $(this);
+  for (var i = 0; i < number; i++) {
+    a.addClass('nht-star');
+    a = a.prev();
+  }
+  $('#rate_rating_point').value = number;
+});

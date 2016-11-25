@@ -141,6 +141,14 @@ class User < ApplicationRecord
     self.user_tokens.find_by online: true
   end
 
+  def report? invoice
+    active_reviews.report.find_by invoice_id: invoice.id
+  end
+
+  def rate? invoice
+    active_reviews.rate.find_by invoice_id: invoice.id
+  end
+
   private
   def create_usersetting
     self.create_user_setting!
