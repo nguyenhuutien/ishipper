@@ -1,0 +1,12 @@
+<% @invoices.each do |invoice| %>
+  <tr class="td-table-data">
+    <td><%= link_to invoice.name, admin_invoice_path(invoice) %></td>
+    <td><%= invoice.description %></td>
+    <td><%= number_to_currency invoice.price %></td>
+    <td><%= number_to_currency invoice.shipping_price %></td>
+    <td><%= number_with_precision invoice.distance_invoice %> <%= t :km %></td>
+    <td class="td-manage-invoice-status" data-status="<%= Invoice.statuses[invoice.status] %>">
+      <%= invoice.status %>
+    </td>
+  </tr>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="td-manage-user col-xs-10 col-sm-10 col-md-10 col-lg-10
+  col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 padding">
+  <h1 class="text-center">
+    <%= t "manage_invoices.index.title" %>
+  </h1>
+  <hr>
+
+  <table class="td-table table">
+    <tr>
+      <th>
+        <%= t "manage_invoices.index.invoice.name" %>
+      </th>
+      <th>
+        <%= t "manage_invoices.index.invoice.description" %>
+      </th>
+      <th>
+        <%= t "manage_invoices.index.invoice.price" %>
+      </th>
+      <th>
+        <%= t "manage_invoices.index.invoice.shipping_price" %>
+      </th>
+      <th>
+        <%= t "manage_invoices.index.invoice.distance_invoice" %>
+      </th>
+      <th>
+        <%= t "manage_invoices.index.invoice.status" %>
+      </th>
+    </tr>
+    <%= render "invoice_index" %>
+  </table>
+  <div class="clearfix"></div>
+  <%= paginate @invoices %>
+</div>

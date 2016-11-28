@@ -46,6 +46,9 @@ en:
     precision:
       format:
         precision: 1
+    distance:
+      format:
+        precision: 1
   _your_invoices: Your invoices
   _profile: Profile
   close: Close

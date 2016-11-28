@@ -1,14 +1,3 @@
-// Khoi tao map, vi tri mac dinh cua map va 2 dia diem dau cuoi
-var markers = [];
-var map;
-var center_default = {lat: 21.0119842, lng: 105.8471442};
-var locations_default = [
-  {lat: 21.0119842, lng: 105.8471442},
-  {lat: 21.0090146, lng: 105.8577783}
-];
-var directionsDisplay;
-var directionsService;
-
 var rad = function(x) {
   return x * Math.PI / 180;
 };
@@ -124,6 +113,17 @@ function calcRoute() {
 }
 
 document.addEventListener("turbolinks:load", function() {
+  // Khoi tao map, vi tri mac dinh cua map va 2 dia diem dau cuoi
+  var markers = [];
+  var map;
+  var center_default = {lat: 21.0119842, lng: 105.8471442};
+  var locations_default = [
+    {lat: 21.0119842, lng: 105.8471442},
+    {lat: 21.0090146, lng: 105.8577783}
+  ];
+  var directionsDisplay;
+  var directionsService;
+
   var geocoder = new google.maps.Geocoder;
   var infowindow = new google.maps.InfoWindow;
 

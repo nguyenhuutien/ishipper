@@ -71,3 +71,11 @@ update_status:
     - actived
     - block_temporary
     - blocked
+invoice_status:
+  status:
+    - init
+    - waiting
+    - shipping
+    - shipped
+    - finished
+    - cancel
