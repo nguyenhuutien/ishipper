@@ -2,7 +2,8 @@ class InvoiceSerializer < ActiveModel::Serializer
   attributes :id, :name, :address_start, :latitude_start, :longitude_start,
     :address_finish, :latitude_finish, :longitude_finish, :delivery_time,
     :distance_invoice, :description, :price, :shipping_price, :status, :weight,
-    :customer_name, :customer_number, :user, :received, :number_of_recipients
+    :customer_name, :customer_number, :user, :received, :number_of_recipients,
+    :status_histories
 
   def user
     if scope
@@ -37,5 +38,10 @@ class InvoiceSerializer < ActiveModel::Serializer
 
   def number_of_recipients
     object.user_invoices.size if object.init?
+  end
+
+  def status_histories
+    ActiveModelSerializers::SerializableResource.new(object.status_invoice_histories,
+      each_serializer: StatusInvoiceHistorySerializer)
   end
 end

@@ -36,6 +36,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       Settings.max_distance).shipper.users_online
     if invoice.save
       InvoiceHistoryCreator.new(invoice, current_user.id).create_history invoice_params
+      InvoiceServices::CreateStatusInvoiceHistoryService.new(invoice: invoice).perform
       click_action = Settings.invoice_detail
       render json: {message: I18n.t("invoices.create.success"),
         data: {invoice: invoice}, code: 1}, status: 201

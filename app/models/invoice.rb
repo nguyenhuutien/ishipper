@@ -2,6 +2,7 @@ class Invoice < ApplicationRecord
   geocoded_by :address_start, latitude: :latitude_start,
     longitude: :longitude_start
 
+  has_many :status_invoice_histories, dependent: :destroy
   has_many :user_invoices, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :invoice_histories, dependent: :destroy

@@ -11,8 +11,6 @@ class CheckConditions
 
   def check_current_status?
     if check_status?
-      true
-    else
       statuses = Invoice.statuses
       false unless statuses.has_key?(@invoice.status) || statuses.has_key?(@update_status)
       if "cancel" == @update_status && "finished" != @invoice.status &&
@@ -26,6 +24,8 @@ class CheckConditions
       else
         false
       end
+    else
+      true
     end
   end
 
@@ -40,8 +40,8 @@ class CheckConditions
 
   def shipper_conditions?
     @user_invoice.nil? || @invoice.shipped? || @invoice.finished? || @invoice.cancel? ||
-      !check_current_status? ||
       !check_update_status_shipper? ||
+      !check_current_status? ||
       @user_invoice.status != @invoice.status
   end
 
@@ -51,7 +51,7 @@ class CheckConditions
 
   def shop_conditions? current_user
     @invoice.user != current_user || check_user_invoice_present? ||
-      !check_current_status? ||
-      !check_update_status_shop?
+      !check_update_status_shop? ||
+      !check_current_status?
   end
 end
