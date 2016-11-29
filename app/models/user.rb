@@ -43,6 +43,10 @@ class User < ApplicationRecord
   scope :shipper, -> {where role: "Shipper"}
   scope :shop, -> {where role: "Shop"}
   scope :order_by_time, -> {order created_at: :desc}
+  scope :sort_by_report_desc, -> {left_joins(:passive_reviews)
+    .where("reviews.id IS NULL OR reviews.created_at >= ? AND reviews.review_type = ?",
+    Time.zone.now - 1.day, Review.review_types[:report]).group(:id)
+    .order 'COUNT(reviews.id) DESC'}
 
   ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
     :longitude, :plate_number, :role, :password, :password_confirmation, :avatar,

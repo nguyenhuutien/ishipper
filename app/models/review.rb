@@ -8,4 +8,6 @@ class Review < ApplicationRecord
   RATE_ATTRIBUTES_PARAMS = [:review_type, :rating_point, :content]
   REPORT_ATTRIBUTES_PARAMS = [:review_type, :content]
   REVIEW_ATTRIBUTES_PARAMS = [:recipient_id]
+
+  scope :report_in_day, -> {where "created_at >=?", Time.zone.now - 1.day}
 end
