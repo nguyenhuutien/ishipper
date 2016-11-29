@@ -5,8 +5,10 @@ if (getCookie("user_token_id")) {
     received: function(data) {
       if (data.data !== undefined) {
         var count = data.data.unread_notification;
-        $('.nht-notification-count').show();
-        $('.nht-notification-count')[0].innerText = count.toString();
+        if (count != 0) {
+          $('.nht-notification-count').show();
+          $('.nht-notification-count')[0].innerText = count.toString();
+        }
       }
     }
   });
