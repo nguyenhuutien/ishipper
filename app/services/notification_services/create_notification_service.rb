@@ -27,7 +27,7 @@ class NotificationServices::CreateNotificationService
           @recipient, @content, @invoice, @click_action
         notification_channel = "#{@recipient.phone_number}_notification_channel"
         Notifications::WebNotificationBroadcastJob.perform_now channel: notification_channel,
-          owner: @owner, content: @content, invoice: @invoice, notification: @notification
+          owner: @owner, invoice: @invoice, notification: @notification
       end
     end
   end

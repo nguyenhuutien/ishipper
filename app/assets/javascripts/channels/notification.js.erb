@@ -15,6 +15,9 @@ if (getCookie("user_token_id")) {
         owners.push(owner);
         invoices.push(invoice);
         notifications.push(notification);
+
+        $('.nht-notification-count').show();
+        $('.nht-notification-count')[0].innerText = notifications.length.toString();
       }
     },
 
@@ -81,7 +84,7 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   $('.nht-notification').on('click', function() {
-    notification_id = parseInt(this.className.split(' ')[1].split('-')[1]);
-    App.notification.speak({action_type: "unread_notification", notification_id: notification_id});
+    id = parseInt(this.className.split(' ')[1].split('-')[1]);
+    App.notification.speak({action_type: "unread_notification", notification_id: id});
   });
 });
