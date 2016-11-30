@@ -42,7 +42,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
         data: {invoice: invoice}, code: 1}, status: 201
       if passive_favorites.any?
         NotificationServices::SendAllNotificationService.new(owner: current_user,
-          recipients: passive_favorites, content: "favorite", invoice: invoice,
+          recipients: passive_favorites, status: "favorite", invoice: invoice,
           click_action: click_action).perform
       end
       serializer = ActiveModelSerializers::SerializableResource.new(invoice,

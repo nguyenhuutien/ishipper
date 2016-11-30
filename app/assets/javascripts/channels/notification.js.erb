@@ -34,7 +34,7 @@ function getCookie(name) {
 }
 
 function convertNotification(owner, invoice, notification) {
-  message = '<strong>' + owner.name + ' </strong>' + notification.content + ' <strong>' + invoice.name + '</strong>';
+  message = '<strong>' + owner.name + ' </strong>' + notification.status + ' <strong>' + invoice.name + '</strong>';
   html = '<li class="nht-notification notification-' + notification.id + ' false-notification">';
   html += '<span class="col-md-2 col-lg-2 nht-notification-avatar">';
   html += '<img src="" id="avatar-' + notification.id + '" class="img-responsive nht-avatar">';

@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
   end
 
   def load_notification
-    @notifications = current_user.passive_notifications if current_user
+    @notifications = current_user.passive_notifications.order_by_time if current_user
   end
 end

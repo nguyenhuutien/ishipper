@@ -10,11 +10,8 @@ class NotificationChannel < ApplicationCable::Channel
 
   def speak data
     if data["action_type"] == "unread_notification"
-      current_user.user.user_setting.update_attributes unread_notification: 0
-      if data["notification_id"].present?
-        current_user.user.passive_notifications.find_by(id: data["notification_id"].to_i).
-          update_attributes read: true
-      end
+      NotificationServices::UpdateNotificationService.new(current_user: self.current_user.user,
+        notification_id: data["notification_id"].to_i).perform
     end
   end
 end

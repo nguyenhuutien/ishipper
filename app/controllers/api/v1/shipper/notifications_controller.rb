@@ -8,7 +8,10 @@ class Api::V1::Shipper::NotificationsController < Api::ShipperBaseController
       params[:notification][:per_page]
       @notifications = current_user.passive_notifications.order_by_time.
         page(params[:notification][:page]).per params[:notification][:per_page]
-      user_setting.update! unread_notification: 0
+      @notifications = ActiveModelSerializers::SerializableResource.new(@notifications,
+        each_serializer: NotificationSerializer).as_json
+      NotificationServices::UpdateNotificationService.new(current_user: current_user,
+        notification_id: nil).perform
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
         data: {notifications: @notifications, unread: unread_notification}, code: 1}, status: 200
     else
