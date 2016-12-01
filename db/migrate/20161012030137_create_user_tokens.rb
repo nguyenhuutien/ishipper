@@ -4,7 +4,8 @@ class CreateUserTokens < ActiveRecord::Migration[5.0]
       t.string :authentication_token
       t.string :device_id
       t.string :registration_id
-      t.references :user, foreign_key: true
+      t.boolean :online, default: false
+      t.references :user, foreign_key: false
 
       t.timestamps
     end

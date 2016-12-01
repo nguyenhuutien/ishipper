@@ -11,10 +11,10 @@ class User < ApplicationRecord
     if: :address_changed?
 
   after_validation :geocode, :reverse_geocode
+  after_create :create_usersetting
+
   has_one :user_setting, dependent: :destroy
 
-  has_many :invoices, dependent: :destroy
-  has_many :user_invoices, dependent: :destroy
   has_many :all_user_invoices, through: :user_invoices, source: :invoice
   has_many :active_reviews, class_name: Review.name, foreign_key: "owner_id",
     dependent: :destroy
@@ -36,11 +36,17 @@ class User < ApplicationRecord
   has_many :user_tokens, dependent: :destroy
 
   enum status: [:unactive, :actived, :block_temporary, :blocked]
-  enum role: ["admin", "shop", "shipper"]
 
   scope :search_user, -> role, data {where("role = ? AND (phone_number = ? OR
     name LIKE ?)", role, data, "%#{data}%")}
-  scope :is_online, -> {where online: true}
+  scope :users_online, -> {eager_load(:user_tokens).where user_tokens: {online: true}}
+  scope :shipper, -> {where role: "Shipper"}
+  scope :shop, -> {where role: "Shop"}
+  scope :order_by_time, -> {order created_at: :desc}
+  scope :sort_by_report_desc, -> {left_joins(:passive_reviews)
+    .where("reviews.id IS NULL OR reviews.created_at >= ? AND reviews.review_type = ?",
+    Time.zone.now - 1.day, Review.review_types[:report]).group(:id)
+    .order 'COUNT(reviews.id) DESC'}
 
   ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
     :longitude, :plate_number, :role, :password, :password_confirmation, :avatar,
@@ -51,10 +57,11 @@ class User < ApplicationRecord
 
   validates :phone_number, uniqueness: true,
     format: {with: VALID_PHONE_REGEX}
-
   # validates :plate_number, uniqueness: true,
   #   length: {minimum: 8, maximum: 10}, allow_nil: true
 
+  self.inheritance_column = :_type_disabled
+  self.inheritance_column = :role
 
   def email_required?
     false
@@ -124,5 +131,34 @@ class User < ApplicationRecord
 
   def report? invoice
     active_reviews.report.find_by invoice_id: invoice.id
+  end
+
+  def shop?
+    self.role == "Shop"
+  end
+
+  def shipper?
+    self.role == "Shipper"
+  end
+
+  def admin?
+    self.role == "Admin"
+  end
+
+  def online?
+    self.user_tokens.find_by online: true
+  end
+
+  def report? invoice
+    active_reviews.report.find_by invoice_id: invoice.id
+  end
+
+  def rate? invoice
+    active_reviews.rate.find_by invoice_id: invoice.id
+  end
+
+  private
+  def create_usersetting
+    self.create_user_setting!
   end
 end

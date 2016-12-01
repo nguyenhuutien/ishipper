@@ -1,6 +1,7 @@
 require "api_constraints"
 
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => "/ckeditor"
   namespace :api, defaults: {format: "json"} do
     devise_scope :user do
       post "sign_up", to: "registrations#create"
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
       default: true) do
       resources :users, only: [:show, :update, :index]
       resources :invoices, only: :index
+      resource :user_setting, only: [:update, :show]
       namespace :shipper do
         resources :invoices, only: [:update, :index, :show]
         resources :user_invoices, only: [:create, :destroy]
@@ -50,7 +52,10 @@ Rails.application.routes.draw do
   get "/pages/:page", to: "pages#show"
   get "/invoices_pages/:status", to: "invoices_pages#show"
 
-  devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"}
+  devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"},
+    controllers: {
+      sessions: "sessions"
+  }
   devise_scope :user do
     post "sign_up", to: "registrations#create"
     get "sign_up", to: "registrations#new"
@@ -61,6 +66,16 @@ Rails.application.routes.draw do
     resources :invoices
     resources :list_shippers, only: :index
     resources :reports, only: [:new, :create]
+<<<<<<< HEAD
+=======
+    resources :rates, only: [:new, :create]
   end
-  resources :users
+  resources :shops
+  resources :shippers, only: :show
+  namespace :admin do
+    root to: "users#index", as: :root
+    resources :users
+    resources :invoices
+>>>>>>> 1.0.1
+  end
 end

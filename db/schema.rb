@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111070442) do
+ActiveRecord::Schema.define(version: 20161125104513) do
 
   create_table "black_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "black_list_user_id"
     t.integer  "owner_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
   create_table "favorite_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -84,13 +99,14 @@ ActiveRecord::Schema.define(version: 20161111070442) do
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "owner_id"
     t.integer  "recipient_id"
-    t.integer  "content"
-    t.integer  "invoice_id"
+    t.integer  "status"
     t.integer  "user_invoice_id"
     t.string   "click_action"
     t.boolean  "read",            default: false
+    t.integer  "invoice_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.index ["invoice_id"], name: "index_notifications_on_invoice_id", using: :btree
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -98,11 +114,20 @@ ActiveRecord::Schema.define(version: 20161111070442) do
     t.integer  "recipient_id"
     t.integer  "invoice_id"
     t.integer  "review_type"
-    t.float    "rating_point", limit: 24
+    t.float    "rating_point", limit: 24, default: 1.0
     t.string   "content"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["invoice_id"], name: "index_reviews_on_invoice_id", using: :btree
+  end
+
+  create_table "status_invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "time"
+    t.integer  "status"
+    t.integer  "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_status_invoice_histories_on_invoice_id", using: :btree
   end
 
   create_table "user_invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -125,11 +150,15 @@ ActiveRecord::Schema.define(version: 20161111070442) do
 
   create_table "user_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "receive_notification",            default: true
-    t.integer  "unread_notification"
-    t.float    "radius_display",       limit: 24, default: 5.0
+    t.integer  "unread_notification",             default: 0
+    t.boolean  "favorite_location",               default: false
+    t.string   "favorite_address"
+    t.float    "favorite_latitude",    limit: 24
+    t.float    "favorite_longitude",   limit: 24
+    t.integer  "radius_display",                  default: 5
     t.integer  "user_id"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.index ["user_id"], name: "index_user_settings_on_user_id", using: :btree
   end
 
@@ -137,9 +166,10 @@ ActiveRecord::Schema.define(version: 20161111070442) do
     t.string   "authentication_token"
     t.string   "device_id"
     t.string   "registration_id"
+    t.boolean  "online",               default: false
     t.integer  "user_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.index ["user_id"], name: "index_user_tokens_on_user_id", using: :btree
   end
 
@@ -153,18 +183,17 @@ ActiveRecord::Schema.define(version: 20161111070442) do
     t.string   "phone_number"
     t.string   "plate_number"
     t.integer  "status",                            default: 0
-    t.integer  "role"
+    t.string   "role"
     t.float    "rate",                   limit: 24
     t.string   "pin"
     t.boolean  "signed_in"
-    t.boolean  "online",                            default: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.string   "encrypted_password",                default: "",    null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,     null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -179,9 +208,10 @@ ActiveRecord::Schema.define(version: 20161111070442) do
   end
 
   add_foreign_key "invoices", "users"
+  add_foreign_key "notifications", "invoices"
   add_foreign_key "reviews", "invoices"
+  add_foreign_key "status_invoice_histories", "invoices"
   add_foreign_key "user_invoices", "invoices"
   add_foreign_key "user_invoices", "users"
   add_foreign_key "user_settings", "users"
-  add_foreign_key "user_tokens", "users"
 end

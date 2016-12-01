@@ -11,6 +11,10 @@ en:
       report_exist: Report exist, can't report continue
     review_type_fail: "Fail type, you can't report this invoice"
   rate:
+    create: Create
+    cancel: Cancel
+    title: Rate
+    enter_content: Enter your content
     create_success: Create rate success!!
     create_fail: Create rate fail!!
     invoice:
@@ -18,6 +22,8 @@ en:
       shipper_fail: You must receive invoice to rate
       get_invoice_fail: "Invoice not exist"
       get_user_invoice_fail: "User invoice not exist"
+    user_invoice:
+      not_found: User of invoice not found
     review_type_fail: "Fail type, you can't rate this invoice"
     exist_rate: "You are rated"
     not_found: "Could not found rate"

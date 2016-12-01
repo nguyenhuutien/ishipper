@@ -11,8 +11,10 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       current_user.invoices.send(params[:status]).
         search_invoice(params[:query]).order_by_time
     end
+    serializers = ActiveModelSerializers::SerializableResource.new(invoices,
+      each_serializer: InvoiceSerializer).as_json
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
-      data: {invoices: invoices}, code: 1}, status: 200
+      data: {invoices: serializers}, code: 1}, status: 200
   end
 
   def show
@@ -31,16 +33,17 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     invoice = current_user.invoices.build invoice_params
     passive_favorites = current_user.passive_favorites
     near_shippers = User.near([invoice.latitude_start, invoice.longitude_start],
-      Settings.max_distance).shipper.is_online
+      Settings.max_distance).shipper.users_online
     if invoice.save
       HistoryServices::CreateInvoiceHistoryService.new(invoice: invoice,
         creater_id: current_user.id).perform
+      InvoiceServices::CreateStatusInvoiceHistoryService.new(invoice: invoice).perform
       click_action = Settings.invoice_detail
       render json: {message: I18n.t("invoices.create.success"),
         data: {invoice: invoice}, code: 1}, status: 201
       if passive_favorites.any?
         NotificationServices::SendAllNotificationService.new(owner: current_user,
-          recipients: passive_favorites, content: "favorite", invoice: invoice,
+          recipients: passive_favorites, status: "favorite", invoice: invoice,
           click_action: click_action).perform
       end
       serializer = ActiveModelSerializers::SerializableResource.new(invoice,

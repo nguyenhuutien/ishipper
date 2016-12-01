@@ -2,12 +2,12 @@ namespace :db do
   desc "Import user"
   task users: [:environment] do
     user1 = User.create!(
-      name: "SHOP 1",
+      name: "Shop 1",
       phone_number: "+841694949947",
       password: "12345678",
       password_confirmation: "12345678",
-      email: "nguyen.dinh.duc.shop@framgia.com",
-      role: "shop",
+      email: "nguyen.dinh.duc.Shop@framgia.com",
+      role: "Shop",
       status: "actived",
       latitude: 21.0066625,
       longitude: 105.8157497,
@@ -16,12 +16,12 @@ namespace :db do
     user1.create_user_setting unread_notification: 0
 
     user2 = User.create!(
-      name: "SHOP 2",
+      name: "Shop 2",
       phone_number: "+84976990043",
       password: "12345678",
       password_confirmation: "12345678",
-      email: "nguyen.thanh.hung.shop@framgia.com",
-      role: "shop",
+      email: "nguyen.thanh.hung.Shop@framgia.com",
+      role: "Shop",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
@@ -30,12 +30,12 @@ namespace :db do
     user2.create_user_setting unread_notification: 0
 
     user3 = User.create!(
-      name: "SHOP 3",
+      name: "Shop 3",
       phone_number: "+84984063061",
       password: "12345678",
       password_confirmation: "12345678",
-      email: "vu.duy.chuong.shop@framgia.com",
-      role: "shop",
+      email: "vu.duy.chuong.Shop@framgia.com",
+      role: "Shop",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
@@ -44,12 +44,12 @@ namespace :db do
     user3.create_user_setting unread_notification: 0
 
     user4 = User.create!(
-      name: "SHIPPER 1",
+      name: "Shipper 1",
       phone_number: "+841694949948",
       password: "12345678",
       password_confirmation: "12345678",
-      email: "nguyen.dinh.duc.shipper@framgia.com",
-      role: "shipper",
+      email: "nguyen.dinh.duc.Shipper@framgia.com",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0066625,
       longitude: 105.8157497,
@@ -58,12 +58,12 @@ namespace :db do
     user4.create_user_setting unread_notification: 0
 
     user5 = User.create!(
-      name: "SHIPPER 2",
+      name: "Shipper 2",
       phone_number: "+84976990044",
       password: "12345678",
       password_confirmation: "12345678",
-      email: "nguyen.thanh.hung.shipper@framgia.com",
-      role: "shipper",
+      email: "nguyen.thanh.hung.Shipper@framgia.com",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
@@ -72,12 +72,12 @@ namespace :db do
     user5.create_user_setting unread_notification: 0
 
     user6 = User.create!(
-      name: "SHIPPER 3",
+      name: "Shipper 3",
       phone_number: "+84984063062",
       password: "12345678",
       password_confirmation: "12345678",
-      email: "vu.duy.chuong.shipper@framgia.com",
-      role: "shipper",
+      email: "vu.duy.chuong.Shipper@framgia.com",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
@@ -91,7 +91,7 @@ namespace :db do
       password: "12345678",
       password_confirmation: "12345678",
       email: "nguyen.huu.tien@framgia.com",
-      role: "shipper",
+      role: "Shipper",
       status: "unactive",
       latitude: 21.0093557,
       longitude: 105.8554427,
@@ -105,7 +105,7 @@ namespace :db do
       password: "12345678",
       password_confirmation: "12345678",
       email: "dao.manh.nhat@framgia.com",
-      role: "shipper",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0072829,
       longitude: 105.8413891,
@@ -119,7 +119,7 @@ namespace :db do
       password: "12345678",
       password_confirmation: "12345678",
       email: "ta.tat.dat@framgia.com",
-      role: "shipper",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0061393,
       longitude: 105.8419748,
@@ -133,7 +133,7 @@ namespace :db do
       password: "12345678",
       password_confirmation: "12345678",
       email: "mau.ha.quang@framgia.com",
-      role: "shipper",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0144139,
       longitude: 105.8031754,
@@ -142,12 +142,12 @@ namespace :db do
     user11.create_user_setting unread_notification: 0
 
     user12 = User.create!(
-      name: "SHOP",
+      name: "Shop",
       phone_number: "+841234567891",
       password: "12345678",
       password_confirmation: "12345678",
       email: "nguyen.van.a@framgia.com",
-      role: "shop",
+      role: "Shop",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
@@ -156,12 +156,12 @@ namespace :db do
     user12.create_user_setting unread_notification: 0
 
     user13 = User.create!(
-      name: "SHIPPER",
+      name: "Shipper",
       phone_number: "+841234567892",
       password: "12345678",
       password_confirmation: "12345678",
       email: "nguye.van.b@framgia.com",
-      role: "shipper",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
@@ -170,12 +170,12 @@ namespace :db do
     user13.create_user_setting unread_notification: 0
 
     user14 = User.create!(
-      name: "ADMIN",
+      name: "Admin",
       phone_number: "+841234567890",
       password: "12345678",
       password_confirmation: "12345678",
-      email: "admin@framgia.com",
-      role: "admin",
+      email: "Admin@framgia.com",
+      role: "Admin",
       status: "actived",
       latitude: 21.0092948,
       longitude: 105.8099247,
@@ -184,12 +184,12 @@ namespace :db do
     user14.create_user_setting unread_notification: 0
 
     user15 = User.create!(
-      name: "SHIPPER98",
+      name: "Shipper98",
       phone_number: "+841234567898",
       password: "12345678",
       password_confirmation: "12345678",
       email: "nguye.van.c@framgia.com",
-      role: "shipper",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,
@@ -198,12 +198,12 @@ namespace :db do
     user15.create_user_setting unread_notification: 0
 
     user16 = User.create!(
-      name: "SHIPPER97",
+      name: "Shipper97",
       phone_number: "+841234567897",
       password: "12345678",
       password_confirmation: "12345678",
       email: "nguye.van.d@framgia.com",
-      role: "shipper",
+      role: "Shipper",
       status: "actived",
       latitude: 21.0167188,
       longitude: 105.7819804,

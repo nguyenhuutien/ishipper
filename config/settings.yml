@@ -56,11 +56,36 @@ rate:
     - three
     - two
     - one
+<<<<<<< HEAD
+=======
+  max_rate: 5
+>>>>>>> 1.0.1
 realtime:
   unread_notification: "unread_notification"
   basic: "Basic "
   new_invoice: "new_invoice"
   remove_invoice: "remove_invoice"
+<<<<<<< HEAD
 report:
   rating_point: 1
   max_length_content: 200
+=======
+  shipper_online: "shipper_online"
+  shipper_offline: "shipper_offline"
+role: "Shop"
+per_page: 10
+update_status:
+  status:
+    - unactive
+    - actived
+    - block_temporary
+    - blocked
+invoice_status:
+  status:
+    - init
+    - waiting
+    - shipping
+    - shipped
+    - finished
+    - cancel
+>>>>>>> 1.0.1

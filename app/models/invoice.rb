@@ -2,11 +2,14 @@ class Invoice < ApplicationRecord
   geocoded_by :address_start, latitude: :latitude_start,
     longitude: :longitude_start
 
+  has_many :status_invoice_histories, dependent: :destroy
   has_many :user_invoices, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :invoice_histories
-  has_many :all_shipper, through: :user_invoices, source: :user
+  has_many :all_shipper, through: :user_invoices, source: :shipper
+  has_many :notifications, dependent: :destroy
 
+  belongs_to :shop, foreign_key: "user_id"
   belongs_to :user
 
   validates :name, presence: true

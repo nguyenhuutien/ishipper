@@ -8,20 +8,53 @@
         <li class="hidden">
           <a href="#page-top"></a>
         </li>
-        <li class="active" id="_home">
-          <%= link_to t(:home), root_path, class: "header-item" %>
-        </li>
         <li id="_your-invoice">
           <%= link_to t("_your_invoices"), shop_invoices_path, class: "header-item" %>
+        </li>
+        <li class="nht-notification-icon">
+          <i class="fa fa-globe">
+            <div class="nht-notification-count">
+              <%= current_user.user_setting.unread_notification %>
+            </div>
+          </i>
+          <div class="nht-notifications">
+            <ul class="nht-noti-list">
+              <% @notifications.each do |notification| %>
+                <%= link_to shop_invoice_path(notification.invoice) do %>
+                  <li class="nht-notification notification-<%= notification.id %>
+                    <%= notification.read %>-notification ">
+                    <span class="col-md-2 col-lg-2 nht-notification-avatar">
+                      <% if notification.owner.avatar_url.present? %>
+                        <%= image_tag notification.owner.avatar.url, id: "avatar-#{notification.id}",
+                          class: "img-responsive nht-avatar" %>
+                      <% else %>
+                        <%= image_tag "profile.jpg", id: "avatar-#{notification.id}",
+                          class: "img-responsive nht-avatar" %>
+                      <% end %>
+                      <div class="clearfix"></div>
+                    </span>
+                    <span class="col-md-10 col-lg-10 nht-notification-content">
+                      <%= notification_content notification %>
+                      <div>
+                        <%= time_ago_in_words notification.created_at %>
+                      </div>
+                    </span>
+                    <div class="clearfix"></div>
+                  </li>
+                  <div class="clearfix"></div>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
         </li>
         <li class="dropdown header-item" id="_profile">
           <a href="#" class="dropdown-toggle logo" data-toggle="dropdown">
             <%= current_user.name %><b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to t("_profile"), current_user %></li>
+            <li><%= link_to t("_profile"), shop_path(current_user) %></li>
             <li>
-              <%= link_to t("users.list"), users_path %>
+              <%= link_to t("users.list"), shops_path %>
             </li>
             <li>
               <%= link_to t(:log_out), destroy_user_session_path, method: :delete %>

@@ -1,0 +1,16 @@
+<% if @rate.errors.full_messages.present? %>
+  $('#nht-rate-errors').html('<%= j render "shared/error_messages", object: @rate %>')
+  CKEDITOR.replace('ckeditor');
+  $('.nht-review-rate i').on('mouseover', function(evt){
+    var name = this.className.split('-');
+    var number = parseInt(name[name.length-1]);
+    number++;
+    $('.nht-review-rate i').removeClass('nht-star');
+    var a = $(this);
+    for (var i = 0; i < number; i++) {
+      a.addClass('nht-star');
+      a = a.prev();
+    }
+    document.getElementById('rate_rating_point').value = number;
+  });
+<% end %>

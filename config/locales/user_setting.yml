@@ -1,0 +1,8 @@
+en:
+  user_setting:
+    update:
+      success: Update success
+      fail: Update fail
+    get:
+      success: Get success
+      fail: Get fail

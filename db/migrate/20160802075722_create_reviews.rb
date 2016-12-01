@@ -5,7 +5,7 @@ class CreateReviews < ActiveRecord::Migration[5.0]
       t.integer :recipient_id
       t.references :invoice, foreign_key: true
       t.integer :review_type
-      t.float :rating_point
+      t.float :rating_point, default: 1
       t.string :content
 
       t.timestamps

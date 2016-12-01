@@ -450,3 +450,43 @@
   margin-bottom: 20px;
   border-bottom: 3px solid #D9D9D9;
 }
+
+.width {
+  width: 100%;
+}
+
+.td-table {
+  tr {
+    th {
+      background-color: #187907 !important;
+      color: #FFF;
+    }
+  }
+  .td-table-data {
+    .btn {
+      display: table-cell !important;
+      border-radius: 0px !important;
+    }
+  }
+}
+.pagination {
+  display: block !important;
+  text-align: center;
+}
+
+.td-manage-users-button form{
+  width: 100%;
+  margin-top: 5px;
+}
+
+.td-admin {
+  .status {
+    padding-bottom: 0 !important;
+    .nht-profile {
+      padding-bottom: 0 !important;
+      .nht-profile-box {
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}
