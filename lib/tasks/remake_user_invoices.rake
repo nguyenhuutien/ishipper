@@ -77,7 +77,7 @@ namespace :db do
       user_invoice = UserInvoice.create!(
         user_id: user_id, invoice_id: invoice_id,
         status: "init")
-      Notification.create!(owner_id: 12,recipient_id: 11, content: "receive",
+      Notification.create!(owner_id: 12,recipient_id: 11, status: "receive",
         invoice_id: invoice_id, user_invoice_id: user_invoice.id,
         click_action: "com.framgia.ishipper.LIST_SHIPPER_REGISTER")
     end
@@ -88,7 +88,7 @@ namespace :db do
       user_invoice = UserInvoice.create!(
         user_id: user_id, invoice_id: invoice_id,
         status: "waiting")
-      Notification.create!(owner_id: 11,recipient_id: 12, content: "waiting",
+      Notification.create!(owner_id: 11,recipient_id: 12, status: "waiting",
         invoice_id: invoice_id, user_invoice_id: user_invoice.id,
         click_action: "com.framgia.ishipper.INVOICE_DETAIL")
     end
@@ -99,7 +99,7 @@ namespace :db do
       user_invoice = UserInvoice.create!(
         user_id: user_id, invoice_id: invoice_id,
         status: "shipping")
-      Notification.create!(owner_id: 12,recipient_id: 11, content: "waiting",
+      Notification.create!(owner_id: 12,recipient_id: 11, status: "waiting",
         invoice_id: invoice_id, user_invoice_id: user_invoice.id,
         click_action: "com.framgia.ishipper.INVOICE_DETAIL")
     end
@@ -110,7 +110,7 @@ namespace :db do
       user_invoice = UserInvoice.create!(
         user_id: user_id, invoice_id: invoice_id,
         status: "shipped")
-      Notification.create!(owner_id: 12,recipient_id: 11, content: "shipped",
+      Notification.create!(owner_id: 12,recipient_id: 11, status: "shipped",
         invoice_id: invoice_id, user_invoice_id: user_invoice.id,
         click_action: "com.framgia.ishipper.INVOICE_DETAIL")
     end
@@ -121,7 +121,7 @@ namespace :db do
       user_invoice = UserInvoice.create!(
         user_id: user_id, invoice_id: invoice_id,
         status: "finished")
-      Notification.create!(owner_id: 11,recipient_id: 12, content: "finished",
+      Notification.create!(owner_id: 11,recipient_id: 12, status: "finished",
         invoice_id: invoice_id, user_invoice_id: user_invoice.id,
         click_action: "com.framgia.ishipper.INVOICE_DETAIL")
     end
@@ -132,7 +132,7 @@ namespace :db do
       user_invoice = UserInvoice.create!(
         user_id: user_id, invoice_id: invoice_id,
         status: "cancel")
-      Notification.create!(owner_id: 12,recipient_id: 11, content: "waiting",
+      Notification.create!(owner_id: 12,recipient_id: 11, status: "waiting",
         invoice_id: invoice_id, user_invoice_id: user_invoice.id,
         click_action: "com.framgia.ishipper.INVOICE_DETAIL")
     end

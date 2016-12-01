@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def notification_content notification
-    "<strong>#{notification.owner.name}</strong> #{notification.content} <strong>#{notification.invoice.name}</strong>".html_safe
+    "<strong>#{notification.owner.name}</strong> #{notification.status} <strong>#{notification.invoice.name}</strong>".html_safe
   end
 end

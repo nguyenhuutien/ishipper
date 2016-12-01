@@ -3,11 +3,11 @@ en:
     app_name: IShipper
     receive: "%{user_name} đã nhận đơn hàng %{invoice_name} của bạn"
     waiting: "Bạn đã được chấp nhận giao đơn hàng %{invoice_name}"
-    shipping: "Đơn hàng %{invoice_name} đang được giao"
-    shipped: "Đơn hàng %{invoice_name} đã được giao"
-    finished: "Đơn hàng %{invoice_name} đã được xác nhận"
+    shipping: "%{user_name} đang giao đơn hàng %{invoice_name}"
+    shipped: "%{user_name} đã giao đơn hàng %{invoice_name} thành công"
+    finished: "Đơn hàng %{invoice_name} đã được %{user_name} xác nhận"
     cancel: "Đơn hàng %{invoice_name} đã bị hủy"
-    favorite: "Cửa hàng %{user_name} vừa đăng đơn mới"
+    favorite: "Cửa hàng %{user_name} vừa đăng đơn hàng mới"
     messages:
       noti_not_exist: Không tìm thấy thông báo!!
       get_noti_success: Get all noti success

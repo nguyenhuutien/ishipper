@@ -28,7 +28,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
         InvoiceHistoryCreator.new(@invoice, current_user.id).create_history invoice_params
         if passive_favorites.any?
           NotificationServices::SendAllNotificationService.new(owner: current_user,
-            recipients: passive_favorites, content: "favorite", invoice: @invoice,
+            recipients: passive_favorites, status: "favorite", invoice: @invoice,
             click_action: Settings.invoice_detail).perform
         end
         serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
