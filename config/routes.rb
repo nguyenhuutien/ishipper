@@ -66,8 +66,6 @@ Rails.application.routes.draw do
     resources :invoices
     resources :list_shippers, only: :index
     resources :reports, only: [:new, :create]
-<<<<<<< HEAD
-=======
     resources :rates, only: [:new, :create]
   end
   resources :shops
@@ -76,6 +74,5 @@ Rails.application.routes.draw do
     root to: "users#index", as: :root
     resources :users
     resources :invoices
->>>>>>> 1.0.1
   end
 end
