@@ -28,7 +28,7 @@ class InvoiceServices::ShopAcceptShipperService
           end
         end
         near_shippers = User.near([@invoice.latitude_start, @invoice.longitude_start],
-          Settings.max_distance).shipper.is_online
+          Settings.max_distance).shipper.users_online
         if near_shippers.any?
           InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
             invoice: @invoice, action: Settings.realtime.remove_invoice).perform

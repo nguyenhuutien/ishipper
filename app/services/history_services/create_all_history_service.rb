@@ -13,5 +13,6 @@ class HistoryServices::CreateAllHistoryService
       creater_id: @creater_id).perform
     HistoryServices::CreateUserInvoiceHistoryService.new(user_invoice: @user_invoice,
       status: @status, creater_id: @creater_id).perform
+    InvoiceServices::CreateStatusInvoiceHistoryService.new(invoice: @invoice).perform
   end
 end

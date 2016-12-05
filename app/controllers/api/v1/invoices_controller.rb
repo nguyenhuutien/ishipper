@@ -6,7 +6,8 @@ class Api::V1::InvoicesController < Api::BaseController
     invoices = Invoice.search params
     if invoices.any?
       serializers = ActiveModelSerializers::SerializableResource.new(invoices,
-        each_serializer: InvoiceSerializer, scope: current_user).as_json
+        each_serializer: Invoices::ShipperInvoiceSerializer,
+        scope:{current_user: current_user}).as_json
       render json: {message: I18n.t("invoices.messages.get_invoices_success"),
         data: {invoices: serializers}, code: 1}, status: 200
     else
