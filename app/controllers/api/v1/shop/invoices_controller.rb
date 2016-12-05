@@ -12,15 +12,14 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
         search_invoice(params[:query]).order_by_time
     end
     serializers = ActiveModelSerializers::SerializableResource.new(invoices,
-      each_serializer: InvoiceSerializer).as_json
+      each_serializer: Invoices::ShopInvoiceSerializer).as_json
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
       data: {invoices: serializers}, code: 1}, status: 200
   end
 
   def show
     if @invoice.present?
-      serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
-        each_serializer: InvoiceSerializer, scope: current_user).as_json
+      serializer = Invoices::ShopInvoiceSerializer.new(@invoice).as_json
       render json: {message: I18n.t("invoices.show.success"),
         data: {invoice: serializer}, code: 1}, status: 200
     else
@@ -46,8 +45,8 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
           recipients: passive_favorites, status: "favorite", invoice: invoice,
           click_action: click_action).perform
       end
-      serializer = ActiveModelSerializers::SerializableResource.new(invoice,
-        each_serializer: InvoiceSerializer, scope: current_user).as_json
+      serializer = Invoices::ShipperInvoiceSerializer.new(invoice,
+        scope: {current_user: current_user}).as_json
       if near_shippers.any?
         InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
           invoice: serializer, action: Settings.realtime.new_invoice).perform

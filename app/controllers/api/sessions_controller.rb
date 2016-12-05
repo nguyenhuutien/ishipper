@@ -35,7 +35,8 @@ class Api::SessionsController < Devise::SessionsController
     if token
       sign_out @user
       if @user.shipper?
-        @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
+        @serializer = ActiveModelSerializers::SerializableResource.new(@user,
+          scope: {current_user: @user}).as_json
         @near_shops = User.near([@user.latitude, @user.longitude],
           Settings.max_distance).shop.users_online
         shipper_is_offline
