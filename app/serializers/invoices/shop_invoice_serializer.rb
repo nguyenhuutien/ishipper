@@ -7,12 +7,16 @@ class Invoices::ShopInvoiceSerializer < InvoiceSerializer
   def user
     user_invoice = UserInvoice.find_by invoice_id: object.id, status: object.status
     if user_invoice
-      serializer = ActiveModelSerializers::SerializableResource.new(user_invoice.user,
-        scope: {current_user: user_invoice.user}).as_json
+      serializer = ActiveModelSerializers::SerializableResource.new(user_invoice.user).as_json
     end
   end
 
   def number_of_recipients
     object.user_invoices.size
+  end
+
+  def status_histories
+    ActiveModelSerializers::SerializableResource.new(object.status_invoice_histories,
+      each_serializer: StatusInvoiceHistorySerializer)
   end
 end
