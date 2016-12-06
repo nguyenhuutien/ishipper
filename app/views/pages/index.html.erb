@@ -3,6 +3,175 @@
     <%= render "home_header" %>
   </div>
 <% end %>
-<div class="nht-home-background"></div>
-<%= render "about" %>
+<div class="nht-home-background">
+  <h1 id="title-slide-letter" class="s_title"></h1>
+  <p id="slide-letter" class="s_title_1"></p>
+  <div class="td-image-wrap-background img-responsive"></div>
+  <div class="td-button-google-play hvr-bubble-float-bottom td-button-download
+    animated bounceInUp td-delay">
+    <%= image_tag "google_play.png", class: "td-button-google-play-icon" %>
+    <div class="td-button-google-play-text">
+      <i class="upcase"><%= t :get_it %></i>
+      <p><%= t :google_play %></p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="td-button-app-store hvr-bubble-float-bottom td-button-download
+    animated bounceInUp td-delay">
+    <%= image_tag "apple.png", class: "td-button-app-store-icon" %>
+    <div class="td-button-app-store-text">
+      <i class="upcase"><%= t :get_it %></i>
+      <p><%= t :app_store %></p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="td-button-window-store hvr-bubble-float-bottom td-button-download
+    animated bounceInUp td-delay">
+    <%= image_tag "google_play.png", class: "td-button-window-store-icon" %>
+    <div class="td-button-window-store-text">
+      <i class="upcase"><%= t :get_it %></i>
+      <p><%= t :google_play %></p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<div class="td-signup-now container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="td-signup-now-content animated fadeInUp td-delay">
+        <h1 class="text-center"><%= t "signup-now-text-test-1" %></h1>
+        <p class="text-center"><%= t "signup-now-text-test-2" %></p>
+        <%= link_to t("devise.sign_up"), sign_up_path, class: "td-signup-now-button" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="td-ishipper-benefit">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 td-ishipper-benefit-col"></div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 td-ishipper-benefit-col"></div>
+</div>
+<section id="section" class="course-progress clearfix">
+  <div class="section-title">
+    <%= t :working %>
+  </div>
+  <div class="container">
+    <div class="col-md-12 timeline">
+      <!-- 1 title -->
+      <div class="col-md-12 timeline-block">
+        <div class="col-md-6">
+          <div class="timeline-content">
+            <div class="timeline-heading">
+              <h2 class="title">
+                <%= t :test1 %>
+              </h2>
+            </div>
+            <div class="timeline-body">
+              <p>
+                <%= t :test2 %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hết 1 title -->
+
+      <!-- 1 title -->
+      <div class="col-md-12 timeline-block">
+        <div class="col-md-6">
+          <div class="timeline-content">
+            <div class="timeline-heading">
+              <h2 class="title">
+                <%= t :test1 %>
+              </h2>
+            </div>
+            <div class="timeline-body">
+              <p>
+                <%= t :test2 %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hết 1 title -->
+
+      <!-- 1 title -->
+      <div class="col-md-12 timeline-block">
+        <div class="col-md-6">
+          <div class="timeline-content">
+            <div class="timeline-heading">
+              <h2 class="title">
+                <%= t :test1 %>
+              </h2>
+            </div>
+            <div class="timeline-body">
+              <p>
+                <%= t :test2 %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hết 1 title -->
+
+      <!-- 1 title -->
+      <div class="col-md-12 timeline-block">
+        <div class="col-md-6">
+          <div class="timeline-content">
+            <div class="timeline-heading">
+              <h2 class="title">
+                <%= t :test1 %>
+              </h2>
+            </div>
+            <div class="timeline-body">
+              <p>
+                <%= t :test2 %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hết 1 title -->
+
+      <!-- 1 title -->
+      <div class="col-md-12 timeline-block">
+        <div class="col-md-6">
+          <div class="timeline-content">
+            <div class="timeline-heading">
+              <h2 class="title">
+                <%= t :test1 %>
+              </h2>
+            </div>
+            <div class="timeline-body">
+              <p>
+                <%= t :test2 %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hết 1 title -->
+
+      <!-- 1 title -->
+      <div class="col-md-12 timeline-block">
+        <div class="col-md-6">
+          <div class="timeline-content">
+            <div class="timeline-heading">
+              <h2 class="title">
+                <%= t :test1 %>
+              </h2>
+            </div>
+            <div class="timeline-body">
+              <p>
+                <%= t :test2 %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hết 1 title -->
+    </div>
+  </div>
+</section>
 <%= render "feed_backs/form" %>

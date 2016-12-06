@@ -41,4 +41,19 @@ document.addEventListener("turbolinks:load", function() {
   $(document).ready(flash);
   $(document).on('page:load', flash);
   $(document).on('page:change', flash);
+
+  $(function typeloop(){
+    $("#title-slide-letter").typed({
+      strings: ["WE"],
+      typeSpeed: 80,
+      showCursor: false
+    });
+    setInterval(function(){
+      $('#slide-letter').typed({
+        strings: ["Make it awesome!!!"],
+        typeSpeed: 80,
+        showCursor: false
+      });
+    }, 400);
+  });
 });
