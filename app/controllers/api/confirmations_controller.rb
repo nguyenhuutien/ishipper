@@ -27,8 +27,8 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
       if @user.unactive?
         @user.activate
         generate_user_token
-        serializer = ActiveModelSerializers::SerializableResource.new(@user,
-          scope: {authentication: true, user_token: @user_token}).as_json
+        serializer = Users::LoginUserSerializer.new(@user,
+          scope: {user_token: @user_token}).as_json
         render json:
           {message: t("api.update.success"), data: {user: serializer}, code: 1},
           status: 200

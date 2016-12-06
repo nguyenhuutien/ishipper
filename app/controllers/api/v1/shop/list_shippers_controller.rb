@@ -1,13 +1,12 @@
 class Api::V1::Shop::ListShippersController < Api::ShopBaseController
-  before_action :ensure_params_true, :check_owned_invoice, only: :index
+  before_action :ensure_params_true, :load_invoice, only: :index
 
   def index
-    invoice = current_user.invoices.find_by id: params[:invoice][:id]
-    shippers = invoice.all_shipper
+    shippers = @invoice.all_shipper
     shippers = shippers - current_user.black_list_users
     shippers = ActiveModelSerializers::SerializableResource.new(shippers,
-      each_serializer: UserSerializer, scope: {invoice_id: params[:invoice][:id],
-      current_user: current_user})
+      each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
+      current_user: current_user}).as_json
     if shippers.blank?
       render json: {message: I18n.t("invoices.messages.get_shippers_fails"),
       data: {}, code: 1}, status: 200
@@ -28,9 +27,9 @@ class Api::V1::Shop::ListShippersController < Api::ShopBaseController
     end
   end
 
-  def check_owned_invoice
-    current_invoice = current_user.invoices.find_by id: params[:invoice][:id]
-    if current_invoice.nil?
+  def load_invoice
+    @invoice = current_user.invoices.find_by id: params[:invoice][:id]
+    if @invoice.nil?
       render json:
         {message: I18n.t("invoices.messages.invoice_not_exist"), data: {}, code: 0},
         status: 422

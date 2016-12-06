@@ -6,7 +6,7 @@ class Api::V1::Shop::BlackListsController < Api::ShopBaseController
   def index
     users = current_user.black_list_users
     users = ActiveModelSerializers::SerializableResource.new(users,
-      each_serializer: UserSerializer, scope: {current_user: current_user})
+      each_serializer: UserSerializer)
     render json: {message: I18n.t("black_list.get_black_list_success"),
       data: {users: users}, code: 1}, status: 200
   end

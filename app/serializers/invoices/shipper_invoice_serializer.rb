@@ -5,8 +5,7 @@ class Invoices::ShipperInvoiceSerializer < InvoiceSerializer
   attribute :status_histories, if: :condition?
 
   def user
-    serializer = ActiveModelSerializers::SerializableResource.new(object.user,
-      scope: {current_user: object.user}).as_json
+    serializer = ActiveModelSerializers::SerializableResource.new(object.user).as_json
   end
 
   def received

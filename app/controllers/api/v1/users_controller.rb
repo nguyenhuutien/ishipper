@@ -5,8 +5,7 @@ class Api::V1::UsersController < Api::BaseController
   before_action :ensure_params_true, only: :index
 
   def show
-    serializer = ActiveModelSerializers::SerializableResource.new(@user,
-      params).as_json
+    serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
     render json: {message: I18n.t("users.show.success"),
       data: {user: serializer}, code: 1}, status: 200
   end
@@ -25,15 +24,14 @@ class Api::V1::UsersController < Api::BaseController
       users = users.shipper.users_online
     end
     users = ActiveModelSerializers::SerializableResource.new(users,
-      each_serializer: UserSerializer, scope:{current_user: current_user})
+      each_serializer: UserSerializer).as_json
     render json: {message: I18n.t("users.messages.get_shipper_success"),
-      data: {users: users.as_json}, code: 1}, status: 200
+      data: {users: users}, code: 1}, status: 200
   end
 
   def update
     if @user.update_with_password user_params
-      serializer = ActiveModelSerializers::SerializableResource.new(@user,
-        params).as_json
+      serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
       render json: {message: I18n.t("users.messages.update_success"),
         data: {user: serializer}, code: 1}, status: 200
     else

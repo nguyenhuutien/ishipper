@@ -38,7 +38,7 @@ class InvoiceServices::ShopUpdateStatusService
               status: @status).perform
             click_action = Settings.invoice_detail
             NotificationServices::CreateNotificationService.new(owner: @current_user,
-              recipient: @user_invoice.user, content: @status, invoice: @invoice,
+              recipient: @user_invoice.user, status: @status, invoice: @invoice,
               click_action: click_action).perform
           end
         else

@@ -5,7 +5,7 @@ class Shop::ListShippersController < Shop::ShopBaseController
     @shippers = @invoice.all_shipper
     @shippers = @shippers - current_user.black_list_users
     @shippers = ActiveModelSerializers::SerializableResource.new(@shippers,
-      each_serializer: UserSerializer, scope: {invoice_id: params[:invoice_id],
+      each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
       current_user: current_user})
     if @shippers.blank?
       flash[:danger] = I18n.t("invoices.messages.get_shippers_fails")
