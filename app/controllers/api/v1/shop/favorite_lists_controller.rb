@@ -6,7 +6,7 @@ class Api::V1::Shop::FavoriteListsController < Api::ShopBaseController
   def index
     users = current_user.favorite_list_users
     users = ActiveModelSerializers::SerializableResource.new(users,
-      each_serializer: UserSerializer)
+      each_serializer: Users::FavoriteUserSerializer, scope: {current_user: current_user})
     render json: {message: I18n.t("favorite_list.get_favorite_list_success"),
       data: {users: users}, code: 1}, status: 200
   end
