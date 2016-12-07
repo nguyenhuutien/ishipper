@@ -27,7 +27,7 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       if old_shipper_limit.perform?
         if @user_invoice.save
           create_user_invoice_history = HistoryServices::CreateUserInvoiceHistoryService.
-            newuser_invoice: @user_invoice, creater_id: current_user.id, status: "init"
+            new user_invoice: @user_invoice, creater_id: current_user.id, status: "init"
           create_user_invoice_history.perform
           create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
             recipient: @invoice.user, status: "receive", invoice: @invoice,

@@ -23,8 +23,8 @@ class NotificationServices::CreateNotificationService
           action: Settings.realtime.unread_notification, data: data
       end
       if user_setting.receive_notification?
-        Notifications::SendNotificationJob.perform_now @notification, @owner,
-          @recipient, @status, @invoice, @click_action
+        Notifications::SendNotificationJob.perform_now notification: @notification, owner: @owner,
+          recipient: @recipient, status: @status, invoice: @invoice, click_action: @click_action
         notification_channel = "#{@recipient.phone_number}_notification_channel"
         Notifications::WebNotificationBroadcastJob.perform_now channel: notification_channel,
           owner: @owner, invoice: @invoice, notification: @notification

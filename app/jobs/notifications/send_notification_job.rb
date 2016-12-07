@@ -1,7 +1,14 @@
 class Notifications::SendNotificationJob < ActiveJob::Base
   queue_as :default
 
-  def perform notification, owner, recipient, content, invoice, click_action
+  def perform args
+    notification = args[:notification]
+    owner = args[:owner]
+    recipient = args[:recipient]
+    content = args[:content]
+    invoice = args[:invoice]
+    click_action = args[:click_action]
+
     fcm = FCM.new Rails.application.secrets.firebase_api_key
     registration_ids = []
     recipient.user_tokens.each do |user_token|
