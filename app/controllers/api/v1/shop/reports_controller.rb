@@ -10,7 +10,7 @@ class Api::V1::Shop::ReportsController < Api::ShopBaseController
       if @invoice.shipping? || @invoice.waiting?
         InvoiceServices::ShopUpdateStatusService.new(invoice: @invoice,
           user_invoice: @user_invoice, status: "cancel", current_user: current_user).
-          perform
+          perform?
       end
       render json: {message: I18n.t("report.create_success"),
         data: {report: @report}, code: 1}, status: 200

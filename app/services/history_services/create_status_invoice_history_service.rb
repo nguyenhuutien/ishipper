@@ -1,4 +1,4 @@
-class InvoiceServices::CreateStatusInvoiceHistoryService
+class HistoryServices::CreateStatusInvoiceHistoryService
   attr_reader :args
 
   def initialize args
