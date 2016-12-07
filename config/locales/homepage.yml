@@ -31,3 +31,7 @@ en:
   working: How did we working
   test1: test
   test2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  shop:
+    benefit: Shop's benefit
+  shipper:
+    benefit: Shipper's benefit
