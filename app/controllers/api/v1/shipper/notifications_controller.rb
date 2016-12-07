@@ -2,8 +2,6 @@ class Api::V1::Shipper::NotificationsController < Api::ShipperBaseController
   before_action :check_param_exist, :find_notification, only: :update
 
   def index
-    user_setting = current_user.user_setting
-    unread_notification = user_setting.unread_notification
     if params[:notification] && params[:notification][:page] &&
       params[:notification][:per_page]
       @notifications = current_user.passive_notifications.order_by_time.
@@ -11,10 +9,11 @@ class Api::V1::Shipper::NotificationsController < Api::ShipperBaseController
       @notifications = ActiveModelSerializers::SerializableResource.new(@notifications,
         each_serializer: NotificationSerializer).as_json
       NotificationServices::UpdateNotificationService.new(current_user: current_user,
-        notification_id: nil).perform
+        notification: nil, unread_notification: 0).perform
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
-        data: {notifications: @notifications, unread: unread_notification}, code: 1}, status: 200
+        data: {notifications: @notifications, unread: 0}, code: 1}, status: 200
     else
+      unread_notification = current_user.user_setting.unread_notification
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
         data: {notifications: [], unread: unread_notification}, code: 1}, status: 200
     end

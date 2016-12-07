@@ -15,7 +15,6 @@ class User < ApplicationRecord
 
   has_one :user_setting, dependent: :destroy
 
-  has_many :all_user_invoices, through: :user_invoices, source: :invoice
   has_many :active_reviews, class_name: Review.name, foreign_key: "owner_id",
     dependent: :destroy
   has_many :passive_reviews, class_name: Review.name, foreign_key: "recipient_id",

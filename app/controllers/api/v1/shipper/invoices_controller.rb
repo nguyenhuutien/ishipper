@@ -46,10 +46,9 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
   def ensure_params_true
     statuses = UserInvoice.statuses
     statuses["all"] = 7
-    unless (params[:status].nil? || params[:status].in?(statuses)) &&
-      params.has_key?(:status)
+    if params[:status].nil? || !params[:status].in?(statuses)
       render json: {message: I18n.t("invoices.messages.missing_params"),
-      data: {}, code: 0}, status: 422
+        data: {}, code: 0}, status: 422
     end
   end
 
