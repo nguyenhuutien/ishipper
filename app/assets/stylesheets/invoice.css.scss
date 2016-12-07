@@ -20,18 +20,18 @@
 
 .nht-unit {
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 10px;
   z-index: 9;
-  background-color: #FFF !important;
+  background: transparent !important;
   color: #555555 !important;
   border: none !important;
 }
 
 .nht-btn-invoice {
   margin-top: 10px !important;
-  margin-left: 70% !important;
-  width: 30%;
+  margin-left: 30% !important;
+  width: 50%;
 }
 
 .nht-block {
@@ -45,7 +45,7 @@
 #map {
   height: 50vh;
   margin-bottom: 20px;
-  height: 450px !important;
+  height: 500px !important;
   position: relative;
 }
 
@@ -66,10 +66,6 @@
   .nht-marker-finish {
     font-size: 2em;
     color: red;
-  }
-
-  .nht-fix-input {
-    height: 45px;
   }
 
   .nht-invoice-next {
@@ -105,11 +101,48 @@
  /*TD FIX*/
 .td-fix-input {
   border-radius: 3px !important;
+  color: #303030;
 }
 
 .td-fix-button-1 {
-  float: left;
-  margin-right: 5px;
+  box-shadow: 0 2px 0 #6f9a37;
+  position: relative;
+  font-size: 16px;
+  padding: 7px 30px;
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  background-color: #82b440;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.td-fix-button-2{
+  box-shadow: 0 2px 0 #d9534f;
+  position: relative;
+  font-size: 16px;
+  padding: 7px 30px;
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  background-color: #d9534f;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.td-fix-button-2:hover{
+  text-decoration: none;
+  color: #fff;
 }
 
 #nht-form-invoice-new {
@@ -136,4 +169,172 @@
 
 #map-on-invoice {
   height: 400px;
+}
+
+.featured-info{
+  background-image: linear-gradient(to left,rgba(238, 238, 238, 0)  0%,
+    rgba(48, 165, 255, 0.19) 100%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+  width: 50px;
+  height: 511px;
+  z-index: 667;
+}
+
+#map{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -15px;
+  right: 0px;
+  width: auto;
+}
+
+.map{
+  float: left;
+}
+
+.after_map{
+  clear: left;
+  margin-top: 515px;
+}
+
+.colorgraph{
+  margin-top: 500px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -15px;
+  right: -2px;
+  width: auto;
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%,
+    #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%,
+    #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%,
+    #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  height: 10px;
+}
+
+.nht-fix-input{
+  background-color: transparent;
+  border: 1px solid #adadad;
+  border-radius: 1px;
+  box-shadow: none;
+  color: #303030;
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 56px;
+  line-height: 1.36;
+  padding: .6rem 1rem .6rem;
+  transition: border-color .1s linear;
+  vertical-align: baseline;
+}
+
+.input-group-addon{
+  background-color: transparent;
+  border: 1px solid #adadad;
+  border-radius: 1px;
+  box-shadow: none;
+  color: #303030;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.36;
+  transition: border-color .1s linear;
+}
+
+#main{
+  color: red;
+  background-image: image-url("road.jpg");
+  background-size: 190%;
+}
+
+.input-group-addout{
+  background-color: transparent;
+  border-top:    1px solid #adadad;
+  border-left:  1px solid #adadad;
+  border-bottom: 1px solid #adadad;
+  line-height: 1.36;
+  font-size: 1.4rem;
+  font-weight: 400;
+  transition: border-color .1s linear;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-left: 4px;
+  border-radius: 1px;
+  box-shadow: none;
+  color: #303030;
+  margin-top: 10px;
+}
+
+.input-group-out{
+  margin-top: 10px;
+  padding: 0px;
+}
+
+#distance_invoice{
+  width: 850.3px;
+  border: none;
+  background: transparent;
+}
+
+.nht-invoice-distance-content{
+  background-color: transparent;
+  border: 1px solid #adadad;
+  border-radius: 1px;
+  box-shadow: none;
+  color: #303030;
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 56px;
+  line-height: 1.36;
+  padding: .7rem 1rem 1rem;
+  transition: border-color .1s linear;
+  vertical-align: baseline;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.full-width{
+  padding: 0;
+  padding-left: 15px;
+}
+
+.td-fix-input{
+  background-color: transparent;
+  border: 1px solid #adadad;
+  border-radius: 1px;
+  box-shadow: none;
+  color: #303030;
+  font-size: 1.3rem;
+  font-weight: 400;
+  height: 50px;
+  line-height: 1.36;
+  padding: .6rem 1rem .6rem;
+  transition: border-color .1s linear;
+  vertical-align: baseline;
+}
+
+.diamond{
+  color: #363638;
+  font-family: "Damion", cursive;
+  text-align: center;
+  letter-spacing: 5px;
+  font-size: 36px;
+}
+
+.modal-content{
+  background-color: #fff;
+  box-shadow: 0 0 12px 2px rgba(0,0,0,0.35);
+  opacity: 1;
+  pointer-events: auto;
+  color: #41362f;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.36;
+  font-size: 1.4rem;
 }
