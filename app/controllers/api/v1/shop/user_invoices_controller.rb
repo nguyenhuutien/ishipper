@@ -4,7 +4,7 @@ class Api::V1::Shop::UserInvoicesController < Api::ShopBaseController
 
   def update
     if InvoiceServices::ShopAcceptShipperService.new(invoice: @invoice,
-      user_invoice: @user_invoice, status: "waiting", current_user: current_user).perform
+      user_invoice: @user_invoice, status: "waiting", current_user: current_user).perform?
       render json: {message: I18n.t("invoices.accept_shipper.success"),
         data: {user_invoice: @user_invoice}, code: 1}, status: 200
     else

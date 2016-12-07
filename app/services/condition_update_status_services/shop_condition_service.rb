@@ -9,43 +9,37 @@ class ConditionUpdateStatusServices::ShopConditionService
   end
 
   def perform?
-    # chi can 1 trong cac dieu kien sau TRUE, tuc la khong vuot qua duoc dieu kien de update
-    @invoice.user != @current_user ||
-      check_update_status_shop? ||
-      check_user_invoice_present? ||
-      check_current_status?
+    check_params? && check_user? && check_current_status?
   end
 
   private
-  def check_user_invoice_present?
-    @user_invoice.nil? && !@invoice.init?
+  def check_params?
+    @invoice.present? && @user_invoice.present? && @update_status.present? && @current_user.present?
   end
 
-  def check_status?
+  def check_user?
+    @invoice.user == @current_user
+  end
+
+  def check_type_status?
     @update_status.class.to_s == "String"
   end
 
   def check_current_status?
-    if check_status?
+    if check_type_status?
       statuses = Invoice.statuses
-      true unless statuses.has_key?(@invoice.status) && statuses.has_key?(@update_status)
-      if "cancel" == @update_status && "finished" != @invoice.status &&
-        "cancel" != @invoice.status
-        false
-      elsif "rejected" == @update_status || "init" == @update_status
-        true
-      elsif statuses[@update_status].pred == statuses[@invoice.status] &&
-        "finished" != @invoice.status
-        false
+      if statuses.has_key?(@invoice.status) && statuses.has_key?(@update_status)
+        if "shipped" == @invoice.status && "finished" == @update_status
+          true
+        elsif ["init", "waiting", "shipping", "shipped"].include?(@invoice.status) &&
+          "cancel" == @update_status
+          true
+        end
       else
-        true
+        false
       end
     else
-      true
+      false
     end
-  end
-
-  def check_update_status_shop?
-    @update_status != "finished" && @update_status != "cancel"
   end
 end

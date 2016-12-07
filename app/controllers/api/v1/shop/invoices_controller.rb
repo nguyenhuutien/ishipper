@@ -36,7 +36,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     if invoice.save
       HistoryServices::CreateInvoiceHistoryService.new(invoice: invoice,
         creater_id: current_user.id).perform
-      InvoiceServices::CreateStatusInvoiceHistoryService.new(invoice: invoice).perform
+      HistoryServices::CreateStatusInvoiceHistoryService.new(invoice: invoice).perform
       click_action = Settings.invoice_detail
       render json: {message: I18n.t("invoices.create.success"),
         data: {invoice: invoice}, code: 1}, status: 201
@@ -61,7 +61,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     if params[:status]
       if InvoiceServices::ShopUpdateStatusService.new(invoice: @invoice,
         user_invoice: @user_invoice, status: params[:status],
-        current_user: current_user).perform
+        current_user: current_user).perform?
         render json: {message: I18n.t("invoices.messages.update_success"),
           data: {invoice: @invoice}, code: 1}, status: 200
       else
@@ -112,15 +112,12 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
   end
 
   def check_conditions_to_update_status?
-    statuses = Invoice.statuses
-    if params[:status] && params[:status].in?(statuses)
-      @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
-      if ConditionUpdateStatusServices::ShopConditionService.new(invoice: @invoice,
-        user_invoice: @user_invoice, update_status: params[:status],
-        current_user: current_user).perform?
-        render json: {message: I18n.t("invoices.messages.cant_update"),
-          data: {}, code: 0}, status: 200
-      end
+    @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
+    if !ConditionUpdateStatusServices::ShopConditionService.new(invoice: @invoice,
+      user_invoice: @user_invoice, update_status: params[:status],
+      current_user: current_user).perform?
+      render json: {message: I18n.t("invoices.messages.cant_update"),
+        data: {}, code: 0}, status: 200
     end
   end
 
