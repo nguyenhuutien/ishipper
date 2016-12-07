@@ -3,19 +3,17 @@ class NotificationServices::UpdateNotificationService
 
   def initialize args
     @current_user = args[:current_user]
-    @notification_id = args[:notification_id]
+    @notification = args[:notification]
+    @unread_notification = args[:unread_notification]
   end
 
   def perform
     channel_name = "#{@current_user.phone_number}_realtime_channel"
-    @current_user.user_setting.update_attributes unread_notification: 0
+    @current_user.user_setting.update_attributes unread_notification: @unread_notification
     data = Hash.new
-    data[:unread_notification] = 0
+    data[:unread_notification] = @unread_notification
     RealtimeBroadcastJob.perform_now channel: channel_name,
       action: Settings.realtime.unread_notification, data: data
-    if @notification_id && notification = @current_user.passive_notifications.
-      find_by(id: @notification_id)
-      notification.update_attributes read: true
-    end
+    @notification.update_attributes read: true if @notification
   end
 end

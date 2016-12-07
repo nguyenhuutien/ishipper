@@ -60,8 +60,7 @@ class Api::V1::Shipper::RatesController < Api::ShipperBaseController
   end
 
   def find_user_invoice
-    status = @invoice.status
-    @user_invoice = @invoice.user_invoices.find_by_status status
+    @user_invoice = @invoice.user_invoices.find_by_status @invoice.status
     if @user_invoice.nil?
       render json: {message: I18n.t("rate.invoice.get_user_invoice_fail"), data: {},
         code: 0}, status: 200
