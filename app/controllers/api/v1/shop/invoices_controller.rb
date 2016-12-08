@@ -49,9 +49,9 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       serializer = Invoices::ShipperInvoiceSerializer.new(invoice,
         scope: {current_user: current_user}).as_json
       if near_shippers.any?
-        realtime = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: near_shippers,
+        realtime_visibility_shipper = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: near_shippers,
           invoice: serializer, action: Settings.realtime.new_invoice
-        realtime.perform
+        realtime_visibility_shipper.perform
       end
     else
       render json: {message: error_messages(invoice.errors.messages), data: {},

@@ -64,12 +64,14 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   def shipper_is_online
-    ShipperServices::RealtimeVisibilityShipperService.new(recipients: @near_shops, shipper: @serializer,
-      action: Settings.realtime.shipper_online).perform
+    realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: @near_shops,
+      shipper: @serializer, action: Settings.realtime.shipper_online
+    realtime_visibility_shipper.perform
   end
 
   def shipper_is_offline
-    ShipperServices::RealtimeVisibilityShipperService.new(recipients: @near_shops, shipper: @serializer,
-      action: Settings.realtime.shipper_offline).perform
+    realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: @near_shops,
+      shipper: @serializer, action: Settings.realtime.shipper_offline
+    realtime_visibility_shipper.perform
   end
 end

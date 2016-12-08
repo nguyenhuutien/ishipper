@@ -31,9 +31,9 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
   end
 
   def update
-    if InvoiceServices::ShipperUpdateStatusService.new(invoice: @invoice,
-      user_invoice: @user_invoice, status: params[:status],
-      current_user: current_user).perform
+    shipper_update_status = InvoiceServices::ShipperUpdateStatusService.new invoice: @invoice,
+      user_invoice: @user_invoice, status: params[:status], current_user: current_user
+    if shipper_update_status.perform
       render json: {message: I18n.t("invoices.messages.update_success"),
         data: {invoice: @invoice}, code: 1}, status: 200
     else
@@ -55,9 +55,9 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
   def check_conditions_to_update_status?
     @user_invoice = @invoice.user_invoices.find_by user_id: current_user.id,
       status: @invoice.status
-    if ConditionUpdateStatusServices::ShipperConditionService.new(invoice: @invoice,
-      user_invoice: @user_invoice, update_status: params[:status],
-      current_user: current_user).perform?
+    shipper_condition = ConditionUpdateStatusServices::ShipperConditionService.new invoice: @invoice,
+      user_invoice: @user_invoice, update_status: params[:status], current_user: current_user
+    if !shipper_condition.perform?
       render json: {message: I18n.t("invoices.messages.cant_update"),
         data: {}, code: 0}, status: 200
     end
