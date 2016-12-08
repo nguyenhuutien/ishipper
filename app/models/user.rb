@@ -6,11 +6,6 @@ class User < ApplicationRecord
 
   VALID_PHONE_REGEX = /\+84\d{9,10}\)*\z/
 
-  geocoded_by :current_location
-  reverse_geocoded_by :latitude, :longitude, address: :current_location,
-    if: :address_changed?
-
-  after_validation :geocode, :reverse_geocode
   after_create :create_usersetting
 
   has_one :user_setting, dependent: :destroy
@@ -46,13 +41,12 @@ class User < ApplicationRecord
     .where("reviews.id IS NULL OR reviews.created_at >= ? AND reviews.review_type = ?",
     Time.zone.now - 1.day, Review.review_types[:report]).group(:id)
     .order 'COUNT(reviews.id) DESC'}
-
-  ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :latitude,
-    :longitude, :plate_number, :role, :password, :password_confirmation, :avatar,
-    :current_location]
+  scope :users_by_user_setting, -> user_settings {where id: user_settings.pluck(:user_id)}
+  ATTRIBUTES_PARAMS = [:phone_number, :name, :email, :address, :plate_number,
+    :role, :password, :password_confirmation, :avatar]
 
   UPDATE_ATTRIBUTES_PARAMS = [:name, :email, :address, :plate_number,
-    :current_password, :receive_notification, :avatar, :current_location]
+    :current_password, :avatar]
 
   validates :phone_number, uniqueness: true,
     format: {with: VALID_PHONE_REGEX}
@@ -158,6 +152,6 @@ class User < ApplicationRecord
 
   private
   def create_usersetting
-    self.create_user_setting!
+    self.create_user_setting! current_location: self.address
   end
 end

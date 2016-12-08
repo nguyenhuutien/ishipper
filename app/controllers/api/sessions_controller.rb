@@ -15,7 +15,7 @@ class Api::SessionsController < Devise::SessionsController
       if @user.actived?
         sign_in @user, store: false
         generate_user_token
-        @user.update_attributes signed_in: true
+        @user.user_setting.update_attributes signed_in: true
         serializer = Users::LoginUserSerializer.new(@user,
           scope: {user_token: @user_token}).as_json
         render json: {message: t("api.sign_in.success"),
@@ -36,12 +36,13 @@ class Api::SessionsController < Devise::SessionsController
       sign_out @user
       if @user.shipper?
         @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
-        @near_shops = User.near([@user.latitude, @user.longitude],
-          Settings.max_distance).shop.users_online
+        user_settings = UserSetting.near [@user.user_setting.latitude,
+          @user.user_setting.longitude], Settings.max_distance, order: false
+        @near_shops = User.users_by_user_setting(user_settings).shop.users_online
         shipper_is_offline
       end
       token.destroy
-      @user.update_columns signed_in: false
+      @user.user_setting.update_columns signed_in: false
       render json: {message: t("api.sign_out.success"), data: {}, code: 1}, status: 200
     else
       render json: {message: t("api.invalid_token"), data: {}, code: 0}, status: 200
@@ -61,12 +62,6 @@ class Api::SessionsController < Devise::SessionsController
     @user_token = @user.user_tokens.create! authentication_token: Devise.friendly_token,
       registration_id: user_params[:registration_id],
       device_id: user_params[:device_id]
-  end
-
-  def shipper_is_online
-    realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: @near_shops,
-      shipper: @serializer, action: Settings.realtime.shipper_online
-    realtime_visibility_shipper.perform
   end
 
   def shipper_is_offline

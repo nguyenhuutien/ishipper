@@ -21,8 +21,9 @@ class InvoiceServices::ShopUpdateStatusService
             HistoryServices::CreateUserInvoiceHistoryService.new(user_invoice: user_invoice,
               creater_id: @current_user.id, status: "rejected").perform
           end
-          near_shippers = User.near([@invoice.latitude_start, @invoice.longitude_start],
-            Settings.max_distance).shipper.users_online
+          user_setting = UserSetting.near [@invoice.latitude_start, @invoice.longitude_start],
+            Settings.max_distance, order: false
+          near_shippers = User.users_by_user_setting(user_setting).shipper.users_online
           if near_shippers.any?
             InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
               invoice: @invoice, action: Settings.realtime.remove_invoice).perform

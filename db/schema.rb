@@ -155,6 +155,10 @@ ActiveRecord::Schema.define(version: 20161125104513) do
     t.string   "favorite_address"
     t.float    "favorite_latitude",    limit: 24
     t.float    "favorite_longitude",   limit: 24
+    t.string   "current_location"
+    t.float    "latitude",             limit: 24
+    t.float    "longitude",            limit: 24
+    t.boolean  "signed_in"
     t.integer  "radius_display",                  default: 5
     t.integer  "user_id"
     t.datetime "created_at",                                      null: false
@@ -177,16 +181,12 @@ ActiveRecord::Schema.define(version: 20161125104513) do
     t.string   "name"
     t.string   "email"
     t.string   "address"
-    t.string   "current_location"
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
     t.string   "phone_number"
     t.string   "plate_number"
     t.integer  "status",                            default: 0
     t.string   "role"
     t.float    "rate",                   limit: 24
     t.string   "pin"
-    t.boolean  "signed_in"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "encrypted_password",                default: "", null: false
