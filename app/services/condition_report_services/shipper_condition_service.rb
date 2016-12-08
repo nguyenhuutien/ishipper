@@ -9,21 +9,23 @@ class ConditionReportServices::ShipperConditionService
   end
 
   def perform?
-    check_report_type? ||
-    shipper_check_invoice_status? ||
-    check_correct_shipper?
+    check_params? && check_type_report? && check_shippper_invoice_status? && check_correct_shipper?
   end
 
   private
-  def check_report_type?
-    @review_type != "report"
+  def check_params?
+    @invoice.present? && @user_invoice.present? && @review_type.present? && @current_user.present?
   end
 
-  def shipper_check_invoice_status?
-    @invoice.init? || @invoice.shipping? || @invoice.shipped? || @invoice.finished?
+  def check_type_report?
+    @review_type == "report"
+  end
+
+  def check_shippper_invoice_status?
+    @invoice.cancel?
   end
 
   def check_correct_shipper?
-    @user_invoice.nil? || @current_user != @user_invoice.user
+    @user_invoice.user == @current_user
   end
 end

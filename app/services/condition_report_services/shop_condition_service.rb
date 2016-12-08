@@ -9,15 +9,23 @@ class ConditionReportServices::ShopConditionService
   end
 
   def perform?
-    check_report_type? || shop_check_invoice_status?
+    check_params? && check_type_review? && check_shop_invoice_status? && check_correct_shop?
   end
 
   private
-  def check_report_type?
-    @review_type != "report"
+  def check_params?
+    @invoice.present? && @user_invoice.present? && @review_type.present? && @current_user.present?
   end
 
-  def shop_check_invoice_status?
-    @invoice.init? || @invoice.shipped? || @invoice.finished?
+  def check_type_review?
+    @review_type == "report"
+  end
+
+  def check_shop_invoice_status?
+    @invoice.cancel?
+  end
+
+  def check_correct_shop?
+    @invoice.user == @current_user
   end
 end

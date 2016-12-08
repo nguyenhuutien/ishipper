@@ -31,7 +31,6 @@ class InvoiceServices::ShopAcceptShipperService
         InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
           invoice: @invoice, action: Settings.realtime.remove_invoice).perform
       end
-      true
     end
     return true
     rescue =>e

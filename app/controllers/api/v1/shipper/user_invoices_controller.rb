@@ -6,13 +6,16 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
 
   def create
     @user_invoice = current_user.user_invoices.build user_invoice_params
-    if ShipperReceiveLimitServices::NewShipperLimitService.new(user_id: current_user.id).perform?
+    new_shipper_limit = ShipperReceiveLimitServices::NewShipperLimitService.new user_id: current_user.id
+    if new_shipper_limit.perform?
       if @user_invoice.save
-        HistoryServices::CreateUserInvoiceHistoryService.new(user_invoice: @user_invoice,
-          creater_id: current_user.id, status: "init").perform
-        NotificationServices::CreateNotificationService.new(owner: current_user,
+        create_user_invoice_history = HistoryServices::CreateUserInvoiceHistoryService.
+          new user_invoice: @user_invoice, creater_id: current_user.id, status: "init"
+        create_user_invoice_history.perform
+        create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
           recipient: @invoice.user, status: "receive", invoice: @invoice,
-          click_action: Settings.list_shipper_register).perform
+          click_action: Settings.list_shipper_register
+        create_notification.perform
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
           data: {user_invoice: @user_invoice}, code: 1}, status: 200
       else
@@ -20,13 +23,16 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
           code: 0}, status: 200
       end
     else
-      if ShipperReceiveLimitServices::OldShipperLimitService.new(user_id: current_user.id).perform?
+      old_shipper_limit = ShipperReceiveLimitServices::OldShipperLimitService.new user_id: current_user.id
+      if old_shipper_limit.perform?
         if @user_invoice.save
-          HistoryServices::CreateUserInvoiceHistoryService.new(user_invoice: @user_invoice,
-            creater_id: current_user.id, status: "init").perform
-          NotificationServices::CreateNotificationService.new(owner: current_user,
+          create_user_invoice_history = HistoryServices::CreateUserInvoiceHistoryService.
+            newuser_invoice: @user_invoice, creater_id: current_user.id, status: "init"
+          create_user_invoice_history.perform
+          create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
             recipient: @invoice.user, status: "receive", invoice: @invoice,
-            click_action: Settings.list_shipper_register).perform
+            click_action: Settings.list_shipper_register
+          create_notification.perform
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
             data: {user_invoice: @user_invoice}, code: 1}, status: 200
         else

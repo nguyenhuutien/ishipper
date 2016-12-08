@@ -22,7 +22,7 @@ class ConditionUpdateStatusServices::ShopConditionService
   end
 
   def check_type_status?
-    @update_status.class.to_s == "String"
+    @update_status.class == String
   end
 
   def check_current_status?
