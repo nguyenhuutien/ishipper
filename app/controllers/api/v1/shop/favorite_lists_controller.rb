@@ -35,8 +35,9 @@ class Api::V1::Shop::FavoriteListsController < Api::ShopBaseController
   end
 
   def ensure_params_exist
-    unless CheckParams.new(attributes_params: FavoriteList::FAVORITE_LIST_ATTRIBUTES_PARAMS,
-      params: params[:favorite_list]).perform?
+    check_params = CheckParams.new attributes_params: FavoriteList::FAVORITE_LIST_ATTRIBUTES_PARAMS,
+      params: params[:favorite_list]
+    unless check_params.perform?
       render json: {message: I18n.t("favorite_list.missing_params"), data: {},
         code: 0}, status: 422
     end

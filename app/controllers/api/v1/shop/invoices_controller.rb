@@ -34,22 +34,24 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     near_shippers = User.near([invoice.latitude_start, invoice.longitude_start],
       Settings.max_distance).shipper.users_online
     if invoice.save
-      HistoryServices::CreateInvoiceHistoryService.new(invoice: invoice,
-        creater_id: current_user.id).perform
-      HistoryServices::CreateStatusInvoiceHistoryService.new(invoice: invoice).perform
-      click_action = Settings.invoice_detail
+      create_invoice_history = HistoryServices::CreateInvoiceHistoryService.new invoice: invoice,
+        creater_id: current_user.id
+      create_invoice_history.perform
+      create_status_invoice_history = HistoryServices::CreateStatusInvoiceHistoryService.new invoice: invoice
+      create_status_invoice_history.perform
       render json: {message: I18n.t("invoices.create.success"),
-        data: {invoice: invoice}, code: 1}, status: 201
+        data: {invoice: invoice}, code: 1}, status: 200
       if passive_favorites.any?
-        NotificationServices::SendAllNotificationService.new(owner: current_user,
-          recipients: passive_favorites, status: "favorite", invoice: invoice,
-          click_action: click_action).perform
+        send_all_notification = NotificationServices::SendAllNotificationService.new owner: current_user,
+          recipients: passive_favorites, status: "favorite", invoice: invoice, click_action: Settings.invoice_detail
+        send_all_notification.perform
       end
       serializer = Invoices::ShipperInvoiceSerializer.new(invoice,
         scope: {current_user: current_user}).as_json
       if near_shippers.any?
-        InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
-          invoice: serializer, action: Settings.realtime.new_invoice).perform
+        realtime = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: near_shippers,
+          invoice: serializer, action: Settings.realtime.new_invoice
+        realtime.perform
       end
     else
       render json: {message: error_messages(invoice.errors.messages), data: {},
@@ -59,9 +61,9 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
 
   def update
     if params[:status]
-      if InvoiceServices::ShopUpdateStatusService.new(invoice: @invoice,
-        user_invoice: @user_invoice, status: params[:status],
-        current_user: current_user).perform?
+      shop_update_status = InvoiceServices::ShopUpdateStatusService.new invoice: @invoice,
+        user_invoice: @user_invoice, status: params[:status], current_user: current_user
+      if shop_update_status.perform?
         render json: {message: I18n.t("invoices.messages.update_success"),
           data: {invoice: @invoice}, code: 1}, status: 200
       else
@@ -71,8 +73,9 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     else
       if @invoice.init?
         if @invoice.update_attributes invoice_params
-          HistoryServices::CreateInvoiceHistoryService.new(invoice: @invoice,
-            creater_id: current_user.id).perform
+          create_invoice_history = HistoryServices::CreateInvoiceHistoryService.new invoice: @invoice,
+            creater_id: current_user.id
+          create_invoice_history.perform
           render json: {message: I18n.t("invoices.update.success"),
             data:{invoice: @invoice}, code: 1}, status: 200
         else
@@ -113,17 +116,18 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
 
   def check_conditions_to_update_status?
     @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
-    if !ConditionUpdateStatusServices::ShopConditionService.new(invoice: @invoice,
-      user_invoice: @user_invoice, update_status: params[:status],
-      current_user: current_user).perform?
+    shop_condition = ConditionUpdateStatusServices::ShopConditionService.new invoice: @invoice,
+      user_invoice: @user_invoice, update_status: params[:status], current_user: current_user
+    if !shop_condition.perform?
       render json: {message: I18n.t("invoices.messages.cant_update"),
         data: {}, code: 0}, status: 200
     end
   end
 
   def ensure_params_exist
-    unless CheckParams.new(attributes_params: Invoice::ATTRIBUTES_PARAMS,
-      params: params[:invoice]).perform?
+    check_params = CheckParams.new attributes_params: Invoice::ATTRIBUTES_PARAMS,
+      params: params[:invoice]
+    unless check_params.perform?
       render json: {message: I18n.t("invoices.messages.missing_params"),
         data: {}, code: 0}, status: 422
     end

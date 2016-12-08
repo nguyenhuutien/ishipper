@@ -23,21 +23,24 @@ class Shop::InvoicesController < Shop::ShopBaseController
       end
     else
       if @invoice.save
-        HistoryServices::CreateInvoiceHistoryService.new(invoice: @invoice,
-          creater_id: current_user.id).perform
+        create_invoice_history = HistoryServices::CreateInvoiceHistoryService.new invoice: @invoice,
+          creater_id: current_user.id
+        create_invoice_history.perform
         passive_favorites = current_user.passive_favorites
         near_shippers = User.near([@invoice.latitude_start, @invoice.longitude_start],
           Settings.max_distance).shipper.users_online
         if passive_favorites.any?
-          NotificationServices::SendAllNotificationService.new(owner: current_user,
+          send_all_notification = NotificationServices::SendAllNotificationService.new owner: current_user,
             recipients: passive_favorites, status: "favorite", invoice: @invoice,
-            click_action: Settings.invoice_detail).perform
+            click_action: Settings.invoice_detail
+          send_all_notification.perform
         end
         serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
           each_serializer: InvoiceSerializer, scope: current_user).as_json
         if near_shippers.any?
-          InvoiceServices::RealtimeVisibilityInvoiceService.new(recipients: near_shippers,
-            invoice: serializer, action: Settings.realtime.new_invoice).perform
+          realtime = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: near_shippers,
+            invoice: serializer, action: Settings.realtime.new_invoice
+          realtime.perform
         end
         flash[:success] = t "invoices.create.success"
         redirect_to root_path
@@ -48,8 +51,9 @@ class Shop::InvoicesController < Shop::ShopBaseController
   def update
     check_update = if params[:status]
       @user_invoice = UserInvoice.find_by status: @invoice.status
-      InvoiceServices::ShopUpdateInvoiceService.new(invoice: @invoice,
-        user_invoice: @user_invoice, update_status: params[:status], current_user: current_user).perform?
+      shop_update_invoice = InvoiceServices::ShopUpdateInvoiceService.new invoice: @invoice,
+        user_invoice: @user_invoice, update_status: params[:status], current_user: current_user
+      shop_update_invoice.perform?
     else
       @invoice.update_attributes invoice_params
     end

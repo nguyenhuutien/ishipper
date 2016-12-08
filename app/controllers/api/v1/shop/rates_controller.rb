@@ -44,8 +44,9 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   end
 
   def ensure_params_exist
-    unless CheckParams.new(attributes_params: Review::RATE_ATTRIBUTES_PARAMS,
-      params: params[:rate]).perform?
+    check_params = CheckParams.new attributes_params: Review::RATE_ATTRIBUTES_PARAMS,
+      params: params[:rate]
+    unless check_params.perform?
       render json: {message: I18n.t("rate.missing_params"), data: {}, code: 0},
         status: 422
     end
@@ -69,9 +70,10 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   end
 
   def check_rate_conditions
-    if ConditionRateServices::ShopConditionService.new(invoice: @invoice,
+    shop_condition = ConditionRateServices::ShopConditionService.new invoice: @invoice,
       user_invoice: @user_invoice, review_type: params[:rate][:review_type],
-      current_user: current_user).perform?
+      current_user: current_user
+    if !shop_condition.perform?
       render json: {message: I18n.t("rate.create_fail"), data: {}, code: 0}, status: 200
     end
   end
