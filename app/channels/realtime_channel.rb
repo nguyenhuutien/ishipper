@@ -1,4 +1,3 @@
-# Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class RealtimeChannel < ApplicationCable::Channel
   def subscribed
     channel_name = "#{self.current_user.user.phone_number}_realtime_channel"
@@ -17,10 +16,10 @@ class RealtimeChannel < ApplicationCable::Channel
           new(self.current_user.user).as_json
         near_shops = User.near([self.current_user.user.latitude, self.current_user.user.longitude],
           Settings.max_distance).shop.users_online
-        ShipperServices::RealtimeVisibilityShipperService.new(recipients: near_shops,
-          shipper: serializer, action: Settings.realtime.shipper_offline).perform
+        realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: near_shops,
+          shipper: serializer, action: Settings.realtime.shipper_offline
+        realtime_visibility_shipper.perform
       end
     end
-    # Any cleanup needed when channel is unsubscribed
   end
 end

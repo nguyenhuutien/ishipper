@@ -24,8 +24,9 @@ class Api::V1::Shipper::ReportsController < Api::ShipperBaseController
   end
 
   def ensure_params_true
-    unless CheckParams.new(attributes_params: Review::REPORT_ATTRIBUTES_PARAMS,
-      params: params[:report]).perform?
+    check_params = CheckParams.new attributes_params: Review::REPORT_ATTRIBUTES_PARAMS,
+      params: params[:report]
+    unless check_params.perform?
       render json: {message: I18n.t("rate.missing_params"), data: {}, code: 0},
         status: 422
     end
@@ -57,9 +58,9 @@ class Api::V1::Shipper::ReportsController < Api::ShipperBaseController
   end
 
   def check_conditions_to_report
-    if ConditionReportServices::ShipperConditionService.new(invoice: @invoice,
-      user_invoice: @user_invoice, review_type: params[:report][:review_type],
-      current_user: current_user).perform?
+    shipper_condition = ConditionReportServices::ShipperConditionService.new invoice: @invoice,
+      user_invoice: @user_invoice, review_type: params[:report][:review_type], current_user: current_user
+    if !shipper_condition.perform?
       render json: {message: I18n.t("report.create_fail"), data: {},
         code: 0}, status: 200
     end

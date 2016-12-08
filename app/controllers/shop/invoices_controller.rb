@@ -38,9 +38,9 @@ class Shop::InvoicesController < Shop::ShopBaseController
         serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
           each_serializer: InvoiceSerializer, scope: current_user).as_json
         if near_shippers.any?
-          realtime = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: near_shippers,
+          realtime_visibility_shipper = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: near_shippers,
             invoice: serializer, action: Settings.realtime.new_invoice
-          realtime.perform
+          realtime_visibility_shipper.perform
         end
         flash[:success] = t "invoices.create.success"
         redirect_to root_path

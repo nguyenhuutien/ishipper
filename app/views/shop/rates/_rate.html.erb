@@ -4,7 +4,11 @@
     <hr>
     <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-sm-4
       col-md-3 col-md-offset-0 col-lg-3 col-lg-offset-0 nht-user-avatar">
-      <%= image_tag rate.owner.avatar.url, id: "avatar", class: "img-responsive" %>
+      <% if rate.owner.avatar.url.present? %>
+        <%= image_tag rate.owner.avatar.url, id: "avatar", class: "img-responsive" %>
+      <% else %>
+        <%= image_tag "profile.jpg", id: "avatar", class: "img-responsive" %>
+      <% end %>
       <p class="nht-owner-rate"><strong><%= rate.owner.name %></strong></p>
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-0
