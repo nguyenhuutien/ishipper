@@ -3,15 +3,15 @@
     <div id="map-profile">
     </div>
     <div class="none">
-      <%= hidden_field_tag "td-latitude", @user.latitude %>
-      <%= hidden_field_tag "td-longitude", @user.longitude %>
+      <%= hidden_field_tag "td-latitude", @shop.latitude %>
+      <%= hidden_field_tag "td-longitude", @shop.longitude %>
     </div>
 
     <nav class="navbar navbar-default">
       <a class="ndq-navbar-brand">
-        <%= image_tag avatar_profile, id: "avatar" %>
+        <%= image_tag avatar_profile(@shop), id: "avatar" %>
       </a>
-      <span class="ndq-site-name"><%= @user.name %></span>
+      <span class="ndq-site-name"><%= @shop.name %></span>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="nav main-menu navbar-nav">
           <li><a><i class="fa fa-cart-plus"></i>
@@ -26,7 +26,7 @@
       <div class="nht-user-rate ndq-area col-md-12">
         <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 nht-user-rate-left">
           <div class="nht-user-rate-content">
-            <h1><%= @user.rate %></h1>
+            <h1><%= @shop.rate %></h1>
           </div>
           <div class="nht-user-rate-sum">
             <%= t "users.sum_rate", sum: @supports.sum_rate %>
@@ -48,19 +48,19 @@
       <div class="ndq-area col-md-12">
         <p class="td-p-flex">
           <i class="fa fa-briefcase fa-fw w3-margin-right
-            w3-large w3-text-teal"></i><%= @user.role %>
+            w3-large w3-text-teal"></i><%= @shop.role %>
         </p>
         <p class="td-p-flex">
           <i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal">
-          </i><%= @user.address %>
+          </i><%= @shop.address %>
         </p>
         <p class="td-p-flex">
           <i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal">
-          </i><%= @user.email %>
+          </i><%= @shop.email %>
         </p>
         <p class="td-p-flex">
           <i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal">
-          </i><%= @user.phone_number %>
+          </i><%= @shop.phone_number %>
         </p>
       </div>
     </div>

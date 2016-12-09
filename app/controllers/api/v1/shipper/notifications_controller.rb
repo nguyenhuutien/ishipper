@@ -14,9 +14,9 @@ class Api::V1::Shipper::NotificationsController < Api::ShipperBaseController
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
         data: {notifications: @notifications, unread: 0}, code: 1}, status: 200
     else
-      unread_notification = current_user.user_setting.unread_notification
+      @unread_notification = current_user.user_setting.unread_notification
       render json: {message: I18n.t("notifications.messages.get_noti_success"),
-        data: {notifications: [], unread: unread_notification}, code: 1}, status: 200
+        data: {notifications: [], unread: @unread_notification}, code: 1}, status: 200
     end
   end
 

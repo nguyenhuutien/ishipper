@@ -4,24 +4,24 @@ class InvoiceServices::ShipperUpdateStatusService
   def initialize args
     @invoice = args[:invoice]
     @user_invoice = args[:user_invoice]
-    @status = args[:status]
+    @update_status = args[:update_status]
     @current_user = args[:current_user]
   end
 
   def perform?
     ActiveRecord::Base.transaction do
-      if @user_invoice.init? && @status == "rejected"
-        @user_invoice.update_attributes status: @status
+      if @user_invoice.init? && @update_status == "rejected"
+        @user_invoice.update_attributes status: @update_status
         HistoryServices::CreateUserInvoiceHistoryService.new(user_invoice: @user_invoice,
           creater_id: @current_user.id, status: "rejected").perform
       else
-        @invoice.update_attributes status: @status
-        @user_invoice.update_attributes status: @status
+        @invoice.update_attributes status: @update_status
+        @user_invoice.update_attributes status: @update_status
         HistoryServices::CreateAllHistoryService.new(invoice: @invoice,
           user_invoice: @user_invoice, creater_id: @current_user.id,
-          status: @status).perform
+          status: @update_status).perform
         NotificationServices::CreateNotificationService.new(owner: @current_user,
-          recipient: @invoice.user, status: @status, invoice: @invoice,
+          recipient: @invoice.user, status: @update_status, invoice: @invoice,
           click_action: Settings.invoice_detail).perform
       end
     end

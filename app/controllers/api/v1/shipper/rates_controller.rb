@@ -6,14 +6,15 @@ class Api::V1::Shipper::RatesController < Api::ShipperBaseController
   before_action :check_black_list
 
   def create
-    rate = @invoice.reviews.build rate_params
-    rate.owner = current_user
-    rate.recipient = @invoice.user
-    if rate.save
+    @rate = @invoice.reviews.build rate_params
+    @rate.owner = current_user
+    @rate.recipient = @invoice.user
+    @rate.review_type = "rate"
+    if @rate.save
       render json: {message: I18n.t("rate.create_success"),
-        data: {rate: rate}, code: 1}, status: 200
+        data: {rate: @rate}, code: 1}, status: 200
     else
-      render json: {message: error_messages(rate.errors.messages), data: {},
+      render json: {message: error_messages(@rate.errors.messages), data: {},
         code: 0}, status: 200
     end
   end
@@ -70,25 +71,21 @@ class Api::V1::Shipper::RatesController < Api::ShipperBaseController
 
   def check_rate_conditions
     shipper_condition = ConditionRateServices::ShipperConditionService.new invoice: @invoice,
-      user_invoice: @user_invoice, review_type: params[:rate][:review_type], current_user: current_user
+      user_invoice: @user_invoice, current_user: current_user
     if !shipper_condition.perform?
       render json: {message: I18n.t("rate.create_fail"), data: {}, code: 0}, status: 200
     end
   end
 
   def check_exist_rate
-    rate = @invoice.reviews.find_by review_type: params[:rate][:review_type], owner: current_user
-    unless rate.nil?
-      render json: {message: I18n.t("rate.exist_rate"), data: {},
-        code: 0}, status: 200
-    end
+    @rate = @invoice.reviews.find_by review_type: "rate", owner: current_user
+    render json: {message: I18n.t("rate.exist_rate"), data: {},
+      code: 0}, status: 200 if @rate
   end
 
   def find_rate
     @rate = Review.find_by_id params[:id]
-    if @rate.nil?
-      render json: {message: I18n.t("rate.not_found"), data: {},
-        code: 0}, status: 200
-    end
+    render json: {message: I18n.t("rate.not_found"), data: {},
+      code: 0}, status: 200 if @rate.nil?
   end
 end

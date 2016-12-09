@@ -7,42 +7,43 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   def create
     @user_invoice = current_user.user_invoices.build user_invoice_params
     new_shipper_limit = ShipperReceiveLimitServices::NewShipperLimitService.new user_id: current_user.id
-    if new_shipper_limit.perform?
+    can_create = if new_shipper_limit.perform?
       if @user_invoice.save
-        create_user_invoice_history = HistoryServices::CreateUserInvoiceHistoryService.
-          new user_invoice: @user_invoice, creater_id: current_user.id, status: "init"
-        create_user_invoice_history.perform
-        create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
-          recipient: @invoice.user, status: "receive", invoice: @invoice,
-          click_action: Settings.list_shipper_register
-        create_notification.perform
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
           data: {user_invoice: @user_invoice}, code: 1}, status: 200
+        true
       else
         render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
           code: 0}, status: 200
+        false
       end
     else
       old_shipper_limit = ShipperReceiveLimitServices::OldShipperLimitService.new user_id: current_user.id
       if old_shipper_limit.perform?
         if @user_invoice.save
-          create_user_invoice_history = HistoryServices::CreateUserInvoiceHistoryService.
-            new user_invoice: @user_invoice, creater_id: current_user.id, status: "init"
-          create_user_invoice_history.perform
-          create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
-            recipient: @invoice.user, status: "receive", invoice: @invoice,
-            click_action: Settings.list_shipper_register
-          create_notification.perform
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
             data: {user_invoice: @user_invoice}, code: 1}, status: 200
+          true
         else
           render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
             code: 0}, status: 200
+          false
         end
       else
         render json: {message: I18n.t("user_invoices.receive_invoice.limit"), data: {},
           code: 0}, status: 200
+        false
       end
+    end
+
+    if can_create
+      create_user_invoice_history = HistoryServices::CreateUserInvoiceHistoryService.
+        new user_invoice: @user_invoice, creater_id: current_user.id, status: "init"
+      create_user_invoice_history.perform
+      create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
+        recipient: @invoice.user, status: "receive", invoice: @invoice,
+        click_action: Settings.list_shipper_register
+      create_notification.perform
     end
   end
 
@@ -62,13 +63,13 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   end
 
   def check_received_invoice
-    @invoice = Invoice.find_by id: params[:user_invoice][:invoice_id]
+    @invoice = Invoice.find_by id: user_invoice_params[:invoice_id]
     if @invoice.nil?
       render json: {message: I18n.t("invoices.messages.invoice_not_found"),
         data: {}, code: 0}, status: 200
     end
-    user_invoice = current_user.user_invoices.find_by invoice: @invoice, status: "init"
-    if user_invoice
+    @user_invoice = current_user.user_invoices.find_by invoice: @invoice, status: "init"
+    if @user_invoice
       render json: {message: I18n.t("user_invoices.receive_invoice.received"),
         data: {}, code: 0}, status: 200
     end
@@ -82,8 +83,8 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   end
 
   def check_delete_user_invoice
-    user_invoices = Invoice.find_by(id: params[:id]).user_invoices
-    @user_invoice_delete = user_invoices.find_by user: current_user
+    @user_invoices = Invoice.find_by(id: params[:id]).user_invoices
+    @user_invoice_delete = @user_invoices.find_by user: current_user
     if @user_invoice_delete.nil?
       render json: {message: I18n.t("user_invoices.delete.nil"), data: {},
         code:0},status: 200
@@ -92,9 +93,9 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
 
   def check_black_list
     @invoice = Invoice.find_by_id user_invoice_params[:invoice_id]
-    black_list = BlackList.find_by owner_id: @invoice.user_id,
+    @black_list = BlackList.find_by owner_id: @invoice.user_id,
       black_list_user_id: current_user.id
-    if black_list
+    if @black_list
       render json: {message: I18n.t("black_list.permission_denied"), data: {},
         code: 1}, status: 200
     end

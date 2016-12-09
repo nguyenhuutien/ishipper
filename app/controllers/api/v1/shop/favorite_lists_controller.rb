@@ -4,19 +4,19 @@ class Api::V1::Shop::FavoriteListsController < Api::ShopBaseController
   before_action :load_and_check_favorite_list, only: :destroy
 
   def index
-    users = current_user.favorite_list_users
-    users = ActiveModelSerializers::SerializableResource.new(users,
+    @users = current_user.favorite_list_users
+    @users = ActiveModelSerializers::SerializableResource.new(@users,
       each_serializer: Users::FavoriteUserSerializer, scope: {current_user: current_user})
     render json: {message: I18n.t("favorite_list.get_favorite_list_success"),
-      data: {users: users}, code: 1}, status: 200
+      data: {users: @users}, code: 1}, status: 200
   end
 
   def create
-    favorite_list = FavoriteList.new favorite_list_params
-    favorite_list.owner = current_user
-    if favorite_list.save
+    @favorite_list = FavoriteList.new favorite_list_params
+    @favorite_list.owner = current_user
+    if @favorite_list.save
       render json: {message: I18n.t("favorite_list.create_success"),
-        data: {favorite_list: favorite_list}, code: 1}, status: 200
+        data: {favorite_list: @favorite_list}, code: 1}, status: 200
     else
       render json: {message: I18n.t("favorite_list.create_fail"), data: {},
         code: 0}, status: 200
@@ -44,18 +44,18 @@ class Api::V1::Shop::FavoriteListsController < Api::ShopBaseController
   end
 
   def check_exist_favorite_list
-    favorite_list_user = current_user.favorite_list_users.
+    @favorite_list_user = current_user.favorite_list_users.
       find_by id: favorite_list_params[:favorite_list_user_id]
-    if favorite_list_user
+    if @favorite_list_user
       render json: {message: I18n.t("favorite_list.favorite_list_shop_exist"),
         data: {}, code: 0}, status: 200
     end
   end
 
   def check_user_exist
-    user = User.find_by id: favorite_list_params[:favorite_list_user_id]
+    @user = User.find_by id: favorite_list_params[:favorite_list_user_id]
     render json: {message: I18n.t("black_list.user"), data: {}, code: 0},
-      status: 422 if user.nil? or user.shop?
+      status: 422 if @user.nil? or @user.shop?
   end
 
   def load_and_check_favorite_list
