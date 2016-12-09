@@ -16,8 +16,9 @@ module ApplicationCable
       if self.current_user.user.shipper?
         serializer = ActiveModelSerializers::SerializableResource.
           new(self.current_user.user).as_json
-        near_shops = User.near([self.current_user.user.latitude, self.current_user.user.longitude],
-          Settings.max_distance).shop.users_online
+        user_settings = UserSetting.near [self.current_user.user_setting.latitude,
+          self.current_user.user_setting.longitude], Settings.max_distance, order: false
+        near_shops = User.users_by_user_setting(user_settings).shop.users_online
         ShipperServices::RealtimeVisibilityShipperService.new(recipients: near_shops,
           shipper: serializer, action: Settings.realtime.shipper_online).perform
       end

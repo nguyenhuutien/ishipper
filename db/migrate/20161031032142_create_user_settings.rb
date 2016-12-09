@@ -7,6 +7,10 @@ class CreateUserSettings < ActiveRecord::Migration[5.0]
       t.string :favorite_address
       t.float :favorite_latitude
       t.float :favorite_longitude
+      t.string :current_location
+      t.float :latitude
+      t.float :longitude
+      t.boolean :signed_in
       t.integer :radius_display, default: 5
       t.references :user, foreign_key: true
 
