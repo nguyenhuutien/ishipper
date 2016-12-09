@@ -6,14 +6,15 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   before_action :check_black_list
 
   def create
-    rate = Review.new rate_params
-    rate.owner = current_user
-    rate.recipient = @user_invoice.user
-    if rate.save
+    @rate = Review.new rate_params
+    @rate.owner = current_user
+    @rate.recipient = @user_invoice.user
+    @rate.review_type = "rate"
+    if @rate.save
       render json: {message: I18n.t("rate.create_success"),
-        data: {rate: rate}, code: 1}, status: 200
+        data: {rate: @rate}, code: 1}, status: 200
     else
-      render json: {message: error_messages(rate.errors.messages), data: {},
+      render json: {message: error_messages(@rate.errors.messages), data: {},
         code: 0}, status: 200
     end
   end
@@ -71,19 +72,16 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
 
   def check_rate_conditions
     shop_condition = ConditionRateServices::ShopConditionService.new invoice: @invoice,
-      user_invoice: @user_invoice, review_type: params[:rate][:review_type],
-      current_user: current_user
+      user_invoice: @user_invoice, current_user: current_user
     if !shop_condition.perform?
       render json: {message: I18n.t("rate.create_fail"), data: {}, code: 0}, status: 200
     end
   end
 
   def check_exist_rate
-    rate = @invoice.reviews.find_by review_type: params[:rate][:review_type], owner: current_user
-    unless rate.nil?
-      render json: {message: I18n.t("rate.exist_rate"), data: {},
-        code: 0}, status: 200
-    end
+    @rate = @invoice.reviews.find_by review_type: "rate", owner: current_user
+    render json: {message: I18n.t("rate.exist_rate"), data: {},
+      code: 0}, status: 200 if @rate
   end
 
   def find_rate

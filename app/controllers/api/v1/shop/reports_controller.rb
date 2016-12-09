@@ -6,9 +6,10 @@ class Api::V1::Shop::ReportsController < Api::ShopBaseController
     @report = @invoice.reviews.build report_params
     @report.owner = current_user
     @report.recipient = @user_invoice.user
+    @report.review_type = "report"
     if @report.save
       shop_update_status = InvoiceServices::ShopUpdateStatusService.new invoice: @invoice,
-        user_invoice: @user_invoice, status: "cancel", current_user: current_user
+        user_invoice: @user_invoice, update_status: "cancel", current_user: current_user
       shop_update_status.perform?
       render json: {message: I18n.t("report.create_success"),
         data: {report: @report}, code: 1}, status: 200
@@ -49,18 +50,14 @@ class Api::V1::Shop::ReportsController < Api::ShopBaseController
   end
 
   def check_exist_report
-    report = @invoice.reviews.find_by owner: current_user,
-      review_type: params[:report][:review_type]
-    if report
-      render json: {message: I18n.t("report.invoice.report_exist"), data: {},
-        code: 0}, status: 200
-    end
+    @report = @invoice.reviews.find_by owner: current_user, review_type: "report"
+    render json: {message: I18n.t("report.invoice.report_exist"), data: {},
+      code: 0}, status: 200 if @report
   end
 
   def check_conditions_to_report
     shop_condition = ConditionReportServices::ShopConditionService.new invoice: @invoice,
-      user_invoice: @user_invoice, review_type: params[:report][:review_type],
-      current_user: current_user
+      user_invoice: @user_invoice, current_user: current_user
     if !shop_condition.perform?
       render json: {message: I18n.t("report.create_fail"), data: {},
         code: 0}, status: 200

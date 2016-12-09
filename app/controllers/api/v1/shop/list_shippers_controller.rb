@@ -2,17 +2,17 @@ class Api::V1::Shop::ListShippersController < Api::ShopBaseController
   before_action :ensure_params_true, :load_invoice, only: :index
 
   def index
-    shippers = @invoice.all_shipper
-    shippers = shippers - current_user.black_list_users
-    shippers = ActiveModelSerializers::SerializableResource.new(shippers,
+    @shippers = @invoice.all_shipper
+    @shippers = @shippers - current_user.black_list_users
+    @shippers = ActiveModelSerializers::SerializableResource.new(@shippers,
       each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
       current_user: current_user}).as_json
-    if shippers.blank?
+    if @shippers.blank?
       render json: {message: I18n.t("invoices.messages.get_shippers_fails"),
       data: {}, code: 1}, status: 200
     else
       render json: {message: I18n.t("invoices.messages.get_shippers_success"),
-      data: {shippers: shippers}, code: 1}, status: 200
+      data: {shippers: @shippers}, code: 1}, status: 200
     end
   end
 

@@ -5,7 +5,7 @@ class Notifications::SendNotificationJob < ActiveJob::Base
     notification = args[:notification]
     owner = args[:owner]
     recipient = args[:recipient]
-    content = args[:content]
+    status = args[:status]
     invoice = args[:invoice]
     click_action = args[:click_action]
 
@@ -14,7 +14,7 @@ class Notifications::SendNotificationJob < ActiveJob::Base
     recipient.user_tokens.each do |user_token|
       registration_ids << user_token.registration_id unless user_token.registration_id.nil?
     end
-    text = I18n.t("notifications.#{content}", user_name: owner.name, invoice_name: invoice.name)
+    text = I18n.t("notifications.#{status}", user_name: owner.name, invoice_name: invoice.name)
     if recipient.shipper?
     serializer = Invoices::ShipperInvoiceSerializer.new(invoice,
       scope: {current_user: recipient}).as_json

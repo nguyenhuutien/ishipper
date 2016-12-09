@@ -5,25 +5,25 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
   before_action :check_black_list, only: [:show, :update]
 
   def index
-    invoices = if params[:status] == "all"
+    @invoices = if params[:status] == "all"
       current_user.all_user_invoices.search_invoice(params[:query]).order_by_time
     else
       Invoice.invoice_by_status(params[:status], current_user.id).
         search_invoice(params[:query]).order_by_time
     end
-    serializer = ActiveModelSerializers::SerializableResource.new(invoices,
+    @serializer = ActiveModelSerializers::SerializableResource.new(@invoices,
       each_serializer: Invoices::ShipperInvoiceSerializer,
       scope: {current_user: current_user}).as_json
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
-      data: {invoices: serializer}, code: 1}, status: 200
+      data: {invoices: @serializer}, code: 1}, status: 200
   end
 
    def show
     if @invoice.present?
-      serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
+      @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
         scope: {current_user: current_user}).as_json
       render json: {message: I18n.t("invoices.show.success"),
-        data: {invoice: serializer}, code: 1}, status: 200
+        data: {invoice: @serializer}, code: 1}, status: 200
     else
       render json: {message: I18n.t("invoices.messages.not_found"),
         data: {}, code: 0}, status: 200
@@ -32,7 +32,7 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
 
   def update
     shipper_update_status = InvoiceServices::ShipperUpdateStatusService.new invoice: @invoice,
-      user_invoice: @user_invoice, status: params[:status], current_user: current_user
+      user_invoice: @user_invoice, update_status: params[:status], current_user: current_user
     if shipper_update_status.perform?
       render json: {message: I18n.t("invoices.messages.update_success"),
         data: {invoice: @invoice}, code: 1}, status: 200

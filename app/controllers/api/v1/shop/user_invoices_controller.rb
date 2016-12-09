@@ -15,10 +15,6 @@ class Api::V1::Shop::UserInvoicesController < Api::ShopBaseController
   end
 
   private
-  def user_invoice_params
-    params.require(:user_invoice).permit :invoice_id
-  end
-
   def check_limited_shipper
     @user_invoices = @user_invoice.user.user_invoices
     user_invoices_init = @user_invoices.init
