@@ -6,7 +6,8 @@ class Invoice < ApplicationRecord
   has_many :user_invoices, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :invoice_histories
-  has_many :all_shipper, through: :user_invoices, source: :shipper
+  has_many :all_shipper, -> {where user_invoices: {status: "init"}},
+    through: :user_invoices, source: :shipper
   has_many :notifications, dependent: :destroy
 
   belongs_to :shop, foreign_key: "user_id"

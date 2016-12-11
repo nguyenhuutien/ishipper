@@ -19,7 +19,8 @@ class Notifications::SendNotificationJob < ActiveJob::Base
     serializer = Invoices::ShipperInvoiceSerializer.new(invoice,
       scope: {current_user: recipient}).as_json
     else
-      serializer = Invoices::ShopInvoiceSerializer.new(invoice).as_json
+      serializer = Invoices::ShopInvoiceSerializer.new(invoice,
+        scope: {current_user: owner}).as_json
     end
     options = {notification: {title: I18n.t("notifications.app_name"), text: text,
       click_action: click_action}, data: {notification_id: notification.id,
