@@ -7,7 +7,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
   end
 
   def show
-    @review = Review.new
+    @support = Supports::Invoice.new invoice: @invoice, current_user: current_user
   end
 
   def new
@@ -51,7 +51,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
 
   def update
     check_update = if params[:status]
-      @user_invoice = UserInvoice.find_by status: @invoice.status
+      @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
       shop_update_invoice = InvoiceServices::ShopUpdateInvoiceService.new invoice: @invoice,
         user_invoice: @user_invoice, update_status: params[:status], current_user: current_user
       shop_update_invoice.perform?
