@@ -29,7 +29,7 @@ class Api::V1::Shop::UserInvoicesController < Api::ShopBaseController
 
   def check_conditions_to_accept_shipper?
     @invoice = @user_invoice.invoice
-    if !@invoice.init? || !@user_invoice.init?
+    if !@invoice.init? || !@user_invoice.init? || @invoice.user != current_user
       render json: {message: I18n.t("invoices.accept_shipper.fail"), data: {},
         code: 0}, status: 200
     end

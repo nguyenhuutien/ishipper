@@ -12,14 +12,16 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
         search_invoice(params[:query]).order_by_time
     end
     @serializers = ActiveModelSerializers::SerializableResource.new(@invoices,
-      each_serializer: Invoices::ShopInvoiceSerializer).as_json
+      each_serializer: Invoices::ShopInvoiceSerializer,
+      scope: {current_user: current_user}).as_json
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
       data: {invoices: @serializers}, code: 1}, status: 200
   end
 
   def show
     if @invoice.present?
-      @serializer = Invoices::ShopInvoiceSerializer.new(@invoice).as_json
+      @serializer = Invoices::ShopInvoiceSerializer.new(@invoice,
+        scope: {current_user: current_user}).as_json
       render json: {message: I18n.t("invoices.show.success"),
         data: {invoice: @serializer}, code: 1}, status: 200
     else
