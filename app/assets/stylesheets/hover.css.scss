@@ -132,3 +132,7 @@
   -webkit-transform: translateY(10px);
   transform: translateY(10px);
 }
+
+.hvr-sweep-to-top:before{
+  background: rgba(0, 190, 69, 0.8) !important;
+}
