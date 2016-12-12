@@ -14,7 +14,13 @@
               <%= current_user.user_setting.unread_notification %>
             </div>
           </i>
+          <div class="nht-up-arrow">
+            <%= image_tag "up-arrow.png", class: "img-responsive" %>
+          </div>
           <div class="nht-notifications">
+            <div class="notification-title">
+              <%= t "notifications.title" %>
+            </div>
             <ul class="nht-noti-list">
               <% @notifications.each do |notification| %>
                 <%= link_to shop_invoice_path(notification.invoice) do %>
@@ -31,8 +37,11 @@
                       <div class="clearfix"></div>
                     </span>
                     <span class="col-md-10 col-lg-10 nht-notification-content">
-                      <%= notification_content notification %>
-                      <div>
+                      <div class="content">
+                        <%= truncate notification_content(notification),
+                          length: Settings.length_notification %>
+                      </div>
+                      <div class="small">
                         <%= time_ago_in_words notification.created_at %>
                       </div>
                     </span>
@@ -44,6 +53,7 @@
             </ul>
           </div>
         </li>
+
         <li class="dropdown header-item" id="_profile">
           <a href="#" class="dropdown-toggle logo" data-toggle="dropdown">
             <%= current_user.name %><b class="caret"></b>
