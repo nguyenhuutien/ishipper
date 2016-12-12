@@ -326,7 +326,7 @@
   font-size: 36px;
 }
 
-.modal-content{
+.back_road{
   background-color: #fff;
   box-shadow: 0 0 12px 2px rgba(0,0,0,0.35);
   opacity: 1;
@@ -337,4 +337,203 @@
   font-weight: 400;
   line-height: 1.36;
   font-size: 1.4rem;
+}
+
+
+#main{
+  color: red;
+  background-image: image-url("road.jpg");
+  background-size: 200%;
+}
+
+.featured-info{
+  width: 5px;
+}
+
+#map {
+  margin-bottom: 20px;
+  height: 400px !important;
+  margin-top: 70px;
+}
+
+.colorgraph{
+  margin-top: 470px;
+}
+
+.after_map{
+  margin-top: 480px;
+}
+
+.nht-fix-input{
+  height: 40px !important;
+}
+
+.input-group-addon{
+  padding: 0px;
+}
+
+.nht-invoice-distance-content{
+  background-color: transparent;
+  border: 1px solid #adadad;
+  border-radius: 1px;
+  box-shadow: none;
+  color: #303030;
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 56px;
+  line-height: 1.36;
+  padding: .7rem 1rem 1rem;
+  transition: border-color .1s linear;
+  vertical-align: baseline;
+}
+
+#distance_invoice{
+  width: auto;
+}
+
+.nht-marker-start{
+  font-size: 1.5em !important;
+}
+
+.nht-marker-finish{
+  font-size: 1.5em !important;
+}
+
+.input-group-addout{
+  padding: 9px;
+}
+
+.input-group-out{
+  margin-top: 15px;
+}
+
+.input-group-addout img{
+  height: 30px;
+}
+
+.nht-invoice-distance-content{
+  padding: 9px;
+}
+
+.bt-next{
+  width: 100px;
+  margin-top: 2em;
+  margin-left: 2em;
+}
+
+.back_road{
+  background-image: image-url("road.jpg");
+  background-size: 200%;
+}
+
+.featured-info{
+  height: 400px;
+}
+
+.hvr-sweep-to-top {
+  color: #FFF;
+  font-size: 16px;
+  text-transform: none;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.hvr-sweep-to-top:before {
+  background: rgba(0, 190, 69, 0.5) !important;
+  animation: animatedBackground 40s linear infinite;
+  border-radius: 10px;
+}
+
+.hvr-sweep-to-top:hover, .hvr-sweep-to-top:focus, .hvr-sweep-to-top:active {
+  color: #FFF;
+  font-size: 16px;
+  text-transform: none;
+  font-weight: 600;
+  background-color: red;
+  background: rgba(0, 190, 69, 0.5) !important;
+  border-radius: 10px !important;
+}
+
+@keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+
+.sidebar-active{
+  color: #FFF;
+  background: rgba(0, 190, 69, 0.5) !important;
+  border-radius: 10px;
+  font-size: 16px;
+  text-transform: none;
+  font-weight: 600;
+  text-align: center;
+}
+
+.list-category{
+  border: none;
+  box-shadow: none;
+}
+
+.sidebar_content{
+  margin-top: 20px;
+}
+
+.btn-new_invoice:hover{
+  background-color: #00bcd4;
+}
+
+#mySidenav {
+  background-color: inherit;
+  background-image: image-url("cover.jpg");
+  margin-top: 70px;
+}
+
+.back-trans {
+  background-color: #00be45;
+  border-radius: 10px;
+  font-size: 18px;
+  text-transform: none;
+  font-weight: 600;
+  text-align: center;
+}
+
+.back-trans:hover {
+  background-color: #00be45;
+  color: #FFF;
+  border-radius: 10px;
+  font-size: 18px;
+  text-transform: none;
+  font-weight: 600;
+  text-align: center;
+}
+
+.footer {
+  bottom: -50px !important;
+}
+
+.back-trans{
+  border-radius: 0px;
+  background-color: rgba(0, 190, 69, 0.8) !important;
+}
+
+.list-category{
+  border-radius: 10px;
+}
+
+#myBtn{
+  border-radius: 0px;
+  background-color: rgba(0, 190, 69, 0.8) !important;
+}
+
+.sidebar_content a:hover {
+  background: rgba(0, 190, 69, 0.0) !important;
+}
+
+.sidebar_content a:hover {
+  background-color: #B2FF59 !important;
+}
+
+.sidebar_content a:hover {
+  border-radius: 0px;
+  background: rgba(0, 190, 69, 0.1) !important;
 }
