@@ -58,6 +58,7 @@ document.addEventListener("turbolinks:load", function() {
 
   $('.nht-notification-icon').on('click', function() {
     $('.nht-notifications').toggle();
+    $('.nht-up-arrow').toggle();
     $('.nht-notification-count').hide();
     App.notification.speak({action_type: "unread_notification"});
 
@@ -70,7 +71,7 @@ document.addEventListener("turbolinks:load", function() {
       if (owner.avatar.url != null) {
         $('#avatar-' + notification.id)[0].src = owner.avatar.url;
       } else {
-        $('#avatar-' + notification.id)[0].src = '<%= asset_path "profile.jpg" %>';
+        $('#avatar-' + notification.id)[0].src = '../assets/images/profile.jpg';
       }
       $('.notification-' + notification.id).on('click', function() {
         window.location.assign(window.location.origin + '/shop/invoices/' + invoice.id);
@@ -84,5 +85,13 @@ document.addEventListener("turbolinks:load", function() {
   $('.nht-notification').on('click', function() {
     id = parseInt(this.className.split(' ')[1].split('-')[1]);
     App.notification.speak({action_type: "unread_notification", notification_id: id});
+  });
+
+  $('.false-notification').on('mouseover', function() {
+    $(this).addClass('true-notification');
+  });
+
+  $('.false-notification').on('mouseout', function() {
+    $(this).removeClass('true-notification');
   });
 });

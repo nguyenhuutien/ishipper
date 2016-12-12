@@ -15,3 +15,12 @@ en:
       success: Update success
       failed: Update fales
     missing_params: Missing param notification
+    title: Notifications
+    web:
+      receive: "<strong>%{user_name}</strong> đã nhận đơn hàng <strong>%{invoice_name}</strong> của bạn"
+      waiting: "Bạn đã được chấp nhận giao đơn hàng <strong>%{invoice_name}</strong>"
+      shipping: "<strong>%{user_name}</strong> đang giao đơn hàng <strong>%{invoice_name}</strong>"
+      shipped: "<strong>%{user_name}</strong> đã giao đơn hàng <strong>%{invoice_name}</strong> thành công"
+      finished: "Đơn hàng <strong>%{invoice_name}</strong> đã được <strong>%{user_name}</strong> xác nhận"
+      cancel: "Đơn hàng <strong>%{invoice_name}</strong> đã bị hủy"
+      favorite: "Cửa hàng <strong>%{user_name}</strong> vừa đăng đơn hàng mới"

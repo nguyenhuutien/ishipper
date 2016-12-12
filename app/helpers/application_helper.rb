@@ -12,6 +12,8 @@ module ApplicationHelper
   end
 
   def notification_content notification
-    "<strong>#{notification.owner.name}</strong> #{notification.status} <strong>#{notification.invoice.name}</strong>".html_safe
+    t("notifications.web.#{notification.status}",
+      user_name: notification.owner.name,
+      invoice_name: notification.invoice.name).html_safe
   end
 end
