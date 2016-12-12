@@ -4,7 +4,7 @@
       w3-margin-top td-menu-hide">
     </i>
 
-    <div class="w3-container status">
+    <div class="w3-container status invoices_back">
       <br>
       <%= image_tag "shipper.jpg", class: "td-image-shipper w3-round
         w3-animate-top" %>
@@ -14,13 +14,6 @@
         <% @invoices.all.each do |invoice| %>
           <%= link_to [:shop, invoice] do %>
             <%= render "form_invoice", invoice: invoice %>
-            <% if invoice.init? %>
-              <div class="nht-btn-list-shippers">
-                <%= link_to t("invoices.choose_shipper"),
-                  shop_invoice_path(invoice),
-                  class: "btn btn-primary" %>
-              </div>
-            <% end %>
           <% end %>
         <% end %>
       </div>
