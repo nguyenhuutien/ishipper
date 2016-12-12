@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     resources :list_shippers, only: :index
     resources :reports, only: [:new, :create]
     resources :rates, only: [:new, :create]
+    resources :user_invoices, only: :update
   end
   resources :shops
   resources :shippers, only: :show

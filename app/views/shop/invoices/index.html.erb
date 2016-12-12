@@ -16,8 +16,8 @@
             <%= render "form_invoice", invoice: invoice %>
             <% if invoice.init? %>
               <div class="nht-btn-list-shippers">
-                <%= link_to t("invoices.list_shippers"),
-                  shop_list_shippers_path(invoice_id: invoice.id),
+                <%= link_to t("invoices.choose_shipper"),
+                  shop_invoice_path(invoice),
                   class: "btn btn-primary" %>
               </div>
             <% end %>

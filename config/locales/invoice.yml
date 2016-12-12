@@ -28,6 +28,7 @@ en:
     accept_shipper:
       success: "Accept shipper success"
       fail: "Accept shipper fail"
+      button: Accept
     name: Enter name of invoice
     weight: Enter weight of invoice
     price: Enter price of invoice
@@ -75,6 +76,7 @@ en:
     draw: Draw routes
     invalid: Invalid
     list_shippers: Shipper near by
+    choose_shipper: Choose Shipper
     update:
       cancel: Cancel
       finished: Finished
