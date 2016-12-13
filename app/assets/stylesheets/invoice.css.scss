@@ -338,7 +338,6 @@
   font-size: 1.4rem;
 }
 
-
 #main{
   background-image: image-url("road.jpg");
   background-size: 200%;
@@ -534,4 +533,8 @@
 .sidebar_content a:hover {
   border-radius: 0px;
   background: rgba(0, 190, 69, 0.1) !important;
+}
+
+.td-invoice-content-2{
+  margin-top: 30px;
 }

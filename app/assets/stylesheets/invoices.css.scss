@@ -168,3 +168,107 @@
 .btn-new_invoice:hover{
   background: rgba(0, 190, 69, 0.8) !important;
 }
+
+.td-invoice-box{
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+}
+
+.nht-btn-list-shippers{
+  width: 80px;
+  height: 48px;
+  position: relative;
+  bottom: 11.6em;
+  left: 15px;
+  float: right;
+  margin-right: 9em;
+  display:table-cell;
+  border: 0px;
+  background: image_url("tag_background.png");
+}
+
+.nht-btn-list-shippers a{
+  height: 50px;
+  background-color: rgba(0, 190, 69, 1) !important;
+  font-weight: 500;
+  background-color: rgb(103, 158, 55);
+  display: table-cell;
+  font-weight: 600;
+}
+
+.td-invoice-box{
+  width: auto;
+  height: 300px;
+  margin: -20px -20px;
+  text-align: left;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  border: 1px solid #5c5c5c;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 2px 4px 1px, rgba(0, 0, 0, 0.25) 0 2px 55px 3px !important;
+  background: radial-gradient(#8dddff, #ffffff);
+  background: image_url("tag_background.png");
+}
+
+.td-invoice-box:hover{
+  background: radial-gradient(#8dddff, #ffffff);
+}
+
+.td-invoice-content{
+  width: 67%;
+  color: white;
+  background-image: image_url("road.jpg");
+  box-shadow: 1px 1px 1px 1px gray;
+  margin-left: 45px;
+}
+
+.td-invoice-index{
+  background-color: #86B4CC;
+}
+
+.invoices_back{
+  background-color: #86B4CC;
+}
+
+.invoice_node{
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 1px solid #adadad;
+  padding: 9px;
+  margin: 0px;
+  border-radius: 1px;
+  box-shadow: none;
+}
+
+.td-invoice-content-left{
+  height: 69px !important;
+  background-color: rgb(249, 253, 255) !important;
+}
+
+.td-invoice-content-right{
+  height: 69px !important;
+  background-color: rgb(249, 253, 255) !important;
+}
+
+.td-invoice-box hr{
+  padding: 0px;
+  margin: 0px;
+}
+
+.td-invoice-box {
+  height: 250px;
+  margin: 30px -50px;
+}
+
+.t-hot-main{
+  display: table;
+  background-color: #5bc0de;
+  font-weight: bold;
+  padding: .4em .8em .4em;
+  font-size: 1.3em;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  margin: 0 auto;
+}
