@@ -1,8 +1,9 @@
 class Supports::User
   attr_reader :current_user
 
-  def initialize current_user
-    @current_user = current_user
+  def initialize args
+    @current_user = args[:current_user]
+    @params = args[:params]
   end
 
   ["favorite_list_users", "black_list_users"].each do |user_type|
@@ -12,9 +13,13 @@ class Supports::User
     end
   end
 
+  def reviews
+    @current_user.passive_reviews
+  end
+
   Settings.rate.list_rate.each do |rate|
     define_method rate do
-      instance_variable_set "@#{rate}", @current_user.passive_reviews.where(rating_point:
+      instance_variable_set "@#{rate}", reviews.where(rating_point:
         Settings.rate.send(rate), review_type: "rate").size
     end
   end
@@ -25,5 +30,13 @@ class Supports::User
       sum += send(rate)
     end
     sum
+  end
+
+  def user_invoice_id
+    @params[:user_invoice_id] if @params
+  end
+
+  def invoice_id
+    @params[:invoice_id] if @params
   end
 end

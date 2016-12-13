@@ -28,6 +28,6 @@ class ShopsController < ApplicationController
   end
 
   def load_support
-    @supports = Supports::User.new current_user
+    @supports = Supports::User.new current_user: current_user
   end
 end

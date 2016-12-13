@@ -20,7 +20,7 @@ class Users::ListShipperSerializer < UserSerializer
   end
 
   def supports
-    Supports::User.new scope[:current_user]
+    Supports::User.new current_user: scope[:current_user]
   end
 
   Settings.rate.list_rate.each do |rate|

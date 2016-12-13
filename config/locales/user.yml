@@ -26,5 +26,6 @@ en:
     sum_rate: "Sum: %{sum}"
     sum: "Sum: "
     rate: Rate
+    back: Back
   load_more: Load More
   show_less: Show Less

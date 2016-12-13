@@ -4,11 +4,10 @@ class ShippersController < ApplicationController
   before_action :load_support, only: :show
 
   def show
-    @reviews = @shipper.passive_reviews
   end
 
   private
   def load_support
-    @supports = Supports::User.new current_user
+    @supports = Supports::User.new current_user: current_user, params: params
   end
 end

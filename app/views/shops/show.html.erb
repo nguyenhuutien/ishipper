@@ -9,7 +9,7 @@
 
     <nav class="navbar navbar-default">
       <a class="ndq-navbar-brand">
-        <%= image_tag avatar_profile(@shop), id: "avatar" %>
+        <%= image_tag avatar_profile(@shop.avatar.url), id: "avatar" %>
         <% if @shop == current_user %>
           <div class="td-edit" data-toggle="modal" data-target="#myModal-edit-avatar">
             <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 35px"></i>
@@ -66,7 +66,8 @@
 
     <div class="col-md-4">
       <div class="nht-user-rate ndq-area col-md-12">
-        <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 nht-user-rate-left">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4
+          nht-user-rate-left">
           <div class="nht-user-rate-content">
             <h1><%= @shop.rate %></h1>
           </div>
@@ -74,12 +75,13 @@
             <%= t "users.sum_rate", sum: @supports.sum_rate %>
           </div>
         </div>
+
         <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8 nht-user-rate-right">
-          <% Settings.rate.list_rate.each do |numstar| %>
+          <% Settings.rate.list_stars.each do |numstar| %>
             <div class="bar-content <%= numstar %>">
-              <i class="fa fa-star star"><%= Settings.rate.send numstar %></i>
-              <span class="bar" data-id="<%= @supports.send numstar %>">
-                <%= @supports.send numstar %>
+              <i class="fa fa-star star"><%= Settings.rate.send "load_#{numstar}_star" %></i>
+              <span class="bar" data-id="<%= @supports.send "load_#{numstar}_star" %>">
+                <%= @supports.send "load_#{numstar}_star" %>
               </span>
               <div class="clearfix"></div>
             </div>
