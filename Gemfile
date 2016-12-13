@@ -23,6 +23,7 @@ gem "redis"
 gem "carrierwave"
 gem "cloudinary"
 gem "ckeditor"
+gem "i18n-js", ">= 3.0.0.rc11"
 
 group :development, :test do
   gem "pry"

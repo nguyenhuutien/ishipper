@@ -104,6 +104,8 @@ GEM
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    i18n-js (3.0.0.rc15)
+      i18n (~> 0.6, >= 0.6.6)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -254,6 +256,7 @@ DEPENDENCIES
   fcm
   font-awesome-rails
   geocoder
+  i18n-js (>= 3.0.0.rc11)
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

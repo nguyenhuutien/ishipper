@@ -10,5 +10,7 @@ module IShipper
   class Application < Rails::Application
     config.time_zone = "Hanoi"
     config.active_record.default_timezone = :local
+    config.assets.initialize_on_precompile = true
+    config.middleware.use I18n::JS::Middleware
   end
 end
