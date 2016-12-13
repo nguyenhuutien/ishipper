@@ -56,5 +56,7 @@ document.addEventListener('turbolinks:load', function() {
   });
 
   var openInbox = document.getElementById('myBtn');
-  openInbox.click();
+  if ($('#mySidenav').length > 0) {
+    openInbox.click();
+  }
 });
