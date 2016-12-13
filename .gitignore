@@ -29,3 +29,4 @@ config/secrets.yml
 
 # Ignore application configuration
 /config/application.yml
+/app/assets/javascripts/i18n/translations.js

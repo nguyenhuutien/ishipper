@@ -83,7 +83,7 @@ document.addEventListener("turbolinks:load", function initializeMap() {
 
     if (i == 0) {
       marker.setIcon(img_start.src);
-      marker.setTitle('Address start');
+      marker.setTitle(I18n.t("map_on_invoice.address_start"));
       geocodeLatLng(geocoder, marker.getPosition(), $('#map-address0'));
       $('#map-lat0').val(marker.getPosition().lat());
       $('#map-lng0').val(marker.getPosition().lng());
@@ -96,7 +96,7 @@ document.addEventListener("turbolinks:load", function initializeMap() {
       });
     } else {
       marker.setIcon(img_finish.src);
-      marker.setTitle('Address finish');
+      marker.setTitle(I18n.t("map_on_invoice.address_finish"));
       geocodeLatLng(geocoder, marker.getPosition(), $('#map-address1'));
       $('#map-lat1').val(marker.getPosition().lat());
       $('#map-lng1').val(marker.getPosition().lng());

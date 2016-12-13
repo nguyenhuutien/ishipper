@@ -10,13 +10,13 @@ document.addEventListener("turbolinks:load", function() {
 
   $(function typeloop(){
     $("#title-slide-letter").typed({
-      strings: ["WE"],
+      strings: [I18n.t("home_page.we")],
       typeSpeed: 80,
       showCursor: false
     });
     setInterval(function(){
       $('#slide-letter').typed({
-        strings: ["Make it awesome!!!"],
+        strings: [I18n.t("home_page.make_it_awsome")],
         typeSpeed: 80,
         showCursor: false
       });
