@@ -54,8 +54,7 @@ en:
     delivery_time: DELIVERY TIME
     cost: COST
     km: Km
-    show:
-      shipping_price: Shipping price
+    shipping_price: Shipping price
     _info_invoice: INFORMATION OF INVOICE
     _detail: DETAIL
     _name: Name of invoice
