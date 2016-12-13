@@ -1,6 +1,6 @@
 class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
   before_action :ensure_params_exist, :check_favorite_user,
-    :check_exist_favorite_list, only: :create
+    :check_exist_favorite_list, :check_exist_black_list, only: :create
   before_action :load_and_check_favorite_list, only: :destroy
 
   def index
@@ -36,7 +36,7 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
 
   def ensure_params_exist
     check_params = CheckParams.new attributes_params: FavoriteList::FAVORITE_LIST_ATTRIBUTES_PARAMS,
-      parmas: params[:favorite_list]
+      params: params[:favorite_list]
     unless check_params.perform?
       render json: {message: I18n.t("favorite_list.missing_params"), data: {},
         code: 0}, status: 422
@@ -46,7 +46,7 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
   def check_favorite_user
     @user = User.find_by_id favorite_list_params[:favorite_list_user_id]
     render json: {message: I18n.t("favorite_list.favorite_user_invalid"), data: {},
-      code: 0}, status: 200 if @user.nil? || @user.shipper?
+      code: 0}, status: 200 if @user.nil? || !@user.shop?
   end
 
   def check_exist_favorite_list
@@ -55,6 +55,15 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
     if @favorite_list_user
       render json: {message: I18n.t("favorite_list.favorite_list_shop_exist"),
         data: {}, code: 0}, status: 200
+    end
+  end
+
+  def check_exist_black_list
+    @black_list_user = current_user.black_list_users.
+      find_by id: favorite_list_params[:favorite_list_user_id]
+    if @black_list_user
+      render json: {message: I18n.t("favorite_list.shop_in_black_list"), data: {},
+        code: 0}, status: 200
     end
   end
 

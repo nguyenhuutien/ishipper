@@ -1,8 +1,8 @@
 class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   before_action :ensure_params_exist, :check_received_invoice,
-    :check_invoice_status, only: :create
+    :check_invoice_status, :check_black_list, only: :create
   before_action :check_delete_user_invoice, only: :destroy
-  before_action :check_black_list
+  before_action :find_user_invoice, only: :update
 
   def create
     @user_invoice = current_user.user_invoices.build user_invoice_params
@@ -44,6 +44,16 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
         recipient: @invoice.user, status: "receive", invoice: @invoice,
         click_action: Settings.list_shipper_register
       create_notification.perform
+    end
+  end
+
+  def update
+    if @user_invoice.update_attributes status: "rejected"
+      render json: {message: I18n.t("user_invoices.cancel_request.success"), data: {},
+        code: 1}, status: 200
+    else
+      render json: {message: I18n.t("user_invoices.cancel_request.fail"), data: {},
+        code: 0}, status: 200
     end
   end
 
@@ -92,12 +102,19 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   end
 
   def check_black_list
-    @invoice = Invoice.find_by_id user_invoice_params[:invoice_id]
     @black_list = BlackList.find_by owner_id: @invoice.user_id,
       black_list_user_id: current_user.id
     if @black_list
       render json: {message: I18n.t("black_list.permission_denied"), data: {},
         code: 1}, status: 200
+    end
+  end
+
+  def find_user_invoice
+    @user_invoice = current_user.user_invoices.find_by_id params[:id]
+    if @user_invoice.nil? || !@user_invoice.init?
+      render json: {message: I18n.t("user_invoices.cancel_request.cant_cancel"),
+        data: {}, code: 0}, status: 200
     end
   end
 end

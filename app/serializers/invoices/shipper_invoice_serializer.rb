@@ -1,19 +1,20 @@
 class Invoices::ShipperInvoiceSerializer < InvoiceSerializer
   attribute :customer_number, if: :condition?
   attribute :customer_name, if: :condition?
-  attributes :received, :user
+  attributes :user_invoice_id, :user
   attribute :status_histories, if: :condition?
 
   def user
     serializer = ActiveModelSerializers::SerializableResource.new(object.user).as_json
   end
 
-  def received
-    user_invoice = UserInvoice.find_by invoice_id: object.id, user: scope[:current_user]
+  def user_invoice_id
+    user_invoice = UserInvoice.find_by invoice_id: object.id, user: scope[:current_user],
+      status: object.status
     if user_invoice
-      true
+      user_invoice.id
     else
-      false
+      0
     end
   end
 

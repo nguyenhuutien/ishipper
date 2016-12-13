@@ -8,5 +8,6 @@ class UserSetting < ApplicationRecord
   after_validation :geocode, :reverse_geocode
 
   ATTRIBUTES_PARAMS = [:receive_notification, :favorite_location, :favorite_address,
-    :favorite_latitude, :favorite_longitude, :radius_display, :user_id]
+    :favorite_latitude, :favorite_longitude, :latitude, :longitude,
+    :radius_display, :user_id]
 end

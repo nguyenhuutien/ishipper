@@ -51,9 +51,9 @@ class Api::V1::UsersController < Api::BaseController
         status: 422
     else
       unless (params[:user][:distance] && params[:user][:latitude] && params[:user][:longitude]) ||
-      params[:user][:search]
-      render json: {message: I18n.t("api.missing_params"), data: {}, code: 0},
-        status: 422
+        params[:user][:search]
+        render json: {message: I18n.t("api.missing_params"), data: {}, code: 0},
+          status: 422
       end
     end
   end

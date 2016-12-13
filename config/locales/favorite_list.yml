@@ -10,7 +10,9 @@ en:
     destroy_all_success: Remove all from Favorite list successful
     destroy_fail: You are not permission to destroy
     destroy_all_fail: Your Favorite list is empty
-    favorite_list_shop_exist: "This shop has been added Favoritelist"
-    favorite_list_shipper_exist: "This shipper has been added Favoritelist"
+    favorite_list_shop_exist: "This shop has been added FavoriteList"
+    shop_in_black_list: This shop was in BlackList, can't add to FavoriteList
+    favorite_list_shipper_exist: "This shipper has been added FavoriteList"
+    shipper_in_black_list: This shipper was in BlackList, can't add to FavoriteList
     user: "This user can't add in Favoritelist"
     permission_denied: Permission denied

@@ -1,6 +1,6 @@
 class Api::V1::Shipper::BlackListsController < Api::ShipperBaseController
   before_action :ensure_params_exist, :check_black_user,
-    :check_exist_black_list, only: :create
+    :check_exist_black_list, :check_exist_favorite_list, only: :create
   before_action :load_and_check_black_list, only: :destroy
 
   def index
@@ -46,7 +46,7 @@ class Api::V1::Shipper::BlackListsController < Api::ShipperBaseController
   def check_black_user
     @user = User.find_by_id black_list_params[:black_list_user_id]
     render json: {message: I18n.t("black_list.black_user_invalid"), data: {},
-      code: 0}, status: 200 if @user.nil? || @user.shipper?
+      code: 0}, status: 200 if @user.nil? || !@user.shop?
   end
 
   def check_exist_black_list
@@ -55,6 +55,15 @@ class Api::V1::Shipper::BlackListsController < Api::ShipperBaseController
     if @black_list_user
       render json: {message: I18n.t("black_list.black_list_shop_exist"), data: {},
         code: 0}, status: 200
+    end
+  end
+
+  def check_exist_favorite_list
+    @favorite_list_user = current_user.favorite_list_users.
+      find_by id: black_list_params[:black_list_user_id]
+    if @favorite_list_user
+      render json: {message: I18n.t("black_list.shop_in_favorite_list"),
+        data: {}, code: 0}, status: 200
     end
   end
 
