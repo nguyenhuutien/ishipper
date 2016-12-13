@@ -1,5 +1,5 @@
 .nht-profile {
-  margin-top: 40px !important;
+  margin-top: 70px !important;
   padding-bottom: 100px !important;
 
   .nht-profile-title {
@@ -16,7 +16,8 @@
 
     #avatar {
       width: 100%;
-      height: 300px;
+      height: 100%;
+      margin-bottom: 10px;
     }
 
     .nht-user-invoice {
@@ -104,8 +105,19 @@
     }
   }
 
-  .nht-profile-box .td-p-flex {
-    word-break: break-all;
+  .nht-profile-box {
+    .td-p-flex {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .td-p-flex:hover {
+      overflow: visible;
+      white-space: normal;
+      height:auto;
+      word-break: break-all;
+    }
   }
 
   .nht-user-info {
@@ -426,13 +438,32 @@
   margin-left:15px;
   background:#333;
   text-align:center;
-  line-height:160px;
   color:#fff !important;
   font-size:2em;
   -webkit-transition:  all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition:  all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out ;
+  position: relative;
+  .td-edit {
+    position: absolute;
+    height: 35px;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    cursor: pointer;
+    i {
+      transition-duration: 0.6s;
+      color: rgba(0,0,0,0.6);
+    }
+  }
+
+  .td-edit:hover i {
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    transition-duration: 0.6s;
+  }
 }
 
 .ndq-site-name{
@@ -448,7 +479,7 @@
   background-color: #FFFFFF;
   padding-top: 10px;
   margin-bottom: 20px;
-  border-bottom: 3px solid #D9D9D9;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
 }
 
 .width {
@@ -489,4 +520,8 @@
       }
     }
   }
+}
+
+.modal {
+  margin-top: 45px;
 }

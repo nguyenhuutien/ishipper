@@ -14,7 +14,7 @@
   <body>
     <% if user_signed_in? %>
       <% if current_user.admin? %>
-        <div class="nht-header">
+        <div class="nht-header td-admin-sidebar">
           <%= render "layouts/admin_sidebar" %>
         </div>
         <div class="w3-main td-nav-hide td-admin">

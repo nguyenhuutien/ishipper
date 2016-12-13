@@ -15,6 +15,8 @@ document.addEventListener("turbolinks:load", function() {
       animation: google.maps.Animation.DROP,
       position: position,
     });
-    marker.setIcon("<%= asset_path 'blue-dot.png' %>");
+    var img = new Image();
+    img.src = '../../assets/blue-dot.png';
+    marker.setIcon(img.src);
   }
 });
