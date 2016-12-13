@@ -195,8 +195,6 @@
   border: 1px solid #5c5c5c;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0 2px 4px 1px, rgba(0, 0, 0, 0.25) 0 2px 55px 3px !important;
-  background: radial-gradient(#8dddff, #ffffff);
-  background: image_url("tag_background.png");
 }
 
 .td-invoice-box:hover{
@@ -251,15 +249,30 @@
 
 .t-hot-main{
   display: table;
-  background-color: #5bc0de;
   font-weight: bold;
   padding: .4em .8em .4em;
   font-size: 1.3em;
   line-height: 1;
-  color: #fff;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
   margin: 0 auto;
+  color: #EE0000;
+}
+
+.nht-btn-list-shippers{
+  bottom: 10.5em;
+}
+
+.td-invoice-box:hover{
+  background: rgba(62, 255, 62, 0.1);;
+}
+
+.nht-btn-list-shippers{
+  background: #FFF;
+}
+
+.invoices_back {
+  background-color: #f5f7f8;
 }

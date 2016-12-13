@@ -1,4 +1,4 @@
-<div class="admin-nht-invoice-show container">
+<div class="admin-nht-invoice-show container lvc-admin-invoice">
   <div class="nht-invoice-box margin10 td-admin-map-invoice">
     <div class="nht-text-center">
       <%= t "invoices._info_invoice" %>
@@ -133,7 +133,7 @@
     </div>
     <div class="clearfix"></div>
     <%= form_for [:shop, @invoice] do |f| %>
-      <% Settings.invoice.invoice_attributes_map_marker.each do |attribute| %>
+      <% Settings.invoice.invoice_attributes.each do |attribute| %>
         <%= f.hidden_field attribute, id: Settings.invoice.send(attribute) %>
       <% end %>
     <% end %>

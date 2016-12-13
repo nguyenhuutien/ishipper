@@ -12,4 +12,8 @@ module ApplicationHelper
       user_name: notification.owner.name,
       invoice_name: notification.invoice.name).html_safe
   end
+
+  def sidebar_active controller_name
+    "menu-active" if params[:controller] == controller_name
+  end
 end

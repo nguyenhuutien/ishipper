@@ -24,6 +24,7 @@ gem "carrierwave"
 gem "cloudinary"
 gem "ckeditor"
 gem "i18n-js", ">= 3.0.0.rc11"
+gem "bootstrap-kaminari-views"
 
 group :development, :test do
   gem "pry"
