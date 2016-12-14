@@ -1,104 +1,4 @@
-/* NHT */
-
-.new-invoice {
-  padding-top: 20% !important;
-}
-
-.form-new-invoice {
-  padding: 10px !important;
-}
-
-.input-group {
-  width: 100% !important;
-  padding: 5px !important;
-  position: relative !important;
-}
-
-.input-group-addon {
-  width: 50px !important;
-}
-
-.nht-unit {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  z-index: 9;
-  background: transparent !important;
-  color: #555555 !important;
-  border: none !important;
-}
-
-.nht-btn-invoice {
-  margin-top: 10px !important;
-  margin-left: 30% !important;
-  width: 50%;
-}
-
-.nht-block {
-  display: block !important;
-}
-
-.nht-none {
-  display: none !important;
-}
-
-#map {
-  height: 50vh;
-  margin-bottom: 20px;
-  height: 500px !important;
-  position: relative;
-}
-
-#form_invoice_map_marker {
-  padding-bottom: 150px;
-  margin-top: 60px;
-
-  .nht-marker-start {
-    font-size: 2em;
-    color: blue;
-  }
-
-  .input-group {
-    padding: 0px !important;
-    margin-bottom: 5px;
-  }
-
-  .nht-marker-finish {
-    font-size: 2em;
-    color: red;
-  }
-
-  .nht-invoice-next {
-    width: 100px;
-    margin: 0 auto;
-    float: right;
-  }
-
-  .nht-invoice-draw {
-    float: right;
-    top: 70px !important;
-    right: 70px;
-    position: absolute;
-  }
-
-  .nht-invoice-distance {
-    font-size: 1.5em;
-
-    .nht-invoice-distance-title {
-      font-size: 1em;
-      font-family: Arial;
-    }
-  }
-}
-
-#form_invoice_info {
-  padding-top: 50px;
-  padding-bottom: 150px;
-}
-
-/* END NHT */
-
- /*TD FIX*/
+/*TD FIX*/
 .td-fix-input {
   border-radius: 3px !important;
   color: #303030;
@@ -154,8 +54,115 @@
     padding: 0 !important;
     border: none !important;
   }
+
   .alert-danger {
     background-color: transparent !important;
+  }
+
+  #form_invoice_map_marker {
+    padding-bottom: 150px;
+    margin-top: 60px;
+
+    .nht-marker-start {
+      font-size: 2em;
+      color: blue;
+    }
+
+    .input-group {
+      border: none;
+      border-bottom: 1px solid #D9D9D9;
+
+      .input-group-addon {
+        border: none;
+
+        #distance {
+          height: 40px;
+        }
+      }
+
+      .form-control {
+        border: none;
+      }
+    }
+
+    .nht-marker-finish {
+      font-size: 2em;
+      color: red;
+    }
+
+    .nht-invoice-next {
+      width: 100px;
+      margin: 0 auto;
+      float: right;
+    }
+
+    .nht-invoice-draw {
+      float: right;
+      top: 70px !important;
+      right: 70px;
+      position: absolute;
+    }
+
+    .nht-invoice-distance-content {
+      border: none !important;
+      font-size: 1.5em;
+      background-color: transparent;
+      box-shadow: none;
+      color: #303030;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.36;
+      transition: border-color .1s linear;
+      padding: 15px;
+    }
+  }
+
+  #form_invoice_info {
+    padding-top: 50px;
+    padding-bottom: 150px;
+  }
+
+
+  .new-invoice {
+    padding-top: 20% !important;
+  }
+
+  .form-new-invoice {
+    padding: 10px !important;
+  }
+
+  .input-group {
+    width: 100% !important;
+    padding: 5px !important;
+    position: relative !important;
+  }
+
+  .input-group-addon {
+    width: 50px !important;
+  }
+
+  .nht-unit {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 9;
+    background: transparent !important;
+    color: #555555 !important;
+    border: none !important;
+  }
+
+  .nht-btn-invoice {
+    margin-top: 10px !important;
+    margin-left: 30% !important;
+    width: 50%;
+  }
+
+  .nht-block {
+    display: block !important;
+  }
+
+  .nht-none {
+    display: none !important;
   }
 }
 
@@ -171,7 +178,7 @@
   height: 400px;
 }
 
-.featured-info{
+.featured-info {
   background-image: linear-gradient(to left,rgba(238, 238, 238, 0)  0%,
     rgba(48, 165, 255, 0.19) 100%);
   position: absolute;
@@ -191,30 +198,6 @@
   left: -15px;
   right: 0px;
   width: auto;
-}
-
-.map{
-  float: left;
-}
-
-.after_map{
-  clear: left;
-  margin-top: 515px;
-}
-
-.colorgraph{
-  margin-top: 500px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -15px;
-  right: -2px;
-  width: auto;
-  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%,
-    #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%,
-    #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%,
-    #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-  height: 10px;
 }
 
 .nht-fix-input{
@@ -244,53 +227,10 @@
   transition: border-color .1s linear;
 }
 
-#main{
-  background-image: image-url("road.jpg");
-  background-size: 190%;
-}
-
-.input-group-addout{
-  background-color: transparent;
-  border-top:    1px solid #adadad;
-  border-left:  1px solid #adadad;
-  border-bottom: 1px solid #adadad;
-  line-height: 1.36;
-  font-size: 1.4rem;
-  font-weight: 400;
-  transition: border-color .1s linear;
-  padding-top: 10px;
-  padding-bottom: 15px;
-  padding-left: 4px;
-  border-radius: 1px;
-  box-shadow: none;
-  color: #303030;
-  margin-top: 10px;
-}
-
-.input-group-out{
-  margin-top: 10px;
-  padding: 0px;
-}
-
 #distance_invoice{
   width: 850.3px;
   border: none;
   background: transparent;
-}
-
-.nht-invoice-distance-content{
-  background-color: transparent;
-  border: 1px solid #adadad;
-  border-radius: 1px;
-  box-shadow: none;
-  color: #303030;
-  font-size: 1.4rem;
-  font-weight: 400;
-  height: 56px;
-  line-height: 1.36;
-  padding: .7rem 1rem 1rem;
-  transition: border-color .1s linear;
-  vertical-align: baseline;
 }
 
 .pointer{
@@ -321,7 +261,6 @@
   color: #363638;
   font-family: "Damion", cursive;
   text-align: center;
-  letter-spacing: 5px;
   font-size: 36px;
 }
 
@@ -348,12 +287,8 @@
   margin-top: 70px;
 }
 
-.colorgraph{
-  margin-top: 470px;
-}
-
-.after_map{
-  margin-top: 480px;
+.nht-after_map{
+  margin-top: 440px;
 }
 
 .nht-fix-input{
@@ -362,21 +297,6 @@
 
 .input-group-addon{
   padding: 0px;
-}
-
-.nht-invoice-distance-content{
-  background-color: transparent;
-  border: 1px solid #adadad;
-  border-radius: 1px;
-  box-shadow: none;
-  color: #303030;
-  font-size: 1.4rem;
-  font-weight: 400;
-  height: 56px;
-  line-height: 1.36;
-  padding: .7rem 1rem 1rem;
-  transition: border-color .1s linear;
-  vertical-align: baseline;
 }
 
 #distance_invoice{
@@ -389,22 +309,6 @@
 
 .nht-marker-finish{
   font-size: 1.5em !important;
-}
-
-.input-group-addout{
-  padding: 9px;
-}
-
-.input-group-out{
-  margin-top: 15px;
-}
-
-.input-group-addout img{
-  height: 30px;
-}
-
-.nht-invoice-distance-content{
-  padding: 9px;
 }
 
 .bt-next{
