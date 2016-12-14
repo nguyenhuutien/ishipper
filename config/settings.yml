@@ -34,6 +34,8 @@ invoice:
     finished: finished
     reject: reject
     cancel: cancel
+  length_name: 15
+  length_address: 45
 degree: 180
 earth_radius: 6378137
 constant_1: 1

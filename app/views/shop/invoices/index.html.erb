@@ -12,12 +12,22 @@
       <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10
         col-sm-offset-1 col-md-offset-1 col-lg-offset-1 <%= params[:invoice][:status] %>">
         <% @invoices.all.each do |invoice| %>
-          <%= link_to [:shop, invoice] do %>
-            <%= render "form_invoice", invoice: invoice %>
-          <% end %>
+          <div class="nht-invoice-content">
+            <%= link_to [:shop, invoice] do %>
+              <%= render "form_invoice", invoice: invoice %>
+            <% end %>
+            <% if invoice.init? %>
+              <div class="nht-btn-list-shippers btn btn-primary">
+                <%= link_to t("invoices.recieved_shippers", number_shipper:
+                  invoice.recieved_shippers.size), shop_list_shippers_path(
+                  invoice_id: invoice.id), remote: true %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
 
   </div>
 </div>
+<div id="nht-invoice-list_shippers" class="modal fade"></div>

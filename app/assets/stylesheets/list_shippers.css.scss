@@ -58,3 +58,216 @@
 .td-reject {
   margin-bottom: 150px;
 }
+
+#nht-invoice-list_shippers {
+  margin-top: 0px !important;
+
+  .nht-shippers.modal-dialog {
+    padding-top: 35px;
+    width: 70%;
+
+    .close {
+      width: 20px;
+    }
+
+    .modal-content {
+      height: auto;
+      padding-top: 20px;
+      position: relative;
+
+      .close {
+        position: absolute;
+        top: 1px;
+        right: 5px;
+      }
+
+      .title {
+        hr {
+          margin: 0px !important;
+        }
+
+        .nht-invoice-name {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 50px;
+          word-wrap: break-word;
+        }
+
+        .nht-invoice-address {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 50px;
+        }
+      }
+
+      .nht-shippers-list {
+        padding: 10px;
+        max-height: 75vh;
+        overflow-y: scroll;
+
+        .nht-user-left {
+
+          .nht-user-cover {
+            position: relative;
+            padding: 20px;
+
+            #nht-user-avatar {
+              border-radius: 100%;
+            }
+
+            .nht-user-invoice {
+              position: absolute;
+              bottom: 50px;
+              left: 22%;
+            }
+          }
+
+          .nht-user-info-left {
+            text-align: center ;
+          }
+        }
+
+        .nht-user-right {
+          padding: 20px;
+          padding-top: 60px;
+          height: 100%;
+          position: relative;
+
+          .accept {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            display: inline-flex;
+
+            .btn {
+              float: right;
+              margin-right: 5px;
+            }
+          }
+
+          .td-p-flex {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .td-p-flex:hover {
+            overflow: visible;
+            white-space: normal;
+            height:auto;
+            word-break: break-all;
+          }
+
+          .nht-user-rate {
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .nht-user-rate-left {
+              h1 {
+                font-size: 3em;
+                color: #009688 !important;
+              }
+            }
+
+            .nht-user-rate-right {
+
+              .five {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #88b131;
+                }
+              }
+
+              .four {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #99cc00;
+                }
+              }
+
+              .three {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #ffcf02;
+                }
+              }
+
+              .two {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #ff9f02;
+                }
+              }
+
+              .one {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #ff6f31;
+                }
+              }
+            }
+          }
+        }
+
+        .true-shipper {
+          background-color: rgba(255, 255, 0, 0.54);
+        }
+
+        li {
+          list-style-type: none;
+          border: 1px solid #D9D9D9;
+        }
+
+        .nht-shippers-item {
+          padding: 5px;
+
+          .info {
+            min-height: 50px;
+            height: auto;
+            display: flex;
+
+            .nht-avatar {
+              #avatar {
+                max-height: 50px;
+                max-width: 50px;
+              }
+            }
+          }
+
+          .rate-accept {
+            .rate {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 50px;
+              font-size: 20px;
+              color: #F9A825;
+            }
+
+            .accept {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

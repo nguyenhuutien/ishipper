@@ -76,9 +76,14 @@ en:
     invalid: Invalid
     list_shippers: Shipper near by
     choose_shipper: Choose Shipper
+    recieved_shippers: Shippers recieved this invoice (%{number_shipper})
     update:
       cancel: Cancel
       finished: Finished
+    _name: "Name :"
+    from: "From :"
+    to: "To :"
+    rate: "Rate : %{rate}"
   vnd: VND
   kg: Kg
   km: KM

@@ -1,0 +1,73 @@
+<div class="nht-shippers modal-dialog">
+  <div class="modal-content">
+    <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    <% end %>
+    <div class="title">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nht-invoice-name">
+        <span>
+          <b><%= t "invoices._name" %></b>
+          <%= truncate @invoice.name, length: Settings.invoice.length_name %>
+        </span>
+      </div>
+
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nht-invoice-address">
+        <span>
+          <b><%= t "invoices.from" %></b>
+          <%= truncate @invoice.address_start, length: Settings.invoice.length_address %>
+        </span>
+
+        <span>
+          <b><%= t "invoices.to" %></b>
+          <%= truncate @invoice.address_finish, length: Settings.invoice.length_address %>
+        </span>
+      </div>
+      <div class="clearfix"></div>
+      <hr>
+    </div>
+
+    <div class="nht-shippers-list" id="nht-shippers-list-id">
+      <ul>
+        <% @shippers.serializable_hash.each do |shipper| %>
+          <li class="nht-shippers-item <%= shipper[:favorite_user] %>-shipper">
+            <div class="col-sx-12 col-sm-12 col-md-6 col-lg-6 info">
+              <div class="col-xs-5 col-sm-5 col-md-4 col-lg-4 nht-avatar">
+                <%= link_to shipper_path(id: shipper[:id], user_invoice_id:
+                  shipper[:user_invoice_id], invoice_id: @invoice.id), remote: true do %>
+                  <%= image_tag avatar_profile(shipper[:avatar]), class: "img-responsive",
+                    id: "avatar" %>
+                <% end %>
+              </div>
+
+              <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 nht-info">
+                <%= link_to shipper_path(id: shipper[:id], user_invoice_id:
+                  shipper[:user_invoice_id], invoice_id: @invoice.id), remote: true do %>
+                  <%= shipper[:name] %>
+                  <br>
+                  <%= shipper[:phone_number] %>
+                <% end %>
+              </div>
+              <div class="clear"></div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rate-accept">
+              <div class="col-xs-5 col-sm-5 col-md-6 col-lg-6 rate">
+                <b><%= t "invoices.rate", rate: shipper[:rate] %></b>
+              </div>
+
+              <div class="col-xs-7 col-sm-7 col-md-6 col-lg-6 accept">
+                <%= form_tag shop_user_invoice_path(shipper[:user_invoice_id]),
+                  method: :patch do %>
+                  <%= submit_tag t("invoices.accept_shipper.button"), class: "btn btn-primary" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</div>

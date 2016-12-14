@@ -52,6 +52,11 @@ class Invoice < ApplicationRecord
   }
   scope :order_by_time, -> {order created_at: :desc}
 
+  def recieved_shippers
+    shippers = self.all_shipper
+    shippers = shippers - self.user.black_list_users
+  end
+
   class << self
     def filtering_column params
       params.slice :price, :shipping_price, :distance_invoice, :weight
