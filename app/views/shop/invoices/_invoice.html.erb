@@ -21,7 +21,7 @@
           <%= t "invoices._distance" %>
         </p>
         <p class="nht-text-center nht-color nht-number">
-          <%= invoice.distance_invoice.to_i %> <%= t :km %>
+          <%= invoice.distance_invoice %> <%= t :km %>
         </p>
       </div>
 
@@ -150,7 +150,7 @@
     <div class="clearfix"></div>
 
     <%= form_for [:shop, invoice] do |f| %>
-      <% Settings.invoice.invoice_attributes_map_marker.each do |attribute| %>
+      <% Settings.invoice.invoice_attributes.each do |attribute| %>
         <%= f.hidden_field attribute, id: Settings.invoice.send(attribute) %>
       <% end %>
     <% end %>

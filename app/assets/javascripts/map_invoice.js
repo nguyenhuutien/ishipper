@@ -14,9 +14,10 @@ var getDistance = function(p1, p2) {
   return d/1000;
 };
 
-// Chuyen 1 postion ve 1 address va hien thi
-function geocodeLatLng(geocoder, position, input) {
+// Chuyen 1 postion ve 1 address
+function geocodeLatLng(position, input) {
   var latlng = {lat: position.lat(), lng: position.lng()};
+  var geocoder = new google.maps.Geocoder;
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === 'OK') {
       if (results[1]) {
@@ -39,6 +40,7 @@ function drawLine(latLng1, latLng2) {
     strokeWeight: 10,
     geodesic: true,
   });
+
   line.setMap(map);
 }
 
@@ -88,10 +90,11 @@ function initAutocomplete() {
   });
 }
 
-function calcRoute() {
+function calcRoute(map, markers, directionsService, directionsDisplay) {
   var start = new google.maps.LatLng(markers[0].getPosition().lat(), markers[0].getPosition().lng());
   var end = new google.maps.LatLng(markers[1].getPosition().lat(), markers[1].getPosition().lng());
   var bounds = new google.maps.LatLngBounds();
+
   bounds.extend(start);
   bounds.extend(end);
   map.fitBounds(bounds);
@@ -112,83 +115,87 @@ function calcRoute() {
   });
 }
 
-document.addEventListener("turbolinks:load", function() {
-  // Khoi tao map, vi tri mac dinh cua map va 2 dia diem dau cuoi
-  var markers = [];
-  var map;
-  var center_default = {lat: 21.0119842, lng: 105.8471442};
-  var locations_default = [
-    {lat: 21.0119842, lng: 105.8471442},
-    {lat: 21.0090146, lng: 105.8577783}
-  ];
-  var directionsDisplay;
-  var directionsService;
+function clearMarkers(markers) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+}
 
-  var geocoder = new google.maps.Geocoder;
-  var infowindow = new google.maps.InfoWindow;
+function addMarkerWithTimeout(map, markers, position, i, directionsService, directionsDisplay) {
+  marker = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+    position: position,
+  });
 
-  directionsService = new google.maps.DirectionsService();
-  directionsDisplay = new google.maps.DirectionsRenderer();
+  var img_start = new Image();
+  img_start.src = '../../assets/blue-dot.png';
+  var img_finish = new Image();
+  img_finish.src = '../../assets/red-dot.png';
 
-  function addMarkerWithTimeout(i, position) {
-    marker = new google.maps.Marker({
-      map: map,
-      draggable: true,
-      animation: google.maps.Animation.DROP,
-      position: position,
+  if (i == 0) {
+    marker.setIcon(img_start.src);
+    marker.setTitle('Address start');
+    address = geocodeLatLng(marker.getPosition(), $('#map-address0'));
+    $('#map-lat0').val(marker.getPosition().lat());
+    $('#map-lng0').val(marker.getPosition().lng());
+
+    google.maps.event.addListener(marker, 'dragend', function(evt){
+      $('#map-lat0').val(evt.latLng.lat());
+      $('#map-lng0').val(evt.latLng.lng());
+      $('#distance_invoice').val(getDistance(evt.latLng, markers[1].getPosition()).toFixed(2));
+      address = geocodeLatLng(marker.getPosition(), $('#map-address0'));
+      calcRoute(map, markers, directionsService, directionsDisplay);
     });
 
-    if (i == 0) {
-      marker.setIcon("<%= asset_path 'blue-dot.png' %>");
-      marker.setTitle('Address start');
-      geocodeLatLng(geocoder, marker.getPosition(), $('#map-address0'));
-      $('#map-lat0').val(marker.getPosition().lat());
-      $('#map-lng0').val(marker.getPosition().lng());
+  } else {
+    marker.setIcon(img_finish.src);
+    marker.setTitle('Address finish');
 
-      google.maps.event.addListener(marker, 'dragend', function(evt){
-        $('#map-lat0').val(evt.latLng.lat());
-        $('#map-lng0').val(evt.latLng.lng());
-        $('#distance_invoice').val(getDistance(evt.latLng, markers[1].getPosition()).toFixed(2));
-        geocodeLatLng(geocoder, this.getPosition(), $('#map-address0'));
-      });
-    } else {
-      marker.setIcon("<%= asset_path 'red-dot.png' %>");
-      marker.setTitle('Address finish');
-      geocodeLatLng(geocoder, marker.getPosition(), $('#map-address1'));
-      $('#map-lat1').val(marker.getPosition().lat());
-      $('#map-lng1').val(marker.getPosition().lng());
+    address = geocodeLatLng(marker.getPosition(), $('#map-address1'));
+    $('#map-lat1').val(marker.getPosition().lat());
+    $('#map-lng1').val(marker.getPosition().lng());
 
-      google.maps.event.addListener(marker, 'dragend', function(evt){
-        $('#map-lat1').val(evt.latLng.lat());
-        $('#map-lng1').val(evt.latLng.lng());
-        $('#distance_invoice').val(getDistance(evt.latLng, markers[0].getPosition()).toFixed(2));
-        geocodeLatLng(geocoder, this.getPosition(), $('#map-address1'));
-      });
+    google.maps.event.addListener(marker, 'dragend', function(evt){
+      $('#map-lat1').val(evt.latLng.lat());
+      $('#map-lng1').val(evt.latLng.lng());
+      $('#distance_invoice').val(getDistance(evt.latLng, markers[0].getPosition()).toFixed(2));
+      address = geocodeLatLng(marker.getPosition(), $('#map-address1'));
+      calcRoute(map, markers, directionsService, directionsDisplay);
+    });
+  }
+
+  markers.push(marker);
+}
+
+document.addEventListener("turbolinks:load", function() {
+  if ($('#nht-form-invoice-new').length) {
+    var markers = [];
+    var map;
+    var center_default = {lat: 21.0119842, lng: 105.8471442};
+    var locations_default = [
+      {lat: 21.0119842, lng: 105.8471442},
+      {lat: 21.0090146, lng: 105.8577783}
+    ];
+
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: center_default,
+      zoom: 13,
+    });
+
+
+    clearMarkers(markers);
+    for (var i = 0; i < locations_default.length; i++) {
+      addMarkerWithTimeout(map, markers, locations_default[i], i, directionsService, directionsDisplay);
     }
-    markers.push(marker);
+    center_default = markers[0].position;
+    var distance = getDistance(markers[0].getPosition(), markers[1].getPosition()).toFixed(2);
+    $('#distance_invoice').val(distance);
+    calcRoute(map, markers, directionsService, directionsDisplay);
   }
-
-  function clearMarkers() {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
-    }
-    markers = [];
-  }
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: center_default,
-    zoom: 13,
-  });
-
-  clearMarkers();
-  for (var i = 0; i < locations_default.length; i++) {
-    addMarkerWithTimeout(i, locations_default[i]);
-  }
-  center_default = markers[0].position;
-  var distance = getDistance(markers[0].getPosition(), markers[1].getPosition()).toFixed(2);
-  $('#distance_invoice').val(distance);
-
-  $('#draw').on('click', function() {
-    calcRoute();
-  });
 });

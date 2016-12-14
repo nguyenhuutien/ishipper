@@ -11,12 +11,7 @@ invoice:
   longitude_start: "map-lng0"
   latitude_finish: "map-lat1"
   longitude_finish: "map-lng1"
-  invoice_attributes_map_marker:
-    - latitude_start
-    - longitude_start
-    - latitude_finish
-    - longitude_finish
-  invoice_attributes_info:
+  invoice_attributes:
     - latitude_start
     - longitude_start
     - latitude_finish
