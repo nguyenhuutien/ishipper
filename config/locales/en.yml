@@ -61,3 +61,4 @@ en:
     delimiter: ","
     separator: "."
   time_ago: ago
+  address: Search address

@@ -63,12 +63,14 @@ Rails.application.routes.draw do
 
   resources :feed_backs, only: [:new, :create]
   namespace :shop do
+    root to: "pages#index", as: :root
     resources :invoices
     resources :list_shippers, only: :index
     resources :reports, only: [:new, :create]
     resources :rates, only: [:new, :create]
     resources :user_invoices, only: :update
   end
+
   resources :shops
   resources :shippers, only: :show
   namespace :admin do

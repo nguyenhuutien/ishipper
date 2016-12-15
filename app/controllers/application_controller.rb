@@ -30,4 +30,10 @@ class ApplicationController < ActionController::Base
   def load_notification
     @notifications = current_user.passive_notifications.order_by_time if current_user
   end
+
+  def after_sign_in_path_for resource
+    if current_user.shop?
+      shop_root_path
+    end
+  end
 end

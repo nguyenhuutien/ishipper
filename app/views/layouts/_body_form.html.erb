@@ -9,7 +9,7 @@
       <%= yield %>
   </div>
 </div>
-<% unless admin_signed_in? %>
+<% unless signed_in? %>
   <footer class="footer">
     <%= render "layouts/footer" %>
   </footer>
