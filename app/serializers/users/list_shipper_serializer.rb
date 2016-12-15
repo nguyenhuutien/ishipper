@@ -1,6 +1,6 @@
 class Users::ListShipperSerializer < UserSerializer
   attributes :user_invoice_id, :favorite_user, :load_five_star, :load_four_star, :load_three_star,
-    :load_two_star, :load_one_star, :sum_rate
+    :load_two_star, :load_one_star, :sum_rate, :online
 
   def user_invoice_id
     if scope && scope[:invoice]
@@ -31,5 +31,9 @@ class Users::ListShipperSerializer < UserSerializer
 
   def sum_rate
     supports.sum_rate
+  end
+
+  def online
+    object.online? if scope[:current_user]
   end
 end

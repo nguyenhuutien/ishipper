@@ -21,9 +21,6 @@
           <%= render "layouts/body_form" %>
         </div>
       <% else %>
-        <div class="nht-header">
-          <%= render "layouts/sidebar" %>
-        </div>
         <div class="w3-main td-nav-hide">
           <div class="nht-header">
             <%= render "layouts/header" %>
@@ -37,6 +34,6 @@
     <% else %>
       <%= render "layouts/body_form" %>
     <% end %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAik8OVJ3_JisisBdw7aS20dQDt3lD1bG0&sensor=false&libraries=places&callback=initAutocomplete" data-turbolinks-eval="false" ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAik8OVJ3_JisisBdw7aS20dQDt3lD1bG0&sensor=false&libraries=places" data-turbolinks-eval="false" ></script>
   </body>
 </html>
