@@ -55,10 +55,15 @@ document.addEventListener("turbolinks:load", function() {
   if($('.nht-notifications').length) {
     $('.nht-notifications').hide();
   }
-
   $('.nht-notification-icon').on('click', function() {
-    $('.nht-notifications').toggle();
-    $('.nht-up-arrow').toggle();
+    if (!$('.nht-notifications').is(":visible")) {
+      $('.nht-up-arrow').slideDown(200);
+      $('.nht-notifications').slideDown(200);
+    } else {
+      $('.nht-up-arrow').slideUp(200);
+      $('.nht-notifications').slideUp(200);
+    }
+
     $('.nht-notification-count').hide();
     App.notification.speak({action_type: "unread_notification"});
 

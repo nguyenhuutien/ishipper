@@ -25,10 +25,8 @@ function addNearbyShippers(map, listShippers) {
 
 document.addEventListener("turbolinks:load", function() {
   if ($('.nht-nearby-shippers').length) {
-
     listShippers = $('.list_shippers').data('list_shippers');
     addressShop = $('.address_shop').data('address_shop');
-    debugger
     locations_default = {lat: addressShop.latitude, lng: addressShop.longitude};
     iconShop = new Image();
     iconShop.src = '../../assets/shop.png';

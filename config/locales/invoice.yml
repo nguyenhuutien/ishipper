@@ -84,6 +84,8 @@ en:
     from: "From :"
     to: "To :"
     rate: "Rate : %{rate}"
+    manage_invoices: Manage invoices
+    manage_shippers: Manage shippers
   vnd: VND
   kg: Kg
   km: KM
