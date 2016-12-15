@@ -1,0 +1,16 @@
+<div class="nht-nearby-shippers">
+  <div id="map_nearby_shippers"></div>
+  <div class="list_shippers" data-list_shippers="<%= @shippers.serializable_hash.to_json %>">
+  </div>
+  <div class="address_shop" data-address_shop="<%= current_user.user_setting.to_json %>">
+  </div>
+  <div class="nht-search-address">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-search nht-icon-search" aria-hidden="true"></i>
+      </span>
+      <%= text_field_tag :address, "", class: "form-control",
+        id: "nht-search-address-input", placeholder: t("address") %>
+    </div>
+  </div>
+</div>

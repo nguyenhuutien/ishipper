@@ -139,7 +139,7 @@ class User < ApplicationRecord
   end
 
   def online?
-    self.user_tokens.find_by online: true
+    self.user_tokens.find_by(online: true).present?
   end
 
   def report? invoice
