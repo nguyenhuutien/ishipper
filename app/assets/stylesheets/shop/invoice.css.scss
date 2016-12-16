@@ -1,0 +1,74 @@
+.nht-shippers.modal-dialog {
+  min-width: 80%;
+  border-radius: 10px;
+
+  .modal-content {
+
+    .nht-invoices-title {
+      position: relative;
+      min-height: 60px;
+
+      .nht-dropdown-status {
+        float: right;
+        overflow: visible;
+        background-color: #FFF;
+        margin-right: 20px;
+        text-align: center;
+        min-height: 60px;
+        width: 100px;
+        cursor: pointer;
+
+        .dropdown-toggle {
+          line-height: 60px;
+          width: 100px;
+          background-color: #FFF;
+          border: none;
+        }
+
+        .nht-dropdown-menu-status {
+          min-width: 150px;
+        }
+
+        ul li {
+          padding-left: 10px;
+        }
+      }
+
+      .nht-invoices-status {
+        float: left;
+        margin-left: 10px;
+        vertical-align: middle;
+        font-weight: bold;
+        color: #FFF;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 20px;
+        line-height: 60px;
+      }
+
+      .close {
+        float: right;
+        width: 20px;
+        height: 20px;
+        line-height: 60px;
+        font-size: 1.5em;
+        margin-right: 10px;
+      }
+    }
+
+    .table {
+      overflow-y: scroll;
+      max-height: 73vh;
+      .nht-invoice-table-title {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #f5f5f5;
+      }
+
+      .nht-invoice-table-body {
+        cursor: pointer;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: 10px;
+      }
+    }
+  }
+}

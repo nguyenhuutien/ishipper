@@ -1,11 +1,10 @@
 .nht-list-shippers {
-  padding-bottom: 150px;
   margin-top: 60px;
+  padding: 0px;
 
-  #map_list_shippers {
-    height: 80vh;
+  #map-list-shippers {
+    height: calc(100vh - 60px);
     width: auto;
-    margin-bottom: 20px;
   }
 }
 

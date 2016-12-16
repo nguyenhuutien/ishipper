@@ -2,8 +2,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
   load_and_authorize_resource
 
   def index
-    @invoices = current_user.invoices.
-      send(params[:invoice][:status]) if params[:invoice] && params[:invoice][:status]
+    @invoices = current_user.invoices.send params[:status] if params[:status]
   end
 
   def show
