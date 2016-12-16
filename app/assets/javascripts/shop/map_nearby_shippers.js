@@ -34,7 +34,6 @@ document.addEventListener("turbolinks:load", function() {
       center: locations_default,
       zoom: 13,
     });
-
     marker = addMarkerWithTimeout(mapNearByShippers, locations_default);
     marker.setIcon(iconShop.src);
     infowindow = new google.maps.InfoWindow();

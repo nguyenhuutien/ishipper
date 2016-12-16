@@ -55,7 +55,7 @@ function calcRoute(map, markers, directions) {
     destination: end,
     travelMode: google.maps.TravelMode.DRIVING,
   };
-  directionsService= directions.directionsService;
+  directionsService = directions.directionsService;
   directionsDisplay = directions.directionsDisplay;
 
   directionsService.route(request, function (response, status) {
@@ -92,4 +92,8 @@ function initAutocomplete(map, marker, input) {
       map.setZoom(13);
     });
   });
+}
+
+function positionToLatLng(position) {
+  return {lat: position.lat(), lng: position.lng()};
 }
