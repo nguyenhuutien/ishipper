@@ -1,9 +1,19 @@
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top
   nht-navbar base-color">
   <div class="navbar-header page-scroll">
-  <%= link_to shop_root_path, class: "navbar-brand page-scroll" do %>
-    <%= image_tag "logo.png", id: "logo" %>
-  <% end %>
+    <ul class="td-header-left">
+      <li>
+        <%= link_to shop_root_path, class: "navbar-brand page-scroll" do %>
+          <%= image_tag "logo.png", id: "logo" %>
+        <% end %>
+      </li>
+      <li class="td-button-create-invoice">
+        <div class="td-button-create-invoice-content">
+          <i class="fa fa-plus-circle td-icon" aria-hidden="true"></i>
+          <span><%= t "invoices.create_button" %></span>
+        </div>
+      </li>
+    </ul>
   </div>
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">

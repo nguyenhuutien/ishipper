@@ -5,5 +5,6 @@ class Shop::PagesController < Shop::ShopBaseController
     @shippers = User.users_by_user_setting(@shippers).shipper
     @shippers = ActiveModelSerializers::SerializableResource.new @shippers,
       each_serializer: Users::ListShipperSerializer, scope: {current_user: current_user}
+    @invoice = Invoice.new
   end
 end

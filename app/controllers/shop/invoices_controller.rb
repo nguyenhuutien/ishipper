@@ -37,9 +37,6 @@ class Shop::InvoicesController < Shop::ShopBaseController
       end
       flash[:success] = t "invoices.create.success"
       redirect_to [:shop, @invoice]
-    else
-      flash[:danger] = "Failure"
-      render :new
     end
   end
 

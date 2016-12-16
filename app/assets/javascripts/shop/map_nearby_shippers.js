@@ -46,6 +46,14 @@ document.addEventListener("turbolinks:load", function() {
       initAutocomplete(mapNearByShippers, marker, $(this)[0]);
     });
 
+    $('#td-shop-address-input').on('keyup', function() {
+      initAutocomplete(null, null, $(this)[0]);
+    });
+
+    $('#td-customer-address-input').on('keyup', function() {
+      initAutocomplete(null, null, $(this)[0]);
+    });
+
     addNearbyShippers(mapNearByShippers, listShippers);
   }
 });
