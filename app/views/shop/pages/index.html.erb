@@ -4,6 +4,31 @@
   </div>
   <div class="address_shop" data-address_shop="<%= current_user.user_setting.to_json %>">
   </div>
+  <div class="nht-nav-left">
+    <ul>
+      <li class="nht-item">
+        <%= link_to "#" do %>
+          <span class="invoice nht-icon"></span>
+          <span class="nht-item-content"><%= t("invoices.manage_invoices") %></span>
+        <% end %>
+      </li>
+
+      <li class="nht-item">
+        <%= link_to "#" do %>
+          <span class="clock nht-icon"></span>
+          <span class="nht-item-content"><%= t("invoices.init") %></span>
+        <% end %>
+      </li>
+
+      <li class="nht-item">
+        <%= link_to "#" do %>
+          <span class="shippers nht-icon"></span>
+          <span class="nht-item-content"><%= t("invoices.manage_shippers") %></span>
+        <% end %>
+      </li>
+
+    </ul>
+  </div>
   <div class="nht-search-address">
     <div class="input-group">
       <span class="input-group-addon">
