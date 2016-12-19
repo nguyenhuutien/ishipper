@@ -5,6 +5,18 @@
         <%= t("invoices.status", status: @invoices.first.status).upcase %>
       </div>
 
+      <div class="nht-invoices-search">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-search nht-icon-search" aria-hidden="true"></i>
+          </span>
+          <%= form_tag shop_invoices_path, method: :get, remote: true do %>
+            <%= text_field_tag :name_invoice, "", class: "form-control",
+              placeholder: t("invoices.name") %>
+          <% end %>
+        </div>
+      </div>
+
       <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
         <i class="fa fa-times" aria-hidden="true"></i>
       <% end %>
@@ -15,10 +27,17 @@
         </button>
 
         <ul class="dropdown-menu nht-dropdown-menu-status">
-          <% Settings.invoice_status.status.each do |status| %>
-            <li>
-              <%= status.capitalize %>
+          <%= link_to "/shop/invoices/status/all", remote: true do %>
+            <li class="nht-item-status">
+              <%= Settings.invoice.status.all.capitalize %>
             </li>
+          <% end %>
+          <% Settings.invoice_status.status.each do |status| %>
+            <%= link_to "/shop/invoices/status/#{status}", remote: true do %>
+              <li class="nht-item-status">
+                <%= status.capitalize %>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -36,22 +55,8 @@
             <td><strong><%= t "invoices.action" %></strong></td>
           </tr>
         </thead>
-        <tbody class="nht-invoice-table-body">
-          <% @invoices.each do |invoice| %>
-            <tr>
-              <td><%= invoice.name %></td>
-              <td><%= l invoice.created_at, format: :default %></td>
-              <td><%= invoice.address_finish %></td>
-              <td><%= invoice.address_start %></td>
-              <td><%= invoice.status %></td>
-              <td>
-                <%= link_to "#", class: "btn btn-primary" do %>
-                <% end %>
-                <%= link_to "#", class: "btn btn-danger" do %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+        <tbody class="nht-invoice-table-body" id="nht-invoice-table-content">
+          <%= render "invoice_content" %>
         </tbody>
       </table>
     </div>
