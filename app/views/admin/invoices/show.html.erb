@@ -3,24 +3,22 @@
     <div class="nht-text-center">
       <%= t "invoices._info_invoice" %>
     </div>
-    <div class="nht-invoice-status">
-      <span class="nht-invoice-proper nht-status">
-        <%= @invoice.name %>:
-      </span>
-      <span class="nht-invoice-value">
+
+    <div class="nht-invoice-road row lvc-invoice-road">
+      <div class="nht-invoice-status">
         <span>
           <i class="fa fa-shopping-cart"></i>
         </span>
-      </span>
+        <span class="nht-invoice-status nht-status">
+          <%= @invoice.name %>
+        </span>
+          <span class="nht-invoice-value">
+        </span>
+        <div class="clear-fix"></div>
+        <hr>
+      </div>
 
-      <%= render "edit" %>
-
-      <div class="clear-fix"></div>
-      <hr>
-    </div>
-
-    <div class="nht-invoice-road">
-      <div class="nht-invoice-road-left">
+      <div class="nht-invoice-road-left lvc-invoice-road-left">
         <p class="nht-text-center">
           <%= t "invoices._distance" %>
         </p>
@@ -29,7 +27,7 @@
         </p>
       </div>
 
-      <div class="nht-invoice-road-right">
+      <div class="nht-invoice-road-right lvc-invoice-road-right">
         <div class="nht-line">
           <i class="fa fa-circle-o nht-circle-first nht-color"
             aria-hidden="true"></i>
@@ -45,91 +43,95 @@
 
       </div>
       <div class="clearfix"></div>
-    </div>
 
-    <div class="modal-body">
-      <div id="map-show-invoice"></div>
+      <div class="modal-body">
+        <div id="map-show-invoice"></div>
+      </div>
     </div>
 
     <div class="nht-invoice-content">
-      <p class="nht-text-center-2">
+      <p class="nht-text-center-2 text-on">
         <%= t "invoices._detail" %>
       </p>
 
       <div class="nht-invoice-detail">
-        <span class="nht-invoice-proper">
-          <%= t "invoices._name" %>
-        </span>
-        <span class="nht-invoice-value">
+        <div class="nht-invoice-proper">
+          <%= t "invoices._name_invoice" %>
+        </div>
+        <div class="nht-invoice-value">
           <%= @invoice.name.capitalize %>
-        </span>
+        </div>
         <div class="clearfix"></div>
         <hr>
       </div>
 
       <div class="nht-invoice-detail">
-        <span class="nht-invoice-proper">
+        <div class="nht-invoice-proper">
           <%= t "invoices._shipping_price" %>
-        </span>
-        <span class="nht-invoice-value">
+        </div>
+        <div class="nht-invoice-value">
           <%= number_to_currency @invoice.shipping_price %>
-        </span>
+        </div>
         <div class="clearfix"></div>
         <hr>
       </div>
 
       <div class="nht-invoice-detail">
-        <span class="nht-invoice-proper">
+        <div class="nht-invoice-proper">
           <%= t "invoices._price" %>
-        </span>
-        <span class="nht-invoice-value">
+        </div>
+        <div class="nht-invoice-value">
           <%= number_to_currency @invoice.price %>
-        </span>
+        </div>
         <div class="clearfix"></div>
         <hr>
       </div>
 
       <div class="nht-invoice-detail">
-        <span class="nht-invoice-proper">
+        <div class="nht-invoice-proper">
           <%= t "invoices._delivery_time" %>
-        </span>
-        <span class="nht-invoice-value">
+        </div>
+        <div class="nht-invoice-value">
           <%= @invoice.delivery_time %>
-        </span>
+        </div>
         <div class="clearfix"></div>
         <hr>
       </div>
     </div>
 
     <div class="nht-invoice-customer">
-      <p class="nht-text-center-2">
+      <p class="nht-text-center-2 text-on">
         <%= t "invoices._customer" %>
       </p>
       <div class="nht-invoice-detail">
-        <span class="nht-invoice-proper">
+        <div class="nht-invoice-proper">
           <%= t "invoices._name_customer" %>
-        </span>
-        <span class="nht-invoice-value">
+        </div>
+        <div class="nht-invoice-value">
           <span>
             <i class="glyphicon glyphicon-user"></i>
             <%= @invoice.customer_name.capitalize %>
           </span>
-        </span>
+        </div>
         <div class="clearfix"></div>
       </div><hr>
 
       <div class="nht-invoice-detail">
-        <span class="nht-invoice-proper">
+        <div class="nht-invoice-proper">
           <%= t "invoices._number_customer" %>
-        </span>
-        <span class="nht-invoice-value">
+        </div>
+        <div class="nht-invoice-value">
           <span>
             <i class="glyphicon glyphicon-phone"></i>
             <%= @invoice.customer_number %>
           </span>
-        </span>
+        </div>
         <div class="clearfix"></div>
       </div>
+    </div>
+
+    <div class="nht-invoice-action">
+      <%= render "edit" %>
     </div>
     <div class="clearfix"></div>
     <%= form_for [:shop, @invoice] do |f| %>

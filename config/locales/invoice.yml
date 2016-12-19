@@ -57,7 +57,7 @@ en:
     shipping_price: Shipping price
     _info_invoice: INFORMATION OF INVOICE
     _detail: DETAIL
-    _name: Name of invoice
+    _name_invoice: Name of invoice
     _status: Status
     _distance: Distance
     _customer: CUSTOMER
