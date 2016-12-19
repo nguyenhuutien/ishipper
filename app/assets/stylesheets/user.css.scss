@@ -537,3 +537,26 @@
   width: 100% !important;
   font-weight: 400;
 }
+
+.lvc-invoice-action{
+  width: 17% !important;
+  float: left;
+  margin: 10px;
+  font-size: 1.1rem;
+  letter-spacing: .025em;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 12px;
+  min-width: 100px;
+}
+
+.lvc-invoice-action a{
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 5% 10% 5% 10%;
+}
+
+.lvc-invoice-action a:hover{
+  color: #CDC9C9;
+}
