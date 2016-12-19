@@ -136,3 +136,38 @@
 .hvr-sweep-to-top:before{
   background: rgba(0, 190, 69, 0.8) !important;
 }
+
+.hvr-shutter-out-horizontal:before{
+  background: rgba(255,255,255,0.05) !important;
+}
+
+.hvr-shutter-out-horizontal{
+  box-sizing: border-box;
+  color: #23527c;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.42857143;
+}
+
+.hvr-shutter-out-horizontal:hover{
+  box-sizing: border-box;
+  color: #E7E7E7;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1.42857143;
+}
+
+.lvc-home{
+  color: #23527c !important;
+  background: none !important;
+  cursor: pointer;
+}
+
+.menu-active{
+  text-shadow: rgba(0,0,0,0.25) 0 -1px 0;
+  background: linear-gradient(#334556, #2C4257),#2A3F54;
+  box-shadow: rgba(0,0,0,0.25) 0 1px 0,inset rgba(255,255,255,0.16) 0 1px 0;
+}
+
+.sidebar{
+  background: #2A3F54;
+}

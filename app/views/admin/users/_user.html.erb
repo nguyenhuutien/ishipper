@@ -7,9 +7,11 @@
     </td>
     <td><%= user.email %></td>
     <td><%= user.phone_number %></td>
-    <td><%= user.role %></td>
-    <td class="td-manage-status" data-key="<%= User.statuses[user.status] %>">
-      <%= user.status %>
+    <td><strong><%= user.role %></strong></td>
+    <td>
+      <span class="td-manage-status" data-key="<%= User.statuses[user.status] %>">
+        <%= user.status %>
+      </span>
     </td>
     <td></td>
   </tr>

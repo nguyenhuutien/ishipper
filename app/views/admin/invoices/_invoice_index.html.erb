@@ -4,9 +4,15 @@
     <td><%= invoice.description %></td>
     <td><%= number_to_currency invoice.price %></td>
     <td><%= number_to_currency invoice.shipping_price %></td>
-    <td><%= number_with_precision invoice.distance_invoice %> <%= t :km %></td>
-    <td class="td-manage-invoice-status" data-status="<%= Invoice.statuses[invoice.status] %>">
-      <%= invoice.status %>
+    <td>
+      <strong>
+        <%= number_with_precision invoice.distance_invoice %> <%= t :km %>
+      </strong>
+    </td>
+    <td>
+      <span class="td-manage-invoice-status" data-status="<%= Invoice.statuses[invoice.status] %>">
+        <%= invoice.status %>
+      </span>
     </td>
   </tr>
 <% end %>
