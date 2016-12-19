@@ -2,12 +2,18 @@ function addShipper(map, addresses) {
   bounds = new google.maps.LatLngBounds();
   for (i = 0; i < addresses.length; i++) {
     position = {lat: addresses[i].latitude, lng: addresses[i].longitude};
+    img = new Image();
+    if (addresses[i].online) {
+      img.src = '../../assets/online-shipper.png';
+    } else {
+      img.src = '../../assets/offline-shipper.png';
+    }
 
     marker = new google.maps.Marker({
       map: map,
       animation: google.maps.Animation.DROP,
       position: position,
-      icon: '../assets/marker-shipper.png',
+      icon: img.src,
       user_id: addresses[i].id,
       title: addresses[i].name,
       user_name: addresses[i].name,
@@ -26,7 +32,7 @@ function addShipper(map, addresses) {
 
     marker.addListener('click', function() {
       avatar = document.getElementById('nht-user-avatar');
-      avatar.src = '../../assets/profiles.jpg';
+      avatar.src = '../../assets/profile.jpg';
       $('.nht-user_name').html(this.user_name);
       $('.nht-user_phone_number').html(this.user_phone_number);
       $('.nht-user_rate').html(this.user_rate);

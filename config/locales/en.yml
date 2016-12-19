@@ -20,6 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  datetime: &datetime
+    formats:
+      default: "%d/%m/%Y"
+      short: "%m - %Y"
+      day_month: "%d/%m"
+      long: "%H:%M:%S, %d/%m/%Y"
+
+  date:
+    <<: *datetime
+
+  time:
+    <<: *datetime
+
   hello: "Hello world"
   your_pin: Your PIN is %{pin}
   messages:

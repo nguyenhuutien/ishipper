@@ -68,6 +68,8 @@ en:
     _show_route: Show route
     _name_customer: Customer
     _number_customer: Phone number
+    address_start: Address start
+    address_finish: Address finish
     enter_address_start: Enter address start
     enter_address_finish: Enter address finish
     cannot_blank: can't blank
@@ -84,9 +86,13 @@ en:
     from: "From :"
     to: "To :"
     rate: "Rate : %{rate}"
+    name_invoice: Name
     manage_invoices: Manage invoices
     manage_shippers: Manage shippers
     create_button: Create Invoice
+    status: "%{status} invoices"
+    action: Action
+    created_at: Created at
   vnd: VND
   kg: Kg
   km: KM

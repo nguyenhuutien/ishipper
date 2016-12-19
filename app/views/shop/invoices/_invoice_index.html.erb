@@ -1,0 +1,59 @@
+<div class="nht-shippers modal-dialog">
+  <div class="modal-content">
+    <div class="nht-invoices-title base-color">
+      <div class="nht-invoices-status">
+        <%= t("invoices.status", status: @invoices.first.status).upcase %>
+      </div>
+
+      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+        <i class="fa fa-times" aria-hidden="true"></i>
+      <% end %>
+
+      <div class="dropdown nht-dropdown-status">
+        <button class="dropdown-toggle" data-toggle="dropdown">
+          <%= Settings.invoice.status.all.capitalize %><b class="caret"></b>
+        </button>
+
+        <ul class="dropdown-menu nht-dropdown-menu-status">
+          <% Settings.invoice_status.status.each do |status| %>
+            <li>
+              <%= status.capitalize %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="table">
+      <table class="table table-hover">
+        <thead>
+          <tr class="nht-invoice-table-title">
+            <td><strong><%= t "invoices.name_invoice" %></strong></td>
+            <td><strong><%= t "invoices.created_at" %></strong></td>
+            <td><strong><%= t "invoices.address_finish" %></strong></td>
+            <td><strong><%= t "invoices.address_start" %></strong></td>
+            <td><strong><%= t "invoices._status" %></strong></td>
+            <td><strong><%= t "invoices.action" %></strong></td>
+          </tr>
+        </thead>
+        <tbody class="nht-invoice-table-body">
+          <% @invoices.each do |invoice| %>
+            <tr>
+              <td><%= invoice.name %></td>
+              <td><%= l invoice.created_at, format: :default %></td>
+              <td><%= invoice.address_finish %></td>
+              <td><%= invoice.address_start %></td>
+              <td><%= invoice.status %></td>
+              <td>
+                <%= link_to "#", class: "btn btn-primary" do %>
+                <% end %>
+                <%= link_to "#", class: "btn btn-danger" do %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
