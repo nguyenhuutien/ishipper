@@ -14,11 +14,17 @@ class ShopsController < ApplicationController
   end
 
   def update
-    if @shop.update_attributes user_params
-      flash[:success] = t "users.save_success"
-      redirect_to shop_root_path
+    if params[:user][:current_password]
+      if @shop.update_with_password user_params
+        flash[:success] =t "users.messages.update_password_success"
+        sign_in @shop, bypass: true
+        redirect_to shop_root_path
+      end
     else
-      render :edit
+      if @shop.update_attributes user_params
+        flash[:success] = t "users.messages.update_success"
+        redirect_to shop_root_path
+      end
     end
   end
 

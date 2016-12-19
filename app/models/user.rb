@@ -46,7 +46,7 @@ class User < ApplicationRecord
     :role, :password, :password_confirmation, :avatar]
 
   UPDATE_ATTRIBUTES_PARAMS = [:name, :email, :address, :plate_number,
-    :current_password, :avatar]
+    :password, :password_confirmation, :current_password, :avatar]
 
   validates :phone_number, uniqueness: true,
     format: {with: VALID_PHONE_REGEX}

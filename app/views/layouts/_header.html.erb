@@ -74,10 +74,11 @@
         <ul class="dropdown-menu nht-dropdown">
           <li class="hatd-profile" data-toggle="modal" data-target="#myModal-edit-profile">
             <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
-            <span ><%= t("_profile") %></span>
+            <span ><%= t "_profile" %></span>
           </li>
-          <li>
-            <%= link_to t("users.list"), shops_path %>
+          <li class="hatd-profile" data-toggle="modal" data-target="#myModal-edit-password">
+            <i class="glyphicon glyphicon-wrench" aria-hidden="true"></i>
+            <span ><%= t "users.edit.change_password" %></span>
           </li>
           <li>
             <%= link_to t(:log_out), destroy_user_session_path, method: :delete %>
