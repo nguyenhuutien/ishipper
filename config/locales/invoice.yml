@@ -33,7 +33,7 @@ en:
     weight: Enter weight of invoice
     price: Enter price of invoice
     shipping_price: Enter shipping price of invoice
-    delivery_time: Enter delivery time of invoice
+    delivery_time_input: Enter delivery time of invoice
     customer_name: Enter customer name
     customer_number: Enter phone number of customer
     description: Enter description of invoice

@@ -68,16 +68,16 @@ function calcRoute(map, markers, directions) {
 }
 
 function initAutocomplete(map, marker, input) {
+  bounds = map.getBounds();
   autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.addListener('place_changed', function() {
-    place = autocomplete.getPlace();
+    place = this.getPlace();
     if (!place.geometry) {
       return;
     }
 
     position = place.geometry.location;
-
-    if (marker !== null) {
+    if (marker != null) {
       marker.setPosition(position);
     } else {
       marker = new google.maps.Marker({
@@ -87,9 +87,10 @@ function initAutocomplete(map, marker, input) {
         position: position,
       });
     }
+    bounds.extend(marker.getPosition());
     window.setTimeout(function() {
       map.panTo(position, 5000);
-      map.setZoom(13);
+      map.fitBounds(bounds);
     });
   });
 }

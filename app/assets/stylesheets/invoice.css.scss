@@ -227,12 +227,6 @@
   transition: border-color .1s linear;
 }
 
-#distance_invoice{
-  width: 850.3px;
-  border: none;
-  background: transparent;
-}
-
 .pointer{
   cursor: pointer;
 }
@@ -300,7 +294,7 @@
 }
 
 #distance_invoice{
-  width: auto;
+  width: 100%;
 }
 
 .nht-marker-start{
