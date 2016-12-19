@@ -10,6 +10,9 @@ en:
       not_authorize: You are not authorized to perform this action!
     show:
       success: "Get user successfully"
+    edit:
+      title: Please enter your information
+      button: CHOOSE A PICTURE
     sum_invoices: "Sum invoices:"
     success_invoices: "Success invoices:"
     edit_user: Edit user
