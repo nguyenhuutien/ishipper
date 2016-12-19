@@ -3,6 +3,7 @@ en:
     messages:
       update_success: "Profile update successfully"
       update_fails: "Could not update profile"
+      update_password_success: Change password successful!
       user_not_found: "User not found"
       get_shipper_success: "Get shipper success"
       get_shipper_fails: "No shipper around here"
@@ -13,6 +14,7 @@ en:
     edit:
       title: Please enter your information
       button: CHOOSE A PICTURE
+      change_password: Change Password
     sum_invoices: "Sum invoices:"
     success_invoices: "Success invoices:"
     edit_user: Edit user

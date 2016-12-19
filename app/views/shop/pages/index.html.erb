@@ -99,7 +99,8 @@
           <span class="hatd-edit-profile-title"><%= t "users.edit.title" %></span>
           <button type="button" class="close hatd-edit-profile-close-btn" data-dismiss="modal">&times;</button>
         </div>
-        <%= form_for current_user, url: shop_path(id: current_user.id), method: :patch do |f| %>
+        <%= form_for current_user, url: shop_path(id: current_user.id), method: :patch, remote: true do |f| %>
+          <div class="hatd-update-profile-error"></div>
           <div class="modal-body">
             <div class="col-sx-12">
               <div class="col-md-3">
@@ -150,6 +151,63 @@
               </button>
               <%= button_tag class: "btn btn-primary text-center" do %>
                 <i class="ace-icon fa fa-check"><%= t "devise.update" %></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal-edit-password" class="modal fade" role="dialog">
+    <div class="modal-dialog hatd-edit-pass-dialog">
+      <div class="modal-content hatd-edit-pass-content">
+        <div class="hatd-edit-pass-header">
+          <span class="hatd-edit-pass-title"><%= t "users.edit.title" %></span>
+          <button type="button" class="close hatd-edit-pass-close-btn" data-dismiss="modal">&times;</button>
+        </div>
+        <%= form_for current_user, url: shop_path(id: current_user.id), method: :patch, remote: true do |f| %>
+          <div class="hatd-update-pass-error"></div>
+          <div class="modal-body">
+            <div class="col-sx-12">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <div class="hatd-edit-pass-label">
+                    <%= f.label :current_password %>:
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="hatd-edit-pass-label">
+                    <%= f.label :password %>:
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="hatd-edit-pass-label">
+                    <%= f.label :password_confirmation %>:
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <%= f.password_field :current_password, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.password_field :password, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.password_field :password_confirmation, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="modal-footer">
+            <div class="hatd-footer-btn">
+              <button class="hatd-btn btn-default" data-dismiss="modal">
+                <i class="ace-icon fa fa-times"></i><%= t "close" %>
+              </button>
+              <%= button_tag class: "btn btn-primary text-center" do %>
+                <i class="ace-icon fa fa-check"><%= t "users.edit.change_password" %></i>
               <% end %>
             </div>
           </div>
