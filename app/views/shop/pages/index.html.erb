@@ -26,8 +26,62 @@
           <span class="nht-item-content"><%= t("invoices.manage_shippers") %></span>
         <% end %>
       </li>
-
     </ul>
+  </div>
+  <div class="td-create-invoice-form">
+    <div class="td-create-invoice-close">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+    <%= form_for [:shop, @invoice], remote: true do |f| %>
+      <div id="td-create-error"></div>
+      <div class="td-shop-information">
+        <p class="td-shop-title">
+          <%= t "create_invoice.shop_information" %>
+        </p>
+        <div class="td-line"></div>
+        <div class="td-shop-address">
+          <%= f.text_field :address_start, class: "form-control td-input",
+            id: "td-shop-address-input", placeholder: t("address_start") %>
+        </div>
+      </div>
+      <div class="td-customer-information">
+        <p class="td-shop-title">
+          <%= t "create_invoice.customer_information" %>
+        </p>
+        <div class="td-line"></div>
+        <div class="td-customer-address">
+          <%= f.text_field :address_finish, class: "form-control td-input",
+            id: "td-customer-address-input", placeholder: t("address_finish") %>
+        </div>
+        <div class="td-customer-infomation-content">
+          <%= f.text_field :customer_name, class: "form-control td-input",
+            placeholder: t("invoices.customer_name") %>
+          <%= f.text_field :customer_number, class: "form-control td-input",
+            placeholder: t("invoices.customer_number") %>
+          <%= f.text_field :description, class: "form-control td-input",
+            placeholder: t("invoices.description") %>
+        </div>
+      </div>
+      <div class="td-invoice-information">
+        <p class="td-shop-title">
+          <%= t "create_invoice.invoice_information" %>
+        </p>
+        <div class="td-line"></div>
+        <div class="td-invoice-infomation-content">
+          <%= f.text_field :name, class: "form-control td-input",
+            placeholder: t("invoices.name") %>
+          <%= f.text_field :price, class: "form-control td-input",
+            placeholder: t("invoices.price") %>
+          <%= f.text_field :shipping_price, class: "form-control td-input",
+            placeholder: t("invoices.shipping_price") %>
+        </div>
+      </div>
+
+      <div class="td-btn-invoice">
+        <%= f.submit t(:_create), class: "td-create-button" %>
+      </div>
+    <% end %>
+
   </div>
   <div class="nht-search-address">
     <div class="input-group">

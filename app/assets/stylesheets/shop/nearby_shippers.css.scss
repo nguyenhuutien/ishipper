@@ -13,6 +13,7 @@
     left: 0px;
     height: auto;
     background-color: #FFF;
+    z-index: 1;
 
     ul {
       margin-bottom: 0px !important;
@@ -59,6 +60,103 @@
         margin-left: 10px;
         vertical-align: middle;
         line-height: 25px;
+      }
+    }
+  }
+
+  .td-create-invoice-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 370px;
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    z-index: 2;
+    background-color: #FFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding: 30px 15px;
+    display: none;
+    .td-create-invoice-close {
+      position: fixed;
+      top: 60px;
+      left: 325px;
+      z-index: 2;
+      width: 30px;
+      background-color: #00be45;
+      border-bottom-left-radius: 100%;
+      cursor: pointer;
+      i {
+        margin-left: 12px;
+      }
+    }
+
+    .td-shop-title {
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .td-line {
+      position: relative;
+      width: 100%;
+      height: 1px;
+      background-color: #D9D9D9;
+    }
+
+    .td-line:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 25%;
+      height: 2px;
+      background-color: #00be45;
+    }
+
+    .td-input {
+      border: none;
+      border-bottom: 1px solid #D9D9D9;
+      box-shadow: none;
+      margin-top: 10px;
+    }
+
+    .td-input:focus {
+      border-color: #00be45;
+    }
+
+    .td-shop-information {
+      .td-shop-address {
+        margin-top: 15px;
+      }
+    }
+
+    .td-customer-information {
+      margin-top: 30px;
+      .td-customer-address {
+        margin-top: 15px;
+      }
+    }
+
+    .td-invoice-information {
+      margin-top: 30px;
+      .td-invoice-address {
+        margin-top: 15px;
+      }
+    }
+
+    .td-btn-invoice {
+      margin-top: 30px;
+      .td-create-button {
+        width: 100%;
+        background-color: #00be45;
+        border: none;
+        height: 50px;
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 5px;
       }
     }
   }

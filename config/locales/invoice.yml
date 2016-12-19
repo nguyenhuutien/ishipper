@@ -86,6 +86,7 @@ en:
     rate: "Rate : %{rate}"
     manage_invoices: Manage invoices
     manage_shippers: Manage shippers
+    create_button: Create Invoice
   vnd: VND
   kg: Kg
   km: KM
