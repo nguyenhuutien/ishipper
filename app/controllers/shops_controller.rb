@@ -16,7 +16,7 @@ class ShopsController < ApplicationController
   def update
     if @shop.update_attributes user_params
       flash[:success] = t "users.save_success"
-      redirect_to shop_url @shop
+      redirect_to shop_root_path
     else
       render :edit
     end
