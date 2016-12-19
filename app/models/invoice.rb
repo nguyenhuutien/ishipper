@@ -66,7 +66,7 @@ class Invoice < ApplicationRecord
       valid_invoices = Invoice.joins("LEFT JOIN black_lists ON
         invoices.user_id = black_lists.owner_id")
         .where("black_lists.black_list_user_id != ? OR
-        black_lists.black_list_user_id IS NULL", params[:black_list_user_id])
+        black_lists.black_list_user_id IS NULL", params[:black_list_user_id]).order_by_time
       if params[:user].present?
         invoices = valid_invoices.near [params[:user][:latitude],
         params[:user][:longitude]], params[:user][:distance] if

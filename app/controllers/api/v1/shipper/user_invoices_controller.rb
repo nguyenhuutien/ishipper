@@ -9,8 +9,10 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
     new_shipper_limit = ShipperReceiveLimitServices::NewShipperLimitService.new user_id: current_user.id
     can_create = if new_shipper_limit.perform?
       if @user_invoice.save
+        @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
+          scope: {current_user: current_user}).as_json
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
-          data: {user_invoice: @user_invoice}, code: 1}, status: 200
+          data: {invoice: @serializer}, code: 1}, status: 200
         true
       else
         render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
@@ -21,8 +23,10 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       old_shipper_limit = ShipperReceiveLimitServices::OldShipperLimitService.new user_id: current_user.id
       if old_shipper_limit.perform?
         if @user_invoice.save
+          @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
+            scope: {current_user: current_user}).as_json
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
-            data: {user_invoice: @user_invoice}, code: 1}, status: 200
+            data: {invoice: @serializer}, code: 1}, status: 200
           true
         else
           render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
