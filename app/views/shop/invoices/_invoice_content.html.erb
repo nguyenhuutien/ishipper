@@ -1,0 +1,15 @@
+<% @invoices.each do |invoice| %>
+  <tr>
+    <td><%= invoice.name %></td>
+    <td><%= l invoice.created_at, format: :default %></td>
+    <td><%= invoice.address_finish %></td>
+    <td><%= invoice.address_start %></td>
+    <td><%= invoice.status %></td>
+    <td>
+      <%= link_to "#", class: "btn btn-primary" do %>
+      <% end %>
+      <%= link_to "#", class: "btn btn-danger" do %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

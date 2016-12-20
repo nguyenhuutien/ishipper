@@ -2,7 +2,8 @@ class Shop::InvoicesController < Shop::ShopBaseController
   load_and_authorize_resource
 
   def index
-    @invoices = current_user.invoices.send params[:status] if params[:status]
+    @invoices = current_user.invoices.send(params[:status]) if params[:status]
+    @invoices = @invoices.search_invoice(params[:name_invoice]).order_by_time if params[:name_invoice]
   end
 
   def show
