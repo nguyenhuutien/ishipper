@@ -1,0 +1,6 @@
+<% if params[:type] %>
+  $('#hatd-shipper-table-content').html('<%= j render "shipper_content" %>');
+<% else %>
+  $('#id-hatd-shippers-index').html('<%= j render "shipper_index" %>');
+  $('#id-hatd-shippers-index').modal('show');
+<% end %>

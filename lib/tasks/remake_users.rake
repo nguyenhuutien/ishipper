@@ -38,7 +38,7 @@ namespace :db do
       longitude: longitude
 
     user3 = User.create!(
-      name: "Shop 97",
+      name: "Shipper 97",
       phone_number: "+841234567897",
       password: "12345678",
       password_confirmation: "12345678",

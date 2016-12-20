@@ -1,0 +1,18 @@
+<% @shippers.each do |shipper| %>
+  <tr>
+    <td>
+      <div class="hatd-avatar">
+        <%= image_tag avatar_profile(current_user.avatar.url), class: "img-responsive" %>
+      </div>
+    </td>
+    <td><%= shipper.name %></td>
+    <td><%= shipper.plate_number %></td>
+    <td><%= shipper.all_user_invoices.init.size %>/<%= shipper.all_user_invoices.size %></td>
+    <td>
+      <%= link_to "#", class: "btn btn-primary" do %>
+      <% end %>
+      <%= link_to "#", class: "btn btn-danger" do %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

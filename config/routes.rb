@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   root "pages#index"
   get "/pages/:page", to: "pages#show"
   get "shop/invoices/status/:status", to: "shop/invoices#index"
+  get "shop/shippers/type/:type", to: "shop/shippers#index"
 
   devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"},
     controllers: {
@@ -69,6 +70,7 @@ Rails.application.routes.draw do
     resources :reports, only: [:new, :create]
     resources :rates, only: [:new, :create]
     resources :user_invoices, only: :update
+    resources :shippers, only: [:index]
   end
 
   resources :shops

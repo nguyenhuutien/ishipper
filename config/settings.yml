@@ -82,3 +82,8 @@ invoice_status:
     - shipped
     - finished
     - cancel
+shipper:
+  types:
+    list_shipper_received: list_shipper_received
+    favorite_list_users: favorite_list_users
+    black_list_users: black_list_users
