@@ -57,6 +57,10 @@ class Invoice < ApplicationRecord
     shippers = shippers - self.user.black_list_users
   end
 
+  def number_of_recipients
+    self.recieved_shippers.size
+  end
+
   class << self
     def filtering_column params
       params.slice :price, :shipping_price, :distance_invoice, :weight

@@ -36,7 +36,7 @@ class Supports::User
     @params[:user_invoice_id] if @params
   end
 
-  def invoice_id
-    @params[:invoice_id] if @params
+  def invoice
+    Invoice.find_by id: @params[:invoice_id] if @params
   end
 end

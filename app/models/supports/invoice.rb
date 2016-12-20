@@ -7,17 +7,14 @@ class Supports::Invoice
   end
 
   def list_receive_shippers
-    @shippers = @invoice.all_shipper
-    @shippers = @shippers - @current_user.black_list_users
+    @shippers = @invoice.recieved_shippers
     ActiveModelSerializers::SerializableResource.new(@shippers,
       each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
       current_user: @current_user})
   end
 
   def number_of_recipients
-    @shippers = @invoice.all_shipper
-    @shippers = @shippers - @current_user.black_list_users
-    @shippers.size
+    @invoice.number_of_recipients
   end
 
   def status_histories

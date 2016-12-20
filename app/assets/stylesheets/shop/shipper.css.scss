@@ -1,73 +1,8 @@
-.nht-list-shippers {
-  margin-top: 60px;
-  padding: 0px;
+#nht-shippers-list-id {
 
-  #map-list-shippers {
-    height: calc(100vh - 60px);
-    width: auto;
-  }
-}
-
-.nht-invoice-content {
-  position: relative;
-
-  .nht-btn-list-shippers {
-    position: absolute;
-    float: right;
-    top: 5px;
-    right: 40px;
-  }
-
-  .nht-btn-update-invoice {
-    position: absolute;
-    float: right;
-    top: 80px;
-    right: 40px;
-  }
-}
-
-.td-all {
-  margin-bottom: 150px;
-}
-
-.td-init {
-  margin-bottom: 150px;
-}
-
-.td-waiting {
-  margin-bottom: 150px;
-}
-
-.td-shipping {
-  margin-bottom: 150px;
-}
-
-.td-shipped {
-  margin-bottom: 150px;
-}
-
-.td-finished {
-  margin-bottom: 150px;
-}
-
-.td-cancel {
-  margin-bottom: 150px;
-}
-
-.td-reject {
-  margin-bottom: 150px;
-}
-
-#nht-invoice-list_shippers {
-  margin-top: 0px !important;
-
-  .nht-shippers.modal-dialog {
+  .modal-dialog {
     padding-top: 35px;
     width: 70%;
-
-    .close {
-      width: 20px;
-    }
 
     .modal-content {
       height: auto;
@@ -81,10 +16,6 @@
       }
 
       .title {
-        hr {
-          margin: 0px !important;
-        }
-
         .nht-invoice-name {
           display: flex;
           flex-direction: column;
@@ -101,10 +32,8 @@
         }
       }
 
-      .nht-shippers-list {
-        padding: 10px;
-        max-height: 75vh;
-        overflow-y: scroll;
+      .nht-profile-shipper {
+        border-top: 1px solid #D9D9D9;
 
         .nht-user-left {
 
@@ -136,8 +65,8 @@
 
           .accept {
             position: absolute;
-            bottom: 2px;
-            right: 2px;
+            bottom: -50px;
+            right: 30px;
             display: inline-flex;
 
             .btn {
@@ -219,50 +148,6 @@
                   background-color: #ff6f31;
                 }
               }
-            }
-          }
-        }
-
-        .true-shipper {
-          background-color: rgba(255, 255, 0, 0.54);
-        }
-
-        li {
-          list-style-type: none;
-          border: 1px solid #D9D9D9;
-        }
-
-        .nht-shippers-item {
-          padding: 5px;
-
-          .info {
-            min-height: 50px;
-            height: auto;
-            display: flex;
-
-            .nht-avatar {
-              #avatar {
-                max-height: 50px;
-                max-width: 50px;
-              }
-            }
-          }
-
-          .rate-accept {
-            .rate {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              min-height: 50px;
-              font-size: 20px;
-              color: #F9A825;
-            }
-
-            .accept {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              min-height: 50px;
             }
           }
         }

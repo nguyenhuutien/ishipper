@@ -1,0 +1,153 @@
+.nht-list-shippers {
+  margin-top: 60px;
+  padding: 0px;
+
+  #map-list-shippers {
+    height: calc(100vh - 60px);
+    width: auto;
+  }
+}
+
+.nht-invoice-content {
+  position: relative;
+
+  .nht-btn-list-shippers {
+    position: absolute;
+    float: right;
+    top: 5px;
+    right: 40px;
+  }
+
+  .nht-btn-update-invoice {
+    position: absolute;
+    float: right;
+    top: 80px;
+    right: 40px;
+  }
+}
+
+.td-all {
+  margin-bottom: 150px;
+}
+
+.td-init {
+  margin-bottom: 150px;
+}
+
+.td-waiting {
+  margin-bottom: 150px;
+}
+
+.td-shipping {
+  margin-bottom: 150px;
+}
+
+.td-shipped {
+  margin-bottom: 150px;
+}
+
+.td-finished {
+  margin-bottom: 150px;
+}
+
+.td-cancel {
+  margin-bottom: 150px;
+}
+
+.td-reject {
+  margin-bottom: 150px;
+}
+
+#id-nht-invoice-shippers {
+  margin-top: 0px !important;
+
+  .nht-shippers.modal-dialog {
+    padding-top: 35px;
+    width: 70%;
+
+    .modal-content {
+      height: auto;
+      padding-top: 20px;
+      position: relative;
+
+      .close {
+        position: absolute;
+        top: 1px;
+        right: 5px;
+      }
+
+      .title {
+        hr {
+          margin: 0px !important;
+        }
+
+        .nht-invoice-name {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 50px;
+          word-wrap: break-word;
+        }
+
+        .nht-invoice-address {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 50px;
+        }
+      }
+
+      .nht-shippers-list {
+        padding: 10px;
+        max-height: 75vh;
+        overflow-y: scroll;
+
+        .true-shipper {
+          background-color: rgba(255, 255, 0, 0.54);
+        }
+
+        li {
+          list-style-type: none;
+          border: 1px solid #D9D9D9;
+        }
+
+        .nht-shippers-item {
+          padding: 5px;
+          border-left: none;
+          border-right: none;
+
+          .info {
+            min-height: 50px;
+            height: auto;
+            display: flex;
+
+            .nht-avatar {
+              #avatar {
+                max-height: 50px;
+                max-width: 50px;
+              }
+            }
+          }
+
+          .rate-accept {
+            .rate {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 50px;
+              font-size: 20px;
+              color: #F9A825;
+            }
+
+            .accept {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-<div class="nht-shippers modal-dialog">
+<div class="nht-invoices modal-dialog">
   <div class="modal-content">
     <div class="nht-invoices-title base-color">
       <div class="nht-invoices-status">
@@ -23,19 +23,20 @@
 
       <div class="dropdown nht-dropdown-status">
         <button class="dropdown-toggle" data-toggle="dropdown">
-          <%= Settings.invoice.status.all.capitalize %><b class="caret"></b>
+          <b><%= Settings.invoice.status.all.capitalize %></b>
+          <b class="caret"></b>
         </button>
 
         <ul class="dropdown-menu nht-dropdown-menu-status">
           <%= link_to "/shop/invoices/status/all", remote: true do %>
             <li class="nht-item-status">
-              <%= Settings.invoice.status.all.capitalize %>
+              <b><%= Settings.invoice.status.all.capitalize %></b>
             </li>
           <% end %>
           <% Settings.invoice_status.status.each do |status| %>
             <%= link_to "/shop/invoices/status/#{status}", remote: true do %>
               <li class="nht-item-status">
-                <%= status.capitalize %>
+                <b><%= status.capitalize %></b>
               </li>
             <% end %>
           <% end %>

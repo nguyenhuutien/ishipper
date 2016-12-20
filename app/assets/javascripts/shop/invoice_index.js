@@ -1,7 +1,9 @@
 document.addEventListener("turbolinks:load", function() {
   $('.modal').on('shown.bs.modal', function () {
     $('.nht-item-status').on('click', function() {
-      $('.dropdown-toggle').html($(this)[0].innerText);
+      str = '<b>' + $(this)[0].innerText +'</b>';
+      str += '<b class="caret"></b>';
+      $('.dropdown-toggle').html(str);
       $('.nht-dropdown-menu-status').slideUp(200);
     });
 
