@@ -78,7 +78,7 @@ en:
     invalid: Invalid
     list_shippers: Shipper near by
     choose_shipper: Choose Shipper
-    recieved_shippers: Shippers recieved this invoice (%{number_shipper})
+    recieved_shippers: Shippers recieved (%{number_shipper})
     update:
       cancel: Cancel
       finished: Finished

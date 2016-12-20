@@ -1,6 +1,6 @@
 <div class="nht-shippers modal-dialog">
   <div class="modal-content">
-    <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+    <%= link_to "#", data: {dismiss: "modal"}, class: "close nht-shippers-close" do %>
       <i class="fa fa-times" aria-hidden="true"></i>
     <% end %>
     <div class="title">
@@ -23,10 +23,9 @@
         </span>
       </div>
       <div class="clearfix"></div>
-      <hr>
     </div>
 
-    <div class="nht-shippers-list" id="nht-shippers-list-id">
+    <div class="nht-shippers-list">
       <ul>
         <% @shippers.serializable_hash.each do |shipper| %>
           <li class="nht-shippers-item <%= shipper[:favorite_user] %>-shipper">
@@ -34,14 +33,15 @@
               <div class="col-xs-5 col-sm-5 col-md-4 col-lg-4 nht-avatar">
                 <%= link_to shipper_path(id: shipper[:id], user_invoice_id:
                   shipper[:user_invoice_id], invoice_id: @invoice.id), remote: true do %>
-                  <%= image_tag avatar_profile(shipper[:avatar]), class: "img-responsive",
+                  <%= image_tag avatar_profile(shipper[:avatar]), class: "img-responsive nht-shipper",
                     id: "avatar" %>
                 <% end %>
               </div>
 
               <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 nht-info">
                 <%= link_to shipper_path(id: shipper[:id], user_invoice_id:
-                  shipper[:user_invoice_id], invoice_id: @invoice.id), remote: true do %>
+                  shipper[:user_invoice_id], invoice_id: @invoice.id), remote: true,
+                  class: "nht-shipper" do %>
                   <%= shipper[:name] %>
                   <br>
                   <%= shipper[:phone_number] %>
