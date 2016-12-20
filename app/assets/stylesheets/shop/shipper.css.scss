@@ -1,4 +1,4 @@
-#nht-shippers-list-id {
+#id-nht-invoice-shipper {
 
   .modal-dialog {
     padding-top: 35px;
@@ -13,6 +13,16 @@
         position: absolute;
         top: 1px;
         right: 5px;
+      }
+
+      .back {
+        float: right;
+        margin: 15px;
+      }
+
+      .accept {
+        float: right;
+        margin: 15px;
       }
 
       .title {
@@ -62,18 +72,6 @@
           padding-top: 60px;
           height: 100%;
           position: relative;
-
-          .accept {
-            position: absolute;
-            bottom: -50px;
-            right: 30px;
-            display: inline-flex;
-
-            .btn {
-              float: right;
-              margin-right: 5px;
-            }
-          }
 
           .td-p-flex {
             width: 100%;

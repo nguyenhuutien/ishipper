@@ -1,6 +1,6 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= link_to "#", data: {dismiss: "modal"}, class: "close nht-shipper-close" do %>
+    <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
       <i class="fa fa-times" aria-hidden="true"></i>
     <% end %>
     <div class="title">
@@ -107,14 +107,21 @@
               </i><%= @shipper.phone_number %>
             </p>
         </div>
-
-        <div class="accept">
-          <%= form_tag shop_user_invoice_path(@supports.user_invoice_id),
-            method: :patch do %>
-            <%= submit_tag t("invoices.accept_shipper.button"), class: "btn btn-primary" %>
-          <% end %>
-        </div>
       </div>
+    </div>
+
+    <div class="accept">
+      <%= form_tag shop_user_invoice_path(@supports.user_invoice_id),
+        method: :patch, remote: true do %>
+        <%= submit_tag t("invoices.accept_shipper.button"), class: "btn btn-primary" %>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="back">
+      <button type="button" class="btn btn-default" data-toggle="modal"
+        data-target="#id-nht-list-shippers"><%= t :back %><button>
+      <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
   </div>

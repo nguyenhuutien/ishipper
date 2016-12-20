@@ -4,6 +4,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
   def index
     @invoices = current_user.invoices.send(params[:status]) if params[:status]
     @invoices = @invoices.search_invoice(params[:name_invoice]).order_by_time if params[:name_invoice]
+    @status = params[:status] if params[:status]
   end
 
   def show

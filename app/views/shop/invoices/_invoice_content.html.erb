@@ -8,7 +8,7 @@
     <td>
       <%= link_to t("invoices.recieved_shippers", number_shipper: invoice.number_of_recipients),
         shop_list_shippers_path(invoice_id: invoice.id),
-        remote: true, class: "btn btn-primary", id: "nht-invoice-list-shippers-btn" %>
+        remote: true, class: "btn btn-primary nht-invoice-list-shippers-btn" %>
       <%= link_to "#", class: "btn btn-danger" do %>
       <% end %>
     </td>
