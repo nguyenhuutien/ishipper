@@ -1,5 +1,6 @@
 <% @invoices.each do |invoice| %>
-  <tr data-href= "<%= shop_invoice_path(invoice) %>" class="invoice-show">
+  <tr data-href="<%= shop_invoice_path(invoice) %>" id="<%= invoice.id %>"
+    class="invoice-show shop_invoice_row">
     <td><%= invoice.name %></td>
     <td><%= l invoice.created_at, format: :default %></td>
     <td><%= invoice.address_finish %></td>

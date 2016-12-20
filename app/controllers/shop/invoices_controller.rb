@@ -8,6 +8,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
   end
 
   def show
+    @list_back_status = params[:list_back_status] ||= "all"
     @support = Supports::Invoice.new invoice: @invoice, current_user: current_user
   end
 
@@ -42,6 +43,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
   end
 
   def update
+    @invoices = current_user.invoices.send params[:list_back_status]
     check_update = if params[:status]
       @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
       shop_update_invoice = InvoiceServices::ShopUpdateInvoiceService.new invoice: @invoice,
@@ -55,7 +57,6 @@ class Shop::InvoicesController < Shop::ShopBaseController
     else
       flash[:danger] = t "invoices.messages.cant_update"
     end
-    redirect_to :back
   end
 
   private
