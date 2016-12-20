@@ -1,5 +1,10 @@
+function addMarker(map, marker) {
+  marker.setMap(map);
+}
+
 document.addEventListener("turbolinks:load", function() {
-  if ($('#nht-form-invoice-new').length) {
+  $('.td-button-create-invoice').on('click', function() {
+    clearMarkers(markersNearbyShippers);
     markersNewInvoice = [];
     center_default = {lat: 21.0119842, lng: 105.8471442};
     locations_default = [
@@ -10,14 +15,8 @@ document.addEventListener("turbolinks:load", function() {
     directionsDisplay = new google.maps.DirectionsRenderer();
     bounds = new google.maps.LatLngBounds();
 
-    mapNewInvoice = new google.maps.Map(document.getElementById('map-new-invoice'), {
-      center: center_default,
-      zoom: 13,
-    });
-
-    clearMarkers(markers);
     for (i = 0; i < locations_default.length; i++) {
-      marker = addMarkerWithTimeout(mapNewInvoice, locations_default[i]);
+      marker = addMarkerWithTimeout(mapBase, locations_default[i]);
       markersNewInvoice.push(marker);
       if (i) {
         marker.setIcon('../../assets/blue-dot.png');
@@ -27,12 +26,66 @@ document.addEventListener("turbolinks:load", function() {
       bounds.extend(positionToLatLng(marker.getPosition()));
     }
 
-    mapShowInvoice.fitBounds(bounds);
+    mapBase.fitBounds(bounds);
     distance = getDistance(markersNewInvoice[0].getPosition(),
       markersNewInvoice[1].getPosition()).toFixed(2);
 
     $('#distance_invoice').val(distance);
     directions = {directionsService: directionsService, directionsDisplay: directionsDisplay};
-    calcRoute(mapNewInvoice, markersNewInvoice, directions);
-  }
+    calcRoute(mapBase, markersNewInvoice, directions);
+    geocodeLatLng(markersNewInvoice[0].getPosition(), $('#td-shop-address-input'));
+    geocodeLatLng(markersNewInvoice[1].getPosition(), $('#td-customer-address-input'));
+
+    $('#td-shop-address-input').on('keyup', function() {
+      initAutocomplete(mapBase, markersNewInvoice[0], $(this)[0]);
+    });
+
+    $('#td-customer-address-input').on('keyup', function() {
+      initAutocomplete(mapBase, markersNewInvoice[1], $(this)[0]);
+    });
+
+    google.maps.event.addListener(markersNewInvoice[0], 'dragend', function(evt){
+      $('#td-invoice-latitude_start').val(evt.latLng.lat());
+      $('#td-invoice-longitude_start').val(evt.latLng.lng());
+      $('#distance_invoice').val(getDistance(evt.latLng, markersNewInvoice[1].getPosition()).toFixed(2));
+      geocodeLatLng(this.getPosition(), $('#td-shop-address-input'));
+      calcRoute(mapBase, markersNewInvoice, directions);
+    });
+
+    google.maps.event.addListener(markersNewInvoice[1], 'dragend', function(evt){
+      $('#td-invoice-latitude_finish').val(evt.latLng.lat());
+      $('#td-invoice-longitude_finish').val(evt.latLng.lng());
+      $('#distance_invoice').val(getDistance(evt.latLng, markersNewInvoice[0].getPosition()).toFixed(2));
+      geocodeLatLng(this.getPosition(), $('#td-customer-address-input'));
+      calcRoute(mapBase, markersNewInvoice, directions);
+    });
+
+    google.maps.event.addListener(markersNewInvoice[0], 'position_changed', function(evt){
+      $('#td-invoice-latitude_start').val(this.getPosition().lat);
+      $('#td-invoice-longitude_start').val(this.getPosition().lng);
+      $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[1].getPosition()).toFixed(2));
+      geocodeLatLng(this.getPosition(), $('#td-shop-address-input'));
+      calcRoute(mapBase, markersNewInvoice, directions);
+    });
+
+    google.maps.event.addListener(markersNewInvoice[1], 'position_changed', function(evt){
+      $('#td-invoice-latitude_finish').val(this.getPosition().lat);
+      $('#td-invoice-longitude_finish').val(this.getPosition().lng);
+      $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[0].getPosition()).toFixed(2));
+      geocodeLatLng(this.getPosition(), $('#td-customer-address-input'));
+      calcRoute(mapBase, markersNewInvoice, directions);
+    });
+
+  });
+
+  $('.td-create-invoice-close').on('click', function() {
+    clearMarkers(markersNewInvoice);
+    bounds = new google.maps.LatLngBounds();
+    for( i = 0; i < markersNearbyShippers.length; i++ ) {
+      addMarker(mapBase, markersNearbyShippers[i]);
+      bounds.extend(positionToLatLng(markersNearbyShippers[i].getPosition()));
+    }
+    mapBase.fitBounds(bounds);
+    directionsDisplay.setMap(null);
+  });
 });

@@ -36,7 +36,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
         realtime_visibility_shipper.perform
       end
       flash[:success] = t "invoices.create.success"
-      redirect_to [:shop, @invoice]
+      redirect_to shop_root_path
     end
   end
 

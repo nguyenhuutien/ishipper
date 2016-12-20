@@ -14,6 +14,19 @@
   display: block !important;
 }
 
+.width-100 {
+  width: 100%;
+}
+
+.td-create-invoice-map {
+  width: calc(100% - 370px) !important;
+  margin-left: 370px !important;
+}
+
+.hidden {
+  display: none;
+}
+
 .alert-danger {
   padding: 0;
   background-color: #FFF;
