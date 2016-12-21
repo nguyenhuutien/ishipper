@@ -1,0 +1,103 @@
+<div class="lvc-invoices modal-dialog">
+  <div class="modal-content">
+    <div class="lvc-invoices-title base-color">
+      <div class="lvc-invoices-status">
+        <%= t "invoices._info_invoice" %>
+      </div>
+      <%= link_to "#", class: "close dis-invoice-modal" do %>
+          <i class="fa fa-times" aria-hidden="true"></i>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
+      <table class="table show_table_invoice">
+        <tbody class="lvc-invoice-table-body">
+        <tr>
+          <td><%= t "invoices._name" %></td>
+          <td><%= invoice.name.capitalize %></td>
+          <td><%= t "invoices._shipping_price" %></td>
+          <td><%= number_to_currency invoice.shipping_price %></td>
+        </tr>
+        <tr>
+          <td><%= t "invoices._number_customer" %></td>
+          <td><%= invoice.customer_number %></td>
+          <td><%= t "invoices._price" %></td>
+          <td><%= number_to_currency invoice.price %></td>
+        </tr>
+        <tr>
+          <td><%= t "invoices.address" %></td>
+          <td><%= invoice.address_start %></td>
+          <td><%= t "invoices._delivery_time" %></td>
+          <td><%= invoice.delivery_time %></td>
+        </tr>
+        <tr>
+          <td><%= t "invoices._name_customer" %></td>
+          <td><%= invoice.customer_name.capitalize %></td>
+          <td><%= t "invoices._description" %></td>
+          <td><%= invoice.description %></td>
+        </tr>
+        <tr>
+          <td><%= t "invoices._number_customer" %></td>
+          <td><%= invoice.customer_number %></td>
+          <td><%= t "invoices._delivery_time" %></td>
+          <td><%= invoice.delivery_time %></td>
+        </tr>
+        <tr>
+          <td><%= t "invoices.address" %></td>
+          <td><%= invoice.address_finish%></td>
+          <td><%= t "invoices._distance" %></td>
+          <td><%= invoice.distance_invoice %> <%= t :km %></td>
+        </tr>
+        </tbody>
+      </table>
+    <div>
+      <div class="show-invoice-action">
+        <hr>
+        <% unless invoice.finished? || invoice.cancel? %>
+          <div class="finished">
+            <% if invoice.shipped? %>
+              <%= form_for [:shop, invoice], method: :patch, remote: true do |f| %>
+                <%= hidden_field_tag :status, Settings.invoice.status[:finished] %>
+                <%= hidden_field_tag :list_back_status, @list_back_status %>
+                <%= f.submit t("invoices.update.finished"),
+                  class: "btn btn-primary invoice-status-change" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div id="lvc-report-invoice">
+            <%= form_for [:shop, invoice], method: :patch, remote: true do |f| %>
+              <%= hidden_field_tag :status, Settings.invoice.status[:cancel] %>
+              <%= hidden_field_tag :list_back_status, @list_back_status %>
+              <%= f.submit t("invoices.update.cancel"),
+                class: "btn btn-cancel invoice-status-change" %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if invoice.cancel? && !current_user.report?(invoice) %>
+          <div id="lvc-report-invoice">
+            <%= link_to t("report.title"), new_shop_report_path(invoice_id: invoice.id),
+              remote: true, class: "btn btn-danger lvc-btn-report" %>
+            <div class="clearfix"></div>
+          </div>
+        <% end %>
+
+        <% if invoice.finished? && !current_user.rate?(invoice) %>
+          <div id="lvc-rate-invoice-form">
+            <%= link_to t("rate.title"), new_shop_rate_path(invoice_id: invoice.id),
+              remote: true, class: "btn btn-primary lvc-btn-rate" %>
+            <div class="clearfix"></div>
+          </div>
+        <% end %>
+        <div class="clearfix"></div>
+        <% if current_user.rate? invoice %>
+          <div class="nht-invoice-rate">
+            <%= render "shop/rates/rate", rates: invoice.reviews.rate %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="report-modal" class="modal fade"></div>
+<div id="rate-modal" class="modal fade"></div>
+

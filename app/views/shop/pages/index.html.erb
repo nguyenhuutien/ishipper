@@ -7,14 +7,16 @@
   <div class="nht-nav-left">
     <ul>
       <li class="nht-item">
-        <%= link_to shop_invoices_path, remote: true do %>
+        <%= link_to shop_invoices_path, remote: true, status: :all,
+          class: "lvc-sidebar-button" do %>
           <span class="invoice nht-icon"></span>
           <span class="nht-item-content"><%= t("invoices.manage_invoices") %></span>
         <% end %>
       </li>
 
       <li class="nht-item">
-        <%= link_to "/shop/invoices/status/init", remote: true do %>
+        <%= link_to "/shop/invoices/status/init", remote: true, status: :init,
+          class: "lvc-sidebar-button"  do %>
           <span class="clock nht-icon"></span>
           <span class="nht-item-content"><%= t("invoices.init") %></span>
         <% end %>
@@ -244,3 +246,7 @@
 <div id="id-hatd-shippers-index" class="modal fade"></div>
 <div id="id-nht-list-shippers" class="modal fade"></div>
 <div id="id-nht-invoice-shipper" class="modal fade"></div>
+<div id="id-lvc-invoices-show" class="modal fade gt"></div>
+<div id="id-lvc-invoices-confirm" class="modal fade">
+  <%= render "shared/confirm_dialog" %>
+</div>

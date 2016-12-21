@@ -82,3 +82,7 @@ en:
     customer_information: Customer's Information
     invoice_information: Invoice's Information
   back: Back
+  confirm:
+    title: Are you sure ?
+    yes: Yes
+    no: No

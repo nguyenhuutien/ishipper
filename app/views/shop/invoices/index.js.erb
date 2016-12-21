@@ -1,6 +1,6 @@
 if ($('#id-nht-invoices-index').is(':visible')) {
   $('#nht-invoice-table-content').html('<%= j render "invoice_content" %>');
 } else {
-  $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>');
-  $('#id-nht-invoices-index').modal('show');
+  $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>').modal(
+    {backdrop: 'static', keyboard: false, show: true});
 }
