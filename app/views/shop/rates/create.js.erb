@@ -2,8 +2,12 @@
   $('#nht-rate-errors').html('<%= j render "shared/error_messages", object: @rate %>')
   CKEDITOR.replace('ckeditor');
   $('.nht-review-rate i').on('mouseover', function(evt){
-    var name = this.className.split('-');
+    var name = this.className.split(' ');
+    name = name[2].split('-');
     var number = parseInt(name[name.length-1]);
+    if (isNaN(number)) {
+      number = 0;
+    }
     number++;
     $('.nht-review-rate i').removeClass('nht-star');
     var a = $(this);
@@ -11,6 +15,9 @@
       a.addClass('nht-star');
       a = a.prev();
     }
-    document.getElementById('rate_rating_point').value = number;
+    $('#rate_rating_point').val(number);
   });
+<% else %>
+  $('#rate-modal').modal('toggle');
+  $('#id-lvc-invoices-show').html('<%= j render "shop/invoices/invoice", invoice: @rate.invoice %>');
 <% end %>

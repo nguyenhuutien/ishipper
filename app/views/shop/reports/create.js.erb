@@ -1,3 +1,6 @@
 <% if @report.errors.full_messages.present? %>
-  $('#nht-report-errors').html('<%= j render "shared/error_messages", object: @report %>')
+  $('#nht-report-errors').html('<%= j render "shared/error_messages", object: @report %>');
+<% else %>
+  $('#report-modal').modal('toggle');
+  $('#id-lvc-invoices-show').html('<%= j render "shop/invoices/invoice", invoice: @report.invoice %>');
 <% end %>
