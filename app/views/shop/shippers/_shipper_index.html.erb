@@ -1,0 +1,59 @@
+<div class="hatd-shippers modal-dialog">
+  <div class="modal-content">
+    <div class="hatd-shippers-title base-color">
+      <div class="hatd-shippers-status">
+        <%= t "users.shipper.title" %>
+      </div>
+
+      <div class="hatd-shippers-search">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-search hatd-icon-search" aria-hidden="true"></i>
+          </span>
+          <%= form_tag shop_shippers_path, method: :get, remote: true do %>
+            <%= text_field_tag :name_shipper, "", class: "form-control",
+              placeholder: t("users.search") %>
+          <% end %>
+        </div>
+      </div>
+
+      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+        <i class="fa fa-times" aria-hidden="true"></i>
+      <% end %>
+
+      <div class="dropdown hatd-dropdown-actions">
+        <button class="dropdown-toggle hatd-toggle" data-toggle="dropdown">
+          <b><%= t "users.shipper.#{Settings.shipper.types.list_shipper_received}" %></b>
+          <b class="caret"></b>
+        </button>
+
+        <ul class="dropdown-menu hatd-dropdown-menu-actions">
+          <% Settings.shipper.types.keys.each do |type| %>
+            <%= link_to "/shop/shippers/type/#{type}", remote: true do %>
+              <li class="hatd-item-actions">
+                <%= t "users.shipper.#{type}" %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="table">
+      <table class="table table-hover">
+        <thead>
+          <tr class="hatd-shippers-table-title">
+            <td><strong><%= t "user.table.avatar" %></strong></td>
+            <td><strong><%= t "user.table.name" %></strong></td>
+            <td><strong><%= t "user.table.plate_number" %></strong></td>
+            <td><strong><%= t "user.table.success_invoices" %></strong></td>
+            <td><strong><%= t "user.table.invoices.action" %></strong></td>
+          </tr>
+        </thead>
+        <tbody class="hatd-shippers-table-body" id="hatd-shipper-table-content">
+          <%= render "shipper_content" %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

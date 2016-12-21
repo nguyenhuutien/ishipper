@@ -3,7 +3,7 @@ document.addEventListener("turbolinks:load", function() {
     $('.nht-item-status').on('click', function() {
       str = '<b>' + $(this)[0].innerText +'</b>';
       str += '<b class="caret"></b>';
-      $('.dropdown-toggle').html(str);
+      $('.dropdown-toggle.nht-toggle').html(str);
       $('.nht-dropdown-menu-status').slideUp(200);
     });
 

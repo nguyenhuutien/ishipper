@@ -32,5 +32,15 @@ en:
     sum: "Sum: "
     rate: Rate
     back: Back
+    shipper:
+      title: MANAGE SHIPPER
+      list_shipper_received: Shipper
+      favorite_list_users: Favorite List
+      black_list_users: Black List
+    table:
+      avatar: Avatar
+      name: Name
+      plate_number: Plate Number
+      success_invoices: Success Invoices
   load_more: Load More
   show_less: Show Less

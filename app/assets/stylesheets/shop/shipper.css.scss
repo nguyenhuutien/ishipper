@@ -155,3 +155,131 @@
     }
   }
 }
+
+.hatd-shippers.modal-dialog {
+  min-width: 80%;
+  border-radius: 30px;
+
+  .modal-content {
+
+    .hatd-shippers-title {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      position: relative;
+      min-height: 60px;
+      min-width: 560px;
+
+      .hatd-shippers-search {
+        position: relative;
+        float: left;
+        height: 60px;
+        padding: 13px;
+        width: 50%;
+
+        .input-group {
+          width: 100%;
+
+          .input-group-addon {
+            border: none;
+
+            .hatd-icon-search {
+              position: absolute;
+              top: 5px;
+              left: 10px;
+              z-index: 3;
+            }
+          }
+
+          #name_shipper {
+            padding-left: 30px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+          }
+        }
+      }
+
+      .hatd-dropdown-actions {
+        float: right;
+        overflow: visible;
+        background-color: #FFF;
+        margin-right: 20px;
+        text-align: center;
+        min-height: 60px;
+        min-width: 80px;
+        cursor: pointer;
+
+        .dropdown-toggle {
+          line-height: 60px;
+          min-width: 120px;
+          background-color: #FFF;
+          border: none;
+        }
+
+        .hatd-dropdown-menu-actions {
+          min-width: 120px;
+        }
+
+        a:hover {
+          text-decoration: none;
+          color: #000;
+        }
+
+        li {
+          padding: 5px;
+          padding-left: 10px;
+          cursor: pointer;
+        }
+
+        li:hover {
+          background-color: #f5f5f5;
+
+        }
+      }
+
+      .hatd-shippers-status {
+        float: left;
+        margin-left: 10px;
+        vertical-align: middle;
+        font-weight: bold;
+        color: #FFF;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 20px;
+        line-height: 60px;
+      }
+
+      .close {
+        float: right;
+        width: 20px;
+        height: 20px;
+        line-height: 60px;
+        font-size: 1.5em;
+        margin-right: 20px;
+      }
+    }
+
+    .table {
+      overflow-y: scroll;
+      max-height: 73vh;
+      .hatd-shippers-table-title {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #f5f5f5;
+      }
+
+      .hatd-shippers-table-body {
+        cursor: pointer;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: 10px;
+        .hatd-avatar {
+          height: 50px;
+          width: 50px;
+        }
+      }
+
+      td {
+        padding: 15px;
+      }
+    }
+  }
+}
