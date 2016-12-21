@@ -43,8 +43,10 @@ class Shop::InvoicesController < Shop::ShopBaseController
     end
   end
 
+  def edit
+  end
+
   def update
-    @invoices = current_user.invoices.send params[:list_back_status]
     check_update = if params[:status]
       @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
       shop_update_invoice = InvoiceServices::ShopUpdateInvoiceService.new invoice: @invoice,
@@ -53,6 +55,12 @@ class Shop::InvoicesController < Shop::ShopBaseController
     else
       @invoice.update_attributes invoice_params
     end
+    if check_update
+      flash[:success] = t "invoices.messages.update_success"
+    else
+      flash[:danger] = t "invoices.messages.cant_update"
+    end
+    @invoices = current_user.invoices.send params[:list_back_status] if params[:list_back_status]
   end
 
   private

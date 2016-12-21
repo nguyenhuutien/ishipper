@@ -17,6 +17,8 @@
           <%= f.submit t("invoices.finished"), class: "btn btn-primary" %>
         <% end %>
       <% end %>
+      <%= link_to t("invoices.update.edit"), edit_shop_invoice_path(invoice), remote: true,
+        class: "btn btn-primary nht-invoice-list-shippers-btn" %>
     </td>
   </tr>
 <% end %>

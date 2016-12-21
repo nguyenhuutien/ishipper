@@ -1,1 +1,4 @@
 $('#id-lvc-invoices-show').html('<%= j render @invoice %>');
+<% if @invoice.errors.any? %>
+  $('#td-create-error').html('<%= j render "shared/error_messages", object: @invoice %>');
+<% end %>

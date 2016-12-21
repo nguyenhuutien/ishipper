@@ -1,7 +1,3 @@
 $report_modal = $('#report-modal');
 $report_modal.html('<%= j render "form" %>');
 $report_modal.modal({backdrop: 'static', keyboard: false, show: true});
-$('#dis-report-modal').click(function(){
-  event.preventDefault();
-  $('#report-modal').modal('toggle');
-});
