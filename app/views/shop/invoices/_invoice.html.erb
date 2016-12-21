@@ -1,11 +1,11 @@
-<div class="lvc-invoices modal-dialog">
+<div class="lvc-invoice modal-dialog">
   <div class="modal-content">
-    <div class="lvc-invoices-title base-color">
-      <div class="lvc-invoices-status">
+    <div class="lvc-invoice-title base-color">
+      <div class="lvc-invoice-status">
         <%= t "invoices._info_invoice" %>
       </div>
-      <%= link_to "#", class: "close dis-invoice-modal" do %>
-          <i class="fa fa-times" aria-hidden="true"></i>
+      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+        <i class="fa fa-times" aria-hidden="true"></i>
       <% end %>
       <div class="clearfix"></div>
     </div>
@@ -50,6 +50,10 @@
         </tbody>
       </table>
     <div>
+      <div class="back">
+        <button type="button" class="btn btn-default" data-toggle="modal"
+          data-target="#id-nht-invoices-index"><%= t :back %><button>
+      </div>
       <div class="show-invoice-action">
         <hr>
         <% unless invoice.finished? || invoice.cancel? %>
@@ -94,7 +98,9 @@
             <%= render "shop/rates/rate", rates: invoice.reviews.rate %>
           </div>
         <% end %>
+        <div class="clearfix"></div>
       </div>
+      <div class="clearfix"></div>
     </div>
   </div>
 </div>

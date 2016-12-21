@@ -93,6 +93,7 @@ en:
     status: "%{status} invoices"
     action: Action
     created_at: Created at
+    finished: Finished
   vnd: VND
   kg: Kg
   km: KM
