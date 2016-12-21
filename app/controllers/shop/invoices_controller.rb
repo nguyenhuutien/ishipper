@@ -10,6 +10,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
   def show
     @list_back_status = params[:list_back_status] ||= "all"
     @support = Supports::Invoice.new invoice: @invoice, current_user: current_user
+    render layout: false
   end
 
   def new
@@ -51,11 +52,6 @@ class Shop::InvoicesController < Shop::ShopBaseController
       shop_update_invoice.perform?
     else
       @invoice.update_attributes invoice_params
-    end
-    if check_update
-      flash[:success] = t "invoices.messages.update_success"
-    else
-      flash[:danger] = t "invoices.messages.cant_update"
     end
   end
 
