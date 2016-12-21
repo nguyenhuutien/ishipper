@@ -32,7 +32,7 @@ en:
     sum: "Sum: "
     rate: Rate
     back: Back
-    shipper:
+    shipper_index:
       title: MANAGE SHIPPER
       list_shipper_received: Shipper
       favorite_list_users: Favorite List
@@ -42,5 +42,13 @@ en:
       name: Name
       plate_number: Plate Number
       success_invoices: Success Invoices
+    favorite_user: Favorite User
+    black_user: Black User
+    shipper: Shipper
+    shipper_action:
+      remove_from_black_list: Remove From List Block
+      add_to_black_list: Block User
+      remove_from_favorite_list: Remove From List Favorite
+      add_to_favorite_list: Add User To List Favorite
   load_more: Load More
   show_less: Show Less

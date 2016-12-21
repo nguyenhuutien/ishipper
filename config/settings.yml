@@ -87,3 +87,8 @@ shipper:
     list_shipper_received: list_shipper_received
     favorite_list_users: favorite_list_users
     black_list_users: black_list_users
+  actions:
+    add_to_favorite_list: add_to_favorite_list
+    remove_from_favorite_list: remove_from_favorite_list
+    add_to_black_list: add_to_black_list
+    remove_from_black_list: remove_from_black_list
