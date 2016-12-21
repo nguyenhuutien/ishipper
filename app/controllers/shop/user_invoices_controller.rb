@@ -6,12 +6,8 @@ class Shop::UserInvoicesController < Shop::ShopBaseController
   def update
     shop_accept_shipper = InvoiceServices::ShopAcceptShipperService.new invoice: @invoice,
       user_invoice: @user_invoice, status: "waiting", current_user: current_user
-    if shop_accept_shipper.perform?
-      flash[:success] = t "invoices.accept_shipper.success"
-      redirect_to shop_invoice_path @invoice
-    else
-      flash[:danger] = t "invoices.accept_shipper.fail"
-      redirect_to shop_invoice_path @invoice
+    unless shop_accept_shipper.perform?
+      @user_invoice.erros.add :error, t("invoices.accept_shipper.fail")
     end
   end
 

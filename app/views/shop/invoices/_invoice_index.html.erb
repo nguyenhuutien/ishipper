@@ -2,7 +2,7 @@
   <div class="modal-content">
     <div class="nht-invoices-title base-color">
       <div class="nht-invoices-status">
-        <%= t("invoices.status", status: @invoices.first.status).upcase %>
+        <%= t("invoices.status", status: (@status ? @status : Settings.invoice.status.all)).upcase %>
       </div>
 
       <div class="nht-invoices-search">
@@ -23,7 +23,7 @@
 
       <div class="dropdown nht-dropdown-status">
         <button class="dropdown-toggle nht-toggle" data-toggle="dropdown">
-          <b><%= Settings.invoice.status.all.capitalize %></b>
+          <b><%= (@status ? @status : Settings.invoice.status.all).capitalize %></b>
           <b class="caret"></b>
         </button>
 

@@ -58,7 +58,7 @@
   margin-bottom: 150px;
 }
 
-#id-nht-invoice-shippers {
+#id-nht-list-shippers {
   margin-top: 0px !important;
 
   .nht-shippers.modal-dialog {
@@ -69,6 +69,11 @@
       height: auto;
       padding-top: 20px;
       position: relative;
+
+      .back {
+        float: right;
+        margin: 15px;
+      }
 
       .close {
         position: absolute;
