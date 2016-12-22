@@ -1,7 +1,3 @@
 <% if @shop.errors.any? %>
-  <% if params[:user][:current_password] %>
-    $('.hatd-update-pass-error').html('<%= j render "shared/error_messages", object: @shop %>');
-  <% else %>
-    $('.hatd-update-profile-error').html('<%= j render "shared/error_messages", object: @shop %>');
-  <% end %>
+  $('#hatd-update-profile-error').html('<%= j render "shared/error_messages", object: @shop %>');
 <% end %>

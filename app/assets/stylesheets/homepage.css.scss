@@ -33,7 +33,13 @@
           margin-left: 10px;
 
           .nht-dropdown {
-            width: 100%;
+            width: auto;
+            padding-bottom: 0px;
+
+            li {
+              padding: 5px;
+              border-bottom: 1px solid #f1f1f1;
+            }
           }
 
           .dropdown-toggle {
