@@ -10,7 +10,7 @@ document.addEventListener("turbolinks:load", function() {
       $('.nht-dropdown-menu-status').slideUp(200);
     });
 
-    $('.nht-toggle').on('click', function() {
+    $('.nht-invoices-title').on('click', '.nht-toggle', function() {
       $('.nht-dropdown-menu-status').slideDown(200);
     });
   });

@@ -23,6 +23,9 @@ en:
     name: Enter your name
     address: Enter your address
     email: Enter your email
+    current_password: Enter your current password
+    new_password: Enter your new password
+    confirm_password: Enter again your new password
     list: List user
     favorite: Favorite list
     black: Black list
