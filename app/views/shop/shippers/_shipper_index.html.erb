@@ -2,7 +2,7 @@
   <div class="modal-content">
     <div class="hatd-shippers-title base-color">
       <div class="hatd-shippers-status">
-        <%= t "users.shipper.title" %>
+        <%= t "users.shipper_index.title" %>
       </div>
 
       <div class="hatd-shippers-search">
@@ -23,7 +23,7 @@
 
       <div class="dropdown hatd-dropdown-actions">
         <button class="dropdown-toggle hatd-toggle" data-toggle="dropdown">
-          <b><%= t "users.shipper.#{Settings.shipper.types.list_shipper_received}" %></b>
+          <b><%= t "users.shipper_index.#{Settings.shipper.types.list_shipper_received}" %></b>
           <b class="caret"></b>
         </button>
 
@@ -31,7 +31,7 @@
           <% Settings.shipper.types.keys.each do |type| %>
             <%= link_to "/shop/shippers/type/#{type}", remote: true do %>
               <li class="hatd-item-actions">
-                <%= t "users.shipper.#{type}" %>
+                <%= t "users.shipper_index.#{type}" %>
               </li>
             <% end %>
           <% end %>

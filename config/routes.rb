@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     resources :reports, only: [:new, :create]
     resources :rates, only: [:new, :create]
     resources :user_invoices, only: :update
-    resources :shippers, only: [:index]
+    resources :shippers, only: [:index, :update]
   end
 
   resources :shops

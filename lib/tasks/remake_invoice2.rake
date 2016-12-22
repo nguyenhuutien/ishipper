@@ -14,9 +14,9 @@ namespace :db do
       longitude_finish = 105 + longitude_finish/1000000.0
       weight = Faker::Number.between 1, 10
       distance_invoice = Faker::Number.between 1, 20
-      price = Faker::Number.between 10, 200
+      price = Faker::Number.between 50, 200
       price = price * 1000
-      shipping_price = Faker::Number.between 10, 200
+      shipping_price = Faker::Number.between 10, 30
       shipping_price = shipping_price * 1000
       customer_name = Faker::Name.name
       description = Faker::Lorem.sentence
