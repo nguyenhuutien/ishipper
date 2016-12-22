@@ -2,6 +2,10 @@
   col-lg-8 col-lg-offset-2 nht-rate-form ">
   <div class="modal-dialog">
     <div class="modal-content">
+      <%= link_to "#", class: "close", id: "dis-rate-modal" do %>
+        <i class="fa fa-times" aria-hidden="true"></i>
+      <% end %>
+
       <%= form_for [:shop, @rate], as: :rate, url: shop_rates_path, remote: true do |f| %>
         <div id="nht-rate-errors">
           <div class="clearfix"></div>
@@ -18,8 +22,6 @@
           <%= f.text_area :content, placeholder: t("rate.enter_content"),
             class: "form-control ckeditor", id: "ckeditor" %>
           <%= f.submit t("rate.create"), class: "btn btn-primary nht-btn-rate" %>
-          <%= link_to t("rate.cancel"), "#", data: {dismiss: "modal"},
-            class: "btn btn-danger nht-btn-rate" %>
         </div>
       <% end %>
       <div class="clearfix"></div>

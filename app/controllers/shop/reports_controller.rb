@@ -10,10 +10,12 @@ class Shop::ReportsController < Shop::ShopBaseController
     @report.owner = current_user
     @report.rating_point = Settings.rating_point
     @report.review_type = "report"
-    @report.recipient = @invoice.user_invoices.find_by(status: @invoice.status).user
-    if @report.save
-      flash[:success] = t "report.create_success"
-      redirect_to :back
+    user_invoice = @invoice.user_invoices.find_by status: @invoice.status
+    if user_invoice
+      @report.recipient = user_invoice.user
+      @report.save
+    else
+      @report.errors.add :report, t("report.invoice.status_fail")
     end
   end
 

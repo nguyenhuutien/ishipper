@@ -13,8 +13,12 @@ class PagesController < ApplicationController
 
   private
   def after_admin_signed_in
-    if user_signed_in? && current_user.admin?
-      redirect_to admin_root_url
+    if user_signed_in?
+      if current_user.admin?
+        redirect_to admin_root_path
+      elsif current_user.shop?
+        redirect_to shop_root_path
+      end
     end
   end
 end

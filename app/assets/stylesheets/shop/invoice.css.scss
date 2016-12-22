@@ -143,105 +143,108 @@
   left: 40%;
 }
 
-.lvc-invoice.modal-dialog {
-  width: 80%;
-  min-width: 80%;
-  border-radius: 30px;
+#id-lvc-invoices-show {
+  overflow-x: hidden;
+  overflow-y: scroll;
 
-  .modal-content {
+  .lvc-invoice.modal-dialog {
+    width: 80%;
+    min-width: 80%;
+    border-radius: 30px;
+
+    .modal-content {
       .back {
         float: left;
         margin: 15px;
       }
 
-    .show-invoice-action {
-      float: right;
-      padding: 10px;
-      display: flex;
+      .show-invoice-action {
+        float: right;
+        padding: 10px;
+        display: flex;
 
-      .invoice-status-change {
-        margin: 10px;
-      }
-
-      .nht-invoice-rate {
-        background-color: #FFF;
-        margin-bottom: 130px;
-        padding: 20px;
-        width: 100%;
-
-        .nht-star {
-          color: #f3ce51;
+        .invoice-status-change {
+          margin: 10px;
         }
 
-        #avatar {
-          margin-bottom: 10px;
-        }
-
-        .nht-owner-rate {
-          text-align: center;
-        }
-      }
-    }
-
-    .lvc-invoice-title {
-      border-top-left-radius: inherit;
-      border-top-right-radius: inherit;
-      position: relative;
-      min-height: 60px;
-      min-width: 560px;
-
-      .lvc-invoice-search {
-        position: relative;
-        float: left;
-        height: 60px;
-        padding: 13px;
-        width: 50%;
-
-        .input-group {
+        .nht-invoice-rate {
+          background-color: #FFF;
           width: 100%;
 
-          .input-group-addon {
-            border: none;
-
-            .lvc-icon-search {
-              position: absolute;
-              top: 5px;
-              left: 10px;
-              z-index: 3;
-            }
+          .nht-star {
+            color: #f3ce51;
           }
 
-          #name_invoice {
-            padding-left: 30px;
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
+          #avatar {
+            margin-bottom: 10px;
+          }
+
+          .nht-owner-rate {
+            text-align: center;
           }
         }
       }
 
+      .lvc-invoice-title {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        position: relative;
+        min-height: 60px;
+        min-width: 560px;
 
-      .lvc-invoice-status {
-        float: left;
-        margin-left: 10px;
-        vertical-align: middle;
-        font-weight: bold;
-        color: #FFF;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 20px;
-        line-height: 60px;
+        .lvc-invoice-search {
+          position: relative;
+          float: left;
+          height: 60px;
+          padding: 13px;
+          width: 50%;
+
+          .input-group {
+            width: 100%;
+
+            .input-group-addon {
+              border: none;
+
+              .lvc-icon-search {
+                position: absolute;
+                top: 5px;
+                left: 10px;
+                z-index: 3;
+              }
+            }
+
+            #name_invoice {
+              padding-left: 30px;
+              box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+              border-top-left-radius: 3px;
+              border-bottom-left-radius: 3px;
+            }
+          }
+        }
+
+
+        .lvc-invoice-status {
+          float: left;
+          margin-left: 10px;
+          vertical-align: middle;
+          font-weight: bold;
+          color: #FFF;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 20px;
+          line-height: 60px;
+        }
+
+        .close {
+          float: right;
+          width: 20px;
+          height: 20px;
+          line-height: 60px;
+          font-size: 1.5em;
+          margin-right: 20px;
+        }
       }
 
-      .close {
-        float: right;
-        width: 20px;
-        height: 20px;
-        line-height: 60px;
-        font-size: 1.5em;
-        margin-right: 20px;
-      }
     }
-
   }
 }
 

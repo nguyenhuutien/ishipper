@@ -10,10 +10,8 @@ class Shop::RatesController < Shop::ShopBaseController
     @rate.owner = current_user
     @rate.review_type = "rate"
     @rate.recipient = @recipient
-    if @rate.save
-      flash[:success] = t "rate.create_success"
-      redirect_to :back
-    end
+    @rate.save
+    @rates = @rate.invoice.reviews.rate
   end
 
   private
