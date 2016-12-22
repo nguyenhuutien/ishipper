@@ -36,9 +36,24 @@
 
 
 .nht-rate {
+  .nht-rate h3{
+    text-align: center;
+    background-color: #fbfbfb;
+  }
+
   .nht-user-avatar {
     #avatar {
       border-radius: 100%;
     }
+
+    .nht-owner-rate{
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+
+  .nht-user-avatar img{
+    width: 50%;
+    margin: auto;
   }
 }

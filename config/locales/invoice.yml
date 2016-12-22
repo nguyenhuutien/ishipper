@@ -56,6 +56,7 @@ en:
     km: Km
     shipping_price: Shipping price
     _info_invoice: INFORMATION OF INVOICE
+    _edit_invoice: EDIT OF INVOICE
     _detail: DETAIL
     _name_invoice: Name of invoice
     _status: Status
@@ -82,6 +83,7 @@ en:
     update:
       cancel: Cancel
       finished: Finished
+      edit: Edit
     _name: "Name :"
     from: "From :"
     to: "To :"

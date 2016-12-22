@@ -114,6 +114,10 @@
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         padding: 10px;
 
+        .lvc-column-less{
+          width: 13% !important;
+        }
+
         .nht-invoice-list-shippers-btn {
           margin-bottom: 10px;
         }
@@ -126,21 +130,21 @@
   }
 }
 
-.lvc-confirm-title{
-  padding: 10px;
-}
-.lvc-box-confirm-content{
-  padding-top: 20px;
-}
-
-.lvc-box-confirm-content tr td{
-  text-align: center;
-}
-
 .lvc-confirm-modal{
   position: absolute;
   top: 30%;
   left: 40%;
+
+  .lvc-confirm-title{
+    padding: 10px;
+  }
+
+  .lvc-box-confirm-content{
+    .tbody tr td{
+      padding-top: 25px;
+      text-align: center;
+    }
+  }
 }
 
 #id-lvc-invoices-show {
@@ -162,6 +166,18 @@
         float: right;
         padding: 10px;
         display: flex;
+
+        .invoice-status-change{
+          float: right;
+        }
+
+        #lvc-rate-invoice-form{
+          float: right;
+        }
+
+        #lvc-report-invoice{
+          float: right;
+        }
 
         .invoice-status-change {
           margin: 10px;
@@ -244,33 +260,75 @@
         }
       }
 
+      .lvc-invoice-table-body{
+        .lvc-column-less{
+          width: 13% !important;
+        }
+
+        .nht-invoice-list-shippers-btn {
+          margin-bottom: 10px;
+        }
+
+        tr td:nth-child(odd){
+          font-weight: 700;
+          line-height: 1.1em;
+          color: #666;
+          font-size: 17px;
+        }
+
+        tr td:nth-child(even){
+          font-weight: 700;
+          line-height: 1.1em;
+          font-size: 17px;
+          color: blue;
+        }
+      }
     }
   }
 }
 
-@-webkit-keyframes uil-reload-css {
-  0% {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  50% {
-    -ms-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-  100% {
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
+
+#id-lvc-invoices-edit{
+
+  .modal-dialog{
+    width: 70%;
+    margin-left: 15%;
+
+    .lvc-invoice-title{
+      padding: 15px;
+
+      .lvc-invoice-status{
+        width: 70%;
+        float: left;
+      }
+    }
+
+    .form {
+      padding: 40px 100px 40px 100px;
+
+      .td-input {
+        margin-top: 10px;
+      }
+
+      .td-shop-title{
+        font-size: 15px;
+        font-weight: 600;
+        padding-top: 20px;
+        color: #2E2F30;
+      }
+
+      .lvc-btn-edit_invoice{
+        margin-top: 20px;
+        text-align: center;
+
+        input:hover{
+          color: white
+        }
+      }
+    }
   }
 }
+
 @-webkit-keyframes uil-reload-css {
   0% {
     -ms-transform: rotate(0deg);
@@ -363,53 +421,7 @@
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes uil-reload-css {
-  0% {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  50% {
-    -ms-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-  100% {
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
 @-o-keyframes uil-reload-css {
-  0% {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  50% {
-    -ms-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-  100% {
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes uil-reload-css {
   0% {
     -ms-transform: rotate(0deg);
     -moz-transform: rotate(0deg);

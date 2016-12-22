@@ -11,48 +11,48 @@
     </div>
       <table class="table show_table_invoice">
         <tbody class="lvc-invoice-table-body">
-        <tr>
-          <td><%= t "invoices._name" %></td>
-          <td><%= invoice.name.capitalize %></td>
-          <td><%= t "invoices._shipping_price" %></td>
-          <td><%= number_to_currency invoice.shipping_price %></td>
-        </tr>
-        <tr>
-          <td><%= t "invoices._number_customer" %></td>
-          <td><%= invoice.customer_number %></td>
-          <td><%= t "invoices._price" %></td>
-          <td><%= number_to_currency invoice.price %></td>
-        </tr>
-        <tr>
-          <td><%= t "invoices.address" %></td>
-          <td><%= invoice.address_start %></td>
-          <td><%= t "invoices._delivery_time" %></td>
-          <td><%= invoice.delivery_time %></td>
-        </tr>
-        <tr>
-          <td><%= t "invoices._name_customer" %></td>
-          <td><%= invoice.customer_name.capitalize %></td>
-          <td><%= t "invoices._description" %></td>
-          <td><%= invoice.description %></td>
-        </tr>
-        <tr>
-          <td><%= t "invoices._number_customer" %></td>
-          <td><%= invoice.customer_number %></td>
-          <td><%= t "invoices._delivery_time" %></td>
-          <td><%= invoice.delivery_time %></td>
-        </tr>
-        <tr>
-          <td><%= t "invoices.address" %></td>
-          <td><%= invoice.address_finish%></td>
-          <td><%= t "invoices._distance" %></td>
-          <td><%= invoice.distance_invoice %> <%= t :km %></td>
-        </tr>
+          <tr>
+            <td class="lvc-column-less"><%= t "invoices.name_invoice" %></td>
+            <td class="lvc-column-big"><%= invoice.name.capitalize %></td>
+            <td class="lvc-column-less"><%= t "invoices._shipping_price" %></td>
+            <td class="lvc-column-big"><%= number_to_currency invoice.shipping_price %></td>
+          </tr>
+          <tr>
+            <td ><%= t "invoices._number_customer" %></td>
+            <td><%= invoice.customer_number %></td>
+            <td><%= t "invoices._price" %></td>
+            <td><%= number_to_currency invoice.price %></td>
+          </tr>
+          <tr>
+            <td><%= t "invoices.address" %></td>
+            <td><%= invoice.address_start %></td>
+            <td><%= t "invoices._delivery_time" %></td>
+            <td><%= invoice.delivery_time %></td>
+          </tr>
+          <tr>
+            <td><%= t "invoices._name_customer" %></td>
+            <td><%= invoice.customer_name.capitalize %></td>
+            <td><%= t "invoices._description" %></td>
+            <td><%= invoice.description %></td>
+          </tr>
+          <tr>
+            <td><%= t "invoices._number_customer" %></td>
+            <td><%= invoice.customer_number %></td>
+            <td><%= t "invoices._delivery_time" %></td>
+            <td><%= invoice.delivery_time %></td>
+          </tr>
+          <tr>
+            <td><%= t "invoices.address" %></td>
+            <td><%= invoice.address_finish%></td>
+            <td><%= t "invoices._distance" %></td>
+            <td><%= invoice.distance_invoice %> <%= t :km %></td>
+          </tr>
         </tbody>
       </table>
     <div>
       <div class="back">
         <button type="button" class="btn btn-default" data-toggle="modal"
-          data-target="#id-nht-invoices-index"><%= t :back %><button>
+          data-target="#id-nht-invoices-index"><%= t :back %></button>
       </div>
       <div class="show-invoice-action">
         <hr>
@@ -67,7 +67,7 @@
               <% end %>
             <% end %>
           </div>
-          <div id="lvc-report-invoice">
+          <div id="">
             <%= form_for [:shop, invoice], method: :patch, remote: true do |f| %>
               <%= hidden_field_tag :status, Settings.invoice.status[:cancel] %>
               <%= hidden_field_tag :list_back_status, @list_back_status %>

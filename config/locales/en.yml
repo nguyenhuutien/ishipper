@@ -46,6 +46,7 @@ en:
   error:
     _error: error
   _create: Create
+  _update: Update
   _cancel: Cancel
   permission_denied: You do not permission to do that
   number:
@@ -82,7 +83,9 @@ en:
     customer_information: Customer's Information
     invoice_information: Invoice's Information
   back: Back
-  confirm:
+  confirm_invoice:
     title: Are you sure ?
-    yes: Yes
-    no: No
+    ok: Ok
+    cancel: Cancel
+  button_nav:
+    back: Back
