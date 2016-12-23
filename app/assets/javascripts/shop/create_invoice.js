@@ -1,7 +1,11 @@
 document.addEventListener("turbolinks:load", function() {
   $('.td-button-create-invoice').on('click', function() {
     $('.td-create-invoice-form').addClass('block');
-    $('.td-create-invoice-form').niceScroll();
+    $('.td-create-invoice-form').niceScroll({
+      cursorwidth: "6px",
+      cursorcolor: "rgba(0, 0, 0, 0.4)",
+      railpadding: { top: 30},
+    });
     $('#map-base').addClass('td-create-invoice-map');
   });
   $('.td-create-invoice-close').on('click', function() {

@@ -181,19 +181,25 @@
       position: relative;
       width: 100%;
 
-      .input-group-addon {
-        position: absolute;
+      .nht-icon-search {
+        position: relative;
         border: none;
-        top: 10px;
-        right: 20px;
-        width: 10px;
+        width: 10%;
         height: 10px;
-        z-index: 3;
+        font-size: 20px;
+        float: left;
+        height: 50px;
+        line-height: 35px;
+        background-color: #FFF;
+        border: 1px solid #D9D9D9;
+        border-left: 0;
       }
 
       #nht-search-address-input {
         height: 50px;
-        padding-right: 35px;
+        width: 90%;
+        float: left;
+        border-right: 0;
       }
     }
   }

@@ -20,16 +20,11 @@
 
         .input-group {
           width: 100%;
-
-          .input-group-addon {
-            border: none;
-
-            .nht-icon-search {
-              position: absolute;
-              top: 5px;
-              left: 10px;
-              z-index: 3;
-            }
+          .nht-icon-search {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            z-index: 3;
           }
 
           #name_invoice {

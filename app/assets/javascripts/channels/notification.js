@@ -55,36 +55,51 @@ document.addEventListener("turbolinks:load", function() {
   if($('.nht-notifications').length) {
     $('.nht-notifications').hide();
   }
+
   $('.nht-notification-icon').on('click', function() {
+    $('.nht-notification-icon i').toggleClass('fa-globe-focus');
+  });
+
+  $('.nht-notification-icon').on('click', function() {
+    $('.dropdown-menu').slideUp(200);
+
     if (!$('.nht-notifications').is(":visible")) {
-      $('.nht-up-arrow').slideDown(200);
-      $('.nht-notifications').slideDown(200);
+      $('.nht-notification-count').hide();
+      $('.nht-noti-list').niceScroll({
+        cursorwidth: "6px",
+        cursorcolor: "rgba(0, 0, 0, 0.4)",
+        autohidemode: false,
+        cursorminheight: 100,
+      });
+      App.notification.speak({action_type: "unread_notification"});
+
+      $.each( notifications, function(index, value) {
+        owner = owners[index];
+        invoice = invoices[index];
+        notification = notifications[index];
+        html = convertNotification(owner, invoice, notification);
+        $('.nht-noti-list').prepend(html);
+        if (owner.avatar.url != null) {
+          $('#avatar-' + notification.id)[0].src = owner.avatar.url;
+        } else {
+          $('#avatar-' + notification.id)[0].src = '../assets/images/profile.jpg';
+        }
+        $('.notification-' + notification.id).on('click', function() {
+          window.location.assign(window.location.origin + '/shop/invoices/' + invoice.id);
+        });
+      });
+      owners = [];
+      invoices = [];
+      notifications = [];
+      setTimeout(function(){
+        $('.nht-up-arrow').addClass('block');
+      }, 200);
+      $('.nht-notifications').slideDown(400);
     } else {
-      $('.nht-up-arrow').slideUp(200);
-      $('.nht-notifications').slideUp(200);
+      $('.nht-up-arrow').removeClass('block');
+      $('.nht-notifications').slideUp(400);
     }
 
-    $('.nht-notification-count').hide();
-    App.notification.speak({action_type: "unread_notification"});
-
-    $.each( notifications, function(index, value) {
-      owner = owners[index];
-      invoice = invoices[index];
-      notification = notifications[index];
-      html = convertNotification(owner, invoice, notification);
-      $('.nht-noti-list').prepend(html);
-      if (owner.avatar.url != null) {
-        $('#avatar-' + notification.id)[0].src = owner.avatar.url;
-      } else {
-        $('#avatar-' + notification.id)[0].src = '../assets/images/profile.jpg';
-      }
-      $('.notification-' + notification.id).on('click', function() {
-        window.location.assign(window.location.origin + '/shop/invoices/' + invoice.id);
-      });
-    });
-    owners = [];
-    invoices = [];
-    notifications = [];
   });
 
   $('.nht-notification').on('click', function() {

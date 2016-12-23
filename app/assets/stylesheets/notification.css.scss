@@ -6,6 +6,7 @@
     margin-top: 15px;
     cursor: pointer;
     position: relative;
+    color: rgba(0, 0, 0, 0.7);
 
     .nht-notification-count {
       display: none;
@@ -23,12 +24,16 @@
     }
   }
 
+  .fa-globe-focus {
+    color: #FFF;
+  }
+
   .nht-up-arrow {
     background-repeat: no-repeat;
     background-size: auto;
     position: absolute;
     top: 35px;
-    right: 1px;
+    right: -5%;
     height: 30px;
     width: 30px;
     background-color: transparent;
@@ -38,7 +43,7 @@
   .nht-notifications {
     background-color: #fff;
     position: absolute;
-    right: 0px;
+    right: -40px;
     width: 400px;
     list-style-type: none;
     margin-top: 10px;
