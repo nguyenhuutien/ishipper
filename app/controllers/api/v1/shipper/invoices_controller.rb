@@ -5,11 +5,12 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
 
   def index
     @invoices = if params[:status] == "all"
-      current_user.all_user_invoices.search_invoice(params[:query]).order_by_time
+      current_user.invoices
     else
-      Invoice.invoice_by_status(params[:status], current_user.id).
-        search_invoice(params[:query]).order_by_time
+      Invoice.invoice_by_status_for_shipper params[:status], current_user.id
     end
+    @invoices = @invoices.search_invoice params[:query] if params[:query].present?
+    @invoices = @invoices.order_by_update_time
     @serializer = ActiveModelSerializers::SerializableResource.new(@invoices,
       each_serializer: Invoices::ShipperInvoiceSerializer,
       scope: {current_user: current_user}).as_json

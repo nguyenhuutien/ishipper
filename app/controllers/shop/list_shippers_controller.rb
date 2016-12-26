@@ -2,7 +2,7 @@ class Shop::ListShippersController < Shop::ShopBaseController
   before_action :load_invoice
 
   def index
-    @shippers = @invoice.recieved_shippers
+    @shippers = @invoice.received_shippers
     @shippers = ActiveModelSerializers::SerializableResource.new(@shippers,
       each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
       current_user: current_user})

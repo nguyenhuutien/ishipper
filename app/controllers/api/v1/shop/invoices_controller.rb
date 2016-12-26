@@ -6,11 +6,12 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
 
   def index
     @invoices = if params[:status] == "all"
-      current_user.invoices.search_invoice(params[:query]).order_by_time
+      current_user.invoices
     else
-      current_user.invoices.send(params[:status]).
-        search_invoice(params[:query]).order_by_time
+      Invoice.invoice_by_status_for_shop params[:status], current_user.id
     end
+    @invoices = @invoices.search_invoice params[:query] if params[:query].present?
+    @invoices = @invoices.order_by_update_time
     @serializers = ActiveModelSerializers::SerializableResource.new(@invoices,
       each_serializer: Invoices::ShopInvoiceSerializer,
       scope: {current_user: current_user}).as_json

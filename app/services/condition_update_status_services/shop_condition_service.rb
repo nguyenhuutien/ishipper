@@ -9,12 +9,16 @@ class ConditionUpdateStatusServices::ShopConditionService
   end
 
   def perform?
-    check_params? && check_user? && check_current_status?
+    check_params? && init_status? && check_user? && check_current_status?
   end
 
   private
   def check_params?
-    @invoice.present? && @user_invoice.present? && @update_status.present? && @current_user.present?
+    @invoice.present? && @update_status.present? && @current_user.present?
+  end
+
+  def init_status?
+    @invoice.init? || @user_invoice.present?
   end
 
   def check_user?

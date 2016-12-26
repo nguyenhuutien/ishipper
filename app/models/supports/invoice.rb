@@ -7,7 +7,7 @@ class Supports::Invoice
   end
 
   def list_receive_shippers
-    @shippers = @invoice.recieved_shippers
+    @shippers = @invoice.received_shippers
     ActiveModelSerializers::SerializableResource.new(@shippers,
       each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
       current_user: @current_user})
