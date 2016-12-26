@@ -47,18 +47,22 @@ class Invoice < ApplicationRecord
     where "#{column} BETWEEN ? AND ?", min, max}
   scope :search_invoice, -> search {where "LOWER(name) LIKE LOWER(?)", "%#{search}%"}
 
-  scope :invoice_by_status, -> status, user_id{
+  scope :invoice_by_status_for_shipper, -> status, user_id{
     where(id: UserInvoice.select(:invoice_id).where(status: status, user_id: user_id))
   }
+  scope :invoice_by_status_for_shop, -> status, user_id{
+    where(status: status, user_id: user_id)
+  }
   scope :order_by_time, -> {order created_at: :desc}
+  scope :order_by_update_time, -> {order updated_at: :desc}
 
-  def recieved_shippers
+  def received_shippers
     shippers = self.all_shipper
     shippers = shippers - self.user.black_list_users
   end
 
   def number_of_recipients
-    self.recieved_shippers.size
+    self.received_shippers.size
   end
 
   class << self
@@ -70,7 +74,8 @@ class Invoice < ApplicationRecord
       valid_invoices = Invoice.joins("LEFT JOIN black_lists ON
         invoices.user_id = black_lists.owner_id")
         .where("black_lists.black_list_user_id != ? OR
-        black_lists.black_list_user_id IS NULL", params[:black_list_user_id]).order_by_time
+        black_lists.black_list_user_id IS NULL", params[:black_list_user_id]).
+        order_by_update_time
       if params[:user].present?
         invoices = valid_invoices.near [params[:user][:latitude],
         params[:user][:longitude]], params[:user][:distance] if
