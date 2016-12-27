@@ -11,7 +11,6 @@ class Shop::InvoicesController < Shop::ShopBaseController
   end
 
   def show
-    @list_back_status = params[:list_back_status] ||= "all"
     @support = Supports::Invoice.new invoice: @invoice, current_user: current_user
     render layout: false
   end
@@ -55,19 +54,24 @@ class Shop::InvoicesController < Shop::ShopBaseController
       shop_update_invoice = InvoiceServices::ShopUpdateInvoiceService.new invoice: @invoice,
         user_invoice: @user_invoice, update_status: params[:status], current_user: current_user
       shop_update_invoice.perform?
+      @invoice.type_update = Settings.type_update.status
     else
-      @invoice.update_attributes invoice_params
+      @invoice.update_attributes invoice_update_params
+      @invoice.type_update = Settings.type_update.invoice
     end
     if check_update
       flash[:success] = t "invoices.messages.update_success"
     else
       flash[:danger] = t "invoices.messages.cant_update"
     end
-    @invoices = current_user.invoices.send params[:list_back_status] if params[:list_back_status]
   end
 
   private
   def invoice_params
     params.require(:invoice).permit Invoice::ATTRIBUTES_PARAMS
+  end
+
+  def invoice_update_params
+    params.require(:invoice).permit Invoice::UPDATE_ATTRIBUTES_PARAMS
   end
 end

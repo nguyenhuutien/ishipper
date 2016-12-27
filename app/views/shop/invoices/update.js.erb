@@ -1,4 +1,9 @@
-$('#id-lvc-invoices-show').html('<%= j render @invoice %>');
+clear_then_show_flash('<%= j render "shared/flash_mesage" %>');
+<% if @invoice.type_update == Settings.type_update.status %>
+  $('#id-lvc-invoices-show').html('<%= j render @invoice %>');
+<% elsif @invoice.type_update == Settings.type_update.invoice %>
+  $('.lvc-back-edit-modal').trigger('click');
+<% end %>
 <% if @invoice.errors.any? %>
   $('#td-create-error').html('<%= j render "shared/error_messages", object: @invoice %>');
 <% end %>

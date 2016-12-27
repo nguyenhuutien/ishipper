@@ -1,4 +1,4 @@
-<div class="modal-dialog">
+<div class="lvc-invoice modal-dialog">
   <div class="modal-content">
     <div class="lvc-invoice-title base-color">
       <div class="lvc-invoice-status">
@@ -18,8 +18,8 @@
             <%= t "create_invoice.info_information" %>
           </p>
           <div>
-            <%= f.text_field :address_start, class: "form-control td-input",
-              placeholder: t("address_start") %>
+            <%= f.label t("address_start") %>
+            <span id="address_start" class="label label-info"><%= @invoice.address_start %></span>
           </div>
         </div>
 
@@ -28,19 +28,31 @@
             <%= t "create_invoice.customer_information" %>
           </p>
           <div>
-            <%= f.text_field :address_finish, class: "form-control td-input",
-              placeholder: t("address_finish") %>
-            <%= f.text_field :distance_invoice, class: "form-control td-input",
-              readonly: true %>
+            <%= f.label t("address_finish"), for: :address_start %>
+            <span id="address_finish" class="label label-info"><%= @invoice.address_finish %></span>
           </div>
           <div>
+            <%= f.label t("distance"), for: :distance_invoice %>
+            <span id="distance" class="label label-info"><%= @invoice.distance_invoice %></span>
+          </div>
+          <div>
+            <%= f.label t("invoices.customer_name"), for: :customer_name %>
             <%= f.text_field :customer_name, class: "form-control td-input",
               placeholder: t("invoices.customer_name") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.delivery_time_input"), for: :customer_number %>
             <%= f.text_field :customer_number, class: "form-control td-input",
               placeholder: t("invoices.customer_number") %>
+          </div>
+          <div>
+            <%= f.label t("distance"), for: :delivery_time %>
             <%= f.text_field :delivery_time, class: "form-control td-input clockpicker",
               placeholder: t("invoices.delivery_time_input"),
               "data-autoclose": "true", "data-placement": "top" %>
+          </div>
+          <div>
+            <%= f.label t("invoices.description"), for: :description %>
             <%= f.text_area :description, class: "form-control td-input td-textarea-fix",
               placeholder: t("invoices.description"), "data-autoresize": "nil" %>
           </div>
@@ -51,13 +63,23 @@
             <%= t "create_invoice.invoice_information" %>
           </p>
           <div class="td-line"></div>
-          <div class="td-invoice-infomation-content">
+          <div>
+            <%= f.label t("invoices.name"), for: :name %>
             <%= f.text_field :name, class: "form-control td-input",
               placeholder: t("invoices.name") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.price"), for: :price %>
             <%= f.text_field :price, class: "form-control td-input",
               placeholder: t("invoices.price") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.shipping_price"), for: :shipping_price %>
             <%= f.text_field :shipping_price, class: "form-control td-input",
               placeholder: t("invoices.shipping_price") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.weight"), for: :weight %>
             <%= f.text_field :weight, class: "form-control td-input",
               placeholder: t("invoices.weight") %>
           </div>
@@ -77,9 +99,9 @@
             id: "td-invoice-longitude_finish" %>
         </div>
         <div class="lvc-btn-edit_invoice">
-          <button type="button" class="btn btn-default" data-toggle="modal"
+          <button type="button" class="btn btn-default lvc-back-edit-modal" data-toggle="modal"
             data-target="#id-nht-invoices-index"><%= t :back %></button>
-          <%= f.submit t(:_update), class: "btn btn-primary" %>
+          <%= f.submit t(:_update), class: "btn btn-primary loading-after" %>
         </div>
       <% end %>
     </div>

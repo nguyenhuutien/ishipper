@@ -59,7 +59,7 @@
               <div class="col-xs-7 col-sm-7 col-md-6 col-lg-6 accept">
                 <%= form_tag shop_user_invoice_path(shipper[:user_invoice_id]),
                   method: :patch, remote: true, id: "accept_user_invoice" do %>
-                  <%= submit_tag t("invoices.accept_shipper.button"), class: "btn btn-primary" %>
+                  <%= submit_tag t("invoices.accept_shipper.button"), class: "btn btn-primary loading-after" %>
                 <% end %>
               </div>
             </div>

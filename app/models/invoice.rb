@@ -1,4 +1,5 @@
 class Invoice < ApplicationRecord
+  attr_accessor :type_update
   geocoded_by :address_start, latitude: :latitude_start,
     longitude: :longitude_start
 
@@ -30,6 +31,11 @@ class Invoice < ApplicationRecord
 
 
   ATTRIBUTES_PARAMS = [:name, :address_start, :address_finish, :delivery_time,
+    :distance_invoice, :description, :price, :shipping_price, :weight,
+    :customer_name, :customer_number, :latitude_start, :longitude_start,
+    :latitude_finish, :longitude_finish]
+
+  UPDATE_ATTRIBUTES_PARAMS = [:name, :delivery_time,
     :distance_invoice, :description, :price, :shipping_price, :weight,
     :customer_name, :customer_number, :latitude_start, :longitude_start,
     :latitude_finish, :longitude_finish]
