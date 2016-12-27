@@ -5,6 +5,7 @@ new_shipper_invoice: 15
 check_shipped_invoice: 3
 length_notification: 80
 max_length_name: 15
+notifications_per_request: 10
 list_shipper_register: "com.framgia.ishipper.LIST_SHIPPER_REGISTER"
 invoice_detail: "com.framgia.ishipper.INVOICE_DETAIL"
 invoice:

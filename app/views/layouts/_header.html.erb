@@ -34,35 +34,14 @@
             <%= t "notifications.title" %>
           </div>
           <ul class="nht-noti-list">
-            <% @notifications.each do |notification| %>
-              <%= link_to shop_invoice_path(notification.invoice) do %>
-                <li class="nht-notification notification-<%= notification.id %>
-                  <%= notification.read %>-notification ">
-                  <span class="col-md-2 col-lg-2 nht-notification-avatar">
-                    <% if notification.owner.avatar_url.present? %>
-                      <%= image_tag notification.owner.avatar.url, id: "avatar-#{notification.id}",
-                        class: "img-responsive nht-avatar" %>
-                    <% else %>
-                      <%= image_tag "profile.jpg", id: "avatar-#{notification.id}",
-                        class: "img-responsive nht-avatar" %>
-                    <% end %>
-                    <div class="clearfix"></div>
-                  </span>
-                  <span class="col-md-10 col-lg-10 nht-notification-content">
-                    <div class="content">
-                      <%= truncate notification_content(notification),
-                        length: Settings.length_notification %>
-                    </div>
-                    <div class="small">
-                      <%= time_ago_in_words notification.created_at %>
-                    </div>
-                  </span>
-                  <div class="clearfix"></div>
-                </li>
-                <div class="clearfix"></div>
-              <% end %>
-            <% end %>
+            <%= render @notifications %>
           </ul>
+          <div class="td-loadmore text-center">
+            <%= image_tag "ajax-loader.gif", class: "loading-gif" %>
+          </div>
+          <div id="infinite-scrolling" class="hidden">
+            <%= render "layouts/pagination" %>
+          </div>
         </div>
       </li>
 

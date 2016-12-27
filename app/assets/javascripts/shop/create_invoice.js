@@ -13,7 +13,6 @@ document.addEventListener("turbolinks:load", function() {
     $('#map-base').removeClass('td-create-invoice-map');
   });
   $('.clockpicker').clockpicker();
-  $('.td-textarea-fix').niceScroll();
   $.each($('textarea[data-autoresize]'), function() {
     var offset = this.offsetHeight - this.clientHeight;
 

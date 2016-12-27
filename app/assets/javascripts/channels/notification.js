@@ -43,7 +43,40 @@ function convertNotification(owner, invoice, notification) {
   return html;
 }
 
+function bind_for_loading_more_notification() {
+  var notifications_per_request = 10
+  var list_notification = $('.nht-noti-list a').size();
+  $(".nht-noti-list").unbind("scroll").bind("scroll", function() {
+    var url = $(".pagination .next a").attr("href");
+
+    if (url && ($(".nht-noti-list").scrollTop() > (list_notification*75 - $('.nht-noti-list').height() - 1 ))) {
+      $(".pagination .next a").trigger('click');
+      $('.td-loadmore img').show();
+      list_notification += notifications_per_request;
+    }
+  });
+}
+
 document.addEventListener("turbolinks:load", function() {
+  $('a.load-more-notification').click(function (e) {
+    e.preventDefault();
+    $('.load-more-notification').hide();
+    $('.loading-gif').show();
+    var last_id = $('.record').last().attr('data-id');
+    $.ajax({
+      type: "GET",
+      url: $(this).attr('href'),
+      data: {
+        id: last_id
+      },
+      dataType: "script",
+      success: function () {
+        $('.loading-gif').hide();
+        $('.load-more-notification').show();
+      }
+    });
+  });
+
   if ($('.nht-notification-count').is(':visible')) {
     if($('.nht-notification-count')[0].innerText == '0') {
       $('.nht-notification-count').hide();
@@ -52,25 +85,31 @@ document.addEventListener("turbolinks:load", function() {
     }
   }
 
+  if ($("#infinite-scrolling").size() > 0) {
+    bind_for_loading_more_notification();
+  }
+
   if($('.nht-notifications').length) {
     $('.nht-notifications').hide();
   }
 
-  $('.nht-notification-icon').on('click', function() {
-    $('.nht-notification-icon i').toggleClass('fa-globe-focus');
+  $('.nht-notification-icon i').on('click', function() {
+    $(this).toggleClass('fa-globe-focus');
   });
 
-  $('.nht-notification-icon').on('click', function() {
+  $('.nht-notification-icon i').on('click', function() {
     $('.dropdown-menu').slideUp(200);
+
+    $('.nht-noti-list').niceScroll({
+      cursorwidth: "6px",
+      cursorcolor: "rgba(0, 0, 0, 0.4)",
+      autohidemode: false,
+      cursorminheight: 100,
+      smoothscroll: true,
+    });
 
     if (!$('.nht-notifications').is(":visible")) {
       $('.nht-notification-count').hide();
-      $('.nht-noti-list').niceScroll({
-        cursorwidth: "6px",
-        cursorcolor: "rgba(0, 0, 0, 0.4)",
-        autohidemode: false,
-        cursorminheight: 100,
-      });
       App.notification.speak({action_type: "unread_notification"});
 
       $.each( notifications, function(index, value) {

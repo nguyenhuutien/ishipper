@@ -1,8 +1,14 @@
 class SessionsController < Devise::SessionsController
 
   def create
-    super
-    create_cookie
+    user = User.find_by phone_number: params[:user][:phone_number]
+    if user && user.shipper?
+      flash[:danger] = t :shop_ability
+      redirect_to :back
+    else
+      super
+      create_cookie
+    end
   end
 
   def destroy

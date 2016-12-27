@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
-  before_action :authenticate_user!, :load_notification
+  before_action :authenticate_user!
 
   include CanCan::ControllerAdditions
 
@@ -25,10 +25,6 @@ class ApplicationController < ActionController::Base
     controller_name_segments.pop
     controller_namespace = controller_name_segments.join('/').camelize
     Ability.new current_user, controller_namespace
-  end
-
-  def load_notification
-    @notifications = current_user.passive_notifications.order_by_time if current_user
   end
 
   def after_sign_in_path_for resource
