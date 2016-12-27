@@ -78,6 +78,7 @@ en:
   address: Search address
   address_start: Shop's address
   address_finish: Customer's address
+  distance: Distance
   create_invoice:
     shop_information: Shop's Information
     customer_information: Customer's Information

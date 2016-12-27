@@ -51,7 +51,7 @@
       </table>
     <div>
       <div class="back">
-        <button type="button" class="btn btn-default" data-toggle="modal"
+        <button type="button" class="btn btn-default reload-data" data-toggle="modal"
           data-target="#id-nht-invoices-index"><%= t :back %></button>
       </div>
       <div class="show-invoice-action">
@@ -61,7 +61,6 @@
             <% if invoice.shipped? %>
               <%= form_for [:shop, invoice], method: :patch, remote: true do |f| %>
                 <%= hidden_field_tag :status, Settings.invoice.status[:finished] %>
-                <%= hidden_field_tag :list_back_status, @list_back_status %>
                 <%= f.submit t("invoices.update.finished"),
                   class: "btn btn-primary invoice-status-change" %>
               <% end %>
@@ -70,7 +69,6 @@
           <div id="">
             <%= form_for [:shop, invoice], method: :patch, remote: true do |f| %>
               <%= hidden_field_tag :status, Settings.invoice.status[:cancel] %>
-              <%= hidden_field_tag :list_back_status, @list_back_status %>
               <%= f.submit t("invoices.update.cancel"),
                 class: "btn btn-cancel invoice-status-change" %>
             <% end %>

@@ -135,7 +135,7 @@
   }
 
   .lvc-box-confirm-content{
-    .tbody tr td{
+    tbody tr td{
       padding-top: 25px;
       text-align: center;
     }
@@ -269,13 +269,14 @@
           line-height: 1.1em;
           color: #666;
           font-size: 17px;
+          font-style: italic;
         }
 
         tr td:nth-child(even){
           font-weight: 700;
           line-height: 1.1em;
+          color: #666;
           font-size: 17px;
-          color: blue;
         }
       }
     }
@@ -284,6 +285,9 @@
 
 
 #id-lvc-invoices-edit{
+  overflow: hidden;
+  border-radius: 10px;
+  bottom: 30px;
 
   .modal-dialog{
     width: 70%;
@@ -299,7 +303,25 @@
     }
 
     .form {
-      padding: 40px 100px 40px 100px;
+      padding: 40px 100px 100px 100px;
+      overflow: scroll;
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 70vh;
+
+      div p{
+        border-bottom: 1px #00be45 solid;
+        padding-top: 40px !important;
+      }
+
+      div div{
+        padding-top: 10px;
+      }
+
+      div div span{
+        margin-left: 20px;
+        font-size: 100%;
+      }
 
       .td-input {
         margin-top: 10px;

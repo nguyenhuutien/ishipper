@@ -10,7 +10,7 @@ document.addEventListener('turbolinks:load', function(){
 
 function event_click_sidebar_menu(){
   $(document).on('click', '.lvc-sidebar-button', function(event) {
-    $list_back_status = $(this).attr('status');
+    order_reload_data($(this).attr('href'));
   });
 }
 
@@ -24,6 +24,7 @@ function event_click_report_confirm(){
     else{
       $('#id-lvc-invoices-confirm').modal('toggle');
     }
+    $(this).removeAttr('disabled');
   });
 }
 
@@ -49,13 +50,10 @@ function event_close_show_invoice(){
 }
 
 function event_click_invoice_on_list(){
-  $list_back_status = 'all';
   $on_process = false;
   $(document).on('click', '.shop_invoice_row', function(event) {
     if(!$on_process){
-      $invoice_show = $('#id-lvc-invoices-show').html('<div class="uil-reload-css"><div>');
-      $invoice_show.modal({
-        backdrop: 'static', keyboard: false, show: true});
+      show_loading_after();
       $on_process = true;
       id = $(this).attr('id');
       ajax_show_invoice(id);
@@ -65,11 +63,12 @@ function event_click_invoice_on_list(){
 
 function ajax_show_invoice(id){
   $.ajax({
-    url: '/shop/invoices/' + id + '?list_back_status=' + $list_back_status,
+    url: '/shop/invoices/' + id,
     method: 'get',
     dataType: 'text'
   }).done(function(data){
-    $('#id-lvc-invoices-show').html(data);
+    close_loading_after();
+    $('#id-lvc-invoices-show').html(data).modal('show');
     $on_process = false;
   });
 }
@@ -78,6 +77,6 @@ function event_close_report_modal(){
   $(document).on('click', '.close-report-modal', function(event){
     event.preventDefault();
     $('.lvc-btn-report').removeAttr('disabled');
-    $('#report-modal').modal('toggle');
+    $('#report-modal').modal('hide');
   });
 }
