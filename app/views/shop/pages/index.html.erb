@@ -1,6 +1,6 @@
 <div class="nht-nearby-shippers">
   <div id="map-base" class="width-100"></div>
-  <div class="list_shippers" data-list_shippers="<%= @shippers.serializable_hash.to_json %>">
+  <div class="list_shippers" data-list_shippers="<%= @support.shippers.serializable_hash.to_json %>">
   </div>
   <div class="address_shop" data-address_shop="<%= current_user.user_setting.to_json %>">
   </div>
@@ -34,7 +34,7 @@
     <div class="td-create-invoice-close">
       <i class="fa fa-times" aria-hidden="true"></i>
     </div>
-    <%= form_for [:shop, @invoice], remote: true do |f| %>
+    <%= form_for [:shop, @support.create_invoice], remote: true do |f| %>
       <div id="td-create-error"></div>
 
       <div class="td-shop-information">

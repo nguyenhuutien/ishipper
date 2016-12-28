@@ -1,10 +1,13 @@
 class Shop::PagesController < Shop::ShopBaseController
   def index
-    @shippers = UserSetting.near [current_user.user_setting.latitude,
-      current_user.user_setting.longitude], Settings.max_distance, order: false
-    @shippers = User.users_by_user_setting(@shippers).shipper
-    @shippers = ActiveModelSerializers::SerializableResource.new @shippers,
-      each_serializer: Users::ListShipperSerializer, scope: {current_user: current_user}
-    @invoice = Invoice.new
+    @support = Supports::User.new current_user: current_user, params: nil
+    if current_user
+      @notifications = current_user.passive_notifications.order_by_time.
+        page(params[:page]).per Settings.notifications_per_request
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
   end
 end

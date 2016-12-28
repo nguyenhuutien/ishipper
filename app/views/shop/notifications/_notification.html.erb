@@ -1,0 +1,28 @@
+<%= link_to shop_invoice_path(notification.invoice) do %>
+  <li class="nht-notification notification-<%= notification.id %>
+    <%= notification.read %>-notification ">
+    <span class="col-md-2 col-lg-2 nht-notification-avatar">
+      <% if notification.owner.avatar_url.present? %>
+        <%= image_tag notification.owner.avatar.url, id: "avatar-#{notification.id}",
+          class: "img-responsive nht-avatar" %>
+      <% else %>
+        <%= image_tag "profile.jpg", id: "avatar-#{notification.id}",
+          class: "img-responsive nht-avatar" %>
+      <% end %>
+      <div class="clearfix"></div>
+    </span>
+    <span class="col-md-10 col-lg-10 nht-notification-content">
+      <div class="content">
+        <%= truncate notification_content(notification),
+          length: Settings.length_notification %>
+      </div>
+      <div class="small">
+        <i class="td-noti-time-ago">
+          <%= time_ago_in_words notification.created_at %>
+        </i>
+      </div>
+    </span>
+    <div class="clearfix"></div>
+  </li>
+  <div class="clearfix"></div>
+<% end %>

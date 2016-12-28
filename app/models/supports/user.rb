@@ -39,4 +39,16 @@ class Supports::User
   def invoice
     Invoice.find_by id: @params[:invoice_id] if @params
   end
+
+  def create_invoice
+    @current_user.invoices.new
+  end
+
+  def shippers
+    shippers = UserSetting.near [@current_user.user_setting.latitude,
+      @current_user.user_setting.longitude], Settings.max_distance, order: false
+    shippers = User.users_by_user_setting(shippers).shipper
+    ActiveModelSerializers::SerializableResource.new shippers,
+      each_serializer: Users::ListShipperSerializer, scope: {current_user: @current_user}
+  end
 end
