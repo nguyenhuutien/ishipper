@@ -7,18 +7,30 @@
     <td><%= invoice.address_start %></td>
     <td><b><%= invoice.status %></b></td>
     <td>
-      <%= link_to t("invoices.received_shippers", number_shipper: invoice.number_of_recipients),
-        shop_list_shippers_path(invoice_id: invoice.id),
-        remote: true, class: "btn btn-primary nht-invoice-list-shippers-btn" %>
+      <% if invoice.init? %>
+        <div class="btn-action">
+          <%= link_to shop_list_shippers_path(invoice_id: invoice.id), remote: true,
+            class: "btn nht-invoice-list-shippers-btn" do %>
+            <i title="<%= t "invoices.received_shippers" %>"><%= image_tag "receive.png" %></i>
+            <span>(<%= invoice.number_of_recipients %>)</span>
+          <% end %>
+          <%= link_to edit_shop_invoice_path(invoice), remote: true,
+            class: "btn nht-invoice-list-shippers-btn" do %>
+            <i title="<%= t "invoices.edit_invoice" %>"><%= image_tag "edit.png" %></i>
+          <% end %>
+        </div>
+      <% end %>
+
       <% if invoice.shipped? %>
         <%= form_for [:shop, invoice], remote: true, method: :patch do |f| %>
           <%= hidden_field_tag :status, "finished" %>
           <%= hidden_field_tag :list_back_status, invoice.status %>
-          <%= f.submit t("invoices.finished"), class: "btn btn-primary" %>
+          <%= button_tag type: "submit", class: "btn btn-default loading-after" do %>
+            <i><%= image_tag "finished.png", class: "nht-icon" %></i>
+            <span><%= t "invoices.finished" %></span>
+          <% end %>
         <% end %>
       <% end %>
-      <%= link_to t("invoices.update.edit"), edit_shop_invoice_path(invoice), remote: true,
-        class: "btn btn-primary nht-invoice-list-shippers-btn" %>
     </td>
   </tr>
 <% end %>

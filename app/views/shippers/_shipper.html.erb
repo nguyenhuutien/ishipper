@@ -1,7 +1,7 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
-      <i class="fa fa-times" aria-hidden="true"></i>
+      <i><%= image_tag "cut.png" %></i>
     <% end %>
     <div class="title">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nht-invoice-name">
@@ -113,7 +113,10 @@
     <div class="accept">
       <%= form_tag shop_user_invoice_path(@supports.user_invoice_id),
         method: :patch, remote: true do %>
-        <%= submit_tag t("invoices.accept_shipper.button"), class: "btn btn-primary" %>
+        <%= button_tag type: "submit", class: "btn btn-primary loading-after" do %>
+          <i class="ace-icon fa fa-check"></i>
+          <span><%= t "invoices.accept_shipper.button" %></span>
+        <% end %>
       <% end %>
       <div class="clearfix"></div>
     </div>

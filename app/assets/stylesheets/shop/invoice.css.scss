@@ -10,6 +10,7 @@
       position: relative;
       min-height: 60px;
       min-width: 560px;
+      padding-right: 10px;
 
       .nht-invoices-search {
         position: relative;
@@ -20,11 +21,16 @@
 
         .input-group {
           width: 100%;
-          .nht-icon-search {
-            position: absolute;
-            top: 5px;
-            left: 10px;
-            z-index: 3;
+
+          .input-group-addon {
+            border: none;
+
+            .nht-icon-search {
+              position: absolute;
+              top: 5px;
+              left: 10px;
+              z-index: 3;
+            }
           }
 
           #name_invoice {
@@ -86,10 +92,9 @@
       }
 
       .close {
-        float: right;
         width: 20px;
         height: 20px;
-        line-height: 60px;
+        line-height: 55px;
         font-size: 1.5em;
         margin-right: 20px;
       }
@@ -115,11 +120,23 @@
 
         .nht-invoice-list-shippers-btn {
           margin-bottom: 10px;
+          vertical-align: middle;
+          display: flex;
+          font-size: 20px;
         }
       }
 
       td {
         padding: 15px;
+        vertical-align: middle;
+
+        .btn-action {
+          display: inline-flex;
+        }
+
+        .nht-icon {
+          margin-bottom: 0px !important;
+        }
       }
     }
   }
@@ -154,7 +171,17 @@
     .modal-content {
       .back {
         float: left;
-        margin: 15px;
+
+        .btn-back {
+          padding: 17px;
+          color: #FFF;
+          background-color: transparent;
+          border: none;
+
+          .nht-icon {
+            font-size: 25px !important;
+          }
+        }
       }
 
       .show-invoice-action {
@@ -179,6 +206,7 @@
         }
 
         .nht-invoice-rate {
+          padding: 5px;
           background-color: #FFF;
           width: 100%;
 
@@ -251,7 +279,7 @@
           height: 20px;
           line-height: 60px;
           font-size: 1.5em;
-          margin-right: 20px;
+          margin-right: 25px;
         }
       }
 
@@ -294,11 +322,38 @@
     margin-left: 15%;
 
     .lvc-invoice-title{
-      padding: 15px;
+      position: relative;
+
+      .back {
+        float: left;
+
+        .btn-back {
+          padding: 17px;
+          color: #FFF;
+          background-color: transparent;
+          border: none;
+
+          .nht-icon {
+            font-size: 25px !important;
+          }
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+      }
 
       .lvc-invoice-status{
-        width: 70%;
+        line-height: 56px;
         float: left;
+        margin-left: 10px;
+        vertical-align: middle;
+        font-weight: bold;
+        color: #FFF;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 20px;
       }
     }
 

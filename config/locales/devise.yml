@@ -3,6 +3,7 @@ en:
   td_signup: Don't have an account?
   devise:
     login: Log in
+    log_out: Log out
     sign_up: Sign up
     edit: Edit
     forgot: Forgot your password?
