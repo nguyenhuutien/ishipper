@@ -1,11 +1,17 @@
 <div class="lvc-invoice modal-dialog">
   <div class="modal-content">
     <div class="lvc-invoice-title base-color">
+      <div class="back">
+        <button type="button" class="btn-back reload-data" data-toggle="modal"
+          data-target="#id-nht-invoices-index">
+          <i class="fa fa-arrow-circle-left nht-icon" aria-hidden="true"></i>
+        </button>
+      </div>
       <div class="lvc-invoice-status">
         <%= t "invoices._info_invoice" %>
       </div>
       <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
-        <i class="fa fa-times" aria-hidden="true"></i>
+        <i><%= image_tag "cut.png" %></i>
       <% end %>
       <div class="clearfix"></div>
     </div>
@@ -50,10 +56,6 @@
         </tbody>
       </table>
     <div>
-      <div class="back">
-        <button type="button" class="btn btn-default reload-data" data-toggle="modal"
-          data-target="#id-nht-invoices-index"><%= t :back %></button>
-      </div>
       <div class="show-invoice-action">
         <hr>
         <% unless invoice.finished? || invoice.cancel? %>
@@ -69,8 +71,8 @@
           <div id="">
             <%= form_for [:shop, invoice], method: :patch, remote: true do |f| %>
               <%= hidden_field_tag :status, Settings.invoice.status[:cancel] %>
-              <%= f.submit t("invoices.update.cancel"),
-                class: "btn btn-cancel invoice-status-change" %>
+              <%= f.submit t("invoices.cancel"),
+                class: "btn btn-danger invoice-status-change" %>
             <% end %>
           </div>
         <% end %>

@@ -67,38 +67,40 @@
 
     .modal-content {
       height: auto;
-      padding-top: 20px;
-      position: relative;
 
-      .back {
-        float: left;
-        margin: 15px;
-      }
+      .nht-invoices-title {
+        position: relative;
 
-      .close {
-        position: absolute;
-        top: 1px;
-        right: 5px;
-      }
+        .back {
+          float: left;
 
-      .title {
-        hr {
-          margin: 0px !important;
+          .btn-back {
+            padding: 17px;
+            color: #FFF;
+            background-color: transparent;
+            border: none;
+
+            .nht-icon {
+              font-size: 25px !important;
+            }
+          }
+        }
+
+        .close {
+          position: absolute;
+          top: 15px;
+          right: 10px;
         }
 
         .nht-invoice-name {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          min-height: 50px;
-          word-wrap: break-word;
-        }
-
-        .nht-invoice-address {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          min-height: 50px;
+          float: left;
+          margin-left: 10px;
+          vertical-align: middle;
+          font-weight: bold;
+          color: #FFF;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 20px;
+          line-height: 60px;
         }
       }
 
@@ -118,8 +120,8 @@
 
         .nht-shippers-item {
           padding: 5px;
-          border-left: none;
-          border-right: none;
+          border: none;
+          border-bottom: 1px solid #D9D9D9;
 
           .info {
             min-height: 50px;

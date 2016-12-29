@@ -34,7 +34,7 @@
 
           .nht-dropdown {
             padding: 0 15px;
-            width: 120%;
+            width: 200px;
             margin-top: 0 !important;
             border-radius: 4px;
             z-index: 5;
@@ -576,13 +576,22 @@ fieldset[disabled] .btn-xl.active {
 .hatd-profile {
   cursor: pointer;
   color: black;
-  padding: 10px 15px;
+  height: 45px;
+  padding: 10px 5px !important;
+  border-bottom: 1px solid #f1f1f1;
+  z-index: 5;
+  line-height: 25px;
+  i {
+    top: 2px !important;
+    font-size: 15px;
+  }
+
   hr {
     margin: 10px 0 0 0 !important;
   }
 
   span {
-    line-height: 30px;
+    /*line-height: 30px;*/
     font-size: 14px;
     font-weight: 400;
     margin-left: 10px;
@@ -592,6 +601,7 @@ fieldset[disabled] .btn-xl.active {
     padding: 0 !important;
   }
 }
+
 .hatd-edit-profile-dialog {
   width: 69%;
   margin: 0 auto;
