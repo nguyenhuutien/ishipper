@@ -10,7 +10,8 @@ document.addEventListener('turbolinks:load', function(){
 
 function event_click_sidebar_menu(){
   $(document).on('click', '.lvc-sidebar-button', function(event) {
-    order_reload_data($(this).attr('href'));
+    $url_current_list = $(this).attr('href');
+    order_reload_data($url_current_list);
   });
 }
 
@@ -19,7 +20,7 @@ function event_click_report_confirm(){
     $(this).attr('disabled', 'disabled');
     if($(this).attr('data') == '1'){
       $('#id-lvc-invoices-confirm').modal('toggle');
-      $('form[class=edit_invoice]').submit();
+      $('#' +$id_form_invoice).submit();
     }
     else{
       $('#id-lvc-invoices-confirm').modal('toggle');
@@ -30,7 +31,7 @@ function event_click_report_confirm(){
 
 function event_click_report_invoice(){
   $(document).on('click', '.lvc-btn-report', function(event) {
-    $(this).attr('disabled', 'disabled')
+    $(this).attr('disabled', 'disabled');
   });
 }
 
@@ -38,6 +39,7 @@ function action_update_status_invoice(){
   $(document).on('click', '.invoice-status-change', function(event) {
     event.preventDefault();
     $('#id-lvc-invoices-confirm').modal('show');
+    $id_form_invoice = $(this).parent().attr('id');
   });
 }
 

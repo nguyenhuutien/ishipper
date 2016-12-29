@@ -97,3 +97,4 @@ shipper:
 type_update:
   status: status
   invoice: invoice
+per_list_invoice: 10

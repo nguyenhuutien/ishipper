@@ -28,13 +28,13 @@
         </button>
 
         <ul class="dropdown-menu nht-dropdown-menu-status">
-          <%= link_to "/shop/invoices/status/all", remote: true do %>
+          <%= link_to "/shop/invoices/status/all", class: "node-dropdown-status", remote: true do %>
             <li class="nht-item-status">
               <b><%= Settings.invoice.status.all.capitalize %></b>
             </li>
           <% end %>
           <% Settings.invoice_status.status.each do |status| %>
-            <%= link_to "/shop/invoices/status/#{status}", remote: true do %>
+            <%= link_to "/shop/invoices/status/#{status}", class: "node-dropdown-status", remote: true do %>
               <li class="nht-item-status">
                 <b><%= status.capitalize %></b>
               </li>
@@ -44,7 +44,7 @@
       </div>
       <div class="clearfix"></div>
     </div>
-    <div class="table">
+    <div class="table load-more-invoice">
       <table class="table table-hover">
         <thead>
           <tr class="nht-invoice-table-title">
