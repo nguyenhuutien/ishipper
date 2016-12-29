@@ -21,10 +21,11 @@ class Api::V1::Shipper::NotificationsController < Api::ShipperBaseController
   end
 
   def update
-    unread_notification = current_user.user_setting.unread_notification - 1 if
-      current_user.user_setting.unread_notification > 0
-    update_notification = NotificationServices::UpdateNotificationService.new current_user: current_user,
-      notification: @notification, unread_notification: unread_notification
+    unread_notification = current_user.user_setting.unread_notification
+    unread_notification = unread_notification - 1 if unread_notification > 0
+    update_notification = NotificationServices::UpdateNotificationService.
+      new current_user: current_user, notification: @notification,
+      unread_notification: unread_notification
     if update_notification.perform
       render json: {message: I18n.t("notifications.update.success"),
         data:{}, code: 1}, status: 200

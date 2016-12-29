@@ -4,6 +4,7 @@ class Api::V1::UserSettingsController < Api::BaseController
 
   before_action :find_user_setting
   before_action :ensure_params_exist, only: :update
+  after_action :update_location, only: :update
 
   def show
     render json: {message: I18n.t("user_setting.get.success"),
@@ -27,5 +28,17 @@ class Api::V1::UserSettingsController < Api::BaseController
 
   def find_user_setting
     @user_setting = current_user.user_setting
+  end
+
+  def update_location
+    if current_user.shipper?
+      serializer = ActiveModelSerializers::SerializableResource.new(current_user).as_json
+      user_settings = UserSetting.near [@user_setting.latitude,
+        @user_setting.longitude], Settings.max_distance, order: false
+      near_shops = User.users_by_user_setting(user_settings).shop.users_online
+      realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: near_shops,
+        shipper: serializer, action: Settings.realtime.shipper_online
+      realtime_visibility_shipper.perform
+    end
   end
 end

@@ -64,6 +64,7 @@ realtime:
   remove_invoice: "remove_invoice"
   shipper_online: "shipper_online"
   shipper_offline: "shipper_offline"
+  cancel_invoice: "cancel_invoice"
 report:
   rating_point: 1
   max_length_content: 200

@@ -6,7 +6,8 @@ class Users::ListShipperSerializer < UserSerializer
 
   def user_invoice_id
     if scope && scope[:invoice]
-      user_invoice = UserInvoice.find_by user_id: object.id, invoice: scope[:invoice]
+      user_invoice = UserInvoice.find_by user_id: object.id, invoice: scope[:invoice],
+        status: scope[:invoice].status
       user_invoice ? user_invoice.id : nil
     else
       nil
