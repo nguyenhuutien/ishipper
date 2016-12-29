@@ -1,6 +1,13 @@
-if ($('#id-nht-invoices-index').is(':visible')) {
-  $('#nht-invoice-table-content').html('<%= j render "invoice_content" %>');
-} else {
-  $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>').modal(
-    {backdrop: 'static', keyboard: false, show: true});
-}
+<% if @load_more %>
+  $('#nht-invoice-table-content').append('<%= j render "invoice_content" %>');
+<% else %>
+  if ($('#id-nht-invoices-index').is(':visible')) {
+    $('#nht-invoice-table-content').html('<%= j render "invoice_content" %>');
+  } else {
+    $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>').modal(
+      {backdrop: 'static', keyboard: false, show: true});
+    $list_invoice_page = 1;
+    on_load_more_invoice();
+  }
+<% end %>
+$on_load_invoice = false;
