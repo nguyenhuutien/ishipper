@@ -11,7 +11,7 @@ class RealtimeChannel < ApplicationCable::Channel
   def unsubscribed
     if UserToken.find_by_id self.current_user.id
       self.current_user.update_attribute "online", false
-      if self.current_user.user.shipper?
+      if self.current_user.user.shipper? && !self.current_user.user.online?
         serializer = ActiveModelSerializers::SerializableResource.
           new(self.current_user.user).as_json
         user_settings = UserSetting.near [self.current_user.user_setting.latitude,

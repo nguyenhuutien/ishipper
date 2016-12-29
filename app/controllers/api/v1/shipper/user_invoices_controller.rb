@@ -55,6 +55,16 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
     if @user_invoice.update_attributes status: "rejected"
       render json: {message: I18n.t("user_invoices.cancel_request.success"), data: {},
         code: 1}, status: 200
+      @shipper = Users::ListShipperSerializer.new(current_user, scope: {invoice: @user_invoice.invoice,
+        current_user: current_user}).as_json
+      realtime_channel = "#{@user_invoice.invoice.user.phone_number}_realtime_channel"
+        data = Hash.new
+        data[:user] = current_user
+        @invoice = Invoices::ShopInvoiceSerializer.new(@user_invoice.invoice,
+          scope: {current_user: @user_invoice.invoice.user})
+        data[:invoice] = @invoice
+        RealtimeBroadcastJob.perform_now channel: realtime_channel,
+          action: Settings.realtime.cancel_invoice, data: data
     else
       render json: {message: I18n.t("user_invoices.cancel_request.fail"), data: {},
         code: 0}, status: 200

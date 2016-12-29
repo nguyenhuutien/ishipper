@@ -34,7 +34,7 @@ class Api::SessionsController < Devise::SessionsController
     token = @user.user_tokens.find_by authentication_token: params[:user][:authentication_token]
     if token
       sign_out @user
-      if @user.shipper?
+      if @user.shipper? && !@user.online?
         @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
         user_settings = UserSetting.near [@user.user_setting.latitude,
           @user.user_setting.longitude], Settings.max_distance, order: false
