@@ -53,11 +53,11 @@ ActiveRecord::Schema.define(version: 20161125104513) do
   create_table "invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "address_start"
-    t.float    "latitude_start",   limit: 24
-    t.float    "longitude_start",  limit: 24
+    t.float    "latitude_start",   limit: 53
+    t.float    "longitude_start",  limit: 53
     t.string   "address_finish"
-    t.float    "latitude_finish",  limit: 24
-    t.float    "longitude_finish", limit: 24
+    t.float    "latitude_finish",  limit: 53
+    t.float    "longitude_finish", limit: 53
     t.string   "delivery_time"
     t.float    "distance_invoice", limit: 24
     t.string   "description"
@@ -76,11 +76,11 @@ ActiveRecord::Schema.define(version: 20161125104513) do
   create_table "invoices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "address_start"
-    t.float    "latitude_start",   limit: 24
-    t.float    "longitude_start",  limit: 24
+    t.float    "latitude_start",   limit: 53
+    t.float    "longitude_start",  limit: 53
     t.string   "address_finish"
-    t.float    "latitude_finish",  limit: 24
-    t.float    "longitude_finish", limit: 24
+    t.float    "latitude_finish",  limit: 53
+    t.float    "longitude_finish", limit: 53
     t.string   "delivery_time"
     t.float    "distance_invoice", limit: 24
     t.string   "description"
@@ -153,11 +153,11 @@ ActiveRecord::Schema.define(version: 20161125104513) do
     t.integer  "unread_notification",             default: 0
     t.boolean  "favorite_location",               default: false
     t.string   "favorite_address"
-    t.float    "favorite_latitude",    limit: 24
-    t.float    "favorite_longitude",   limit: 24
+    t.float    "favorite_latitude",    limit: 53
+    t.float    "favorite_longitude",   limit: 53
     t.string   "current_location"
-    t.float    "latitude",             limit: 24
-    t.float    "longitude",            limit: 24
+    t.float    "latitude",             limit: 53
+    t.float    "longitude",            limit: 53
     t.boolean  "signed_in"
     t.integer  "radius_display",                  default: 5
     t.integer  "user_id"
