@@ -7,18 +7,10 @@
   <div class="nht-nav-left">
     <ul>
       <li class="nht-item">
-        <%= link_to shop_invoices_path, remote: true, status: :all,
+        <%= link_to "/shop/invoices/status/init", remote: true, status: :init,
           class: "lvc-sidebar-button" do %>
           <span class="invoice nht-icon"></span>
           <span class="nht-item-content"><%= t("invoices.manage_invoices") %></span>
-        <% end %>
-      </li>
-
-      <li class="nht-item">
-        <%= link_to "/shop/invoices/status/init", remote: true, status: :init,
-          class: "lvc-sidebar-button"  do %>
-          <span class="clock nht-icon"></span>
-          <span class="nht-item-content"><%= t("invoices.init") %></span>
         <% end %>
       </li>
 
@@ -113,7 +105,7 @@
     <div class="input-group">
       <%= text_field_tag :address, "", class: "form-control",
         id: "nht-search-address-input", placeholder: t("address") %>
-      <i class="fa fa-search nht-icon-search form-control" aria-hidden="true"></i>
+      <i class="fa fa-search nht-icon-search" aria-hidden="true"></i>
     </div>
   </div>
   <div id="myModal-edit-profile" class="modal fade" role="dialog">

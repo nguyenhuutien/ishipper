@@ -1,8 +1,9 @@
 <% if @load_more %>
-  $('#nht-invoice-table-content').append('<%= j render "invoice_content" %>');
+  $('#nht-table-invoice-content').append('<%= j render "invoice_content" %>');
+  showInvoicesDetail();
 <% else %>
   if ($('#id-nht-invoices-index').is(':visible')) {
-    $('#nht-invoice-table-content').html('<%= j render "invoice_content" %>');
+    $('#nht-table-invoice-content').html('<%= j render "invoice_content" %>');
   } else {
     $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>').modal(
       {backdrop: 'static', keyboard: false, show: true});

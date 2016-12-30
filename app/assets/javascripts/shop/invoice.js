@@ -1,5 +1,12 @@
 document.addEventListener('turbolinks:load', function() {
   $('.modal').on('shown.bs.modal', function () {
+    showInvoicesDetail();
+    $('.div-table-content').niceScroll({
+      cursorwidth: "6px",
+      cursorcolor: "rgba(0, 0, 0, 0.4)",
+      railpadding: { top: 0},
+    });
+
     $('.close').on('click', function(event) {
       event.preventDefault();
       $('.modal').each(function() {
@@ -16,7 +23,7 @@ $list_invoice_page = 1;
 $on_load_invoice = false;
 function on_load_more_invoice() {
   $('.load-more-invoice').scroll(function () {
-    if ($(this)[0].scrollHeight - $(this).scrollTop() <  $(this).outerHeight()) {
+    if ($(this)[0].scrollHeight - $(this).scrollTop() <  $(this).outerHeight() + 5) {
       if(!$on_load_invoice) {
         $on_load_invoice = true;
         $list_invoice_page = $list_invoice_page + 1;
@@ -36,4 +43,15 @@ function event_click_menu_status() {
     $url_current_list = $(this).attr('href');
     $list_invoice_page = 1;
   })
+}
+
+function showInvoicesDetail() {
+  $('.nht-invoices-show').mouseenter(function() {
+    $('.nht-invoices-show-extend.' + this.id).show();
+    $('.nht-invoices-show-extend.' + this.id).addClass('border-invoices-detail');
+    $(this).mouseout(function() {
+      $('.nht-invoices-show-extend.' + this.id).removeClass('border-invoices-detail');
+      $('.nht-invoices-show-extend.' + this.id).hide();
+    });
+  });
 }
