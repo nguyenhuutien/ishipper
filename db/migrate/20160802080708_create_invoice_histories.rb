@@ -3,11 +3,11 @@ class CreateInvoiceHistories < ActiveRecord::Migration[5.0]
     create_table :invoice_histories do |t|
       t.string :name
       t.string :address_start
-      t.float :latitude_start
-      t.float :longitude_start
+      t.float :latitude_start, limit: 25
+      t.float :longitude_start, limit: 25
       t.string :address_finish
-      t.float :latitude_finish
-      t.float :longitude_finish
+      t.float :latitude_finish, limit: 25
+      t.float :longitude_finish, limit: 25
       t.string :delivery_time
       t.float :distance_invoice
       t.string :description
