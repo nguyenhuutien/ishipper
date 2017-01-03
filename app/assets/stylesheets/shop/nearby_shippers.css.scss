@@ -182,24 +182,24 @@
       width: 100%;
 
       .nht-icon-search {
-        position: relative;
-        border: none;
-        width: 10%;
-        height: 10px;
+        position: absolute;
+        border: none !important;
+        top: 0px;
+        right: 25px;
         font-size: 20px;
-        float: left;
-        height: 50px;
-        line-height: 35px;
-        background-color: #FFF;
-        border: 1px solid #D9D9D9;
-        border-left: 0;
+        line-height: 50px;
+        width: 10px;
+        z-index: 2;
       }
 
       #nht-search-address-input {
         height: 50px;
-        width: 90%;
+        width: 100%;
         float: left;
-        border-right: 0;
+        padding-right: 40px;
+        border-right: none;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
       }
     }
   }

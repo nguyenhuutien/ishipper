@@ -98,6 +98,9 @@ en:
     created_at: Created at
     finished: Finished
     cancel: Cancel this invoice
+    customers:
+      name: Name of customer
+      phone_number: Phone number of customer
   vnd: VND
   kg: Kg
   km: KM

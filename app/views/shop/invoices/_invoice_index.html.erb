@@ -1,7 +1,7 @@
-<div class="nht-invoices modal-dialog">
+<div class="modal-dialog">
   <div class="modal-content">
-    <div class="nht-invoices-title base-color">
-      <div class="nht-invoices-status">
+    <div class="nht-invoices-index-header base-color">
+      <div class="nht-invoices-title">
         <%= t("invoices.status", status: (@status ? @status : Settings.invoice.status.all)).upcase %>
       </div>
 
@@ -17,49 +17,58 @@
         </div>
       </div>
 
-      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
-        <i><%= image_tag "cut.png" %></i>
-      <% end %>
-
-      <div class="dropdown nht-dropdown-status">
-        <button class="dropdown-toggle nht-toggle" data-toggle="dropdown">
+      <div class="dropdown nht-dropdown-invoices-status">
+        <button class="dropdown-toggle nht-dropdown-toggle-invoices-status" data-toggle="dropdown">
           <b><%= (@status ? @status : Settings.invoice.status.all).capitalize %></b>
           <b class="caret"></b>
         </button>
 
-        <ul class="dropdown-menu nht-dropdown-menu-status">
+        <ul class="dropdown-menu nht-dropdown-menu-invoices-status">
           <%= link_to "/shop/invoices/status/all", class: "node-dropdown-status", remote: true do %>
-            <li class="nht-item-status">
+            <li class="nht-item-invoices-status">
               <b><%= Settings.invoice.status.all.capitalize %></b>
             </li>
           <% end %>
           <% Settings.invoice_status.status.each do |status| %>
             <%= link_to "/shop/invoices/status/#{status}", class: "node-dropdown-status", remote: true do %>
-              <li class="nht-item-status">
+              <li class="nht-item-invoices-status">
                 <b><%= status.capitalize %></b>
               </li>
             <% end %>
           <% end %>
         </ul>
       </div>
+
+      <div class="close">
+        <%= link_to "#", data: {dismiss: "modal"} do %>
+          <i><%= image_tag "cut.png" %></i>
+        <% end %>
+      </div>
+
       <div class="clearfix"></div>
     </div>
-    <div class="table load-more-invoice">
-      <table class="table table-hover">
+
+    <div class="panel panel-default">
+      <table class="table table-condensed" >
         <thead>
           <tr class="nht-invoice-table-title">
-            <td><strong><%= t "invoices.name_invoice" %></strong></td>
-            <td><strong><%= t "invoices.created_at" %></strong></td>
-            <td><strong><%= t "invoices.address_finish" %></strong></td>
-            <td><strong><%= t "invoices.address_start" %></strong></td>
-            <td><strong><%= t "invoices._status" %></strong></td>
-            <td><strong><%= t "invoices.action" %></strong></td>
+            <th><strong><%= t "invoices.name_invoice" %></strong></th>
+            <th><strong><%= t "invoices.created_at" %></strong></th>
+            <th><strong><%= t "invoices.customers.name" %></strong></th>
+            <th><strong><%= t "invoices.customers.phone_number" %></strong></th>
+            <th><strong><%= t "invoices._status" %></strong></th>
+            <th><strong><%= t "invoices.action" %></strong></th>
           </tr>
         </thead>
-        <tbody class="nht-invoice-table-body" id="nht-invoice-table-content">
-          <%= render "invoice_content" %>
-        </tbody>
       </table>
+
+      <div class="div-table-content load-more-invoice">
+        <table class="table table-condensed">
+          <tbody class="nht-table-invoice-body" id="nht-table-invoice-content">
+            <%= render "invoice_content" %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
