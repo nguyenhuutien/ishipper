@@ -1,6 +1,6 @@
 class Api::V1::Shop::BlackListsController < Api::ShopBaseController
   before_action :ensure_params_true, :check_user_exist, :check_exist_black_list,
-    :check_exist_favorite_list, only: :create
+    :check_exist_favorite_list, :find_shipper, only: :create
   before_action :load_and_check_black_list, only: :destroy
 
   def index
@@ -15,8 +15,9 @@ class Api::V1::Shop::BlackListsController < Api::ShopBaseController
     @black_list = BlackList.new black_list_params
     @black_list.owner = current_user
     if @black_list.save
+      @shipper = Users::FavoriteUserSerializer.new @shipper, scope: {current_user: current_user}
       render json: {message: I18n.t("black_list.create_success"),
-        data: {black_list: @black_list}, code: 1}, status: 200
+        data: {user: @shipper}, code: 1}, status: 200
     else
       render json: {message: I18n.t("black_list.create_fail"),
         data: {}, code: 0}, status: 200
@@ -41,6 +42,14 @@ class Api::V1::Shop::BlackListsController < Api::ShopBaseController
 
   def black_list_params
     params.require(:black_list).permit BlackList::BLACK_LIST_ATTRIBUTES_PARAMS
+  end
+
+  def find_shipper
+    @shipper = Shipper.find_by_id params[:black_list][:black_list_user_id]
+    unless @shipper
+      render json: {message: I18n.t("black_list.create_fail"), data: {},
+        code: 0}, status: 200
+    end
   end
 
   def check_exist_black_list
