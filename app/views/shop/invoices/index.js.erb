@@ -1,6 +1,5 @@
 <% if @load_more %>
   $('#nht-table-invoice-content').append('<%= j render "invoice_content" %>');
-  showInvoicesDetail();
 <% else %>
   if ($('#id-nht-invoices-index').is(':visible')) {
     $('#nht-table-invoice-content').html('<%= j render "invoice_content" %>');
@@ -11,4 +10,5 @@
     on_load_more_invoice();
   }
 <% end %>
+showInvoicesDetail();
 $on_load_invoice = false;
