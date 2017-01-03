@@ -33,6 +33,12 @@ invoice:
     cancel: cancel
   length_name: 15
   length_address: 45
+  search_attributes:
+    - customer_number
+    - customer_name
+    - name
+    - address_start
+    - address_finish
 degree: 180
 earth_radius: 6378137
 constant_1: 1

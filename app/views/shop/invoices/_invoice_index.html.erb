@@ -11,8 +11,12 @@
             <i class="fa fa-search nht-icon-search" aria-hidden="true"></i>
           </span>
           <%= form_tag shop_invoices_path, method: :get, remote: true do %>
-            <%= text_field_tag :name_invoice, "", class: "form-control",
-              placeholder: t("invoices.name") %>
+            <%= text_field_tag :data, "", class: "form-control",
+              placeholder: t("invoices.search") %>
+            <div class="nht-options-invoices-search">
+              <%= select_tag :type, options_for_select(Settings.invoice.search_attributes.
+                map {|s| [s.humanize, s]}), class: "form-control" %>
+            </div>
           <% end %>
         </div>
       </div>
