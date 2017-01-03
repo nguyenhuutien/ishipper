@@ -8,7 +8,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
       @load_more = true if params[:load_more] == '1'
       @status = params[:status]
     end
-    @invoices = @invoices.search_invoice(params[:name_invoice]) if params[:name_invoice]
+    @invoices = @invoices.search_invoice(params[:type], params[:data]) if params[:type]
     @invoices = @invoices.page(params[:page]).per Settings.per_list_invoice
   end
 

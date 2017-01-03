@@ -51,7 +51,7 @@ class Invoice < ApplicationRecord
 
   scope :filter_by, -> column, min, max{
     where "#{column} BETWEEN ? AND ?", min, max}
-  scope :search_invoice, -> search {where "LOWER(name) LIKE LOWER(?)", "%#{search}%"}
+  scope :search_invoice, -> type, data {where "LOWER(#{type}) LIKE LOWER(?)", "%#{data}%"}
 
   scope :invoice_by_status_for_shipper, -> status, user_id{
     where(id: UserInvoice.select(:invoice_id).where(status: status, user_id: user_id))

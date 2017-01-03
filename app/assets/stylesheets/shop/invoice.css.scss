@@ -448,6 +448,7 @@
 
           .input-group {
             width: 100%;
+            position: relative;
 
             .input-group-addon {
               border: none;
@@ -460,11 +461,22 @@
               }
             }
 
-            #name_invoice {
+            #data {
               padding-left: 35px;
+              padding-right: 100px;
               box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
               border-top-left-radius: 3px;
               border-bottom-left-radius: 3px;
+            }
+
+            .nht-options-invoices-search {
+              position: absolute;
+              top: 0px;
+              right: 0px;
+
+              #type {
+                border-radius: 3px;
+              }
             }
           }
         }

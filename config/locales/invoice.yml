@@ -101,6 +101,7 @@ en:
     customers:
       name: Name of customer
       phone_number: Phone number of customer
+    search: Search...
   vnd: VND
   kg: Kg
   km: KM
