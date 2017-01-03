@@ -8,7 +8,7 @@
     <ul>
       <li class="nht-item">
         <%= link_to "/shop/invoices/status/init", remote: true, status: :init,
-          class: "lvc-sidebar-button" do %>
+          class: "lvc-sidebar-button loading-after" do %>
           <span class="invoice nht-icon"></span>
           <span class="nht-item-content"><%= t("invoices.manage_invoices") %></span>
         <% end %>
@@ -96,7 +96,7 @@
       </div>
 
       <div class="td-btn-invoice">
-        <%= f.submit t(:_create), class: "td-create-button" %>
+        <%= f.submit t(:_create), class: "td-create-button loading-after" %>
       </div>
     <% end %>
 
@@ -163,7 +163,7 @@
               <button class="hatd-btn btn-default" data-dismiss="modal">
                 <i class="ace-icon fa fa-times"></i><%= t "close" %>
               </button>
-              <%= button_tag class: "btn btn-primary text-center" do %>
+              <%= button_tag class: "btn btn-primary text-center loading-after" do %>
                 <i class="ace-icon fa fa-check"><%= t "users.edit.change_password" %></i>
               <% end %>
             </div>
@@ -186,8 +186,7 @@
 <div id="id-lvc-invoices-confirm" class="modal fade">
   <%= render "shared/confirm_dialog" %>
 </div>
-<div id="id-lvc-loading-after" class="lvc-modal fade"
-  data-backdrop="static" data-keyboard="false">
+<div id="id-lvc-loading-after" hidden>
   <%= render "shared/loading_after" %>
 </div>
 <div id="area_hidden"></div>

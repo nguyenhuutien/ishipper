@@ -40,11 +40,11 @@ function on_loading_after(){
 }
 
 function show_loading_after(){
-  $('#id-lvc-loading-after').modal('show');
+  $('#id-lvc-loading-after').show();
 }
 
 function close_loading_after(){
-  $('#id-lvc-loading-after').modal('hide');
+  $('#id-lvc-loading-after').hide();
 }
 
 function on_reload_data(){
