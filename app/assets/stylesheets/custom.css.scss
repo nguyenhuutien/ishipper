@@ -349,18 +349,10 @@ margin-top: 20px;
   color:white;
 }
 
-.show_table_invoice{
-  margin: auto;
-  width: 90%;
-  padding-top: 30px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.show_table_invoice tbody tr td {
-  border: none;
-}
-
 .show-invoice-action span form{
   margin-left: 40% !important;
+}
+
+.td-cursor {
+  cursor: pointer;
 }

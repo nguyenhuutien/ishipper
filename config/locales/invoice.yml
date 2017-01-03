@@ -29,6 +29,7 @@ en:
       success: "Accept shipper success"
       fail: "Accept shipper fail"
       button: Accept
+    shipper_receive_invoice: Shipper Receive Invoice
     name: Enter name of invoice
     weight: Enter weight of invoice
     price: Enter price of invoice
@@ -39,6 +40,7 @@ en:
     description: Enter description of invoice
     title: Invoice
     customer: Customer
+    shop: Shop
     new: New Invoice
     title-2: Menu
     all: All Invoices
@@ -50,9 +52,10 @@ en:
     cancel: Invoices Cancel
     index:
       ship_price: Ship Price
-    distance: DISTANCE
-    delivery_time: DELIVERY TIME
-    cost: COST
+    distance: Distance
+    delivery_time: Delivery Time
+    cost: Cost
+    weight_invoice: Weight
     km: Km
     shipping_price: Shipping price
     _info_invoice: INFORMATION OF INVOICE
@@ -105,3 +108,4 @@ en:
   vnd: VND
   kg: Kg
   km: KM
+  none: None

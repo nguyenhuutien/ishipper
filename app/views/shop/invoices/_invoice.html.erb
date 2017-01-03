@@ -15,46 +15,152 @@
       <% end %>
       <div class="clearfix"></div>
     </div>
-      <table class="table show_table_invoice">
-        <tbody class="lvc-invoice-table-body">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 td-invoice-show">
+      <table class="width-100 td-invoices-show-table-1">
+        <tbody>
           <tr>
-            <td class="lvc-column-less"><%= t "invoices.name_invoice" %></td>
-            <td class="lvc-column-big"><%= invoice.name.capitalize %></td>
-            <td class="lvc-column-less"><%= t "invoices._shipping_price" %></td>
-            <td class="lvc-column-big"><%= number_to_currency invoice.shipping_price %></td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._name_customer" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= invoice.customer_name.capitalize %></b>
+            </td>
           </tr>
           <tr>
-            <td ><%= t "invoices._number_customer" %></td>
-            <td><%= invoice.customer_number %></td>
-            <td><%= t "invoices._price" %></td>
-            <td><%= number_to_currency invoice.price %></td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._number_customer" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= invoice.customer_number %></b>
+            </td>
           </tr>
           <tr>
-            <td><%= t "invoices.address" %></td>
-            <td><%= invoice.address_start %></td>
-            <td><%= t "invoices._delivery_time" %></td>
-            <td><%= invoice.delivery_time %></td>
-          </tr>
-          <tr>
-            <td><%= t "invoices._name_customer" %></td>
-            <td><%= invoice.customer_name.capitalize %></td>
-            <td><%= t "invoices._description" %></td>
-            <td><%= invoice.description %></td>
-          </tr>
-          <tr>
-            <td><%= t "invoices._number_customer" %></td>
-            <td><%= invoice.customer_number %></td>
-            <td><%= t "invoices._delivery_time" %></td>
-            <td><%= invoice.delivery_time %></td>
-          </tr>
-          <tr>
-            <td><%= t "invoices.address" %></td>
-            <td><%= invoice.address_finish%></td>
-            <td><%= t "invoices._distance" %></td>
-            <td><%= invoice.distance_invoice %> <%= t :km %></td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices.address" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b class="td-cursor" title="<%= invoice.address_finish %>">
+                <%= truncate invoice.address_finish,
+                  length: Settings.length_address_truncate %>
+              </b>
+            </td>
           </tr>
         </tbody>
       </table>
+      <hr>
+      <table class="width-100 td-invoices-show-table-2">
+        <tbody>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices.name_invoice" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= invoice.name.capitalize %></b>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._price" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= number_to_currency invoice.price %></b>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._distance" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= number_with_precision invoice.distance_invoice %> <%= t :km %></b>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._delivery_time" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= invoice.delivery_time %></b>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices.weight_invoice" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= number_with_precision invoice.weight %> <%= t :kg %></b>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._description" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= invoice.description %></b>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 td-invoice-show">
+      <table class="width-100 td-invoices-show-table-1">
+        <tbody>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices.shop" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= invoice.shop.name.capitalize %></b>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._number_customer" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= invoice.shop.phone_number %></b>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices.address" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b class="td-cursor" title="<%= invoice.address_start %>">
+                <%= truncate invoice.address_start,
+                  length: Settings.length_address_truncate %>
+              </b>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <table class="width-100 td-invoices-show-table-2">
+        <tbody>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices.shipper_receive_invoice" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <% if @support.shipper.present? %>
+                <b><%= @support.shipper[:name] %></b>
+              <% else %>
+                <b><%= t :none %></b>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <i><%= t "invoices._shipping_price" %>:</i>
+            </td>
+            <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <b><%= number_to_currency invoice.shipping_price %></b>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div>
       <div class="show-invoice-action">
         <hr>

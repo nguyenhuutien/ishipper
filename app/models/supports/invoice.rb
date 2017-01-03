@@ -22,9 +22,11 @@ class Supports::Invoice
   end
 
   def shipper
-    @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
-    if @user_invoice
-      ActiveModelSerializers::SerializableResource.new(@user_invoice.user).as_json
+    unless @invoice.init?
+      @user_invoice = @invoice.user_invoices.find_by status: @invoice.status
+      if @user_invoice
+        ActiveModelSerializers::SerializableResource.new(@user_invoice.user).as_json
+      end
     end
   end
 end
