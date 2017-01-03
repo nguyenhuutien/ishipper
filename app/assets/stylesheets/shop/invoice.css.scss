@@ -283,28 +283,47 @@
         }
       }
 
-      .lvc-invoice-table-body{
-        .lvc-column-less{
-          width: 13% !important;
+      .td-invoices-show-table-1 {
+        margin-top: 30px;
+        tr {
+          height: 40px;
+          line-height: 40px;
+          cursor: pointer;
+          td {
+            i {
+              font-size: 14px;
+            }
+          }
         }
 
-        .nht-invoice-list-shippers-btn {
-          margin-bottom: 10px;
+        tr:hover {
+          border-bottom: 1px solid #00be45;
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -o-box-sizing: border-box;
+        }
+      }
+
+      .td-invoices-show-table-2 {
+        margin-bottom: 30px;
+        tr {
+          height: 40px;
+          line-height: 40px;
+          cursor: pointer;
+          td {
+            i {
+              font-size: 14px;
+            }
+          }
         }
 
-        tr td:nth-child(odd){
-          font-weight: 700;
-          line-height: 1.1em;
-          color: #666;
-          font-size: 17px;
-          font-style: italic;
-        }
-
-        tr td:nth-child(even){
-          font-weight: 700;
-          line-height: 1.1em;
-          color: #666;
-          font-size: 17px;
+        tr:hover {
+          border-bottom: 1px solid #00be45;
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -o-box-sizing: border-box;
         }
       }
     }
