@@ -49,11 +49,20 @@
           float: right;
         }
 
+        .invoice-status-change:hover{
+          color: white;
+        }
+
         #lvc-rate-invoice-form{
           float: right;
         }
 
         #lvc-report-invoice{
+
+          a:hover{
+            color: white;
+          }
+
           float: right;
         }
 
@@ -267,6 +276,10 @@
       .lvc-btn-edit_invoice{
         margin-top: 20px;
         text-align: center;
+
+        button:hover{
+          color: white;
+        }
 
         input:hover{
           color: white
@@ -601,3 +614,6 @@
   }
 }
 
+.lvc-invoice-confirm.btn:hover{
+  color: white;
+}

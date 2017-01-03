@@ -10,12 +10,12 @@
       <div class="nht-btn-action-invoices">
         <% if invoice.init? %>
           <%= link_to shop_list_shippers_path(invoice_id: invoice.id), remote: true,
-            class: "btn" do %>
+            class: "btn loading-after" do %>
             <i title="<%= t "invoices.received_shippers" %>"><%= image_tag "receive.png" %></i>
             <span>(<%= invoice.number_of_recipients %>)</span>
           <% end %>
           <%= link_to edit_shop_invoice_path(invoice), remote: true,
-            class: "btn" do %>
+            class: "btn loading-after" do %>
             <i title="<%= t "invoices.edit_invoice" %>"><%= image_tag "edit.png" %></i>
           <% end %>
         <% end %>
