@@ -4,25 +4,7 @@
       <i><%= image_tag "cut.png" %></i>
     <% end %>
     <div class="title">
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 nht-invoice-name">
-        <span>
-          <b><%= t "invoices._name" %></b>
-          <%= truncate @supports.invoice.name, length: Settings.invoice.length_name %>
-        </span>
-      </div>
 
-      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nht-invoice-address">
-        <span>
-          <b><%= t "invoices.from" %></b>
-          <%= truncate @supports.invoice.address_start, length: Settings.invoice.length_address %>
-        </span>
-
-        <span>
-          <b><%= t "invoices.to" %></b>
-          <%= truncate @supports.invoice.address_finish, length: Settings.invoice.length_address %>
-        </span>
-      </div>
-      <div class="clearfix"></div>
     </div>
 
     <div class="nht-profile-shipper">
@@ -111,14 +93,7 @@
     </div>
 
     <div class="accept">
-      <%= form_tag shop_user_invoice_path(@supports.user_invoice_id),
-        method: :patch, remote: true do %>
-        <%= button_tag type: "submit", class: "btn btn-primary loading-after" do %>
-          <i class="ace-icon fa fa-check"></i>
-          <span><%= t "invoices.accept_shipper.button" %></span>
-        <% end %>
-      <% end %>
-      <div class="clearfix"></div>
+
     </div>
 
     <div class="back">

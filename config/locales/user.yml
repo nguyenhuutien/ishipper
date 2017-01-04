@@ -45,6 +45,9 @@ en:
       name: Name
       plate_number: Plate Number
       success_invoices: Success Invoices
+      rate: Rate
+      action: Action
+      accept: Accept
     favorite_user: Favorite User
     black_user: Black User
     shipper: Shipper

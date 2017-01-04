@@ -9,6 +9,7 @@ class Shop::UserInvoicesController < Shop::ShopBaseController
     unless shop_accept_shipper.perform?
       @user_invoice.erros.add :error, t("invoices.accept_shipper.fail")
     end
+    @support = Supports::Invoice.new invoice: @invoice, current_user: current_user
   end
 
   private

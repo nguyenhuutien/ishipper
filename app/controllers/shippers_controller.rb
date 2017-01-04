@@ -4,6 +4,7 @@ class ShippersController < ApplicationController
   before_action :load_support, only: :show
 
   def show
+    render @shipper
   end
 
   private

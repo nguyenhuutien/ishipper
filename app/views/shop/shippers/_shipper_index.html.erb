@@ -1,14 +1,14 @@
-<div class="hatd-shippers modal-dialog">
+<div class="index-shipper modal-dialog">
   <div class="modal-content">
-    <div class="hatd-shippers-title base-color">
-      <div class="hatd-shippers-status">
+    <div class="index-shipper-header base-color">
+      <div class="index-shipper-title">
         <%= t "users.shipper_index.title" %>
       </div>
 
-      <div class="hatd-shippers-search">
+      <div class="index-shipper-search">
         <div class="input-group">
           <span class="input-group-addon">
-            <i class="fa fa-search hatd-icon-search" aria-hidden="true"></i>
+            <i class="fa fa-search icon-search" aria-hidden="true"></i>
           </span>
           <%= form_tag shop_shippers_path, method: :get, remote: true do %>
             <%= text_field_tag :name_shipper, "", class: "form-control",
@@ -18,7 +18,7 @@
       </div>
 
       <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
-        <i class="fa fa-times" aria-hidden="true"></i>
+        <i><%= image_tag "cut.png" %></i>
       <% end %>
 
       <div class="dropdown hatd-dropdown-actions">
@@ -27,7 +27,7 @@
           <b class="caret"></b>
         </button>
 
-        <ul class="dropdown-menu hatd-dropdown-menu-actions">
+        <ul class="dropdown-menu dropdown-menu-actions hatd-dropdown-menu-actions">
           <% Settings.shipper.types.keys.each do |type| %>
             <%= link_to "/shop/shippers/type/#{type}", remote: true do %>
               <li class="hatd-item-actions">
@@ -37,23 +37,40 @@
           <% end %>
         </ul>
       </div>
+
       <div class="clearfix"></div>
     </div>
-    <div class="table">
-      <table class="table table-hover">
+    <div class="panel panel-default">
+      <table class="table table-condensed">
         <thead>
-          <tr class="hatd-shippers-table-title">
-            <td><strong><%= t "user.table.avatar" %></strong></td>
-            <td><strong><%= t "user.table.name" %></strong></td>
-            <td><strong><%= t "user.table.plate_number" %></strong></td>
-            <td><strong><%= t "user.table.success_invoices" %></strong></td>
-            <td><strong><%= t "user.table.invoices.action" %></strong></td>
-          </tr>
+          <div>
+            <tr class="hatd-shippers-table-title">
+              <div>
+                <td><strong><%= t "users.table.avatar" %></strong></td>
+              </div>
+              <div>
+                <td><strong><%= t "users.table.name" %></strong></td>
+              </div>
+              <div>
+                <td><strong><%= t "users.table.plate_number" %></strong></td>
+              </div>
+              <div>
+                <td><strong><%= t "users.table.success_invoices" %></strong></td>
+              </div>
+              <div>
+                <td class="hatd-td"><strong class="hatd-dropdown"><%= t "users.table.action" %></strong></td>
+              </div>
+            </tr>
+          </div>
         </thead>
-        <tbody class="hatd-shippers-table-body" id="hatd-shipper-table-content">
-          <%= render "shipper_content" %>
-        </tbody>
       </table>
+      <div class="div-table-content">
+        <table class="table table-condensed">
+          <tbody class="index-shipper-table-body" id="hatd-shipper-table-content">
+            <%= render "shipper_content" %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
