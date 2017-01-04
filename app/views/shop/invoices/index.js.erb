@@ -1,9 +1,13 @@
 close_loading_after();
+<% if @q %>
+  attribute = '<%= @q[:attribute] %>';
+  sortable = '<%= @q[:sortable] %>';
+<% end %>
 <% if @load_more %>
   $('#nht-table-invoice-content').append('<%= j render "invoice_content" %>');
 <% else %>
   if ($('#id-nht-invoices-index').is(':visible')) {
-    $('#nht-table-invoice-content').html('<%= j render "invoice_content" %>');
+    $('#nht-table-invoices').html('<%= j render "invoice_table" %>');
   } else {
     $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>').modal(
       {backdrop: 'static', keyboard: false, show: true});
@@ -12,4 +16,11 @@ close_loading_after();
   }
 <% end %>
 showInvoicesDetail();
+reverseSortable();
+
 $on_load_invoice = false;
+
+function reverseSortable() {
+  sortable = (sortable == 'ASC' ? 'DESC' : 'ASC');
+  $('#' + attribute).val(sortable);
+}

@@ -16,4 +16,13 @@ module ApplicationHelper
   def sidebar_active controller_name
     "menu-active" if params[:controller] == controller_name
   end
+
+  def sort_table *args
+    @q = args[0]
+    @q ||= Hash.new
+    @q[:attribute] = args[1]
+    form_tag shop_invoices_path(q: @q.to_hash), method: :get, remote: true do
+      hidden_field_tag("q[sortable]", "ASC", id: @q[:attribute]) + submit_tag(args[2], class: "nht-btn-sortable")
+    end
+  end
 end
