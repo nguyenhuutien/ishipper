@@ -1,15 +1,15 @@
 <div id="nht-errors"></div>
-<div class="nht-shippers modal-dialog">
+<div class="index-shipper modal-dialog">
   <div class="modal-content">
-    <div class="nht-invoices-title base-color">
+    <div class="index-shipper-header base-color">
       <div class="back">
         <button type="button" class="btn-back reload-data" data-toggle="modal"
           data-target="#id-nht-invoices-index">
-          <i class="fa fa-arrow-circle-left nht-icon" aria-hidden="true"></i>
+          <i class="fa fa-arrow-circle-left icon" aria-hidden="true"></i>
         </button>
       </div>
 
-      <div class="nht-invoice-name">
+      <div class="invoice-name">
         <%= t "invoices._name_invoice" %>: <%= @invoice.name %>
       </div>
       <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
@@ -17,53 +17,50 @@
       <% end %>
       <div class="clearfix"></div>
     </div>
-
-    <div class="nht-shippers-list">
-      <ul>
-        <% @shippers.serializable_hash.each do |shipper| %>
-          <li class="nht-shippers-item <%= shipper[:favorite_user] %>">
-            <div class="col-sx-12 col-sm-12 col-md-6 col-lg-6 info">
-              <div class="col-xs-5 col-sm-5 col-md-4 col-lg-4 nht-avatar">
-                <%= link_to shipper_path(id: shipper[:id], user_invoice_id:
-                  shipper[:user_invoice_id], invoice_id: @invoice.id), remote: true do %>
-                  <%= image_tag avatar_profile(shipper[:avatar]), class: "img-responsive nht-shipper",
-                    id: "avatar" %>
-                <% end %>
-              </div>
-
-              <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 nht-info">
-                <%= link_to shipper_path(id: shipper[:id], user_invoice_id:
-                  shipper[:user_invoice_id], invoice_id: @invoice.id), remote: true,
-                  class: "nht-shipper" do %>
+    <div class="panel panel-default">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="hatd-shippers-table-title">
+            <td ><strong><%= t "users.table.avatar" %></strong></td>
+            <td ><strong><%= t "users.table.name" %></strong></td>
+            <td ><strong><%= t "users.table.rate" %></strong></td>
+            <td class="hatd-td"><strong><%= t "users.table.accept" %></strong></td>
+          </tr>
+        </thead>
+      </table>
+      <div class="div-table-content">
+        <table class="table table-condensed">
+          <tbody class="index-shipper-table-body" id="hatd-shipper-table-content">
+            <% @shippers.serializable_hash.each do |shipper| %>
+              <tr data-id="<%= shipper[:id] %>"  class="<%= shipper[:favorite_user] %> received_shipper_row"
+                data-user-invoice-id="<%= shipper[:user_invoice_id] %>" data-invoice-id="<%= @invoice.id %>">
+                <td>
+                  <div class="index-shipper-avatar">
+                    <%= image_tag avatar_profile(shipper[:avatar]), class: "img-responsive" %>
+                  </div>
+                </td>
+                <td>
                   <%= shipper[:name] %>
                   <br>
                   <%= shipper[:phone_number] %>
-                <% end %>
-              </div>
-              <div class="clear"></div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 rate-accept">
-              <div class="col-xs-5 col-sm-5 col-md-6 col-lg-6 rate">
-                <b><%= t "invoices.rate", rate: shipper[:rate] %></b>
-              </div>
-
-              <div class="col-xs-7 col-sm-7 col-md-6 col-lg-6 accept">
-                <%= form_tag shop_user_invoice_path(shipper[:user_invoice_id]),
-                  method: :patch, remote: true, id: "accept_user_invoice" do %>
-                  <%= button_tag type: "submit", class: "btn btn-primary loading-after" do %>
-                    <i class="ace-icon fa fa-check"></i>
-                    <span><%= t "invoices.accept_shipper.button" %></span>
+                </td>
+                <td>
+                  <b><%= t "invoices.rate", rate: shipper[:rate] %></b>
+                </td>
+                <td>
+                  <%= form_tag shop_user_invoice_path(shipper[:user_invoice_id]),
+                    method: :patch, remote: true, id: "accept_user_invoice" do %>
+                    <%= button_tag type: "submit", class: "btn btn-primary loading-after" do %>
+                      <i class="ace-icon fa fa-check"></i>
+                      <span><%= t "invoices.accept_shipper.button" %></span>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </div>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-        <% end %>
-      </ul>
-      <div class="clearfix"></div>
-    </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     <div class="clearfix"></div>
   </div>
 </div>
