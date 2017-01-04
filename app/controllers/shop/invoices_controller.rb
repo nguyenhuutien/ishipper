@@ -2,14 +2,15 @@ class Shop::InvoicesController < Shop::ShopBaseController
   load_and_authorize_resource
 
   def index
-    @invoices = @invoices.order_by_update_time
     if params[:status]
       @invoices = @invoices.send params[:status]
       @load_more = true if params[:load_more] == '1'
       @status = params[:status]
     end
-    @invoices = @invoices.search_invoice(params[:type], params[:data]) if params[:type]
+    @q = params[:q]
+    @invoices = @invoices.search_invoice(@q) if @q
     @invoices = @invoices.page(params[:page]).per Settings.per_list_invoice
+    @invoices = @invoices.order_by_update_time
   end
 
   def show

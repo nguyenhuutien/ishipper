@@ -11,10 +11,10 @@
             <i class="fa fa-search nht-icon-search" aria-hidden="true"></i>
           </span>
           <%= form_tag shop_invoices_path, method: :get, remote: true do %>
-            <%= text_field_tag :data, "", class: "form-control",
+            <%= text_field_tag "q[data]", "", class: "form-control",
               placeholder: t("invoices.search") %>
             <div class="nht-options-invoices-search">
-              <%= select_tag :type, options_for_select(Settings.invoice.search_attributes.
+              <%= select_tag "q[type]", options_for_select(Settings.invoice.search_attributes.
                 map {|s| [s.humanize, s]}), class: "form-control" %>
             </div>
           <% end %>
@@ -52,27 +52,8 @@
       <div class="clearfix"></div>
     </div>
 
-    <div class="panel panel-default">
-      <table class="table table-condensed" >
-        <thead>
-          <tr class="nht-invoice-table-title">
-            <th><strong><%= t "invoices.name_invoice" %></strong></th>
-            <th><strong><%= t "invoices.created_at" %></strong></th>
-            <th><strong><%= t "invoices.customers.name" %></strong></th>
-            <th><strong><%= t "invoices.customers.phone_number" %></strong></th>
-            <th><strong><%= t "invoices._status" %></strong></th>
-            <th><strong><%= t "invoices.action" %></strong></th>
-          </tr>
-        </thead>
-      </table>
-
-      <div class="div-table-content load-more-invoice">
-        <table class="table table-condensed">
-          <tbody class="nht-table-invoice-body" id="nht-table-invoice-content">
-            <%= render "invoice_content" %>
-          </tbody>
-        </table>
-      </div>
+    <div class="panel panel-default" id="nht-table-invoices">
+      <%= render "invoice_table" %>
     </div>
   </div>
 </div>

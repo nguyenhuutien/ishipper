@@ -493,12 +493,11 @@
               }
             }
 
-            #data {
+            #q_data {
               padding-left: 35px;
               padding-right: 100px;
               box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-              border-top-left-radius: 3px;
-              border-bottom-left-radius: 3px;
+              border-radius: 3px;
             }
 
             .nht-options-invoices-search {
@@ -506,7 +505,7 @@
               top: 0px;
               right: 0px;
 
-              #type {
+              #q_type {
                 border-radius: 3px;
               }
             }
@@ -573,6 +572,11 @@
             vertical-align: middle;
             text-align: center;
             padding: 10px
+          }
+
+          .nht-btn-sortable {
+            border: none;
+            background-color: #f5f5f5;
           }
         }
 
