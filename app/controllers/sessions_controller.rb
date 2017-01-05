@@ -1,13 +1,20 @@
 class SessionsController < Devise::SessionsController
+  def new
+    @user = User.new
+  end
 
   def create
-    user = User.find_by phone_number: params[:user][:phone_number]
-    if user && user.shipper?
-      flash[:danger] = t :shop_ability
-      redirect_to :back
+    @user = User.find_by phone_number: params[:user][:phone_number]
+    if @user && @user.shop?
+      if @user.valid_password? params[:user][:password]
+        super
+        create_cookie
+      else
+        @user.errors.add :password, t("users.invalid")
+      end
     else
-      super
-      create_cookie
+      @user ||= User.new
+      @user.errors.add :phone_number, t("users.invalid")
     end
   end
 

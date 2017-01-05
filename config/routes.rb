@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   get "shop/invoices/status/:status", to: "shop/invoices#index"
   get "shop/shippers/type/:type", to: "shop/shippers#index"
 
-  devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"},
+  devise_for :users, path: "", path_names: {sign_out: "logout"},
     controllers: {
       sessions: "sessions",
       registrations: "registrations"
