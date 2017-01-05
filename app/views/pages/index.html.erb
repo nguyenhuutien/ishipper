@@ -44,7 +44,7 @@
       <div class="td-signup-now-content animated fadeInUp td-delay">
         <h1 class="text-center"><%= t "signup-now-text-test-1" %></h1>
         <p class="text-center"><%= t "signup-now-text-test-2" %></p>
-        <%= link_to t("devise.sign_up"), sign_up_path, class: "td-signup-now-button" %>
+        <%= link_to t("devise.sign_up"), new_user_registration_path, class: "td-signup-now-button" %>
       </div>
     </div>
   </div>
@@ -204,3 +204,4 @@
   </div>
 </section>
 <%= render "feed_backs/form" %>
+<div id="nht-sign_up" class="modal fade"></div>

@@ -55,12 +55,9 @@ Rails.application.routes.draw do
 
   devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout"},
     controllers: {
-      sessions: "sessions"
+      sessions: "sessions",
+      registrations: "registrations"
   }
-  devise_scope :user do
-    post "sign_up", to: "registrations#create"
-    get "sign_up", to: "registrations#new"
-  end
 
   resources :feed_backs, only: [:new, :create]
   namespace :shop do
