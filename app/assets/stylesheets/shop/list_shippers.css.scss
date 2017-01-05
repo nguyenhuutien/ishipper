@@ -194,6 +194,8 @@
   .modal-content {
 
     .index-shipper-header {
+      $height-header: 60px;
+
       .index-shipper-title {
         float: left;
         margin-left: 10px;
@@ -241,9 +243,72 @@
 
         }
       }
+
+    .index-shipper-search {
+        position: relative;
+        float: left;
+        height: $height-header;
+        padding: 13px;
+        width: 45%;
+
+        .input-group {
+          width: 100%;
+
+          .input-group-addon {
+            border: none;
+
+            .icon-search {
+              position: absolute;
+              top: 7px;
+              left: 10px;
+              z-index: 3;
+            }
+          }
+
+          #q_data {
+            padding-left: 30px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+          }
+
+          .nht-options-shippers-search {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+
+            #q_type {
+              border-radius: 3px;
+            }
+          }
+        }
+      }
+
     }
     .panel {
+
+      .hatd-shippers-table-title {
+        background-color: #f5f5f5;
+
+        .nht-btn-sortable {
+          border: none;
+          background-color: #f5f5f5;
+        }
+
+        th {
+          vertical-align: middle;
+          text-align: center;
+
+          .reverse {
+            transform: rotate(180deg) !important;
+          }
+        }
+      }
+
       .div-table-content {
+        overflow-y: hidden;
+        max-height: 67vh;
+
         .index-shipper-table-body {
           .hatd_dropdown_toggle_shipper {
             color: #333;
