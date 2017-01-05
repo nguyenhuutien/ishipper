@@ -56,6 +56,15 @@ class User < ApplicationRecord
   self.inheritance_column = :_type_disabled
   self.inheritance_column = :role
 
+  class << self
+    def search_shipper q
+      query = q[:type] ? "LOWER(#{q[:type]}) LIKE LOWER('%#{q[:data]}%')" : ""
+      shippers = self.where query
+      shippers = shippers.order("#{q[:attribute]}".to_sym => "#{q[:sortable]}".to_sym) if q[:attribute]
+      shippers.empty? ? self.all : shippers
+    end
+  end
+
   def email_required?
     false
   end

@@ -52,8 +52,27 @@
       <div class="clearfix"></div>
     </div>
 
-    <div class="panel panel-default" id="nht-table-invoices">
-      <%= render "invoice_table" %>
+    <div class="panel panel-default">
+      <table class="table table-condensed" >
+        <thead>
+          <tr class="nht-invoice-table-title">
+            <th><strong><%= sort_table @q, :name, t("invoices.name_invoice") %></strong></th>
+            <th><strong><%= sort_table @q, :created_at, t("invoices.created_at") %></strong></th>
+            <th><strong><%= sort_table @q, :customer_name, t("invoices.customers.name") %></strong></th>
+            <th><strong><%= sort_table @q, :customer_number, t("invoices.customers.phone_number") %></strong></th>
+            <th><strong><%= sort_table @q, :status, t("invoices._status") %></strong></th>
+            <th><strong><%= t "invoices.action" %></strong></th>
+          </tr>
+        </thead>
+      </table>
+
+      <div class="div-table-content load-more-invoice">
+        <table class="table table-condensed">
+          <tbody class="nht-table-invoice-body" id="nht-table-invoice-content">
+            <%= render "invoice_content" %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

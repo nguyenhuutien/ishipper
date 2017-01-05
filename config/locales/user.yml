@@ -29,7 +29,7 @@ en:
     list: List user
     favorite: Favorite list
     black: Black list
-    search: Search for names..
+    search: Search ...
     reviews: Reviews
     sum_rate: "Sum: %{sum}"
     sum: "Sum: "
@@ -43,7 +43,7 @@ en:
     table:
       avatar: Avatar
       name: Name
-      plate_number: Plate Number
+      phone_number: Phone Number
       success_invoices: Success Invoices
       rate: Rate
       action: Action

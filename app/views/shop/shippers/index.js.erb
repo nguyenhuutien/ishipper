@@ -1,6 +1,18 @@
-<% if params[:type] %>
+<% if @q %>
+  attribute = '<%= @q[:attribute] %>';
+  sortable = '<%= @q[:sortable] %>';
+<% end %>
+
+if ($('#id-hatd-shippers-index').is(':visible')) {
   $('#hatd-shipper-table-content').html('<%= j render "shipper_content" %>');
-<% else %>
+} else {
   $('#id-hatd-shippers-index').html('<%= j render "shipper_index" %>');
   $('#id-hatd-shippers-index').modal('show');
-<% end %>
+}
+reverseSortable();
+
+function reverseSortable() {
+  sortable = (sortable == 'ASC' ? 'DESC' : 'ASC');
+  $('#' + attribute).val(sortable);
+  $('.caret.' + attribute).toggleClass('reverse');
+}

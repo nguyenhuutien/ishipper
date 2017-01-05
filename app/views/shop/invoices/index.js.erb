@@ -3,11 +3,12 @@ close_loading_after();
   attribute = '<%= @q[:attribute] %>';
   sortable = '<%= @q[:sortable] %>';
 <% end %>
+
 <% if @load_more %>
   $('#nht-table-invoice-content').append('<%= j render "invoice_content" %>');
 <% else %>
   if ($('#id-nht-invoices-index').is(':visible')) {
-    $('#nht-table-invoices').html('<%= j render "invoice_table" %>');
+    $('#nht-table-invoice-content').html('<%= j render "invoice_content" %>');
   } else {
     $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>').modal(
       {backdrop: 'static', keyboard: false, show: true});
@@ -23,4 +24,5 @@ $on_load_invoice = false;
 function reverseSortable() {
   sortable = (sortable == 'ASC' ? 'DESC' : 'ASC');
   $('#' + attribute).val(sortable);
+  $('.caret.' + attribute).toggleClass('reverse');
 }
