@@ -32,14 +32,16 @@ function getCookie(name) {
 }
 
 function convertNotification(owner, invoice, notification) {
-  message = '<strong>' + owner.name + ' </strong>' + notification.status + ' <strong>' + invoice.name + '</strong>';
-  html = '<li class="nht-notification notification-' + notification.id + ' false-notification">';
+  message = I18n.t("notifications.web." + notification.status, {user_name: owner.name, invoice_name: invoice.name});
+  html = '<div class="shop_invoice_row" id="' + notification.invoice_id + '">';
+  html += '<li class="nht-notification notification-' + notification.id + ' false-notification">';
   html += '<span class="col-md-2 col-lg-2 nht-notification-avatar">';
   html += '<img src="" id="avatar-' + notification.id + '" class="img-responsive nht-avatar">';
   html += '<div class="clearfix"></div></span>';
   html += '<span class="col-md-10 col-lg-10 nht-notification-content">';
-  html += message + '<div class="small">' + jQuery.timeago(notification.created_at) + '</div></span>';
-  html += '<div class="clearfix"></div></li><div class="clearfix"></div>';
+  html += '<div class="content">' + message + '</div>';
+  html += '<div class="small">' + jQuery.timeago(notification.created_at) + '</div></span>';
+  html += '<div class="clearfix"></div></li><div class="clearfix"></div></div>';
   return html;
 }
 
@@ -110,7 +112,9 @@ document.addEventListener("turbolinks:load", function() {
 
     if (!$('.nht-notifications').is(":visible")) {
       $('.nht-notification-count').hide();
-      App.notification.speak({action_type: "unread_notification"});
+      if($('.nht-notification-count')[0].innerText != 0) {
+        App.notification.speak({action_type: "unread_notification"});
+      }
 
       $.each( notifications, function(index, value) {
         owner = owners[index];
@@ -121,11 +125,8 @@ document.addEventListener("turbolinks:load", function() {
         if (owner.avatar.url != null) {
           $('#avatar-' + notification.id)[0].src = owner.avatar.url;
         } else {
-          $('#avatar-' + notification.id)[0].src = '../assets/images/profile.jpg';
+          $('#avatar-' + notification.id)[0].src = '../assets/profile.jpg';
         }
-        $('.notification-' + notification.id).on('click', function() {
-          window.location.assign(window.location.origin + '/shop/invoices/' + invoice.id);
-        });
       });
       owners = [];
       invoices = [];
