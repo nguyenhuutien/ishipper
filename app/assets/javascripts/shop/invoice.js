@@ -4,7 +4,7 @@ document.addEventListener('turbolinks:load', function() {
     $('.div-table-content').niceScroll({
       cursorwidth: "6px",
       cursorcolor: "rgba(0, 0, 0, 0.4)",
-      railpadding: { top: 0},
+      railpadding: {top: 0},
     });
 
     $('.close').on('click', function(event) {

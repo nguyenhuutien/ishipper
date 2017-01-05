@@ -11,13 +11,19 @@ class ShopsController < ApplicationController
   end
 
   def edit
+    @shop = current_user
   end
 
   def update
     if @shop.update_with_password user_params
-      flash[:success] =t "users.messages.update_password_success"
-      sign_in @shop, bypass: true
+      flash[:success] = t "users.messages.update_success"
+      bypass_sign_in @shop
       redirect_to shop_root_path
+    else
+      respond_to do |format|
+        format.js {render partial: "shared/error_messages",
+          locals: {object: @shop}, status: 200, error: 1}
+      end
     end
   end
 
