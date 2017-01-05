@@ -8,6 +8,7 @@ class NotificationChannel < ApplicationCable::Channel
   end
 
   def speak data
+    self.current_user.user.reload
     if data["action_type"] == "unread_notification" && data["notification_id"].present?
       @notification = self.current_user.user.passive_notifications.find_by_id data["notification_id"].to_i
       unread_notification = self.current_user.user.user_setting.unread_notification

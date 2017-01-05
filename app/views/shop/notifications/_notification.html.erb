@@ -1,4 +1,4 @@
-<%= link_to shop_invoice_path(notification.invoice) do %>
+<div class="shop_invoice_row" id="<%= notification.invoice_id %>">
   <li class="nht-notification notification-<%= notification.id %>
     <%= notification.read %>-notification ">
     <span class="col-md-2 col-lg-2 nht-notification-avatar">
@@ -25,4 +25,4 @@
     <div class="clearfix"></div>
   </li>
   <div class="clearfix"></div>
-<% end %>
+</div>

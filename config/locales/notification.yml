@@ -17,10 +17,10 @@ en:
     missing_params: Missing param notification
     title: Notifications
     web:
-      receive: "<strong>%{user_name}</strong> đã nhận đơn hàng <strong>%{invoice_name}</strong> của bạn"
-      waiting: "Bạn đã được chấp nhận giao đơn hàng <strong>%{invoice_name}</strong>"
-      shipping: "<strong>%{user_name}</strong> đang giao đơn hàng <strong>%{invoice_name}</strong>"
-      shipped: "<strong>%{user_name}</strong> đã giao đơn hàng <strong>%{invoice_name}</strong> thành công"
-      finished: "Đơn hàng <strong>%{invoice_name}</strong> đã được <strong>%{user_name}</strong> xác nhận"
-      cancel: "Đơn hàng <strong>%{invoice_name}</strong> đã bị hủy"
-      favorite: "Cửa hàng <strong>%{user_name}</strong> vừa đăng đơn hàng mới"
+      receive: "<b>%{user_name}</b> đã nhận đơn hàng <b>%{invoice_name}</b> của bạn"
+      waiting: "Bạn đã được chấp nhận giao đơn hàng <b>%{invoice_name}</b>"
+      shipping: "<b>%{user_name}</b> đang giao đơn hàng <b>%{invoice_name}</b>"
+      shipped: "<b>%{user_name}</b> đã giao đơn hàng <b>%{invoice_name}</b> thành công"
+      finished: "Đơn hàng <b>%{invoice_name}</b> đã được <b>%{user_name}</b> xác nhận"
+      cancel: "Đơn hàng <b>%{invoice_name}</b> đã bị hủy"
+      favorite: "Cửa hàng <b>%{user_name}</b> vừa đăng đơn hàng mới"
