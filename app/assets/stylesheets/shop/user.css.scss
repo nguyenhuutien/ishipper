@@ -7,6 +7,7 @@
 
     .modal-content {
       position: relative;
+      background-color: #f0f3f5 !important;
 
       .nht-sign_up-header {
         margin-bottom: 20px;
@@ -55,6 +56,12 @@
 
           .actions {
             text-align: center;
+
+            .nht-btn-sign_up {
+              width: 100%;
+              min-height: 40px;
+              margin-bottom: 20px;
+            }
           }
         }
 
@@ -73,3 +80,72 @@
     }
   }
 }
+
+#nht-log_in {
+  overflow-y: hidden;
+  max-height: 90vh;
+
+  .modal-dialog {
+    min-width: 50%;
+
+    .modal-content {
+      position: relative;
+      background-color: #f0f3f5 !important;
+
+      .nht-log_in-header {
+        margin-bottom: 20px;
+
+        .close {
+          float: right;
+          margin-right: 15px;
+        }
+      }
+
+      .row {
+        padding: 20px;
+        overflow-x: hidden;
+        max-height: 80vh;
+
+        .nht-col-left {
+
+          .input {
+            margin-bottom: 20px;
+
+            .nht-input {
+              width: 100%;
+              min-height: 40px;
+              position: relative;
+
+              .fa-info {
+                margin-left: 6px;
+              }
+
+              .nht-log_in-icon {
+                position: absolute;
+                left: 15px;
+                top: 10px;
+                font-size: 1.6em;
+                z-index: 3;
+              }
+
+              .log_in-input {
+                min-height: 45px;
+                border-radius: 5px;
+                padding-left: 45px;
+              }
+            }
+          }
+
+          .actions {
+            text-align: center;
+
+            .nht-btn-log_in {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

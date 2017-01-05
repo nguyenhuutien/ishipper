@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-7 col-sm-7 col-xs-12 nht-col-left">
         <%= form_for @user, url: user_registration_path, remote: true do |f| %>
-        <div id="nht-sign_up-errors"></div>
+          <div id="nht-sign_up-errors"></div>
 
           <div class="input">
             <%= f.label :phone_number %><br/>
@@ -24,10 +24,22 @@
           </div>
 
           <div class="input">
-            <%= f.label :email %><br />
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> <%= t "devise.character" %>)</em>
+            <% end %><br/>
             <div class="nht-input">
-              <i class="fa fa-envelope nht-sign_up-icon"></i>
-              <%= f.email_field :email,
+              <i class="fa fa-key nht-sign_up-icon"></i>
+              <%= f.password_field :password, autocomplete: "off",
+                class: "form-control sign_up-input" %>
+            </div>
+          </div>
+
+          <div class="input">
+            <%= f.label :password_confirmation %><br />
+            <div class="nht-input">
+              <i class="fa fa-key nht-sign_up-icon"></i>
+              <%= f.password_field :password_confirmation, autocomplete: "off",
                 class: "form-control sign_up-input" %>
             </div>
           </div>
@@ -52,30 +64,9 @@
 
           <%= f.hidden_field :role, value: Settings.role %>
 
-          <div class="input">
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> <%= t "devise.character" %>)</em>
-            <% end %><br/>
-            <div class="nht-input">
-              <i class="fa fa-key nht-sign_up-icon"></i>
-              <%= f.password_field :password, autocomplete: "off",
-                class: "form-control sign_up-input" %>
-            </div>
-          </div>
-
-          <div class="input">
-            <%= f.label :password_confirmation %><br />
-            <div class="nht-input">
-              <i class="fa fa-key nht-sign_up-icon"></i>
-                <%= f.password_field :password_confirmation, autocomplete: "off",
-                class: "form-control sign_up-input" %>
-            </div>
-          </div>
-
           <div class="actions">
             <%= f.submit t("devise.sign_up"),
-              class: "hvr-pulse-shrink btn btn-primary", id: "create-button" %>
+              class: "hvr-pulse-shrink btn btn-primary nht-btn-sign_up" %>
           </div>
         <% end %>
 
