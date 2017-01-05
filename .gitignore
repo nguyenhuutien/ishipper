@@ -26,6 +26,7 @@ config/secrets.yml
 .DS_Store
 /.idea
 /test/*
+dump.rdb
 
 # Ignore application configuration
 /config/application.yml
