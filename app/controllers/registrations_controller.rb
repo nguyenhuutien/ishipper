@@ -8,16 +8,13 @@ class RegistrationsController < Devise::RegistrationsController
     params[:user][:role] = params[:user][:role].capitalize
     @user = User.new user_params
     if @user.shop?
-      if @user.save!
+      if @user.save
         flash[:success] = t "devise.signup"
         redirect_to root_path
-      else
-        flash[:danger] = t "devise.cant_signup"
-        render :new
       end
     else
       flash[:danger] = t "devise.cant_signup"
-      render :new
+      redirect_to root_path
     end
   end
 

@@ -1,0 +1,75 @@
+#nht-sign_up {
+  overflow-y: hidden;
+  max-height: 90vh;
+
+  .modal-dialog {
+    min-width: 70%;
+
+    .modal-content {
+      position: relative;
+
+      .nht-sign_up-header {
+        margin-bottom: 20px;
+
+        .close {
+          float: right;
+          margin-right: 15px;
+        }
+      }
+
+      .row {
+        padding: 20px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-height: 80vh;
+
+        .nht-col-left {
+
+          .input {
+            margin-bottom: 20px;
+
+            .nht-input {
+              width: 100%;
+              min-height: 40px;
+              position: relative;
+
+              .fa-info {
+                margin-left: 6px;
+              }
+
+              .nht-sign_up-icon {
+                position: absolute;
+                left: 15px;
+                top: 10px;
+                font-size: 1.6em;
+                z-index: 3;
+              }
+
+              .sign_up-input {
+                min-height: 45px;
+                border-radius: 5px;
+                padding-left: 45px;
+              }
+            }
+          }
+
+          .actions {
+            text-align: center;
+          }
+        }
+
+        .nht-col-right {
+          display: table-cell;
+          height: 500px;
+          vertical-align: middle;
+
+          .nht-shared {
+            display: table-cell;
+            vertical-align: middle;
+            height: 400px;
+          }
+        }
+      }
+    }
+  }
+}
