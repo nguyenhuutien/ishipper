@@ -56,7 +56,7 @@
             placeholder: t("invoices.customer_name") %>
           <%= f.text_field :customer_number, class: "form-control td-input",
             placeholder: t("invoices.customer_number") %>
-          <%= f.text_field :delivery_time, class: "form-control td-input clockpicker",
+          <%= f.time_field :delivery_time, class: "form-control td-input clockpicker",
             placeholder: t("invoices.delivery_time_input"),
             "data-autoclose": "true", "data-placement": "top" %>
           <%= f.text_area :description, class: "form-control td-input td-textarea-fix",
@@ -72,9 +72,9 @@
         <div class="td-invoice-infomation-content">
           <%= f.text_field :name, class: "form-control td-input",
             placeholder: t("invoices.name") %>
-          <%= f.text_field :price, class: "form-control td-input",
+          <%= f.text_field :price, class: "form-control td-input td-currency",
             placeholder: t("invoices.price") %>
-          <%= f.text_field :shipping_price, class: "form-control td-input",
+          <%= f.text_field :shipping_price, class: "form-control td-input td-currency",
             placeholder: t("invoices.shipping_price") %>
           <%= f.text_field :weight, class: "form-control td-input",
             placeholder: t("invoices.weight") %>

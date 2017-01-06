@@ -36,12 +36,32 @@ document.addEventListener("turbolinks:load", function() {
     geocodeLatLng(markersNewInvoice[0].getPosition(), $('#td-shop-address-input'));
     geocodeLatLng(markersNewInvoice[1].getPosition(), $('#td-customer-address-input'));
 
+    $('#td-invoice-latitude_start').val(locations_default[0].lat);
+    $('#td-invoice-longitude_start').val(locations_default[0].lng);
+    $('#td-invoice-latitude_finish').val(locations_default[1].lat);
+    $('#td-invoice-longitude_finish').val(locations_default[1].lng);
+
+
     $('#td-shop-address-input').on('keyup', function() {
       initAutocomplete(mapBase, markersNewInvoice[0], $(this)[0]);
+      google.maps.event.addListener(markersNewInvoice[0], 'position_changed', function(evt){
+        $('#td-invoice-latitude_start').val(this.getPosition().lat);
+        $('#td-invoice-longitude_start').val(this.getPosition().lng);
+        $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[1].getPosition()).toFixed(2));
+        geocodeLatLng(this.getPosition(), $('#td-shop-address-input'));
+        calcRoute(mapBase, markersNewInvoice, directions);
+      });
     });
 
     $('#td-customer-address-input').on('keyup', function() {
       initAutocomplete(mapBase, markersNewInvoice[1], $(this)[0]);
+      google.maps.event.addListener(markersNewInvoice[1], 'position_changed', function(evt){
+        $('#td-invoice-latitude_finish').val(this.getPosition().lat);
+        $('#td-invoice-longitude_finish').val(this.getPosition().lng);
+        $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[0].getPosition()).toFixed(2));
+        geocodeLatLng(this.getPosition(), $('#td-customer-address-input'));
+        calcRoute(mapBase, markersNewInvoice, directions);
+      });
     });
 
     google.maps.event.addListener(markersNewInvoice[0], 'dragend', function(evt){
@@ -56,22 +76,6 @@ document.addEventListener("turbolinks:load", function() {
       $('#td-invoice-latitude_finish').val(evt.latLng.lat());
       $('#td-invoice-longitude_finish').val(evt.latLng.lng());
       $('#distance_invoice').val(getDistance(evt.latLng, markersNewInvoice[0].getPosition()).toFixed(2));
-      geocodeLatLng(this.getPosition(), $('#td-customer-address-input'));
-      calcRoute(mapBase, markersNewInvoice, directions);
-    });
-
-    google.maps.event.addListener(markersNewInvoice[0], 'position_changed', function(evt){
-      $('#td-invoice-latitude_start').val(this.getPosition().lat);
-      $('#td-invoice-longitude_start').val(this.getPosition().lng);
-      $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[1].getPosition()).toFixed(2));
-      geocodeLatLng(this.getPosition(), $('#td-shop-address-input'));
-      calcRoute(mapBase, markersNewInvoice, directions);
-    });
-
-    google.maps.event.addListener(markersNewInvoice[1], 'position_changed', function(evt){
-      $('#td-invoice-latitude_finish').val(this.getPosition().lat);
-      $('#td-invoice-longitude_finish').val(this.getPosition().lng);
-      $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[0].getPosition()).toFixed(2));
       geocodeLatLng(this.getPosition(), $('#td-customer-address-input'));
       calcRoute(mapBase, markersNewInvoice, directions);
     });
