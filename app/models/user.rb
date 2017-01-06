@@ -75,8 +75,7 @@ class User < ApplicationRecord
 
   def send_pin
     twilio_client = Twilio::REST::Client
-      .new Rails.application.secrets.twilio_account_sid,
-      Rails.application.secrets.twilio_auth_token
+      .new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
     if self.valid_phone_number?
       begin
         # pin = SecureRandom.urlsafe_base64[0..7]
@@ -121,8 +120,7 @@ class User < ApplicationRecord
 
   def valid_phone_number?
     lookup_client = Twilio::REST::LookupsClient
-      .new Rails.application.secrets.twilio_account_sid,
-       Rails.application.secrets.twilio_auth_token
+      .new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
     begin
       response = lookup_client.phone_numbers.get self.phone_number
       response.phone_number
