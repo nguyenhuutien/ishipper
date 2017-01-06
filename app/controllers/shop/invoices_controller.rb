@@ -67,6 +67,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
     else
       flash[:danger] = t "invoices.messages.cant_update"
     end
+    @support = Supports::Invoice.new invoice: @invoice, current_user: current_user
   end
 
   private

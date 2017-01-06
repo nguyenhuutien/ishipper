@@ -4,7 +4,7 @@ document.addEventListener("turbolinks:load", function() {
     $('.td-create-invoice-form').niceScroll({
       cursorwidth: "6px",
       cursorcolor: "rgba(0, 0, 0, 0.4)",
-      railpadding: { top: 30},
+      railpadding: {top: 30},
     });
     $('#map-base').addClass('td-create-invoice-map');
   });

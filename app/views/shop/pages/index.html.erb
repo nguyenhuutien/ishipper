@@ -119,9 +119,8 @@
           <button type="button" class="close hatd-edit-pass-close-btn" data-dismiss="modal">&times;</button>
         </div>
         <%= form_for current_user, url: shop_path(id: current_user.id), method: :patch,
-          remote: true do |f| %>
-          <%= hidden_field_tag :current_password, true %>
-          <div id="hatd-update-profile-error"></div>
+          html: {class: "form-edit-password"}, remote: true do |f| %>
+        <div id="hatd-update-password-error"></div>
           <div class="modal-body">
             <div class="col-sx-12">
               <div class="col-md-5">

@@ -4,8 +4,8 @@
       <span class="hatd-edit-profile-title"><%= t "users.edit.title" %></span>
       <button type="button" class="close hatd-edit-profile-close-btn" data-dismiss="modal">&times;</button>
     </div>
-    <%= form_for current_user, url: shop_path(id: current_user.id), method: :patch,
-      authenticity_token: true, remote: true do |f| %>
+    <%= form_for @shop, url: shop_path(id: current_user.id),
+      authenticity_token: true, html: {class: "form-edit-profile", remote: true} do |f| %>
       <div id="hatd-update-profile-error"></div>
       <div class="modal-body">
         <div class="col-sx-12">
