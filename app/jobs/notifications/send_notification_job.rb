@@ -9,7 +9,7 @@ class Notifications::SendNotificationJob < ActiveJob::Base
     invoice = args[:invoice]
     click_action = args[:click_action]
 
-    fcm = FCM.new Rails.application.secrets.firebase_api_key
+    fcm = FCM.new ENV["FIREBASE_API_KEY"]
     registration_ids = []
     recipient.user_tokens.each do |user_token|
       registration_ids << user_token.registration_id unless user_token.registration_id.nil?
