@@ -7,6 +7,12 @@ document.addEventListener("turbolinks:load", function() {
       railpadding: { top: 30},
     });
     $('#map-base').addClass('td-create-invoice-map');
+    $('.td-currency').maskMoney({
+      allowZero:true,
+      suffix: I18n.t('vnd'),
+      thousands:',',
+      precision: 0
+    });
   });
   $('.td-create-invoice-close').on('click', function() {
     $('.td-create-invoice-form').removeClass('block');

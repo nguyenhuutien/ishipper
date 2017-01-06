@@ -16,7 +16,7 @@ class CheckInvoiceMapMarker
     end
 
     unless @invoice.distance_invoice.present? && check_distance_invoice?
-      error += Settings.invoice.invoice_attributes_info.last.humanize + " " + I18n.t("invoices.invalid")
+      error += I18n.t("invoices.invalid")
     end
 
     error

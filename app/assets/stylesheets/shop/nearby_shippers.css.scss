@@ -149,6 +149,12 @@
       .td-invoice-address {
         margin-top: 15px;
       }
+
+      .td-invoice-infomation-content {
+        .td-currency {
+          white-space: pre;
+        }
+      }
     }
 
     .td-btn-invoice {

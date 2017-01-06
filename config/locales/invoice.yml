@@ -105,7 +105,7 @@ en:
       name: Name of customer
       phone_number: Phone number of customer
     search: Search...
-  vnd: VND
+  vnd: " VND"
   kg: Kg
   km: KM
   none: None
