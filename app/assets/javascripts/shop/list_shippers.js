@@ -8,5 +8,13 @@ document.addEventListener('turbolinks:load', function() {
           $(this).modal('hide');
       }
     });
+
+    if ($('.td-shipper-show-reviews').length) {
+      $('.td-shipper-show-reviews').niceScroll({
+        cursorwidth: "6px",
+        cursorcolor: "rgba(0, 0, 0, 0.4)",
+        autohidemode: false,
+      });
+    }
   });
 });

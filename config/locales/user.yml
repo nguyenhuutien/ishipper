@@ -31,7 +31,7 @@ en:
     black: Black list
     search: Search for names..
     reviews: Reviews
-    sum_rate: "Sum: %{sum}"
+    sum_rate: "Total Rate: %{sum}"
     sum: "Sum: "
     rate: Rate
     back: Back
