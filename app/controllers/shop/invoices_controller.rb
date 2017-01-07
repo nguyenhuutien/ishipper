@@ -32,9 +32,9 @@ class Shop::InvoicesController < Shop::ShopBaseController
           creater_id: current_user.id
         create_invoice_history.perform
         passive_favorites = current_user.passive_favorites
-        user_settings = UserSetting.near [@invoice.latitude_start, @invoice.longitude_start],
+        shipper_settings = ShipperSetting.near [@invoice.latitude_start, @invoice.longitude_start],
           Settings.max_distance, order: false
-        near_shippers = User.users_by_user_setting(user_settings).shipper.users_online
+        near_shippers = Shipper.users_by_user_setting(shipper_settings).users_online
         if passive_favorites.any?
           send_all_notification = NotificationServices::SendAllNotificationService.new owner: current_user,
             recipients: passive_favorites, status: "favorite", invoice: @invoice,

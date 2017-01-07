@@ -9,7 +9,10 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
     else
       Invoice.invoice_by_status_for_shipper params[:status], current_user.id
     end
-    @invoices = @invoices.search_invoice params[:query] if params[:query].present?
+    @q = Hash.new
+    @q[:type] = "name"
+    @q[:data] = params[:query]
+    @invoices = @invoices.search_invoice @q
     @invoices = @invoices.order_by_update_time
     @serializer = ActiveModelSerializers::SerializableResource.new(@invoices,
       each_serializer: Invoices::ShipperInvoiceSerializer,

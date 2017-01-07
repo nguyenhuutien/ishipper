@@ -3,6 +3,8 @@ class Shop < User
 
   has_many :invoices, foreign_key: "user_id", dependent: :destroy
 
+  has_one :shop_setting, foreign_key: "user_id", dependent: :destroy
+
   def list_shipper_received
     ids = "SELECT DISTINCT user_invoices.user_id FROM users JOIN invoices ON
       users.id = invoices.user_id JOIN user_invoices ON

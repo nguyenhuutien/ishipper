@@ -110,9 +110,9 @@ class Invoice < ApplicationRecord
 
     def search_invoice q
       query = q[:type] ? "LOWER(#{q[:type]}) LIKE LOWER('%#{q[:data]}%')" : ""
-      invoices = Invoice.where query
+      invoices = self.where query
       invoices = invoices.order("#{q[:attribute]}".to_sym => "#{q[:sortable]}".to_sym) if q[:attribute]
-      invoices.empty? ? Invoice.all : invoices
+      invoices.empty? ? self : invoices
     end
   end
 end

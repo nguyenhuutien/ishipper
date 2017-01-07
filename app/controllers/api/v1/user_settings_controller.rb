@@ -33,9 +33,9 @@ class Api::V1::UserSettingsController < Api::BaseController
   def update_location
     if current_user.shipper?
       serializer = ActiveModelSerializers::SerializableResource.new(current_user).as_json
-      user_settings = UserSetting.near [@user_setting.latitude,
+      shop_settings = ShopSetting.near [@user_setting.latitude,
         @user_setting.longitude], Settings.max_distance, order: false
-      near_shops = User.users_by_user_setting(user_settings).shop.users_online
+      near_shops = Shop.users_by_user_setting(shop_settings).users_online
       realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: near_shops,
         shipper: serializer, action: Settings.realtime.shipper_online
       realtime_visibility_shipper.perform

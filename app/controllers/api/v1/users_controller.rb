@@ -19,9 +19,9 @@ class Api::V1::UsersController < Api::BaseController
       end
       users = User.search_user role, params[:user][:search]
     else
-      user_settings = UserSetting.near [params[:user][:latitude], params[:user][:longitude]],
+      shipper_settings = UserSetting.near [params[:user][:latitude], params[:user][:longitude]],
         params[:user][:distance], order: false
-      users = User.users_by_user_setting(user_settings).shipper.users_online
+      users = Shipper.users_by_user_setting(shipper_settings).users_online
     end
     users = ActiveModelSerializers::SerializableResource.new(users,
       each_serializer: UserSerializer).as_json
