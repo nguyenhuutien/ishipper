@@ -3,8 +3,9 @@ class Shop::ListShippersController < Shop::ShopBaseController
 
   def index
     @shippers = @invoice.received_shippers
-    @shippers = Supports::Shipper::Shippers.new(current_user: current_user,
-      users: @shippers, invoice: @invoice, params: nil).shippers
+    shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers,
+      scope: {current_user: current_user, invoice: @invoice}
+    @shippers = shippers_simple.simple
     if @shippers.blank?
       flash[:danger] = I18n.t("invoices.messages.get_shippers_fails")
       redirect_to [:shop, @invoice]

@@ -1,9 +1,8 @@
 class Supports::Invoice
-  attr_reader :invoice
-
   def initialize args
-    @invoice = args[:invoice]
-    @current_user = args[:current_user]
+    args.each do |key, value|
+      instance_variable_set "@#{key}", value
+    end
   end
 
   def list_receive_shippers

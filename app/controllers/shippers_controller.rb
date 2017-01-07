@@ -9,6 +9,6 @@ class ShippersController < ApplicationController
 
   private
   def load_support
-    @supports = Supports::User.new current_user: current_user, params: params
+    @support = Supports::User.new current_user: current_user, params: params
   end
 end

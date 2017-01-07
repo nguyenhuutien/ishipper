@@ -1,15 +1,12 @@
-class Supports::Shipper::Shipper
-  def initialize args
-    @current_user = args[:current_user]
-    @shipper = args[:shipper]
-    @invoice = args[:invoice]
-  end
+class Simples::Shipper::ShipperSimple < Simples::UserSimple
+  attr_accessor :plate_number, :favorite_user, :actions, :number_finished_invoice,
+    :number_all_invoice, :user_invoice_id
 
   def favorite_user
     @favorite_user ||= if @current_user.owner_favorite_lists.
-      find_by(favorite_list_user_id: @shipper.id).present?
+      find_by(favorite_list_user_id: @object.id).present?
       "favorite_user"
-    elsif @current_user.owner_black_lists.find_by(black_list_user_id: @shipper.id).present?
+    elsif @current_user.owner_black_lists.find_by(black_list_user_id: @object.id).present?
       "black_user"
     else
       "shipper"
@@ -28,20 +25,20 @@ class Supports::Shipper::Shipper
   end
 
   def number_finished_invoice
-    @shipper.user_invoices.finished.size
+    @object.user_invoices.finished.size
   end
 
   def number_all_invoice
-    @shipper.user_invoices.reject{|invoice| invoice.rejected?}.size
+    @object.user_invoices.reject{|invoice| invoice.rejected?}.size
   end
 
   def user_invoice_id
-    if @invoice
-      user_invoice = @invoice.user_invoices.find_by user_id: @shipper.id,
-        status: @invoice.status
-      user_invoice ? user_invoice.id : nil
+    user_invoice = @object.user_invoices.find{|user_invoice|
+      user_invoice.invoice_id == @invoice.id} if @invoice
+    if user_invoice
+      user_invoice.id
     else
-      nil
+      0
     end
   end
 end
