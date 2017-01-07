@@ -45,9 +45,9 @@ class Supports::User
   end
 
   def shippers
-    shippers = UserSetting.near [@current_user.user_setting.latitude,
+    shipper_settings = ShipperSetting.near [@current_user.user_setting.latitude,
       @current_user.user_setting.longitude], Settings.max_distance, order: false
-    shippers = User.users_by_user_setting(shippers).shipper
+    shippers = Shipper.users_by_user_setting shipper_settings
     ActiveModelSerializers::SerializableResource.new shippers,
       each_serializer: Users::ListShipperSerializer, scope: {current_user: @current_user}
   end

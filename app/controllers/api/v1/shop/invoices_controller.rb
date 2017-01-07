@@ -10,7 +10,10 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     else
       Invoice.invoice_by_status_for_shop params[:status], current_user.id
     end
-    @invoices = @invoices.search_invoice params[:query] if params[:query].present?
+    @q = Hash.new
+    @q[:type] = "name"
+    @q[:data] = params[:query]
+    @invoices = @invoices.search_invoice @q
     @invoices = @invoices.order_by_update_time
     @serializers = ActiveModelSerializers::SerializableResource.new(@invoices,
       each_serializer: Invoices::ShopInvoiceSerializer,
@@ -46,9 +49,9 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
 
       @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
         scope: {current_user: current_user}).as_json
-      @user_setting = UserSetting.near [@invoice.latitude_start, @invoice.longitude_start],
+      @shipper_setting = ShipperSetting.near [@invoice.latitude_start, @invoice.longitude_start],
         Settings.max_distance, order: false
-      @near_shippers = User.users_by_user_setting(@user_setting).shipper.users_online
+      @near_shippers = Shipper.users_by_user_setting(@shipper_setting).users_online
       if @near_shippers.any?
         realtime_visibility_shipper = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: @near_shippers,
           invoice: @serializer, action: Settings.realtime.new_invoice

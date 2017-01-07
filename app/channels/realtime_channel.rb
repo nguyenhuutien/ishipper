@@ -14,9 +14,9 @@ class RealtimeChannel < ApplicationCable::Channel
       if self.current_user.user.shipper? && !self.current_user.user.online?
         serializer = ActiveModelSerializers::SerializableResource.
           new(self.current_user.user).as_json
-        user_settings = UserSetting.near [self.current_user.user_setting.latitude,
+        shop_settings = ShopSetting.near [self.current_user.user_setting.latitude,
           self.current_user.user_setting.longitude], Settings.max_distance, order: false
-        near_shops = User.users_by_user_setting(user_settings).shop.users_online
+        near_shops = Shop.users_by_user_setting(shop_settings).users_online
         realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: near_shops,
           shipper: serializer, action: Settings.realtime.shipper_offline
         realtime_visibility_shipper.perform
