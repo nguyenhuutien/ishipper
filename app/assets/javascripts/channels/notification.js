@@ -49,7 +49,6 @@ function bind_for_loading_more_notification() {
   var notifications_per_request = 10
   var list_notification = $('.nht-noti-list .shop_invoice_row').size();
   $(".nht-noti-list").unbind("scroll").bind("scroll", function() {
-
     var url = $(".pagination .next a").attr("href");
     if (url && ($(".nht-noti-list").scrollTop() > (list_notification*75 - $('.nht-noti-list').height() - 1 ))) {
       $(".pagination .next a").trigger('click');
@@ -78,6 +77,7 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   $('.nht-notification-icon i').on('click', function() {
+
     $('.dropdown-menu').slideUp(200);
 
     $('.nht-noti-list').niceScroll({
@@ -87,6 +87,7 @@ document.addEventListener("turbolinks:load", function() {
       cursorminheight: 100,
       smoothscroll: true,
     });
+
 
     if (!$('.nht-notifications').is(":visible")) {
       $('.nht-notification-count').hide();
@@ -109,13 +110,21 @@ document.addEventListener("turbolinks:load", function() {
       owners = [];
       invoices = [];
       notifications = [];
-      setTimeout(function(){
-        $('.nht-up-arrow').addClass('block');
-      }, 200);
-      $('.nht-notifications').slideDown(400);
+      $.ajax({
+        url: '/shop/notifications',
+        method: 'get',
+        dataType: 'text'
+      }).done(function(data){
+        $('#td-notification-index').html(data);
+        bind_for_loading_more_notification();
+        $on_process = false;
+      });
+      $('.nht-up-arrow').show();
+      $('.nht-notifications').show();
     } else {
-      $('.nht-up-arrow').removeClass('block');
-      $('.nht-notifications').slideUp(400);
+      $('#td-notification-index').empty();
+      $('.nht-up-arrow').hide();
+      $('.nht-notifications').hide();
     }
 
   });

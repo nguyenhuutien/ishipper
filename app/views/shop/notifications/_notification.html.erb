@@ -8,8 +8,10 @@
     </span>
     <span class="col-md-10 col-lg-10 nht-notification-content">
       <div class="content">
-        <%= truncate notification_content(notification),
-          length: Settings.length_notification %>
+        <b><%= notification.owner.name %></b>
+        <%= t "notifications.web.#{notification.status}" %>
+        <b><%= truncate notification.invoice.name,
+          length: Settings.length_notification %></b>
       </div>
       <div class="small">
         <i class="td-noti-time-ago">

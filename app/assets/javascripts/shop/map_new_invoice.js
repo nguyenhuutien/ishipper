@@ -30,7 +30,7 @@ document.addEventListener("turbolinks:load", function() {
     distance = getDistance(markersNewInvoice[0].getPosition(),
       markersNewInvoice[1].getPosition()).toFixed(2);
 
-    $('#distance_invoice').val(distance);
+    $('#distance_invoice').val(distance + I18n.t('km'));
     directions = {directionsService: directionsService, directionsDisplay: directionsDisplay};
     calcRoute(mapBase, markersNewInvoice, directions);
     geocodeLatLng(markersNewInvoice[0].getPosition(), $('#td-shop-address-input'));
@@ -47,7 +47,8 @@ document.addEventListener("turbolinks:load", function() {
       google.maps.event.addListener(markersNewInvoice[0], 'position_changed', function(evt){
         $('#td-invoice-latitude_start').val(this.getPosition().lat);
         $('#td-invoice-longitude_start').val(this.getPosition().lng);
-        $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[1].getPosition()).toFixed(2));
+        $('#distance_invoice').val(getDistance(this.getPosition(),
+          markersNewInvoice[1].getPosition()).toFixed(2) + I18n.t('km'));
         geocodeLatLng(this.getPosition(), $('#td-shop-address-input'));
         calcRoute(mapBase, markersNewInvoice, directions);
       });
@@ -58,7 +59,8 @@ document.addEventListener("turbolinks:load", function() {
       google.maps.event.addListener(markersNewInvoice[1], 'position_changed', function(evt){
         $('#td-invoice-latitude_finish').val(this.getPosition().lat);
         $('#td-invoice-longitude_finish').val(this.getPosition().lng);
-        $('#distance_invoice').val(getDistance(this.getPosition(), markersNewInvoice[0].getPosition()).toFixed(2));
+        $('#distance_invoice').val(getDistance(this.getPosition(),
+          markersNewInvoice[0].getPosition()).toFixed(2) + I18n.t('km'));
         geocodeLatLng(this.getPosition(), $('#td-customer-address-input'));
         calcRoute(mapBase, markersNewInvoice, directions);
       });
@@ -67,7 +69,8 @@ document.addEventListener("turbolinks:load", function() {
     google.maps.event.addListener(markersNewInvoice[0], 'dragend', function(evt){
       $('#td-invoice-latitude_start').val(evt.latLng.lat());
       $('#td-invoice-longitude_start').val(evt.latLng.lng());
-      $('#distance_invoice').val(getDistance(evt.latLng, markersNewInvoice[1].getPosition()).toFixed(2));
+      $('#distance_invoice').val(getDistance(evt.latLng,
+        markersNewInvoice[1].getPosition()).toFixed(2) + I18n.t('km'));
       geocodeLatLng(this.getPosition(), $('#td-shop-address-input'));
       calcRoute(mapBase, markersNewInvoice, directions);
     });
@@ -75,7 +78,8 @@ document.addEventListener("turbolinks:load", function() {
     google.maps.event.addListener(markersNewInvoice[1], 'dragend', function(evt){
       $('#td-invoice-latitude_finish').val(evt.latLng.lat());
       $('#td-invoice-longitude_finish').val(evt.latLng.lng());
-      $('#distance_invoice').val(getDistance(evt.latLng, markersNewInvoice[0].getPosition()).toFixed(2));
+      $('#distance_invoice').val(getDistance(evt.latLng,
+        markersNewInvoice[0].getPosition()).toFixed(2) + I18n.t('km'));
       geocodeLatLng(this.getPosition(), $('#td-customer-address-input'));
       calcRoute(mapBase, markersNewInvoice, directions);
     });
