@@ -1,7 +1,10 @@
 namespace :db do
   desc "Import user"
   task users: [:environment] do
-    user1 = User.create!(
+    users = []
+    user_tokens = []
+    user_settings = []
+    users << User.new(
       name: "Shop 91",
       phone_number: "+841234567891",
       password: "12345678",
@@ -10,17 +13,8 @@ namespace :db do
       role: "Shop",
       status: "actived",
       rate: 3.5)
-    user1.user_tokens.create! authentication_token: "+841234567891", online: false
-    latitude = Faker::Number.between(0, 25000)
-    latitude = 21 + latitude/1000000.0
-    longitude = Faker::Number.between(825000, 865000)
-    longitude = 105 + longitude/1000000.0
-    user1.create_user_setting unread_notification: 0,
-      latitude: latitude,
-      longitude: longitude,
-      role: "ShopSetting"
 
-    user2 = User.create!(
+    users << User.new(
       name: "Shop 92",
       phone_number: "+841234567892",
       password: "12345678",
@@ -29,17 +23,8 @@ namespace :db do
       role: "Shop",
       status: "actived",
       rate: 2.5)
-    user2.user_tokens.create! authentication_token: "+841234567892", online: false
-    latitude = Faker::Number.between(0, 25000)
-    latitude = 21 + latitude/1000000.0
-    longitude = Faker::Number.between(825000, 865000)
-    longitude = 105 + longitude/1000000.0
-    user2.create_user_setting unread_notification: 0,
-      latitude: latitude,
-      longitude: longitude,
-      role: "ShopSetting"
 
-    user3 = User.create!(
+    users << User.new(
       name: "Shipper 97",
       phone_number: "+841234567897",
       password: "12345678",
@@ -48,17 +33,8 @@ namespace :db do
       role: "Shipper",
       status: "actived",
       rate: 2.5)
-    user3.user_tokens.create! authentication_token: "+841234567897", online: false
-    latitude = Faker::Number.between(0, 25000)
-    latitude = 21 + latitude/1000000.0
-    longitude = Faker::Number.between(825000, 865000)
-    longitude = 105 + longitude/1000000.0
-    user3.create_user_setting unread_notification: 0,
-      latitude: latitude,
-      longitude: longitude,
-      role: "ShipperSetting"
 
-    user4 = User.create!(
+    users << User.new(
       name: "Shipper 98",
       phone_number: "+841234567898",
       password: "12345678",
@@ -67,72 +43,60 @@ namespace :db do
       role: "Shipper",
       status: "actived",
       rate: 2.5)
-    user4.user_tokens.create! authentication_token: "+841234567898", online: false
-    latitude = Faker::Number.between(0, 25000)
-    latitude = 21 + latitude/1000000.0
-    longitude = Faker::Number.between(825000, 865000)
-    longitude = 105 + longitude/1000000.0
-    user4.create_user_setting unread_notification: 0,
-      latitude: latitude,
-      longitude: longitude,
-      role: "ShipperSetting"
 
     number = 1234567860
     (1..20).each do |n|
       phone_number = number + n
-      shipper = User.create! name: "Shipper #{n}",
+      users << User.new(name: "Shipper #{n}",
         phone_number: "+84" + phone_number.to_s,
         password: "12345678",
         password_confirmation: "12345678",
         email: "shipper#{n}@framgia.com",
         role: "Shipper",
         status: "actived",
-        rate: 3.5
-      shipper.user_tokens.create! authentication_token: "+84" + phone_number.to_s, online: false
-      latitude = Faker::Number.between(0, 25000)
-      latitude = 21 + latitude/1000000.0
-      longitude = Faker::Number.between(825000, 865000)
-      longitude = 105 + longitude/1000000.0
-      shipper.create_user_setting unread_notification: 0,
-        latitude: latitude,
-        longitude: longitude,
-        role: "ShipperSetting"
+        rate: 3.5)
     end
 
     number = 1234567800
     (1..20).each do |n|
       phone_number = number + n
-      shop = User.create! name: "Shop #{n}",
+      users << User.new(name: "Shop #{n}",
         phone_number: "+84" + phone_number.to_s,
         password: "12345678",
         password_confirmation: "12345678",
         email: "shop#{n}@framgia.com",
         role: "Shop",
         status: "actived",
-        rate: 3.5
-      shop.user_tokens.create! authentication_token: "+84" + phone_number.to_s, online: false
+        rate: 3.5)
+    end
+
+    users << User.new(
+      name: "Admin",
+      phone_number: "+841234567890",
+      password: "12345678",
+      password_confirmation: "12345678",
+      email: "Admin@framgia.com",
+      role: "Admin",
+      status: "actived",
+      rate: 2.5)
+    User.import users
+
+    load_users = User.all
+    load_users.each do |user|
+      user_tokens << UserToken.new(authentication_token: user.phone_number,
+        online: false, user_id: user.id)
       latitude = Faker::Number.between(0, 25000)
       latitude = 21 + latitude/1000000.0
       longitude = Faker::Number.between(825000, 865000)
       longitude = 105 + longitude/1000000.0
-      shop.create_user_setting unread_notification: 0,
+      role = user.role + "Setting" unless user.admin?
+      user_settings << (UserSetting.new unread_notification: 0,
         latitude: latitude,
         longitude: longitude,
-        role: "ShopSetting"
+        role: role,
+        user_id: user.id)
     end
-
-    # user14 = User.create!(
-    #   name: "Admin",
-    #   phone_number: "+841234567890",
-    #   password: "12345678",
-    #   password_confirmation: "12345678",
-    #   email: "Admin@framgia.com",
-    #   role: "Admin",
-    #   status: "actived",
-    #   rate: 2.5)
-    # user14.user_tokens.create! authentication_token: "+841234567890", online: false
-    # user14.create_user_setting unread_notification: 0,
-    #   latitude: 21.0092948,
-    #   longitude: 105.8099247
+    UserToken.import user_tokens
+    UserSetting.import user_settings
   end
 end

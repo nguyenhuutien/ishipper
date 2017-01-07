@@ -40,6 +40,7 @@ group :development do
   gem "mysql2"
   gem "faker"
   gem "bullet"
+  gem "activerecord-import"
   gem "rack-mini-profiler", require: false
 end
 
