@@ -2,13 +2,8 @@
   <li class="nht-notification notification-<%= notification.id %>
     <%= notification.read %>-notification ">
     <span class="col-md-2 col-lg-2 nht-notification-avatar">
-      <% if notification.owner.avatar_url.present? %>
-        <%= image_tag notification.owner.avatar.url, id: "avatar-#{notification.id}",
-          class: "img-responsive nht-avatar" %>
-      <% else %>
-        <%= image_tag "profile.jpg", id: "avatar-#{notification.id}",
-          class: "img-responsive nht-avatar" %>
-      <% end %>
+      <%= image_tag avatar_profile(notification.owner.avatar.url),
+        id: "avatar-#{notification.id}", class: "img-responsive nht-avatar" %>
       <div class="clearfix"></div>
     </span>
     <span class="col-md-10 col-lg-10 nht-notification-content">

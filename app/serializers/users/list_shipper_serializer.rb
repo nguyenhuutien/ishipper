@@ -26,18 +26,14 @@ class Users::ListShipperSerializer < UserSerializer
     end
   end
 
-  def supports
-    Supports::User.new current_user: scope[:current_user]
-  end
-
   Settings.rate.list_rate.each do |rate|
     define_method rate do
-      supports.send(rate) if supports
+      scope[:support].instance_variable_get "@#{rate}" if scope
     end
   end
 
   def sum_rate
-    supports.sum_rate
+    scope[:support].instance_variable_get "@sum_rate" if scope
   end
 
   def online
