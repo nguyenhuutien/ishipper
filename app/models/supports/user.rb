@@ -20,7 +20,8 @@ class Supports::User
   Settings.rate.list_rate.each do |rate|
     define_method rate do
       instance_variable_set "@#{rate}", reviews.where(rating_point:
-        Settings.rate.send(rate), review_type: "rate").size
+        Settings.rate.send(rate), review_type: "rate").size unless
+        instance_variable_get "@#{rate}"
     end
   end
 
@@ -50,5 +51,10 @@ class Supports::User
     shippers = Shipper.users_by_user_setting shipper_settings
     ActiveModelSerializers::SerializableResource.new shippers,
       each_serializer: Users::ListShipperSerializer, scope: {current_user: @current_user}
+  end
+
+  private
+  def user_setting
+    @user_setting ||= @current_user.user_setting
   end
 end

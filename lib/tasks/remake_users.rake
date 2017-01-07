@@ -121,19 +121,18 @@ namespace :db do
         role: "ShopSetting"
     end
 
-    user14 = User.create!(
-      name: "Admin",
-      phone_number: "+841234567890",
-      password: "12345678",
-      password_confirmation: "12345678",
-      email: "Admin@framgia.com",
-      role: "Admin",
-      status: "actived",
-      rate: 2.5)
-    user14.user_tokens.create! authentication_token: "+841234567890", online: false
-    user14.create_user_setting unread_notification: 0,
-      latitude: 21.0092948,
-      longitude: 105.8099247,
-      role: "AdminSetting"
+    # user14 = User.create!(
+    #   name: "Admin",
+    #   phone_number: "+841234567890",
+    #   password: "12345678",
+    #   password_confirmation: "12345678",
+    #   email: "Admin@framgia.com",
+    #   role: "Admin",
+    #   status: "actived",
+    #   rate: 2.5)
+    # user14.user_tokens.create! authentication_token: "+841234567890", online: false
+    # user14.create_user_setting unread_notification: 0,
+    #   latitude: 21.0092948,
+    #   longitude: 105.8099247
   end
 end
