@@ -62,8 +62,9 @@ class Invoice < ApplicationRecord
   scope :order_by_update_time, -> {order updated_at: :desc}
 
   def received_shippers
-    shippers = self.all_shipper
-    shippers = shippers - self.user.black_list_users
+    q = "SELECT user_id FROM user_invoices WHERE invoice_id = #{self.id} AND
+      user_id NOT IN(SELECT black_list_user_id FROM black_lists WHERE owner_id = #{self.user_id})"
+    Shipper.where "id IN (#{q})"
   end
 
   def number_of_recipients

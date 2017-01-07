@@ -9,8 +9,8 @@ class Shop::InvoicesController < Shop::ShopBaseController
     end
     @q = params[:q]
     @invoices = @invoices.search_invoice(@q) if @q
-    @invoices = @invoices.page(params[:page]).per Settings.per_list_invoice
     @invoices = @invoices.order_by_update_time
+    @invoices = @invoices.page(params[:page]).per Settings.per_list_invoice
   end
 
   def show
