@@ -1,6 +1,10 @@
 .nht-notification-icon {
   position: relative;
 
+  .td-notification-index-icon {
+    padding: 0 !important;
+  }
+
   .fa-globe {
     font-size: 30px !important;
     margin-top: 15px;
@@ -46,7 +50,7 @@
     right: -40px;
     width: 400px;
     list-style-type: none;
-    margin-top: 13px;
+    margin-top: 10px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
     display: none;
     border-radius: 4px;

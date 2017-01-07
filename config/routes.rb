@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     resources :rates, only: [:new, :create]
     resources :user_invoices, only: :update
     resources :shippers, only: [:index, :update]
+    resources :notifications, only: :index
   end
 
   resources :shops

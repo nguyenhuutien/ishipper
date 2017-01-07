@@ -1,8 +1,0 @@
-$('.nht-noti-list').append('<%= j render @notifications %>');
-$('.td-loadmore img').hide();
-
-<% if @notifications.next_page %>
-  $('.pagination').html('<%= j render "layouts/pagination" %>');
-<% else %>
-  $('.nht-noti-list').unbind("scroll");
-<% end %>
