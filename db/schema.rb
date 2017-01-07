@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20161125104513) do
     t.float    "longitude",            limit: 53
     t.boolean  "signed_in"
     t.integer  "radius_display",                  default: 5
+    t.string   "role"
     t.integer  "user_id"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false

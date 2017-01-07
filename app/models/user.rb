@@ -159,6 +159,6 @@ class User < ApplicationRecord
 
   private
   def create_usersetting
-    self.create_user_setting! current_location: self.address
+    self.create_user_setting! current_location: self.address, role: self.role + "Setting"
   end
 end

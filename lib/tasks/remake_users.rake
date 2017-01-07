@@ -17,7 +17,8 @@ namespace :db do
     longitude = 105 + longitude/1000000.0
     user1.create_user_setting unread_notification: 0,
       latitude: latitude,
-      longitude: longitude
+      longitude: longitude,
+      role: "ShopSetting"
 
     user2 = User.create!(
       name: "Shop 92",
@@ -35,7 +36,8 @@ namespace :db do
     longitude = 105 + longitude/1000000.0
     user2.create_user_setting unread_notification: 0,
       latitude: latitude,
-      longitude: longitude
+      longitude: longitude,
+      role: "ShopSetting"
 
     user3 = User.create!(
       name: "Shipper 97",
@@ -53,7 +55,8 @@ namespace :db do
     longitude = 105 + longitude/1000000.0
     user3.create_user_setting unread_notification: 0,
       latitude: latitude,
-      longitude: longitude
+      longitude: longitude,
+      role: "ShipperSetting"
 
     user4 = User.create!(
       name: "Shipper 98",
@@ -71,7 +74,8 @@ namespace :db do
     longitude = 105 + longitude/1000000.0
     user4.create_user_setting unread_notification: 0,
       latitude: latitude,
-      longitude: longitude
+      longitude: longitude,
+      role: "ShipperSetting"
 
     number = 1234567860
     (1..20).each do |n|
@@ -91,7 +95,8 @@ namespace :db do
       longitude = 105 + longitude/1000000.0
       shipper.create_user_setting unread_notification: 0,
         latitude: latitude,
-        longitude: longitude
+        longitude: longitude,
+        role: "ShipperSetting"
     end
 
     number = 1234567800
@@ -112,7 +117,8 @@ namespace :db do
       longitude = 105 + longitude/1000000.0
       shop.create_user_setting unread_notification: 0,
         latitude: latitude,
-        longitude: longitude
+        longitude: longitude,
+        role: "ShopSetting"
     end
 
     user14 = User.create!(
@@ -127,6 +133,7 @@ namespace :db do
     user14.user_tokens.create! authentication_token: "+841234567890"
     user14.create_user_setting unread_notification: 0,
       latitude: 21.0092948,
-      longitude: 105.8099247
+      longitude: 105.8099247,
+      role: "AdminSetting"
   end
 end
