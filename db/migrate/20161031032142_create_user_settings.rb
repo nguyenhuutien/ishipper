@@ -12,6 +12,7 @@ class CreateUserSettings < ActiveRecord::Migration[5.0]
       t.float :longitude, limit: 25
       t.boolean :signed_in
       t.integer :radius_display, default: 5
+      t.string :role
       t.references :user, foreign_key: true
 
       t.timestamps

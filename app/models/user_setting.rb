@@ -10,4 +10,7 @@ class UserSetting < ApplicationRecord
   ATTRIBUTES_PARAMS = [:receive_notification, :favorite_location, :favorite_address,
     :favorite_latitude, :favorite_longitude, :latitude, :longitude,
     :radius_display, :user_id]
+
+  self.inheritance_column = :_type_disabled
+  self.inheritance_column = :role
 end
