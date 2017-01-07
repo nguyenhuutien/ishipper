@@ -21,11 +21,15 @@
         <a href="#page-top"></a>
       </li>
       <li class="nht-notification-icon">
-        <i class="fa fa-globe">
-          <div class="nht-notification-count">
-            <%= current_user.user_setting.unread_notification %>
-          </div>
-        </i>
+        <%= link_to shop_notifications_path, class: "td-notification-index-icon",
+          remote: true do %>
+          <i class="fa fa-globe">
+            <div class="nht-notification-count">
+              <%= current_user.user_setting.unread_notification %>
+            </div>
+          </i>
+        <% end %>
+
         <div class="nht-up-arrow">
           <%= image_tag "up-arrow.png", class: "img-responsive" %>
         </div>
@@ -33,14 +37,12 @@
           <div class="notification-title">
             <%= t "notifications.title" %>
           </div>
-          <ul class="nht-noti-list">
-            <%= render @notifications %>
+          <ul class="nht-noti-list" id="td-notification-index">
           </ul>
           <div class="td-loadmore text-center">
             <%= image_tag "ajax-loader.gif", class: "loading-gif" %>
           </div>
-          <div id="infinite-scrolling" class="hidden">
-            <%= render "layouts/pagination" %>
+          <div id="infinite-scrolling">
           </div>
         </div>
       </li>
