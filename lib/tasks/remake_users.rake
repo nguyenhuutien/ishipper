@@ -10,7 +10,7 @@ namespace :db do
       role: "Shop",
       status: "actived",
       rate: 3.5)
-    user1.user_tokens.create! authentication_token: "+841234567891"
+    user1.user_tokens.create! authentication_token: "+841234567891", online: false
     latitude = Faker::Number.between(0, 25000)
     latitude = 21 + latitude/1000000.0
     longitude = Faker::Number.between(825000, 865000)
@@ -28,7 +28,7 @@ namespace :db do
       role: "Shop",
       status: "actived",
       rate: 2.5)
-    user2.user_tokens.create! authentication_token: "+841234567892"
+    user2.user_tokens.create! authentication_token: "+841234567892", online: false
     latitude = Faker::Number.between(0, 25000)
     latitude = 21 + latitude/1000000.0
     longitude = Faker::Number.between(825000, 865000)
@@ -46,7 +46,7 @@ namespace :db do
       role: "Shipper",
       status: "actived",
       rate: 2.5)
-    user3.user_tokens.create! authentication_token: "+841234567897"
+    user3.user_tokens.create! authentication_token: "+841234567897", online: false
     latitude = Faker::Number.between(0, 25000)
     latitude = 21 + latitude/1000000.0
     longitude = Faker::Number.between(825000, 865000)
@@ -64,7 +64,7 @@ namespace :db do
       role: "Shipper",
       status: "actived",
       rate: 2.5)
-    user4.user_tokens.create! authentication_token: "+841234567898"
+    user4.user_tokens.create! authentication_token: "+841234567898", online: false
     latitude = Faker::Number.between(0, 25000)
     latitude = 21 + latitude/1000000.0
     longitude = Faker::Number.between(825000, 865000)
@@ -84,7 +84,7 @@ namespace :db do
         role: "Shipper",
         status: "actived",
         rate: 3.5
-      shipper.user_tokens.create! authentication_token: "+84" + phone_number.to_s
+      shipper.user_tokens.create! authentication_token: "+84" + phone_number.to_s, online: false
       latitude = Faker::Number.between(0, 25000)
       latitude = 21 + latitude/1000000.0
       longitude = Faker::Number.between(825000, 865000)
@@ -105,7 +105,7 @@ namespace :db do
         role: "Shop",
         status: "actived",
         rate: 3.5
-      shop.user_tokens.create! authentication_token: "+84" + phone_number.to_s
+      shop.user_tokens.create! authentication_token: "+84" + phone_number.to_s, online: false
       latitude = Faker::Number.between(0, 25000)
       latitude = 21 + latitude/1000000.0
       longitude = Faker::Number.between(825000, 865000)
@@ -124,7 +124,7 @@ namespace :db do
       role: "Admin",
       status: "actived",
       rate: 2.5)
-    user14.user_tokens.create! authentication_token: "+841234567890"
+    user14.user_tokens.create! authentication_token: "+841234567890", online: false
     user14.create_user_setting unread_notification: 0,
       latitude: 21.0092948,
       longitude: 105.8099247

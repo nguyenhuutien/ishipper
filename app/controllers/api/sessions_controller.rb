@@ -34,15 +34,17 @@ class Api::SessionsController < Devise::SessionsController
     token = @user.user_tokens.find_by authentication_token: params[:user][:authentication_token]
     if token
       sign_out @user
-      if @user.shipper? && !@user.online?
-        @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
-        user_settings = UserSetting.near [@user.user_setting.latitude,
-          @user.user_setting.longitude], Settings.max_distance, order: false
-        @near_shops = User.users_by_user_setting(user_settings).shop.users_online
-        shipper_is_offline
-      end
       token.destroy
-      @user.user_setting.update_columns signed_in: false
+      if !@user.online?
+        @user.user_setting.update_columns signed_in: false
+        if @user.shipper?
+          @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
+          user_settings = UserSetting.near [@user.user_setting.latitude,
+            @user.user_setting.longitude], Settings.max_distance, order: false
+          @near_shops = User.users_by_user_setting(user_settings).shop.users_online
+          shipper_is_offline
+        end
+      end
       render json: {message: t("api.sign_out.success"), data: {}, code: 1}, status: 200
     else
       render json: {message: t("api.invalid_token"), data: {}, code: 0}, status: 200
