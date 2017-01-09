@@ -13,7 +13,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     @q = Hash.new
     @q[:type] = "name"
     @q[:data] = params[:query]
-    @invoices = @invoices.search_invoice @q
+    @invoices = @invoices.search_invoice @q if params[:query].present?
     @invoices = @invoices.order_by_update_time
     @serializers = ActiveModelSerializers::SerializableResource.new(@invoices,
       each_serializer: Invoices::ShopInvoiceSerializer,
