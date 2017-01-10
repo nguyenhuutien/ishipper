@@ -7,12 +7,6 @@ module ApplicationHelper
     avatar_url || "profile.jpg"
   end
 
-  def notification_content notification
-    t("notifications.web.#{notification.status}",
-      user_name: notification.owner.name,
-      invoice_name: notification.invoice.name).html_safe
-  end
-
   def sidebar_active controller_name
     "menu-active" if params[:controller] == controller_name
   end

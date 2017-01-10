@@ -1,6 +1,5 @@
 if ($('#td-notification-index').is(':visible')) {
   $('#td-notification-index').append('<%= j render @notifications %>');
-  $('#infinite-scrolling').html('<%= j render "layouts/pagination" %>');
   $('.td-loadmore img').hide();
 
   bind_for_loading_more_notification();
