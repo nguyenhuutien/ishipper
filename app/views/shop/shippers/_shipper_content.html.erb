@@ -1,4 +1,4 @@
-<% @shippers.serializable_hash.each do |shipper| %>
+<% @shippers.each do |shipper| %>
   <tr data-id="<%= shipper[:id] %>"  class="shipper_row">
     <td>
       <div class="index-shipper-avatar">
@@ -10,22 +10,25 @@
     <td><%= shipper[:number_finished_invoice] %>/<%= shipper[:number_all_invoice] %></td>
     <td class="hatd-td">
       <div class="dropdown hatd-dropdown">
-        <button class="dropdown-toggle btn hatd_dropdown_toggle_<%= shipper[:favorite_user] %>" data-toggle="dropdown">
+        <button class="dropdown-toggle btn hatd_dropdown_toggle_<%=
+          shipper[:favorite_user] %>" data-toggle="dropdown">
           <b><%= t "users.#{shipper[:favorite_user]}" %></b>
           <b class="caret"></b>
         </button>
 
         <ul class="dropdown-menu hatd-dropdown-menu">
           <% shipper[:actions].keys.each do |action| %>
-              <%= form_tag "shop/shippers/#{shipper[:id]}", method: :patch, class:"hatd-form", remote: true do %>
-                <li class="hatd-shipper-content-li">
-                  <label class="hatd-shipper-content-label">
-                    <%= hidden_field_tag :action_type, action %>
-                    <%= hidden_field_tag :current_type, @current_type %>
-                    <%= submit_tag t("users.shipper_action.#{action}"), class: "hatd-shipper-content-submit" %>
-                  </label>
-                </li>
-              <% end %>
+            <%= form_tag "shop/shippers/#{shipper[:id]}", method: :patch,
+              class:"hatd-form", remote: true do %>
+              <li class="hatd-shipper-content-li">
+                <label class="hatd-shipper-content-label">
+                  <%= hidden_field_tag :action_type, action %>
+                  <%= hidden_field_tag :current_type, @current_type %>
+                  <%= submit_tag t("users.shipper_action.#{action}"),
+                    class: "hatd-shipper-content-submit" %>
+                </label>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       </div>
