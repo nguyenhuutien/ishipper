@@ -2,6 +2,7 @@ class Supports::Shipper::Shipper
   def initialize args
     @current_user = args[:current_user]
     @shipper = args[:shipper]
+    @invoice = args[:invoice]
   end
 
   def favorite_user
@@ -32,5 +33,15 @@ class Supports::Shipper::Shipper
 
   def number_all_invoice
     @shipper.user_invoices.reject{|invoice| invoice.rejected?}.size
+  end
+
+  def user_invoice_id
+    if @invoice
+      user_invoice = @invoice.user_invoices.find_by user_id: @shipper.id,
+        status: @invoice.status
+      user_invoice ? user_invoice.id : nil
+    else
+      nil
+    end
   end
 end

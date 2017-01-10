@@ -42,7 +42,7 @@ class Supports::Shipper::Shippers < Supports::User
   def list_shippers
     shipper_settings.collect do |shipper_setting|
       shipper = Supports::Shipper::Shipper.new current_user: @current_user,
-        shipper: shipper_setting.shipper
+        shipper: shipper_setting.shipper, invoice: @invoice
       Hash[:id, shipper_setting.shipper.id,
         :name, shipper_setting.shipper.name,
         :email, shipper_setting.shipper.email,
@@ -56,7 +56,8 @@ class Supports::Shipper::Shippers < Supports::User
         :actions, shipper.actions,
         :favorite_user, shipper.favorite_user,
         :number_finished_invoice, shipper.number_finished_invoice,
-        :number_all_invoice, shipper.number_all_invoice
+        :number_all_invoice, shipper.number_all_invoice,
+        :user_invoice_id, shipper.user_invoice_id
       ]
     end
   end
