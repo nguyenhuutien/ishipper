@@ -592,27 +592,44 @@
           }
 
           tr:hover {
-            background-color: rgba(0, 190, 69, 0.2);
-            td {
-              border: none;
-            }
+            background-color: #CCFFCC;
+          }
+
+          tr:nth-child(odd):hover + .lvc-invoive-info{
+            background-color: #CCFFCC;
+            animation: fadeIn 0.5s;
+            animation-delay: .5s;
+            -webkit-animation-fill-mode: forwards;
+            display: block;
           }
 
           .border-invoices-detail {
             box-shadow: 0 10px 10px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
           }
 
-          .nht-invoices-show-extend {
+          .lvc-invoive-info {
+            position: relative;
+            float: left;
+            height: 0px;
+            width: 100%;
             display: none;
-            background-color: rgba(0, 190, 69, 0.2);
+            opacity: 0;
+            margin-left: auto;
 
             td {
-              border: none;
+              border-top: 1px #CCCCCC solid;
+              border-bottom: 1px #CCCCCC solid;
+              background: #CCFFCC;
+              min-width: 182px !important;
+
+              .clear-padding{
+                clear: both;
+                height: 10px;
+              }
             }
           }
 
           td {
-            vertical-align: middle;
             text-align: center;
             padding: 10px;
           }
@@ -624,4 +641,14 @@
 
 .lvc-invoice-confirm.btn:hover{
   color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

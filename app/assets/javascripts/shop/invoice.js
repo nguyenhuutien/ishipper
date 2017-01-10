@@ -1,6 +1,5 @@
 document.addEventListener('turbolinks:load', function() {
   $('.modal').on('shown.bs.modal', function () {
-    showInvoicesDetail();
     $('.div-table-content').niceScroll({
       cursorwidth: "6px",
       cursorcolor: "rgba(0, 0, 0, 0.4)",
@@ -45,17 +44,6 @@ function event_click_menu_status() {
     $url_current_list = $(this).attr('href');
     $list_invoice_page = 1;
   })
-}
-
-function showInvoicesDetail() {
-  $('.nht-invoices-show').mouseenter(function() {
-    $('.nht-invoices-show-extend.' + this.id).show();
-    $('.nht-invoices-show-extend.' + this.id).addClass('border-invoices-detail');
-    $(this).mouseout(function() {
-      $('.nht-invoices-show-extend.' + this.id).removeClass('border-invoices-detail');
-      $('.nht-invoices-show-extend.' + this.id).hide();
-    });
-  });
 }
 
 function dropMenuStatus() {
