@@ -30,7 +30,7 @@
       <div class="div-table-content">
         <table class="table table-condensed">
           <tbody class="index-shipper-table-body" id="hatd-shipper-table-content">
-            <% @shippers.serializable_hash.each do |shipper| %>
+            <% @shippers.each do |shipper| %>
               <tr data-id="<%= shipper[:id] %>"  class="<%= shipper[:favorite_user] %> received_shipper_row"
                 data-user-invoice-id="<%= shipper[:user_invoice_id] %>" data-invoice-id="<%= @invoice.id %>">
                 <td>

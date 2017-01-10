@@ -3,9 +3,8 @@ class Shop::ListShippersController < Shop::ShopBaseController
 
   def index
     @shippers = @invoice.received_shippers
-    @shippers = ActiveModelSerializers::SerializableResource.new(@shippers,
-      each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
-      current_user: current_user})
+    @shippers = Supports::Shipper::Shippers.new(current_user: current_user,
+      users: @shippers, invoice: @invoice, params: nil).shippers
     if @shippers.blank?
       flash[:danger] = I18n.t("invoices.messages.get_shippers_fails")
       redirect_to [:shop, @invoice]

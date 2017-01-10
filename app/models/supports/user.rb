@@ -5,6 +5,7 @@ class Supports::User
     @current_user = args[:current_user]
     @params = args[:params]
     @users = args[:users]
+    @invoice = args[:invoice]
   end
 
   ["favorite_list_users", "black_list_users"].each do |user_type|
