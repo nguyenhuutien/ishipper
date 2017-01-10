@@ -33,32 +33,31 @@
       </div>
     </td>
   </tr>
-  <tr class="nht-invoices-show-extend <%= invoice.id %>">
+  <tr class="lvc-invoive-info">
     <td>
-      <b><%= t "invoices._shipping_price" %>: </b>
+      <b><%= t "invoices._shipping_price" %>: </b><br>
       <%= invoice.shipping_price %>
     </td>
     <td>
-      <b><%= t "invoices._price" %>: </b>
+      <b><%= t "invoices._price" %>: </b><br>
       <%= invoice.price %>
-      </span>
     </td>
     <td>
-      <b><%= t "invoices._delivery_time" %>: </b>
+      <b><%= t "invoices._delivery_time" %>: </b><br>
       <%= invoice.delivery_time %>
     </td>
     <td>
-      <b><%= t "invoices._distance" %>: </b>
+      <b><%= t "invoices._distance" %>: </b><br>
       <p class="nht-text-center nht-color nht-number">
         <%= invoice.distance_invoice.to_i %> <%= t :km %>
       </p>
     </td>
     <td>
-      <b><%= t "invoices.address_start" %>: </b>
+      <b><%= t "invoices.address_start" %>: </b><br>
       <p class="nht-invoice-address-top"><%= invoice.address_start %></p>
     </td>
     <td>
-      <b><%= t "invoices.address_finish" %>: </b>
+      <b><%= t "invoices.address_finish" %>: </b><br>
       <p class="nht-invoice-address-bottom"><%= invoice.address_finish %></p>
     </td>
   </tr>
