@@ -14,6 +14,8 @@ document.addEventListener("turbolinks:load", function() {
         $('.hatd-dropdown-menu-actions').slideUp(200);
       }
     });
+    event_click_shipper_column();
+    event_typed_enter_search();
   });
   event_click_shipper_on_received_list();
   event_click_shipper_on_list();
@@ -56,5 +58,31 @@ function ajax_show_shipper(link_url){
     close_loading_after();
     $('#id-nht-invoice-shipper').html(data).modal('show');
     $on_process = false;
+  });
+}
+
+$current_column = null;
+function event_click_shipper_column(){
+  $('.s-column-info').click(function(){
+    event.preventDefault();
+    show_loading_after();
+    if(this != $current_column){
+      reset_shipper_sort_column();
+      $current_column = this;
+    }
+    form = $('#form_search_shipper');
+    data = change_data_filter_column($(this).attr('data'), $(this).find('span'), this);
+    $(this).attr('data', data);
+    $('#add_more_search_shipper').html('<input hidden name="search[column]" value="' + data + '" />');
+    $(form).submit();
+  });
+}
+
+function reset_shipper_sort_column(){
+  $('.s-column-info').each(function(){
+    $(this).find('span').remove();
+    data = $(this).attr('data');
+    if(data)
+      $(this).attr('data', data.replace('asc', '').replace('desc', ''));
   });
 }

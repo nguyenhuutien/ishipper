@@ -6,8 +6,7 @@ class Shop::ShippersController < Shop::ShopBaseController
     else
       current_user.list_shipper_received
     end
-    @q = params[:q]
-    @shippers = @shippers.search_shipper(@q) if @q
+    @shippers = search_advanced @shippers, params["search"] if params["search"]
     @shippers = Supports::Shipper::Shippers.new(current_user: current_user,
       users: @shippers, params: nil).shippers
     @current_type = params[:type].present? ? params[:type] : Settings.shipper.types.list_shipper_received
@@ -19,6 +18,15 @@ class Shop::ShippersController < Shop::ShopBaseController
       @shippers = Supports::Shipper::Shippers.new(current_user: current_user,
         users: @shippers, params: nil).shippers
       @current_type = params[:current_type]
+    end
+  end
+
+  private
+  def search_advanced list_shipper, data
+    if data["column"]
+      list_shipper.where("#{data["type"]} like ?", "%#{data["query"]}%").order data["column"]
+    else
+      list_shipper.where("#{data["type"]} like ?", "%#{data["query"]}%")
     end
   end
 end

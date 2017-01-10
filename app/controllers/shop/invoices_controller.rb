@@ -4,11 +4,10 @@ class Shop::InvoicesController < Shop::ShopBaseController
   def index
     if params[:status]
       @invoices = @invoices.send params[:status]
-      @load_more = true if params[:load_more] == '1'
+      @load_more = true if params[:load_more] == "1"
       @status = params[:status]
     end
-    @q = params[:q]
-    @invoices = @invoices.search_invoice(@q) if @q
+    @invoices = search_advanced @invoices, params["search"] if params["search"]
     @invoices = @invoices.order_by_update_time
     @invoices = @invoices.page(params[:page]).per Settings.per_list_invoice
   end
@@ -85,5 +84,14 @@ class Shop::InvoicesController < Shop::ShopBaseController
 
   def invoice_update_params
     params.require(:invoice).permit Invoice::UPDATE_ATTRIBUTES_PARAMS
+  end
+
+  private
+  def search_advanced list_invoice, data
+    if data["column"]
+      list_invoice.where("#{data["type"]} like ?", "%#{data["query"]}%").order data["column"]
+    else
+      list_invoice.where("#{data["type"]} like ?", "%#{data["query"]}%")
+    end
   end
 end

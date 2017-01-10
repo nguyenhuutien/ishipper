@@ -16,13 +16,4 @@ close_loading_after();
     on_load_more_invoice();
   }
 <% end %>
-showInvoicesDetail();
-reverseSortable();
-
 $on_load_invoice = false;
-
-function reverseSortable() {
-  sortable = (sortable == 'ASC' ? 'DESC' : 'ASC');
-  $('#' + attribute).val(sortable);
-  $('.caret.' + attribute).toggleClass('reverse');
-}

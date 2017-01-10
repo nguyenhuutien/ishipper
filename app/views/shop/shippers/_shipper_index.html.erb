@@ -10,12 +10,14 @@
           <span class="input-group-addon">
             <i class="fa fa-search icon-search" aria-hidden="true"></i>
           </span>
-          <%= form_tag shop_shippers_path, method: :get, remote: true do %>
-            <%= text_field_tag "q[data]", "", class: "form-control",
+          <%= form_tag shop_shippers_path, method: :get, remote: true, id: "form_search_shipper" do %>
+            <%= text_field_tag "search[query]", "", class: "form-control",
               placeholder: t("users.search") %>
             <div class="nht-options-shippers-search">
-              <%= select_tag "q[type]", options_for_select(Settings.shipper.search_attributes.
+              <%= select_tag "search[type]", options_for_select(Settings.shipper.search_attributes.
                 map {|s| [s.humanize, s]}), class: "form-control" %>
+            </div>
+            <div id="add_more_search_shipper">
             </div>
           <% end %>
         </div>
@@ -48,11 +50,19 @@
       <table class="table table-condensed">
         <thead>
           <tr class="hatd-shippers-table-title">
-            <th><strong><%= t "users.table.avatar" %>
-            </strong></th>
-            <th><strong><%= sort_table @q, :name, t("users.table.name") %>
-            </strong></th>
-            <th><strong><%= sort_table @q, :phone_number, t("users.table.phone_number") %></strong></th>
+            <th>
+              <strong>
+                <%= t "users.table.avatar" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="s-column-info" data="name">
+                <%= t "users.table.name" %>
+              </strong></th>
+            <th>
+              <strong class="s-column-info" data="phone_number">
+                <%= t "users.table.phone_number" %>
+              </strong></th>
             <th><strong><%= t "users.table.success_invoices" %></strong></th>
             <th class="hatd-td"><strong class="hatd-dropdown"><%= t "users.table.action" %></strong></th>
           </tr>
