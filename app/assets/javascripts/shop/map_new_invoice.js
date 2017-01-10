@@ -4,6 +4,10 @@ function addMarker(map, marker) {
 
 document.addEventListener("turbolinks:load", function() {
   $('.td-button-create-invoice').on('click', function() {
+    if (typeof markersNewInvoice !== 'undefined') {
+      clearMarkers(markersNewInvoice);
+      directionsDisplay.setMap(null);
+    }
     clearMarkers(markersNearbyShippers);
     markersNewInvoice = [];
     center_default = {lat: 21.0119842, lng: 105.8471442};
