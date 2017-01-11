@@ -31,7 +31,24 @@ en:
   signup-now-text-test-2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum eleifend dolor non molestie. Ut eget cursus leo, sit amet viverra nisi. Curabitur mattis mollis ornare.
   working: How did we working
   test1: test
-  test2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  easy_delivery: Easy delivery
+  easy_create: Easy to create invoice
+  easy_manage: Easy to manage invoice
+  easy_find: Easy to find reputation shipper
+  find_shipper: Find shipper very quickly
+  many_invoice: Many invoice waiting for deliver
+  option_receive: Options for receive invoice
+  more_invoice: Can deliver more invoice in one times
+  create_easy: Create invoice with some easy manipulation
+  create_easy_content: Shop just enter information of invoice with friendly interface and click create button
+  already_shipper: Shipper ready to receive invoice
+  already_shipper_content: Shipper team crowded and profession will shipway very quickly
+  shop_active: Shop active choose desire shipper
+  shop_active_content: Based on rank, rate and quantity of successfull invoice, Shop can choose good shipper easily
+  assess_shipper: Shop can assess Shipper after shipway
+  assess_shipper_content: After shipway, Shop can assess about behavior and time to shipway success of shipper
+  shop_favorite: Shop can have favorite list Shipper for myself
+  shop_favorite_content: After assess shipper, Shop can choose shipper and add to favorite list to send notification when invoice create
   shop:
     benefit: Shop's benefit
   shipper:
