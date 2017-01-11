@@ -10,6 +10,11 @@
     z-index: 3;
     padding-left: 15px;
     padding-right: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+
+    &:hover {
+      background-color: #FFF;
+    }
 
     .navbar-brand {
       padding: 5px !important;
@@ -551,10 +556,12 @@ fieldset[disabled] .btn-xl.active {
   .td-ishipper-benefit-col-left {
     background-color: rgba(0, 190, 69, 0.6);
     padding: 50px 0;
+    height: 370px;
   }
   .td-ishipper-benefit-col-right {
     background-color: rgba(0, 190, 69, 0.2);
     padding: 50px 0;
+    height: 370px;
   }
   .td-benefit-content {
     ul {
@@ -563,6 +570,7 @@ fieldset[disabled] .btn-xl.active {
       li {
         list-style: none;
         font-size: 18px;
+        line-height: 2;
       }
     }
     .td-line {

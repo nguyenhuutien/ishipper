@@ -1,8 +1,9 @@
 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top nht-navbar">
   <div class="container height-100">
     <div class="navbar-header page-scroll height-100">
-    <%= link_to t(:title), "#page-top", class: "navbar-brand page-scroll
-      height-100" %>
+    <%= link_to root_path, class: "navbar-brand page-scroll" do %>
+      <%= image_tag "logo.png", id: "logo" %>
+    <% end %>
     </div>
     <div class="collapse navbar-collapse height-100" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right td-nav">
