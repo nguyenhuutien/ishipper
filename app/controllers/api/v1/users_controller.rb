@@ -19,7 +19,8 @@ class Api::V1::UsersController < Api::BaseController
         "Shop"
       end
       users = User.search_user role, params[:user][:search]
-      users = Supports::Users.new(users: users).list_users
+      users = Supports::User.new(s: users).list_users
+      # users = Supports::Users.new(users: users).list_users
       # users = ActiveModelSerializers::SerializableResource.new(users,
       #   each_serializer: UserSerializer).as_json
     else

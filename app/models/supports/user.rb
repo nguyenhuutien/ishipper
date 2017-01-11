@@ -1,25 +1,8 @@
 class Supports::User
-  attr_reader :current_user
-
   def initialize args
-    @current_user = args[:current_user]
-    @params = args[:params]
-    @user = args[:user]
-  end
-
-  def base_user
-    Hash[:id, @user.id,
-      :name, @user.name,
-      :email, @user.email,
-      :address, @user.address,
-      :current_location, @user.user_setting.current_location,
-      :latitude, @user.user_setting.latitude,
-      :longitude, @user.user_setting.longitude,
-      :phone_number, @user.phone_number,
-      :plate_number, @user.plate_number,
-      :role, @user.role,
-      :rate, @user.rate
-    ]
+    args.each do |key, value|
+      instance_variable_set "@#{key}", value
+    end
   end
 
   ["favorite_list_users", "black_list_users"].each do |user_type|
@@ -30,7 +13,7 @@ class Supports::User
   end
 
   def reviews
-    @current_user.passive_reviews
+    @current_user.passive_reviews.includes :owner
   end
 
   Settings.rate.list_rate.each do |rate|
@@ -61,16 +44,13 @@ class Supports::User
     @current_user.invoices.new
   end
 
-  def shippers
-    shipper_settings = ShipperSetting.near [@current_user.user_setting.latitude,
-      @current_user.user_setting.longitude], Settings.max_distance, order: false
-    shippers = Shipper.users_by_user_setting shipper_settings
-    ActiveModelSerializers::SerializableResource.new shippers,
-      each_serializer: Users::ListShipperSerializer, scope: {current_user: @current_user}
+  def users
+    users_simple = Simples::UsersSimple.new object: @users
+    users_simple.simple
   end
 
-  private
-  def user_setting
-    @user_setting ||= @current_user.user_setting
+  def user
+    user_simple = Simples::UserSimple.new object: @user
+    user_simple.simple
   end
 end

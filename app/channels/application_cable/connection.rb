@@ -10,7 +10,8 @@ module ApplicationCable
       end
       logger.add_tags self.current_user.user.phone_number
       if self.current_user.user.shipper?
-        serializer = Supports::User.new(user: self.current_user.shipper).base_user
+        # serializer = Supports::User.new(user: self.current_user.shipper).base_user
+        serializer = Supports::User.new(shipper: self.current_user.shipper).shipper
         # serializer = Supports::Shipper::Shipper.new(shipper: self.current_user.shipper).shipper
         # serializer = ActiveModelSerializers::SerializableResource.
           # new(self.current_user.user).as_json
