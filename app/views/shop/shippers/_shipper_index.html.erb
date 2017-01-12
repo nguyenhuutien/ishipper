@@ -10,16 +10,20 @@
           <span class="input-group-addon">
             <i class="fa fa-search icon-search" aria-hidden="true"></i>
           </span>
-          <%= form_tag shop_shippers_path, method: :get, remote: true, id: "form_search_shipper" do %>
-            <%= text_field_tag "search[query]", "", class: "form-control",
+          <%= form_tag shop_shippers_path, method: :get, remote: true, id: "form-search-shipper" do %>
+            <%= text_field_tag "search[query]", "", class: "form-control", id: "search_shipper_query",
               placeholder: t("users.search") %>
             <div class="nht-options-shippers-search">
               <%= select_tag "search[type]", options_for_select(Settings.shipper.search_attributes.
                 map {|s| [s.humanize, s]}), class: "form-control" %>
             </div>
-            <div id="add_more_search_shipper">
+            <div hidden id="add_more_type_shipper">
+              <%= text_field_tag "type", "list_shipper_received" %>
             </div>
-          <% end %>
+            <div hidden id="add_more_search_shipper"></div>
+            <div hidden id="add_more_loadmore_shipper"></div>
+            <div hidden id="add_more_page_shipper"></div>
+        <% end %>
         </div>
       </div>
 
@@ -35,11 +39,9 @@
 
         <ul class="dropdown-menu dropdown-menu-actions hatd-dropdown-menu-actions">
           <% Settings.shipper.types.keys.each do |type| %>
-            <%= link_to "/shop/shippers/type/#{type}", remote: true do %>
-              <li class="hatd-item-actions">
-                <%= t "users.shipper_index.#{type}" %>
-              </li>
-            <% end %>
+            <li class="hatd-item-actions" data="<%= type %>">
+              <%= t "users.shipper_index.#{type}" %>
+            </li>
           <% end %>
         </ul>
       </div>
@@ -68,7 +70,7 @@
           </tr>
         </thead>
       </table>
-      <div class="div-table-content">
+      <div class="div-table-content load-more-shipper">
         <table class="table table-condensed">
           <tbody class="index-shipper-table-body" id="hatd-shipper-table-content">
             <%= render "shipper_content" %>

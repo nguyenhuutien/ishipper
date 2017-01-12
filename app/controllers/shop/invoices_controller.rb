@@ -4,9 +4,9 @@ class Shop::InvoicesController < Shop::ShopBaseController
   def index
     if params[:status]
       @invoices = @invoices.send params[:status]
-      @load_more = true if params[:load_more] == "1"
       @status = params[:status]
     end
+    @load_more = true if params[:load_more] == "1"
     @invoices = search_advanced @invoices, params["search"] if params["search"]
     @invoices = @invoices.order_by_update_time
     @invoices = @invoices.page(params[:page]).per Settings.per_list_invoice

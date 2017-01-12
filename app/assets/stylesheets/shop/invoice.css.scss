@@ -509,6 +509,10 @@
                 border-radius: 3px;
               }
             }
+
+            #search_invoice_query{
+              padding-left: 30px;
+            }
           }
         }
 
@@ -627,6 +631,10 @@
                 height: 10px;
               }
             }
+          }
+
+          .lvc-invoive-info:nth-last-child(1) {
+            float: none;
           }
 
           td {
