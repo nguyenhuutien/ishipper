@@ -19,12 +19,13 @@ class Api::V1::UsersController < Api::BaseController
       end
       users = User.search_user role, params[:user][:search]
     else
-      shipper_settings = UserSetting.near [params[:user][:latitude], params[:user][:longitude]],
-        params[:user][:distance], order: false
-      users = Shipper.users_by_user_setting(shipper_settings).users_online
+      shipper_settings = ShipperSetting.near([current_user.user_setting.latitude,
+        current_user.user_setting.longitude], Settings.max_distance, order: false).
+        includes :shipper
+      users = Shipper.users_by_user_setting shipper_settings
     end
-    users = ActiveModelSerializers::SerializableResource.new(users,
-      each_serializer: UserSerializer).as_json
+    users_simple = Simples::UsersSimple.new object: users.includes(:user_setting)
+    users = users_simple.simple
     render json: {message: I18n.t("users.messages.get_shipper_success"),
       data: {users: users}, code: 1}, status: 200
   end

@@ -10,8 +10,8 @@ module ApplicationCable
       end
       logger.add_tags self.current_user.user.phone_number
       if self.current_user.user.shipper?
-        serializer = ActiveModelSerializers::SerializableResource.
-          new(self.current_user.user).as_json
+        users_simple = Simples::UsersSimple.new object: self.current_user.user
+        serializer = users_simple.simple
         shop_settings = ShopSetting.near [self.current_user.user_setting.latitude,
           self.current_user.user_setting.longitude], Settings.max_distance, order: false
         near_shops = Shop.users_by_user_setting(shop_settings).users_online

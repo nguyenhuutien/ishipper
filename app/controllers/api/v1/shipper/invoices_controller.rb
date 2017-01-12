@@ -14,11 +14,11 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
     @q[:data] = params[:query]
     @invoices = @invoices.search_invoice @q if params[:query].present?
     @invoices = @invoices.order_by_update_time
-    @serializer = ActiveModelSerializers::SerializableResource.new(@invoices,
-      each_serializer: Invoices::ShipperInvoiceSerializer,
-      scope: {current_user: current_user}).as_json
+    invoices_simple = Simples::InvoicesSimple.new object: @invoices,
+      scope: {current_user: current_user}
+    @invoices = invoices_simple.simple
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
-      data: {invoices: @serializer}, code: 1}, status: 200
+      data: {invoices: @invoices}, code: 1}, status: 200
   end
 
    def show

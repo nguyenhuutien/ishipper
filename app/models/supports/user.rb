@@ -1,11 +1,8 @@
 class Supports::User
-  attr_reader :current_user
-
   def initialize args
-    @current_user = args[:current_user]
-    @params = args[:params]
-    @users = args[:users]
-    @invoice = args[:invoice]
+    args.each do |key, value|
+      instance_variable_set "@#{key}", value
+    end
   end
 
   ["favorite_list_users", "black_list_users"].each do |user_type|
@@ -16,7 +13,7 @@ class Supports::User
   end
 
   def reviews
-    @current_user.passive_reviews
+    @current_user.passive_reviews.includes :owner
   end
 
   Settings.rate.list_rate.each do |rate|
@@ -45,18 +42,5 @@ class Supports::User
 
   def create_invoice
     @current_user.invoices.new
-  end
-
-  def shippers
-    shipper_settings = ShipperSetting.near [@current_user.user_setting.latitude,
-      @current_user.user_setting.longitude], Settings.max_distance, order: false
-    shippers = Shipper.users_by_user_setting shipper_settings
-    ActiveModelSerializers::SerializableResource.new shippers,
-      each_serializer: Users::ListShipperSerializer, scope: {current_user: @current_user}
-  end
-
-  private
-  def user_setting
-    @user_setting ||= @current_user.user_setting
   end
 end
