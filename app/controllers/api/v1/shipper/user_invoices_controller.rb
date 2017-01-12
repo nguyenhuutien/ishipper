@@ -7,12 +7,13 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   def create
     @user_invoice = current_user.user_invoices.build user_invoice_params
     new_shipper_limit = ShipperReceiveLimitServices::NewShipperLimitService.new user_id: current_user.id
+    invoice_simple = Simples::InvoicesSimple.new object: @invoice,
+      scope: {current_user: current_user}
+    @invoice = invoice_simple.simple
     can_create = if new_shipper_limit.perform?
       if @user_invoice.save
-        @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
-          scope: {current_user: current_user}).as_json
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
-          data: {invoice: @serializer}, code: 1}, status: 200
+          data: {invoice: @invoice}, code: 1}, status: 200
         true
       else
         render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
@@ -23,10 +24,8 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       old_shipper_limit = ShipperReceiveLimitServices::OldShipperLimitService.new user_id: current_user.id
       if old_shipper_limit.perform?
         if @user_invoice.save
-          @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
-            scope: {current_user: current_user}).as_json
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
-            data: {invoice: @serializer}, code: 1}, status: 200
+            data: {invoice: @invoice}, code: 1}, status: 200
           true
         else
           render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
@@ -60,8 +59,10 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       realtime_channel = "#{@user_invoice.invoice.user.phone_number}_realtime_channel"
         data = Hash.new
         data[:user] = current_user
-        @invoice = Invoices::ShopInvoiceSerializer.new(@user_invoice.invoice,
-          scope: {current_user: @user_invoice.invoice.user})
+        invoices_simple = Simples::InvoicesSimple.new object: @user_invoice.invoice,
+          scope: {current_user: @user_invoice.invoice.user}
+        @invoice = invoices_simple.simple
+
         data[:invoice] = @invoice
         RealtimeBroadcastJob.perform_now channel: realtime_channel,
           action: Settings.realtime.cancel_invoice, data: data

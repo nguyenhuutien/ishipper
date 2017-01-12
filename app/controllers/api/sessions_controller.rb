@@ -38,7 +38,6 @@ class Api::SessionsController < Devise::SessionsController
       if !@user.online?
         @user.user_setting.update_columns signed_in: false
         if @user.shipper?
-          @serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
           shop_settings = UserSetting.near [@user.shipper_setting.latitude,
             @user.shipper_setting.longitude], Settings.max_distance, order: false
           @near_shops = Shop.users_by_user_setting(shop_settings).users_online

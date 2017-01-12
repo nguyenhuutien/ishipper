@@ -1,4 +1,4 @@
-class Simples::StatusInvoiceHistorySimple < Simples::BaseSimple
+class Simples::Invoice::StatusInvoiceHistoriesSimple < Simples::BaseSimple
   attr_accessor :id, :time, :content
 
   def content

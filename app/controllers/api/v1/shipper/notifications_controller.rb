@@ -6,8 +6,9 @@ class Api::V1::Shipper::NotificationsController < Api::ShipperBaseController
       params[:notification][:per_page]
       @notifications = current_user.passive_notifications.order_by_time.
         page(params[:notification][:page]).per params[:notification][:per_page]
-      @notifications = ActiveModelSerializers::SerializableResource.new(@notifications,
-        each_serializer: NotificationSerializer).as_json
+      notifification_simple =  Simples::NotificationsSimple.
+        new object: @notifications.includes(:owner, :invoice)
+      @notifications = notifification_simple.simple
       update_notification = NotificationServices::UpdateNotificationService.new current_user: current_user,
         notification: nil, unread_notification: 0
       update_notification.perform

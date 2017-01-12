@@ -3,9 +3,9 @@ class Api::V1::Shop::ListShippersController < Api::ShopBaseController
 
   def index
     @shippers = @invoice.received_shippers
-    @shippers = ActiveModelSerializers::SerializableResource.new(@shippers,
-      each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
-      current_user: current_user}).as_json
+    shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers.
+      includes(:user_invoices, :user_setting), scope: {current_user: current_user, invoice: @invoice}
+    @shippers = shippers_simple.simple
     if @shippers.blank?
       render json: {message: I18n.t("invoices.messages.get_shippers_fails"),
         data: {}, code: 1}, status: 200

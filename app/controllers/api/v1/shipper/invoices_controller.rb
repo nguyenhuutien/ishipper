@@ -23,10 +23,11 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
 
    def show
     if @invoice.present?
-      @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
-        scope: {current_user: current_user}).as_json
+      invoice_simple = Simples::InvoicesSimple.new object: @invoice,
+        scope: {current_user: current_user}
+      @invoice = invoice_simple.simple
       render json: {message: I18n.t("invoices.show.success"),
-        data: {invoice: @serializer}, code: 1}, status: 200
+        data: {invoice: @invoice}, code: 1}, status: 200
     else
       render json: {message: I18n.t("invoices.messages.not_found"),
         data: {}, code: 0}, status: 200
