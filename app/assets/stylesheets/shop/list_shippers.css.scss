@@ -299,6 +299,10 @@
           vertical-align: middle;
           text-align: center;
 
+          .s-column-info{
+            cursor: pointer;
+          }
+
           .reverse {
             transform: rotate(180deg) !important;
           }

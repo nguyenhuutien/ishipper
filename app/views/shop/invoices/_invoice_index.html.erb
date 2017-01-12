@@ -10,13 +10,14 @@
           <span class="input-group-addon">
             <i class="fa fa-search nht-icon-search" aria-hidden="true"></i>
           </span>
-          <%= form_tag shop_invoices_path, method: :get, remote: true do %>
-            <%= text_field_tag "q[data]", "", class: "form-control",
+          <%= form_tag shop_invoices_path, method: :get, remote: true, id: "form-search-invoice" do %>
+            <%= text_field_tag "search[query]", "", class: "form-control",
               placeholder: t("invoices.search") %>
             <div class="nht-options-invoices-search">
-              <%= select_tag "q[type]", options_for_select(Settings.invoice.search_attributes.
+              <%= select_tag "search[type]", options_for_select(Settings.invoice.search_attributes.
                 map {|s| [s.humanize, s]}), class: "form-control" %>
             </div>
+            <div id="add_more_search_invoice"></div>
           <% end %>
         </div>
       </div>
@@ -56,12 +57,36 @@
       <table class="table table-condensed" >
         <thead>
           <tr class="nht-invoice-table-title">
-            <th><strong><%= sort_table @q, :name, t("invoices.name_invoice") %></strong></th>
-            <th><strong><%= sort_table @q, :created_at, t("invoices.created_at") %></strong></th>
-            <th><strong><%= sort_table @q, :customer_name, t("invoices.customers.name") %></strong></th>
-            <th><strong><%= sort_table @q, :customer_number, t("invoices.customers.phone_number") %></strong></th>
-            <th><strong><%= sort_table @q, :status, t("invoices._status") %></strong></th>
-            <th><strong><%= t "invoices.action" %></strong></th>
+            <th>
+              <strong class="i-column-info" data="name">
+                <%= t "invoices.name_invoice" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="created_at">
+                <%= t "invoices.created_at" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="customer_name">
+                <%= t "invoices.customers.name" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="phone_number">
+                <%= t "invoices.customers.phone_number" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="status">
+                <%= t "invoices._status" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info">
+                <%= t "invoices.action" %>
+              </strong>
+            </th>
           </tr>
         </thead>
       </table>
