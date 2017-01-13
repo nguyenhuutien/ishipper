@@ -7,6 +7,8 @@ class Shop::ShippersController < Shop::ShopBaseController
       current_user.list_shipper_received
     end
     @shippers = search_advanced @shippers, params["search"] if params["search"]
+    @shippers = @shippers.page(params[:page]).per Settings.per_list_shipper
+    @supports = Supports::ShipperIndex.new params, @shippers.total_pages
     shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers.
       includes(:user_invoices, :user_setting), scope: {current_user: current_user}
     @shippers = shippers_simple.simple
@@ -32,4 +34,3 @@ class Shop::ShippersController < Shop::ShopBaseController
     end
   end
 end
-

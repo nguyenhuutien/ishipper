@@ -70,3 +70,11 @@ function clear_then_show_flash(data_flash){
     $('#flash').show().slideUp(4000);
   }, 200);
 }
+
+function event_click_menu_main() {
+  $(document).on('click', '.node-dropdown-status', function(){
+    $url_current_list = $(this).attr('href');
+    reset_invoice_variable();
+    reset_shipper_variable();
+  })
+}

@@ -1,9 +1,4 @@
 close_loading_after();
-<% if @q %>
-  attribute = '<%= @q[:attribute] %>';
-  sortable = '<%= @q[:sortable] %>';
-<% end %>
-
 <% if @load_more %>
   $('#nht-table-invoice-content').append('<%= j render "invoice_content" %>');
 <% else %>
@@ -16,4 +11,5 @@ close_loading_after();
     on_load_more_invoice();
   }
 <% end %>
+$max_page_list = '<%= @invoices.total_pages %>';
 $on_load_invoice = false;
