@@ -15,18 +15,19 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     @q[:data] = params[:query]
     @invoices = @invoices.search_invoice @q if params[:query].present?
     @invoices = @invoices.order_by_update_time
-    @serializers = ActiveModelSerializers::SerializableResource.new(@invoices,
-      each_serializer: Invoices::ShopInvoiceSerializer,
-      scope: {current_user: current_user}).as_json
+    invoices_simple = Simples::InvoicesSimple.new object: @invoices.
+      includes(:user, :status_invoice_histories), scope: {current_user: current_user}
+    @invoices = invoices_simple.simple
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
-      data: {invoices: @serializers}, code: 1}, status: 200
+      data: {invoices: @invoices}, code: 1}, status: 200
   end
 
   def show
-    @serializer = Invoices::ShopInvoiceSerializer.new(@invoice,
-      scope: {current_user: current_user}).as_json
+    invoices_simple = Simples::InvoicesSimple.new object: @invoice,
+      scope: {current_user: current_user}
+    @invoice = invoices_simple.simple
     render json: {message: I18n.t("invoices.show.success"),
-      data: {invoice: @serializer}, code: 1}, status: 200
+      data: {invoice: @invoice}, code: 1}, status: 200
   end
 
   def create
@@ -47,14 +48,16 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
         send_all_notification.perform
       end
 
-      @serializer = Invoices::ShipperInvoiceSerializer.new(@invoice,
-        scope: {current_user: current_user}).as_json
+      invoice_simple = Simples::InvoicesSimple.new object: @invoice,
+        scope: {current_user: current_user}
+      @invoice = invoice_simple.simple
+
       @shipper_setting = ShipperSetting.near [@invoice.latitude_start, @invoice.longitude_start],
         Settings.max_distance, order: false
       @near_shippers = Shipper.users_by_user_setting(@shipper_setting).users_online
       if @near_shippers.any?
-        realtime_visibility_shipper = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: @near_shippers,
-          invoice: @serializer, action: Settings.realtime.new_invoice
+        realtime_visibility_shipper = InvoiceServices::RealtimeVisibilityInvoiceService.
+          new recipients: @near_shippers, invoice: @invoice, action: Settings.realtime.new_invoice
         realtime_visibility_shipper.perform
       end
     else

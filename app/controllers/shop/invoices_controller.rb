@@ -21,7 +21,7 @@ class Shop::InvoicesController < Shop::ShopBaseController
   end
 
   def create
-    @invoice = Invoice.new invoice_params
+    @invoice = current_user.invoices.new invoice_params
     error = CheckInvoiceMapMarker.new(@invoice).perform
     if error.present?
       @invoice.errors.add :distance_invoice, error
@@ -42,11 +42,14 @@ class Shop::InvoicesController < Shop::ShopBaseController
             click_action: Settings.invoice_detail
           send_all_notification.perform
         end
-        serializer = ActiveModelSerializers::SerializableResource.new(@invoice,
-          each_serializer: InvoiceSerializer, scope: current_user).as_json
+
+        invoice_simple = Simples::InvoicesSimple.new object: @invoice,
+          scope: {current_user: current_user}
+        @invoice = invoice_simple.simple
+
         if near_shippers.any?
-          realtime_visibility_shipper = InvoiceServices::RealtimeVisibilityInvoiceService.new recipients: near_shippers,
-            invoice: serializer, action: Settings.realtime.new_invoice
+          realtime_visibility_shipper = InvoiceServices::RealtimeVisibilityInvoiceService.
+            new recipients: near_shippers, invoice: @invoice, action: Settings.realtime.new_invoice
           realtime_visibility_shipper.perform
         end
         flash[:success] = t "invoices.create.success"

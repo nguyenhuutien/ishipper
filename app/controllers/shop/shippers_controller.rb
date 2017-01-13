@@ -7,8 +7,8 @@ class Shop::ShippersController < Shop::ShopBaseController
       current_user.list_shipper_received
     end
     @shippers = search_advanced @shippers, params["search"] if params["search"]
-    shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers,
-      scope: {current_user: current_user}
+    shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers.
+      includes(:user_invoices, :user_setting), scope: {current_user: current_user}
     @shippers = shippers_simple.simple
     @current_type = params[:type].present? ? params[:type] : Settings.shipper.types.list_shipper_received
   end
@@ -16,8 +16,8 @@ class Shop::ShippersController < Shop::ShopBaseController
   def update
     if params[:action_type] && current_user.send("#{params[:action_type]}", "#{params[:id]}")
       @shippers = current_user.send params[:current_type]
-      shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers,
-        scope: {current_user: current_user}
+      shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers.
+        includes(:user_invoices, :user_setting), scope: {current_user: current_user}
       @shippers = shippers_simple.simple
       @current_type = params[:current_type]
     end

@@ -10,8 +10,6 @@ document.addEventListener("turbolinks:load", function() {
     $('.hatd-dropdown-actions').on('click', function() {
       if (!$('.hatd-dropdown-menu-actions').is(":visible")) {
         $('.hatd-dropdown-menu-actions').slideDown(200);
-      } else {
-        $('.hatd-dropdown-menu-actions').slideUp(200);
       }
     });
     event_click_shipper_column();

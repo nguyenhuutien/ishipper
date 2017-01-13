@@ -5,9 +5,10 @@ class Api::V1::UsersController < Api::BaseController
   before_action :ensure_params_true, only: :index
 
   def show
-    serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
+    users_simple = Simples::UsersSimple.new object: @user
+    @user = users_simple.simple
     render json: {message: I18n.t("users.show.success"),
-      data: {user: serializer}, code: 1}, status: 200
+      data: {user: @user}, code: 1}, status: 200
   end
 
   def index
@@ -32,9 +33,10 @@ class Api::V1::UsersController < Api::BaseController
 
   def update
     if @user.update_with_password user_params
-      serializer = ActiveModelSerializers::SerializableResource.new(@user).as_json
+      users_simple = Simples::UsersSimple.new object: @user
+      @user = users_simple.simple
       render json: {message: I18n.t("users.messages.update_success"),
-        data: {user: serializer}, code: 1}, status: 200
+        data: {user: @user}, code: 1}, status: 200
     else
       render json: {message: error_messages(@user.errors.messages),
         data: {}, code: 0}, status: 200

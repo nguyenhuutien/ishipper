@@ -1,16 +1,21 @@
-class Simples::UsersSimple < Simples::UserSimple
-  def simple
-    superclass = @object.class.superclass
-    if superclass == ActiveRecord::Relation || superclass.superclass == ActiveRecord::Relation
-      simples = Array.new
-      @object.each do |object|
-        user_simple = Simples::UserSimple.new object: object
-        simples << user_simple.simple
-      end
-      simples
-    else
-      user_simple = Simples::UserSimple.new object: @object
-      user_simple.simple
-    end
+class Simples::UsersSimple < Simples::BaseSimple
+  attr_accessor :id, :phone_number, :name, :email, :address, :role, :rate,
+    :current_location, :latitude, :longitude
+
+  def current_location
+    user_setting.current_location
+  end
+
+  def latitude
+    user_setting.latitude
+  end
+
+  def longitude
+    user_setting.longitude
+  end
+
+  private
+  def user_setting
+    @user_setting ||= @object.user_setting
   end
 end
