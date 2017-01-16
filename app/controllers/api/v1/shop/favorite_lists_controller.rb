@@ -16,7 +16,9 @@ class Api::V1::Shop::FavoriteListsController < Api::ShopBaseController
     @favorite_list = FavoriteList.new favorite_list_params
     @favorite_list.owner = current_user
     if @favorite_list.save
-      @shipper = Users::FavoriteUserSerializer.new @shipper, scope: {current_user: current_user}
+      favorite_user = Simples::User::FavoriteUsersSimple.new object: @shipper,
+        scope: {current_user: current_user}
+      @shipper = favorite_user.simple
       render json: {message: I18n.t("favorite_list.create_success"),
         data: {user: @shipper}, code: 1}, status: 200
     else

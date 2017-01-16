@@ -157,6 +157,20 @@ class User < ApplicationRecord
     active_reviews.rate.find_by invoice_id: invoice.id
   end
 
+  Settings.rate.list_rate.each do |rate|
+    define_method rate do
+      passive_reviews.where(rating_point: Settings.rate.send(rate), review_type: "rate").size
+    end
+  end
+
+  def sum_rate
+    sum = 0
+    Settings.rate.list_rate.each do |rate|
+      sum += send(rate)
+    end
+    sum
+  end
+
   private
   def create_usersetting
     self.create_user_setting! current_location: self.address, role: self.role + "Setting" unless self.admin?

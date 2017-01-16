@@ -7,13 +7,14 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   def create
     @user_invoice = current_user.user_invoices.build user_invoice_params
     new_shipper_limit = ShipperReceiveLimitServices::NewShipperLimitService.new user_id: current_user.id
-    invoice_simple = Simples::InvoicesSimple.new object: @invoice,
-      scope: {current_user: current_user}
-    @invoice = invoice_simple.simple
+    @recipient = @invoice.user
     can_create = if new_shipper_limit.perform?
       if @user_invoice.save
+        invoice_simple = Simples::Invoice::ShipperInvoicesSimple.new object: @invoice,
+          scope: {current_user: current_user}
+        @invoice_simple = invoice_simple.simple
         render json: {message: I18n.t("user_invoices.receive_invoice.success"),
-          data: {invoice: @invoice}, code: 1}, status: 200
+          data: {invoice: @invoice_simple}, code: 1}, status: 200
         true
       else
         render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
@@ -24,8 +25,11 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       old_shipper_limit = ShipperReceiveLimitServices::OldShipperLimitService.new user_id: current_user.id
       if old_shipper_limit.perform?
         if @user_invoice.save
+          invoice_simple = Simples::Invoice::ShipperInvoicesSimple.new object: @invoice,
+            scope: {current_user: current_user}
+          @invoice_simple = invoice_simple.simple
           render json: {message: I18n.t("user_invoices.receive_invoice.success"),
-            data: {invoice: @invoice}, code: 1}, status: 200
+            data: {invoice: @invoice_simple}, code: 1}, status: 200
           true
         else
           render json: {message: I18n.t("user_invoices.receive_invoice.fail"), data: {},
@@ -44,7 +48,7 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
         new user_invoice: @user_invoice, creater_id: current_user.id, status: "init"
       create_user_invoice_history.perform
       create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
-        recipient: @invoice.user, status: "receive", invoice: @invoice,
+        recipient: @recipient, status: "receive", invoice: @invoice,
         click_action: Settings.list_shipper_register
       create_notification.perform
     end
@@ -54,13 +58,14 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
     if @user_invoice.update_attributes status: "rejected"
       render json: {message: I18n.t("user_invoices.cancel_request.success"), data: {},
         code: 1}, status: 200
-      @shipper = Users::ListShipperSerializer.new(current_user, scope: {invoice: @user_invoice.invoice,
-        current_user: current_user}).as_json
+      list_shippers_simple = Simples::Shipper::ShippersSimple.new object: current_user,
+        scope: {invoice: @user_invoice.invoice, current_user: current_user}
+      @shipper = list_shippers_simple.simple
       realtime_channel = "#{@user_invoice.invoice.user.phone_number}_realtime_channel"
         data = Hash.new
         data[:user] = current_user
-        invoices_simple = Simples::InvoicesSimple.new object: @user_invoice.invoice,
-          scope: {current_user: @user_invoice.invoice.user}
+        invoices_simple = Simples::Invoice::ShopInvoicesSimple.new object: @user_invoice.invoice,
+          scope: {current_user: current_user}
         @invoice = invoices_simple.simple
 
         data[:invoice] = @invoice
@@ -88,7 +93,7 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
   end
 
   def check_received_invoice
-    @invoice = Invoice.find_by id: user_invoice_params[:invoice_id]
+    @invoice = Invoice.includes(user: [:user_tokens]).find_by id: user_invoice_params[:invoice_id]
     if @invoice.nil?
       render json: {message: I18n.t("invoices.messages.invoice_not_found"),
         data: {}, code: 0}, status: 200

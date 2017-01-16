@@ -11,12 +11,12 @@ module ApplicationCable
       logger.add_tags self.current_user.user.phone_number
       if self.current_user.user.shipper?
         users_simple = Simples::UsersSimple.new object: self.current_user.user
-        serializer = users_simple.simple
+        user = users_simple.simple
         shop_settings = ShopSetting.near [self.current_user.user_setting.latitude,
           self.current_user.user_setting.longitude], Settings.max_distance, order: false
         near_shops = Shop.users_by_user_setting(shop_settings).users_online
         ShipperServices::RealtimeVisibilityShipperService.new(recipients: near_shops,
-          shipper: serializer, action: Settings.realtime.shipper_online).perform
+          shipper: user, action: Settings.realtime.shipper_online).perform
       end
     end
 

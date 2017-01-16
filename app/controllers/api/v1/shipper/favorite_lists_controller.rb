@@ -5,8 +5,8 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
 
   def index
     @users = current_user.favorite_list_users
-    users_simple = Simples::BaseSimple.new object: @users, class_name:
-      "Simples::User::FavoriteUsersSimple", scope: {current_user: current_user}
+    users_simple = Simples::User::FavoriteUsersSimple.
+      new object: @users.includes(:user_setting), scope: {current_user: current_user}
     @users = users_simple.simple
     render json: {message: I18n.t("favorite_list.get_favorite_list_success"),
       data: {users: @users}, code: 1}, status: 200
@@ -16,7 +16,9 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
     @favorite_list = FavoriteList.new favorite_list_params
     @favorite_list.owner = current_user
     if @favorite_list.save
-      @shop = Users::FavoriteUserSerializer.new @shop, scope: {current_user: current_user}
+      favorite_user = Simples::User::FavoriteUsersSimple.new object: @shop,
+        scope: {current_user: current_user}
+      @shop = favorite_user.simple
       render json: {message: I18n.t("favorite_list.create_success"),
         data: {user: @shop}, code: 1}, status: 200
     else

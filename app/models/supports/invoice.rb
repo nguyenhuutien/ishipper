@@ -5,13 +5,6 @@ class Supports::Invoice
     end
   end
 
-  def list_receive_shippers
-    @shippers = @invoice.received_shippers
-    ActiveModelSerializers::SerializableResource.new(@shippers,
-      each_serializer: Users::ListShipperSerializer, scope: {invoice: @invoice,
-      current_user: @current_user})
-  end
-
   def number_of_recipients
     @invoice.number_of_recipients
   end
