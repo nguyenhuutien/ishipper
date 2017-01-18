@@ -80,7 +80,7 @@ function ajax_show_shipper(link_url){
     dataType: 'text'
   }).done(function(data){
     close_loading_after();
-    $('#id-nht-shipper-shipper').html(data).modal('show');
+    $('#id-nht-invoice-shipper').html(data).modal('show');
     $on_process = false;
   });
 }

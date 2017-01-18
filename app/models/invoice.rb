@@ -62,14 +62,13 @@ class Invoice < ApplicationRecord
   scope :order_by_update_time, -> {order updated_at: :desc}
 
   def received_shippers
-    ids = "SELECT user_id FROM user_invoices WHERE invoice_id = #{self.id} AND
-      status = 'init' AND user_id NOT IN(SELECT black_list_user_id FROM black_lists
-      WHERE owner_id = #{self.user_id})"
-    @received_shippers ||= Shipper.where "id IN (#{ids})"
+    ids = self.user_invoices.init.map{|user_invoice| user_invoice.user_id} - self.user.owner_black_lists.ids
+    shippers = Shipper.where id: ids
   end
 
   def number_of_recipients
-    @number_of_recipients ||= self.received_shippers.size
+    user_invoices.select{|user_invoice| user_invoice.init?}.
+      reject{|user_invoice| self.user.owner_black_lists.include? (user_invoice.user)}.size
   end
 
   class << self

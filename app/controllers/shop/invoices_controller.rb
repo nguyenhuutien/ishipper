@@ -9,7 +9,8 @@ class Shop::InvoicesController < Shop::ShopBaseController
     @load_more = true if params[:load_more] == "1"
     @invoices = search_advanced @invoices, params["search"] if params["search"]
     @invoices = @invoices.order_by_update_time
-    @invoices = @invoices.page(params[:page]).per Settings.per_list_invoice
+    @invoices = @invoices.page(params[:page]).includes(:user, user_invoices: [:user]).
+      per Settings.per_list_invoice
   end
 
   def show
@@ -89,7 +90,6 @@ class Shop::InvoicesController < Shop::ShopBaseController
     params.require(:invoice).permit Invoice::UPDATE_ATTRIBUTES_PARAMS
   end
 
-  private
   def search_advanced list_invoice, data
     if data["column"]
       list_invoice.where("#{data["type"]} like ?", "%#{data["query"]}%").order data["column"]
