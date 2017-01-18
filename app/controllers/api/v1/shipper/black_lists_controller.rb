@@ -16,7 +16,9 @@ class Api::V1::Shipper::BlackListsController < Api::ShipperBaseController
     @black_list = BlackList.new black_list_params
     @black_list.owner = current_user
     if @black_list.save
-      @shop = Users::FavoriteUserSerializer.new @shop, scope: {current_user: current_user}
+      black_user = Simples::User::BlackUsersSimple.new object: @shop,
+        scope: {current_user: current_user}
+      @shop = black_user.simple
       render json: {message: I18n.t("black_list.create_success"),
         data: {user: @shop}, code: 1}, status: 200
     else

@@ -14,8 +14,9 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
     @q[:data] = params[:query]
     @invoices = @invoices.search_invoice @q if params[:query].present?
     @invoices = @invoices.order_by_update_time
-    invoices_simple = Simples::InvoicesSimple.new object: @invoices,
-      scope: {current_user: current_user}
+    invoices_simple = Simples::Invoice::ShipperInvoicesSimple.
+      new object: @invoices.includes(:status_invoice_histories, :user_invoices,
+      user: [:user_setting]), scope: {current_user: current_user}
     @invoices = invoices_simple.simple
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
       data: {invoices: @invoices}, code: 1}, status: 200
@@ -23,7 +24,7 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
 
    def show
     if @invoice.present?
-      invoice_simple = Simples::InvoicesSimple.new object: @invoice,
+      invoice_simple = Simples::Invoice::DetailInvoicesSimple.new object: @invoice,
         scope: {current_user: current_user}
       @invoice = invoice_simple.simple
       render json: {message: I18n.t("invoices.show.success"),

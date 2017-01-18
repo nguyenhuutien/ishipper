@@ -8,7 +8,7 @@ class InvoiceServices::RealtimeVisibilityInvoiceService
   end
 
   def perform
-    Invoices::Realtime_visibilityInvoiceJob.perform_now recipients: @recipients,
+    Invoices::RealtimeVisibilityInvoiceJob.perform_now recipients: @recipients,
       invoice: @invoice, action: @action
   end
 end

@@ -1,6 +1,4 @@
 class Shop::ShopBaseController < ApplicationController
-  include ActionController::Serialization
-
   private
   def check_black_list
     black_user = @invoice.user_invoices - @invoice.user_invoices.init -

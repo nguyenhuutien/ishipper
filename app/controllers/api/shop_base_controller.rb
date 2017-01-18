@@ -1,5 +1,4 @@
 class Api::ShopBaseController < Api::BaseController
-  include ActionController::Serialization
   before_action :verify_shop
 
   private

@@ -3,7 +3,8 @@ class Simples::User::BlackUsersSimple < Simples::UsersSimple
 
   def black_list_id
     if @current_user
-      temp = @current_user.owner_black_lists.find_by_black_list_user_id @object.id
+      temp = @current_user.owner_black_lists.find{|black_list_user|
+        black_list_user.black_list_user_id == @object.id}
       temp ? temp.id : 0
     else
       0

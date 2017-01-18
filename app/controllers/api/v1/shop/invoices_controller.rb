@@ -15,7 +15,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     @q[:data] = params[:query]
     @invoices = @invoices.search_invoice @q if params[:query].present?
     @invoices = @invoices.order_by_update_time
-    invoices_simple = Simples::InvoicesSimple.new object: @invoices.
+    invoices_simple = Simples::Invoice::ShopInvoicesSimple.new object: @invoices.
       includes(:user, :status_invoice_histories), scope: {current_user: current_user}
     @invoices = invoices_simple.simple
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),
@@ -23,7 +23,7 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
   end
 
   def show
-    invoices_simple = Simples::InvoicesSimple.new object: @invoice,
+    invoices_simple = Simples::Invoice::ShopInvoicesSimple.new object: @invoice,
       scope: {current_user: current_user}
     @invoice = invoices_simple.simple
     render json: {message: I18n.t("invoices.show.success"),
@@ -38,8 +38,13 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
       create_invoice_history.perform
       create_status_invoice_history = HistoryServices::CreateStatusInvoiceHistoryService.new invoice: @invoice
       create_status_invoice_history.perform
+
+      invoice_simple = Simples::InvoicesSimple.new object: @invoice,
+        scope: {current_user: current_user}
+      @invoice_simple = invoice_simple.simple
+
       render json: {message: I18n.t("invoices.create.success"),
-        data: {invoice: @invoice}, code: 1}, status: 200
+        data: {invoice: @invoice_simple}, code: 1}, status: 200
 
       @passive_favorites = current_user.passive_favorites
       if @passive_favorites.any?
@@ -47,10 +52,6 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
           recipients: @passive_favorites, status: "favorite", invoice: @invoice, click_action: Settings.invoice_detail
         send_all_notification.perform
       end
-
-      invoice_simple = Simples::InvoicesSimple.new object: @invoice,
-        scope: {current_user: current_user}
-      @invoice = invoice_simple.simple
 
       @shipper_setting = ShipperSetting.near [@invoice.latitude_start, @invoice.longitude_start],
         Settings.max_distance, order: false

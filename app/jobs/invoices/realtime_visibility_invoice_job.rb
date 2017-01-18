@@ -1,4 +1,4 @@
-class Invoices::Realtime_visibilityInvoiceJob < ActiveJob::Base
+class Invoices::RealtimeVisibilityInvoiceJob < ActiveJob::Base
   queue_as :default
 
   def perform args

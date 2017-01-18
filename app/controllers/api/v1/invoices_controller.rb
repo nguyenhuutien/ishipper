@@ -4,8 +4,9 @@ class Api::V1::InvoicesController < Api::BaseController
   def index
     params[:black_list_user_id] = current_user.id
     @invoices = Invoice.search params
-    if invoices.any?
-      invoices_simple = Simples::InvoicesSimple.new object: @invoices,
+    if @invoices.any?
+      invoices_simple = Simples::Invoice::ShipperInvoicesSimple.
+        new object: @invoices.includes(:user_invoices, user: [:user_setting]),
         scope: {current_user: current_user}
       @invoices = invoices_simple.simple
       render json: {message: I18n.t("invoices.messages.get_invoices_success"),

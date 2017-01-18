@@ -1,6 +1,7 @@
 class Simples::Shipper::ShippersSimple < Simples::UsersSimple
   attr_accessor :plate_number, :favorite_user, :actions, :number_finished_invoice,
-    :number_all_invoice, :user_invoice_id
+    :number_all_invoice, :user_invoice_id, :load_five_star, :load_four_star,
+    :load_three_star, :load_two_star, :load_one_star, :sum_rate
 
   def favorite_user
     @favorite_user ||= if @current_user.owner_favorite_lists.

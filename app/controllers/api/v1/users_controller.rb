@@ -23,9 +23,9 @@ class Api::V1::UsersController < Api::BaseController
       shipper_settings = ShipperSetting.near([current_user.user_setting.latitude,
         current_user.user_setting.longitude], Settings.max_distance, order: false).
         includes :shipper
-      users = Shipper.users_by_user_setting shipper_settings
+      users = User.users_by_user_setting(shipper_settings).users_online
     end
-    users_simple = Simples::UsersSimple.new object: users.includes(:user_setting)
+    users_simple = Simples::Shipper::ListShippersSimple.new object: users.includes(:user_setting)
     users = users_simple.simple
     render json: {message: I18n.t("users.messages.get_shipper_success"),
       data: {users: users}, code: 1}, status: 200

@@ -18,18 +18,13 @@ class Supports::User
 
   Settings.rate.list_rate.each do |rate|
     define_method rate do
-      instance_variable_set "@#{rate}", reviews.where(rating_point:
-        Settings.rate.send(rate), review_type: "rate").size unless
+      instance_variable_set "@#{rate}", @current_user.send(rate) unless
         instance_variable_get "@#{rate}"
     end
   end
 
   def sum_rate
-    sum = 0
-    Settings.rate.list_rate.each do |rate|
-      sum += send(rate)
-    end
-    sum
+    @current_user.sum_rate
   end
 
   def user_invoice_id
