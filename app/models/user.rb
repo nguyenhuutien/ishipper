@@ -159,7 +159,10 @@ class User < ApplicationRecord
 
   Settings.rate.list_rate.each do |rate|
     define_method rate do
-      passive_reviews.where(rating_point: Settings.rate.send(rate), review_type: "rate").size
+      instance_variable_set "@#{rate}", passive_reviews.
+        select{|review| review.review_type == "rate" &&
+        review.rating_point == Settings.rate.send(rate)}.size
+      instance_variable_get "@#{rate}"
     end
   end
 

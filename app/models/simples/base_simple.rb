@@ -52,6 +52,12 @@ class Simples::BaseSimple
         end
       end
     end
+
+    self.class.condition.each do |key, value|
+      unless self.send value
+        simples.delete key
+      end
+    end
     simples
   end
 
@@ -69,12 +75,25 @@ class Simples::BaseSimple
   class << self
     def attr_accessor *vars
       @attributes ||= []
+      @condition ||= Hash.new
+      attr_var = []
+      vars.each_with_index.map do |var, i|
+        if vars[i+1] && vars[i+1].class == Hash
+          @condition["#{vars[i]}".to_sym] = vars[i+1][:if]
+          attr_var.push vars[i+1]
+        end
+      end
+      vars -= attr_var
       @attributes.concat vars
       super *vars
     end
 
     def attributes
       @attributes
+    end
+
+    def condition
+      @condition
     end
   end
 end

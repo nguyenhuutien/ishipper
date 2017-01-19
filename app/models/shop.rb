@@ -6,10 +6,9 @@ class Shop < User
   has_one :shop_setting, foreign_key: "user_id", dependent: :destroy
 
   def list_shipper_received
-    ids = "SELECT DISTINCT user_invoices.user_id FROM users JOIN invoices ON
-      users.id = invoices.user_id JOIN user_invoices ON
-      user_invoices.invoice_id = invoices.id WHERE users.id = #{self.id}"
-    User.where "id IN (#{ids})"
+    invoice_ids = self.invoices.ids
+    user_invoices = UserInvoice.where(invoice_id: invoice_ids).select(:user_id).distinct
+    User.where id: user_invoices.map{|user_invoice| user_invoice.user_id}
   end
 
   ["favorite_list", "black_list"].permutation(2).to_a.each do |arg|

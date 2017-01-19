@@ -1,5 +1,5 @@
 <% @shippers.each do |shipper| %>
-  <tr data-id="<%= shipper[:id] %>"  class="shipper_row">
+  <tr data-id="<%= shipper[:id] %>" class="shipper_row">
     <td>
       <div class="index-shipper-avatar">
         <%= image_tag avatar_profile(shipper[:avatar]), class: "img-responsive" %>
