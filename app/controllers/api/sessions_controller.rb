@@ -16,10 +16,11 @@ class Api::SessionsController < Devise::SessionsController
         sign_in @user, store: false
         generate_user_token
         @user.user_setting.update_attributes signed_in: true
-        serializer = Users::LoginUserSerializer.new(@user,
-          scope: {user_token: @user_token}).as_json
+        users_simple = Simples::User::LoginUsersSimple.
+          new object: @user, scope: {user_token: @user_token}
+        @user = users_simple.simple
         render json: {message: t("api.sign_in.success"),
-          data: {user: serializer}, code: 1}, status: 200
+          data: {user: @user}, code: 1}, status: 200
         return
       else
         render json: {message: t("api.sign_in.not_actived"), data: {}, code: 0},
@@ -41,6 +42,8 @@ class Api::SessionsController < Devise::SessionsController
           shop_settings = UserSetting.near [@user.shipper_setting.latitude,
             @user.shipper_setting.longitude], Settings.max_distance, order: false
           @near_shops = Shop.users_by_user_setting(shop_settings).users_online
+          users_simple = Simples::UsersSimple.new object: @user
+          @user = users_simple.simple
           shipper_is_offline
         end
       end
@@ -66,8 +69,13 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   def shipper_is_offline
-    realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.new recipients: @near_shops,
-      shipper: @serializer, action: Settings.realtime.shipper_offline
+    realtime_visibility_shipper = ShipperServices::RealtimeVisibilityShipperService.
+      new recipients: @near_shops, shipper: @user, action: Settings.realtime.shipper_offline
     realtime_visibility_shipper.perform
+  end
+
+  def load_user_authentication
+    @user = User.includes(:invoices).find_for_database_authentication phone_number: user_params[:phone_number]
+    return phone_number_invalid unless @user
   end
 end
