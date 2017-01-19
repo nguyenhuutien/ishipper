@@ -89,11 +89,11 @@ class Simples::BaseSimple
     end
 
     def attributes
-      @attributes
+      @attributes ||= Array.new
     end
 
     def condition
-      @condition
+      @condition ||= Array.new
     end
   end
 end

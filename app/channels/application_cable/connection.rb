@@ -14,7 +14,8 @@ module ApplicationCable
         user = users_simple.simple
         shop_settings = ShopSetting.near [self.current_user.user_setting.latitude,
           self.current_user.user_setting.longitude], Settings.max_distance, order: false
-        near_shops = Shop.users_by_user_setting(shop_settings).users_online
+        near_shops = Shop.users_by_user_setting(shop_settings).includes :user_tokens
+        near_shops = near_shops.users_online
         ShipperServices::RealtimeVisibilityShipperService.new(recipients: near_shops,
           shipper: user, action: Settings.realtime.shipper_online).perform
       end

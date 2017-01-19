@@ -77,11 +77,12 @@ class Invoice < ApplicationRecord
     end
 
     def search params = {}
-      valid_invoices = Invoice.joins("LEFT JOIN black_lists ON
-        invoices.user_id = black_lists.owner_id")
-        .where("(black_lists.black_list_user_id != ? OR
-        black_lists.black_list_user_id IS NULL) AND status = 'init'", params[:black_list_user_id]).
-        order_by_update_time
+      user_ids = self.init.distinct :user_id
+      black_ids = BlackList.where(owner_id: user_ids).map{|black_list|
+        black_list.owner_id if black_list.black_list_user_id == params[:black_list_user_id]}
+      valid_ids = user_ids - black_ids
+      valid_invoices = self.where user_id: valid_ids
+
       if params[:user].present?
         invoices = valid_invoices.near [params[:user][:latitude],
         params[:user][:longitude]], params[:user][:distance] if
@@ -93,8 +94,8 @@ class Invoice < ApplicationRecord
       elsif params[:invoice].present?
         invoices = valid_invoices
 
-        invoices = valid_invoices.near [params[:invoice][:latitude],
-          params[:invoice][:longitude]], params[:invoice][:radius] if
+        invoice = valid_invoices.near [params[:invoice][:latitude],
+          invoices[:invoice][:longitude]], params[:invoice][:radius] if
           params[:invoice][:latitude] && params[:invoice][:longitude] &&
           params[:invoice][:radius]
 
