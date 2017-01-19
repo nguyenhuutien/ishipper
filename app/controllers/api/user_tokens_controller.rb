@@ -31,6 +31,6 @@ class Api::UserTokensController < Api::BaseController
   def find_user_token
     user_token = UserToken.find_by registration_id: params[:user_token][:registration_id]
     user_token.destroy unless user_token.nil?
-    @user_token = UserToken.find_by authentication_token: request.headers["Authorization"]
+    @user_token ||= UserToken.find_by authentication_token: request.headers["Authorization"]
   end
 end

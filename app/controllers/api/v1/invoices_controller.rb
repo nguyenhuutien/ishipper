@@ -3,7 +3,7 @@ class Api::V1::InvoicesController < Api::BaseController
 
   def index
     params[:black_list_user_id] = current_user.id
-    @invoices = Invoice.search params
+    @invoices = Invoice.includes(:status_invoice_histories).search params
     if @invoices.any?
       invoices_simple = Simples::Invoice::ShipperInvoicesSimple.
         new object: @invoices.includes(:user_invoices, user: [:user_setting]),
