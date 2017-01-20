@@ -27,10 +27,11 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
       if @user.unactive?
         @user.activate
         generate_user_token
-        serializer = Users::LoginUserSerializer.new(@user,
-          scope: {user_token: @user_token}).as_json
+        users_simple = Simples::User::LoginUsersSimple.
+          new object: @user, scope: {user_token: @user_token}
+        @user = users_simple.simple
         render json:
-          {message: t("api.update.success"), data: {user: serializer}, code: 1},
+          {message: t("api.update.success"), data: {user: @user}, code: 1},
           status: 200
       elsif @user.actived?
         render json:
