@@ -35,7 +35,7 @@ invoice:
   length_name: 15
   length_address: 45
   search_attributes:
-    - phone_number
+    - customer_number
     - customer_name
     - name
     - address_start

@@ -1,5 +1,6 @@
 document.addEventListener('turbolinks:load', function() {
   $('.modal').on('show.bs.modal', function() {
+    $('body').css('position', 'fixed').css('width', '100%');
     curModal = this;
     $('.modal').each(function() {
       if (this !== curModal) {
@@ -16,5 +17,9 @@ document.addEventListener('turbolinks:load', function() {
         autohidemode: false,
       });
     }
+  });
+
+  $('.modal').on('hidden.bs.modal', function() {
+    $('body').css('position', '').css('width', '');
   });
 });

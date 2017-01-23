@@ -15,7 +15,7 @@
               placeholder: t("invoices.search") %>
             <div class="nht-options-invoices-search">
               <%= select_tag "search[type]", options_for_select(Settings.invoice.search_attributes.
-                map {|s| [s.humanize, s]}), class: "form-control" %>
+                map {|s| [t("invoices.select.#{s}").to_s, s]}), class: "form-control" %>
             </div>
             <div hidden id="add_more_status_invoice">
               <%= text_field_tag "status", "init" %>

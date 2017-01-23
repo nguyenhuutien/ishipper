@@ -105,7 +105,14 @@ en:
       name: Name of customer
       phone_number: Phone number
     search: Search...
+    select:
+      customer_number: Phone number
+      customer_name: Customer Name
+      name: Invoice name
+      address_start: Address start
+      address_finish: Address finish
   vnd: " VND"
   kg: Kg
   km: " KM"
   none: None
+
