@@ -362,7 +362,7 @@ section#feed_back {
   background-position: center;
   background-repeat: no-repeat;
   padding-bottom: 150px;
-  padding-top: 25px;
+  padding-top: 65px;
 }
 section#feed_back .section-heading {
   color: white;
@@ -783,3 +783,5 @@ fieldset[disabled] .btn-xl.active {
     z-index: 5555;
   }
 }
+
+body { padding-right: 0 !important }
