@@ -23,6 +23,8 @@
         overflow-y: scroll;
         overflow-x: hidden;
         max-height: 80vh;
+        height: 70vh;
+        margin-right: 0px;
 
         .nht-col-left {
 
@@ -56,6 +58,7 @@
 
           .actions {
             text-align: center;
+            margin-bottom: 20px;
 
             .nht-btn-sign_up {
               width: 100%;

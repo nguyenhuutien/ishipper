@@ -1,6 +1,6 @@
 class Simples::UsersSimple < Simples::BaseSimple
   attr_accessor :id, :phone_number, :name, :email, :address, :role, :rate,
-    :current_location, :latitude, :longitude
+    :current_location, :latitude, :longitude, :online
 
   def current_location
     user_setting.current_location
@@ -12,6 +12,10 @@ class Simples::UsersSimple < Simples::BaseSimple
 
   def longitude
     user_setting.longitude
+  end
+
+  def online
+    @object.online?
   end
 
   private
