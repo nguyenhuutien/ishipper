@@ -12,7 +12,7 @@ document.addEventListener('turbolinks:load', function() {
 
     if ($('.td-shipper-show-reviews').length) {
       $('.td-shipper-show-reviews').niceScroll({
-        cursorwidth: "6px",
+        cursorwidth: "10px",
         cursorcolor: "rgba(0, 0, 0, 0.4)",
         autohidemode: false,
       });

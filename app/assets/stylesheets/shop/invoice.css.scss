@@ -18,11 +18,13 @@
 #id-lvc-invoices-show {
   overflow-x: hidden;
   overflow-y: scroll;
+  margin-top: 0px !important;
 
   .lvc-invoice.modal-dialog {
     width: 80%;
     min-width: 80%;
     border-radius: 30px;
+    margin-top: 75px;
 
     .modal-content {
       .back {
@@ -200,10 +202,12 @@
   overflow: hidden;
   border-radius: 10px;
   bottom: 30px;
+  margin-top: 0px !important;
 
-  .modal-dialog{
+  .lvc-invoice{
     width: 70%;
     margin-left: 15%;
+    margin-top: 75px;
 
     .lvc-invoice-title{
       position: relative;
@@ -446,10 +450,12 @@
 
 #id-nht-invoices-index {
   overflow-y: hidden;
+  margin-top: 0px !important;
 
   .modal-dialog {
     min-width: 80%;
     border-radius: 30px;
+    margin-top: 75px;
 
     .modal-content {
 
