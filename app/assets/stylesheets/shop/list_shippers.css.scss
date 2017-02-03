@@ -195,194 +195,200 @@
 }
 #id-hatd-shippers-index {
   overflow-y: hidden;
-  .modal-content {
+  margin-top: 0px !important;
 
-    .index-shipper-header {
-      $height-header: 60px;
+  .index-shipper {
+    margin-top: 75px;
 
-      .index-shipper-title {
-        float: left;
-        margin-left: 10px;
-        vertical-align: middle;
-        font-weight: bold;
-        color: #FFF;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 20px;
-        line-height: 60px;
-      }
-      .hatd-dropdown-actions {
-        float: right;
-        overflow: visible;
-        background-color: #FFF;
-        margin-right: 20px;
-        text-align: center;
-        min-height: 60px;
-        min-width: 80px;
-        cursor: pointer;
+    .modal-content {
 
-        .dropdown-toggle {
-          line-height: 60px;
-          min-width: 120px;
-          background-color: #FFF;
-          border: none;
-        }
+      .index-shipper-header {
+        $height-header: 60px;
 
-        .dropdown-menu-actions {
-          min-width: 120px;
-        }
-
-        a:hover {
-          text-decoration: none;
-          color: #000;
-        }
-
-        li {
-          padding: 5px;
-          padding-left: 10px;
-          cursor: pointer;
-        }
-
-        li:hover {
-          background-color: #f5f5f5;
-
-        }
-      }
-
-    .index-shipper-search {
-        position: relative;
-        float: left;
-        height: $height-header;
-        padding: 13px;
-        width: 45%;
-
-        .input-group {
-          width: 100%;
-
-          .input-group-addon {
-            border: none;
-
-            .icon-search {
-              position: absolute;
-              top: 7px;
-              left: 10px;
-              z-index: 3;
-            }
-          }
-
-          #q_data {
-            padding-left: 30px;
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-          }
-
-          .nht-options-shippers-search {
-            position: absolute;
-            top: 0px;
-            right: 0px;
-
-            #q_type {
-              border-radius: 3px;
-            }
-          }
-        }
-      }
-
-    }
-    .panel {
-
-      .hatd-shippers-table-title {
-        background-color: #f5f5f5;
-
-        .nht-btn-sortable {
-          border: none;
-          background-color: #f5f5f5;
-        }
-
-        th {
+        .index-shipper-title {
+          float: left;
+          margin-left: 10px;
           vertical-align: middle;
+          font-weight: bold;
+          color: #FFF;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 20px;
+          line-height: 60px;
+        }
+        .hatd-dropdown-actions {
+          float: right;
+          overflow: visible;
+          background-color: #FFF;
+          margin-right: 20px;
           text-align: center;
+          min-height: 60px;
+          min-width: 80px;
+          cursor: pointer;
 
-          .s-column-info{
-            cursor: pointer;
-          }
-
-          .reverse {
-            transform: rotate(180deg) !important;
-          }
-
-          strong{
-            font-size: 13px;
-          }
-        }
-      }
-
-      .div-table-content {
-        overflow-y: hidden;
-        max-height: 67vh;
-
-        .index-shipper-table-body {
-          .hatd_dropdown_toggle_shipper {
-            color: #333;
-            background-color: #e6e6e6;
-            border-color: #adadad;
-          }
-          .hatd_dropdown_toggle_shipper:hover {
-            color: #333;
-            background-color: #e6e6e6;
-            border-color: #adadad;
-          }
-          .hatd_dropdown_toggle_black_user {
-            color:#fff;
-            background-color:#d9534f;
-            border-color:#d43f3a;
-          }
-          .hatd_dropdown_toggle_black_user:hover {
-            background-color:#d9534f;
-            border-color:#d43f3a;
-          }
-          .hatd_dropdown_toggle_favorite_user {
-            color:#fff;
-            background-color:#5cb85c;
-            border-color:#4cae4c;
-          }
-          .hatd_dropdown_toggle_favorite_user:hover {
-            background-color:#5cb85c;
-            border-color:#4cae4c;
-          }
-          .hatd-shipper-content-submit {
+          .dropdown-toggle {
+            line-height: 60px;
+            min-width: 120px;
+            background-color: #FFF;
             border: none;
-            background-color: transparent;
           }
-          .hatd-shipper-content-li {
-            display: block;
-            padding: 3px 0;
-            clear: both;
-            font-weight: 400;
-            line-height: 1.42857143;
-            color: #333;
-            white-space: nowrap;
+
+          .dropdown-menu-actions {
+            min-width: 120px;
           }
-          .hatd-shipper-content-li:hover {
-            background-color: rgba(0, 190, 69, 0.2);
+
+          a:hover {
+            text-decoration: none;
+            color: #000;
           }
-          .hatd-shipper-content-label {
-            width: 100%;
+
+          li {
+            padding: 5px;
+            padding-left: 10px;
             cursor: pointer;
-            margin: 0;
-            padding: 0 20px;
+          }
+
+          li:hover {
+            background-color: #f5f5f5;
+
           }
         }
-        .hatd-td {
-          text-align: right;
-          .hatd-dropdown {
-            margin-right: 15%;
+
+      .index-shipper-search {
+          position: relative;
+          float: left;
+          height: $height-header;
+          padding: 13px;
+          width: 45%;
+
+          .input-group {
+            width: 100%;
+
+            .input-group-addon {
+              border: none;
+
+              .icon-search {
+                position: absolute;
+                top: 7px;
+                left: 10px;
+                z-index: 3;
+              }
+            }
+
+            #q_data {
+              padding-left: 30px;
+              box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+              border-top-left-radius: 3px;
+              border-bottom-left-radius: 3px;
+            }
+
+            .nht-options-shippers-search {
+              position: absolute;
+              top: 0px;
+              right: 0px;
+
+              #q_type {
+                border-radius: 3px;
+              }
+            }
           }
-          .hatd-dropdown-menu {
-            right: 0;
-            left: auto;
-            .hatd-form {
-              text-align: right;
+        }
+
+      }
+      .panel {
+
+        .hatd-shippers-table-title {
+          background-color: #f5f5f5;
+
+          .nht-btn-sortable {
+            border: none;
+            background-color: #f5f5f5;
+          }
+
+          th {
+            vertical-align: middle;
+            text-align: center;
+
+            .s-column-info{
+              cursor: pointer;
+            }
+
+            .reverse {
+              transform: rotate(180deg) !important;
+            }
+
+            strong{
+              font-size: 13px;
+            }
+          }
+        }
+
+        .div-table-content {
+          overflow-y: hidden;
+          max-height: 67vh;
+
+          .index-shipper-table-body {
+            .hatd_dropdown_toggle_shipper {
+              color: #333;
+              background-color: #e6e6e6;
+              border-color: #adadad;
+            }
+            .hatd_dropdown_toggle_shipper:hover {
+              color: #333;
+              background-color: #e6e6e6;
+              border-color: #adadad;
+            }
+            .hatd_dropdown_toggle_black_user {
+              color:#fff;
+              background-color:#d9534f;
+              border-color:#d43f3a;
+            }
+            .hatd_dropdown_toggle_black_user:hover {
+              background-color:#d9534f;
+              border-color:#d43f3a;
+            }
+            .hatd_dropdown_toggle_favorite_user {
+              color:#fff;
+              background-color:#5cb85c;
+              border-color:#4cae4c;
+            }
+            .hatd_dropdown_toggle_favorite_user:hover {
+              background-color:#5cb85c;
+              border-color:#4cae4c;
+            }
+            .hatd-shipper-content-submit {
+              border: none;
+              background-color: transparent;
+            }
+            .hatd-shipper-content-li {
+              display: block;
+              padding: 3px 0;
+              clear: both;
+              font-weight: 400;
+              line-height: 1.42857143;
+              color: #333;
+              white-space: nowrap;
+            }
+            .hatd-shipper-content-li:hover {
+              background-color: rgba(0, 190, 69, 0.2);
+            }
+            .hatd-shipper-content-label {
+              width: 100%;
+              cursor: pointer;
+              margin: 0;
+              padding: 0 20px;
+            }
+          }
+          .hatd-td {
+            text-align: right;
+            .hatd-dropdown {
+              margin-right: 15%;
+            }
+            .hatd-dropdown-menu {
+              right: 0;
+              left: auto;
+              .hatd-form {
+                text-align: right;
+              }
             }
           }
         }

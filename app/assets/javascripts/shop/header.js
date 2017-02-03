@@ -16,4 +16,13 @@ document.addEventListener("turbolinks:load", function() {
       }
     });
   }
+
+  $(document).mouseup(function (e) {
+    containers = [$('.nht-dropdown'), $('.nht-notifications')];
+    $.each(containers, function (index, value) {
+      if (!value.is(e.target) && value.has(e.target).length === 0) {
+        value.hide();
+      }
+    });
+  });
 });

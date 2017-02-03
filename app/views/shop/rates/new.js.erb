@@ -1,6 +1,6 @@
 $rate_modal = $('#rate-modal');
 $rate_modal.html('<%= j render "form" %>');
-$rate_modal.modal({backdrop: 'static', keyboard: false, show: true});
+$rate_modal.modal({show: true});
 $('#dis-rate-modal').click(function(){
   event.preventDefault();
   $('#rate-modal').modal('toggle');

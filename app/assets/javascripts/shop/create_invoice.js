@@ -2,7 +2,7 @@ document.addEventListener("turbolinks:load", function() {
   $('.td-button-create-invoice').on('click', function() {
     $('.td-create-invoice-form').addClass('block');
     $('.td-create-invoice-form').niceScroll({
-      cursorwidth: "6px",
+      cursorwidth: "10px",
       cursorcolor: "rgba(0, 0, 0, 0.4)",
       railpadding: {top: 30},
     });

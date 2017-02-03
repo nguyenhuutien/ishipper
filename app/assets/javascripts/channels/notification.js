@@ -81,7 +81,7 @@ document.addEventListener("turbolinks:load", function() {
     $('.dropdown-menu').slideUp(200);
 
     $('.nht-noti-list').niceScroll({
-      cursorwidth: "6px",
+      cursorwidth: "10px",
       cursorcolor: "rgba(0, 0, 0, 0.4)",
       autohidemode: false,
       cursorminheight: 100,

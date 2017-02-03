@@ -1,7 +1,13 @@
 document.addEventListener('turbolinks:load', function() {
   $('.modal').on('shown.bs.modal', function () {
     $('.div-table-content').niceScroll({
-      cursorwidth: "6px",
+      cursorwidth: "10px",
+      cursorcolor: "rgba(0, 0, 0, 0.4)",
+      railpadding: {top: 0},
+    });
+
+    $('.modal-content .form').niceScroll({
+      cursorwidth: "10px",
       cursorcolor: "rgba(0, 0, 0, 0.4)",
       railpadding: {top: 0},
     });
