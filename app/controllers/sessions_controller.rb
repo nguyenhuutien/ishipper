@@ -16,6 +16,10 @@ class SessionsController < Devise::SessionsController
       @user ||= User.new
       @user.errors.add :phone_number, t("users.invalid")
     end
+
+    respond_to do |format|
+      format.html {render :new if @user.errors.any?}
+    end
   end
 
   def destroy

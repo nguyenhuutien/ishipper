@@ -1,0 +1,71 @@
+<div class="nht-sign_up img-responsive">
+  <div class="nht-sign_up-form row">
+    <div class="col-md-7 col-sm-7 col-xs-12 nht-col-left">
+      <%= form_for @user, url: user_registration_path do |f| %>
+        <%= render "shared/error_messages", object: @user %>
+
+        <div class="input">
+          <%= f.label :phone_number %><br/>
+          <div class="nht-input">
+            <i class="fa fa-phone-square nht-sign_up-icon"></i>
+            <%= f.text_field :phone_number, autofocus: true,
+              class: "form-control sign_up-input" %>
+          </div>
+        </div>
+
+        <div class="input">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> <%= t "devise.character" %>)</em>
+          <% end %><br/>
+          <div class="nht-input">
+            <i class="fa fa-key nht-sign_up-icon"></i>
+            <%= f.password_field :password, autocomplete: "off",
+              class: "form-control sign_up-input" %>
+          </div>
+        </div>
+
+        <div class="input">
+          <%= f.label :password_confirmation %><br />
+          <div class="nht-input">
+            <i class="fa fa-key nht-sign_up-icon"></i>
+            <%= f.password_field :password_confirmation, autocomplete: "off",
+              class: "form-control sign_up-input" %>
+          </div>
+        </div>
+
+        <div class="input">
+          <%= f.label :name %><br />
+          <div class="nht-input">
+            <i class="fa fa-info nht-sign_up-icon"></i>
+            <%= f.text_field :name,
+              class: "form-control sign_up-input" %>
+          </div>
+        </div>
+
+        <div class="input">
+          <%= f.label :address %><br />
+          <div class="nht-input">
+            <i class="fa fa-university nht-sign_up-icon"></i>
+            <%= f.text_field :address, class: "form-control sign_up-input",
+              id: "address" %>
+          </div>
+        </div>
+
+        <%= f.hidden_field :role, value: Settings.role %>
+
+        <div class="actions">
+          <%= f.submit t("devise.sign_up"),
+            class: "hvr-pulse-shrink btn btn-primary nht-btn-sign_up" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-md-5 col-sm-5 col-xs-12 nht-col-right">
+      <div class="nht-shared">
+        <%= render "devise/shared/links_html" %>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

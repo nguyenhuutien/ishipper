@@ -15,6 +15,10 @@ class RegistrationsController < Devise::RegistrationsController
       flash[:danger] = t "devise.cant_signup"
       redirect_to root_path
     end
+
+    respond_to do |format|
+      format.html {render :new if @user.errors.any?}
+    end
   end
 
   private

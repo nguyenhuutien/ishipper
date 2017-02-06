@@ -4,7 +4,7 @@ class Shop::ListShippersController < Shop::ShopBaseController
   def index
     @shippers = @invoice.received_shippers
     shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers.
-      includes(:user_invoices, :user_setting),
+      includes(:user_invoices, :user_setting, :user_tokens),
       scope: {current_user: current_user, invoice: @invoice}
     @shippers = shippers_simple.simple
     if @shippers.blank?

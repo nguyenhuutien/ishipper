@@ -9,7 +9,7 @@ class Shop::ShippersController < Shop::ShopBaseController
     @shippers = @shippers.page(params[:page]).per Settings.per_list_shipper
     @supports = Supports::ShipperIndex.new params, @shippers.total_pages
     shippers_simple = Simples::Shipper::ShippersSimple.new object: @shippers.
-      includes(:user_invoices, :user_setting), scope: {current_user: current_user}
+      includes(:user_invoices, :user_setting, :user_tokens), scope: {current_user: current_user}
     @shippers = shippers_simple.simple
     @current_type = params[:type].present? ? params[:type] : Settings.shipper.types.list_shipper_received
   end
