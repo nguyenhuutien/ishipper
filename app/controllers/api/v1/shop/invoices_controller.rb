@@ -17,7 +17,8 @@ class Api::V1::Shop::InvoicesController < Api::ShopBaseController
     @invoices = @invoices.search_invoice @q if params[:query].present?
     if @invoices.any?
       invoices_simple = Simples::Invoice::ShopInvoicesSimple.new object: @invoices.
-        includes(:user, :status_invoice_histories, user_invoices: [user: [:user_setting]])
+        includes(:user, :status_invoice_histories, user_invoices: [user:
+        [:user_setting, :user_tokens]])
       @invoices = invoices_simple.simple
     end
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),

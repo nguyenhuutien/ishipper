@@ -6,7 +6,8 @@ class Api::V1::Shipper::FavoriteListsController < Api::ShipperBaseController
   def index
     @users = current_user.favorite_list_users
     users_simple = Simples::User::FavoriteUsersSimple.
-      new object: @users.includes(:user_setting), scope: {current_user: current_user}
+      new object: @users.includes(:user_setting, :user_tokens),
+      scope: {current_user: current_user}
     @users = users_simple.simple
     render json: {message: I18n.t("favorite_list.get_favorite_list_success"),
       data: {users: @users}, code: 1}, status: 200

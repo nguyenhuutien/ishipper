@@ -17,7 +17,7 @@ class Api::V1::Shipper::InvoicesController < Api::ShipperBaseController
     if @invoices.any?
       invoices_simple = Simples::Invoice::ShipperInvoicesSimple.
         new object: @invoices.includes(:status_invoice_histories, :user_invoices,
-        user: [:user_setting]), scope: {current_user: current_user}
+        user: [:user_setting, :user_tokens]), scope: {current_user: current_user}
       @invoices = invoices_simple.simple
     end
     render json: {message: I18n.t("invoices.messages.get_invoices_success"),

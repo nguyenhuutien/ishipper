@@ -77,7 +77,7 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   def load_user_authentication
-    @user = User.includes(:invoices).find_for_database_authentication phone_number: user_params[:phone_number]
+    @user = User.find_for_database_authentication phone_number: user_params[:phone_number]
     return phone_number_invalid unless @user
   end
 end
