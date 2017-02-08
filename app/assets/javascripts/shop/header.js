@@ -18,7 +18,8 @@ document.addEventListener("turbolinks:load", function() {
   }
 
   $(document).mouseup(function (e) {
-    containers = [$('.nht-dropdown'), $('.nht-notifications')];
+    containers = [$('.nht-dropdown'), $('.nht-notifications'),
+      $('.nht-dropdown-menu-invoices-status'), $('.hatd-dropdown-menu-actions')];
     $.each(containers, function (index, value) {
       if (!value.is(e.target) && value.has(e.target).length === 0) {
         value.hide();

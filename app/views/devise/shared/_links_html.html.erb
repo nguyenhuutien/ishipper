@@ -1,13 +1,13 @@
 <% if devise_mapping.registerable? && controller_name != "registrations" %>
   <p><%= t :td_signup %></p>
   <%= link_to t("devise.sign_up"), new_user_registration_path,
-    class:"btn btn-primary hvr-pulse-shrink" %><br />
+    class: "btn btn-primary base-color hvr-pulse-shrink" %><br />
 <% end %>
 
 <% unless controller_name == "sessions" %>
   <p><%= t :td_login %></p>
   <%= link_to t("devise.login"), new_user_session_path,
-    class:"btn btn-primary hvr-pulse-shrink" %><br />
+    class: "btn btn-primary base-color hvr-pulse-shrink" %><br />
 <% end %>
 
 <% if devise_mapping.recoverable? &&

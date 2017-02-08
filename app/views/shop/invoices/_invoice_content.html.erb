@@ -36,11 +36,11 @@
   <tr class="lvc-invoive-info">
     <td>
       <b><%= t "invoices._shipping_price" %>: </b><br>
-      <%= invoice.shipping_price %>
+      <%= number_to_currency invoice.shipping_price %>
     </td>
     <td>
       <b><%= t "invoices._price" %>: </b><br>
-      <%= invoice.price %>
+      <%= number_to_currency invoice.price %>
     </td>
     <td>
       <b><%= t "invoices._delivery_time" %>: </b><br>
