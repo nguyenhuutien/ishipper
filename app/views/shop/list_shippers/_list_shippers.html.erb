@@ -49,7 +49,8 @@
                 <td>
                   <%= form_tag shop_user_invoice_path(shipper[:user_invoice_id]),
                     method: :patch, remote: true, id: "accept_user_invoice" do %>
-                    <%= button_tag type: "submit", class: "btn btn-primary loading-after" do %>
+                    <%= button_tag type: "submit", class: "btn btn-primary
+                      base-color loading-after" do %>
                       <i class="ace-icon fa fa-check"></i>
                       <span><%= t "invoices.accept_shipper.button" %></span>
                     <% end %>

@@ -99,6 +99,7 @@
 
           #search_shipper_query{
             padding-left: 30px;
+            border-radius: 15px;
           }
         }
       }
@@ -286,8 +287,8 @@
               top: 0px;
               right: 0px;
 
-              #q_type {
-                border-radius: 3px;
+              #search_type {
+                border-radius: 15px;
               }
             }
           }
