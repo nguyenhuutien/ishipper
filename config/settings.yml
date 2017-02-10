@@ -110,3 +110,8 @@ type_update:
 per_list_invoice: 10
 per_list_shipper: 10
 date_format: "%d/%m/%Y"
+country_code:
+  - "+84"
+  - "+82"
+  - "+83"
+  - "+86"

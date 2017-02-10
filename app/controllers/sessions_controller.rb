@@ -18,6 +18,7 @@ class SessionsController < Devise::SessionsController
     end
 
     respond_to do |format|
+      format.js
       format.html {render :new if @user.errors.any?}
     end
   end

@@ -16,11 +16,13 @@
           <div id="nht-log_in-errors"></div>
 
           <div class="input">
+            <%= select_tag :country_code, options_for_select(
+              Settings.country_code), class: "form-control nht-country-code" %>
             <%= f.label :phone_number %><br/>
             <div class="nht-input">
               <i class="fa fa-phone-square nht-log_in-icon"></i>
               <%= f.text_field :phone_number, autofocus: true,
-                class: "form-control log_in-input" %>
+                class: "form-control log_in-input-phone" %>
             </div>
           </div>
 
