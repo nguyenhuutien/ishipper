@@ -24,6 +24,10 @@ document.addEventListener("turbolinks:load", function() {
       }
     });
   });
+
+  $('#myModal-edit-password').on('hidden.bs.modal', function(){
+    $('#hatd-update-password-error').html('');
+  });
 });
 
 function readURL(input) {

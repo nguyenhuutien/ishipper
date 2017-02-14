@@ -1,0 +1,46 @@
+<div class="modal-dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-content">
+    <div class="header">
+      <div class="close">
+        <%= link_to "#", data: {dismiss: "modal"} do %>
+          <i><%= image_tag "cut.png" %></i>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+      <h2 class="text-center"><%= t "devise.resend_email" %></h2>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 nht-col-left">
+
+        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name),
+          remote: true, html: { method: :post }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field align-center">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true,
+              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit t("devise.send") , class: "btn btn-primary base-color hvr-pulse-shrink" %>
+          </div>
+        <% end %>
+
+        <div class="row align-center">
+          <div class="col-md-6 col-xs-6">
+            <p><%= t :td_signup %></p>
+            <%= link_to t("devise.sign_up"), new_user_registration_path, remote: true,
+              class: "btn btn-primary base-color hvr-pulse-shrink" %><br />
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <p><%= t :td_login %></p>
+            <%= link_to t("devise.login"), new_user_session_path, remote: true,
+              class: "btn btn-primary base-color hvr-pulse-shrink" %><br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

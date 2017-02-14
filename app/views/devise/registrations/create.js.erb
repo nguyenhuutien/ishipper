@@ -1,4 +1,5 @@
 <% if @user.errors.full_messages.present? %>
   $('#nht-sign_up-errors').html('<%= j render "shared/error_messages", object: @user %>');
+  $('#sign-up-scroll').scrollTop(0);
   reversePhoneNumber();
 <% end %>
