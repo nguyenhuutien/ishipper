@@ -18,5 +18,5 @@
 
 <% if devise_mapping.confirmable? && controller_name != "confirmations" %>
   <%= link_to t("devise.not_recevive"),
-    new_confirmation_path(resource_name) %><br />
+    new_confirmation_path(resource_name), remote: true %><br />
 <% end %>

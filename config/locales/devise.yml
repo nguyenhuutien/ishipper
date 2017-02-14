@@ -21,3 +21,5 @@ en:
     character: characters minimum
     cant_signup: You can't Sign Up!!!
     signup: Sign Up successfully
+    resend_email: Resend confirmation instructions
+    send: Send
