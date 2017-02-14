@@ -22,13 +22,24 @@
           min-height: 40px;
           position: relative;
 
+          #country_code {
+            border: none;
+            border-right: 1px solid #ccc;
+            position: absolute;
+            width: 20% !important;
+            top: 1px;
+            left: 2px;
+            z-index: 2;
+            height: 43px;
+          }
+
           .fa-info {
             margin-left: 6px;
           }
 
           .nht-log_in-icon {
             position: absolute;
-            left: 15px;
+            right: 15px;
             top: 10px;
             font-size: 1.6em;
             z-index: 3;
@@ -37,7 +48,15 @@
           .log_in-input {
             min-height: 45px;
             border-radius: 5px;
-            padding-left: 45px;
+            padding-left: 10px;
+            padding-right: 45px;
+          }
+
+          .log_in-input-phone {
+            min-height: 45px;
+            border-radius: 5px;
+            padding-left: 100px;
+            padding-right: 45px;
           }
         }
       }
@@ -74,8 +93,19 @@
 
         .nht-input {
           width: 100%;
-          min-height: 40px;
+          min-height: 45px;
           position: relative;
+
+          #country_code {
+            border: none;
+            border-right: 1px solid #ccc;
+            position: absolute;
+            width: 20% !important;
+            top: 1px;
+            left: 2px;
+            z-index: 2;
+            height: 43px;
+          }
 
           .fa-info {
             margin-left: 6px;
@@ -83,7 +113,7 @@
 
           .nht-sign_up-icon {
             position: absolute;
-            left: 15px;
+            right: 15px;
             top: 10px;
             font-size: 1.6em;
             z-index: 3;
@@ -92,7 +122,15 @@
           .sign_up-input {
             min-height: 45px;
             border-radius: 5px;
-            padding-left: 45px;
+            padding-left: 10px;
+            padding-right: 45px;
+          }
+
+          .sign_up-input-phone {
+            min-height: 45px;
+            border-radius: 5px;
+            padding-left: 100px;
+            padding-right: 45px;
           }
         }
       }

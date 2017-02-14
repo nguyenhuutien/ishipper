@@ -17,6 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     respond_to do |format|
+      format.js
       format.html {render :new if @user.errors.any?}
     end
   end
