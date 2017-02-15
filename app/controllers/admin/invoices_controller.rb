@@ -4,7 +4,10 @@ class Admin::InvoicesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @invoices = Invoice.order_by_time.page(params[:page]).per Settings.per_page
+    @search = Invoice.search(params[:q])
+    @invoices = @search.result(distinct: true).order_by_time.page(params[:page]).per Settings.per_page
+    @search.build_condition if @search.conditions.empty?
+    @search.build_sort if @search.sorts.empty?
   end
 
   def show

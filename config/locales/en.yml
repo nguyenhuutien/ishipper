@@ -91,3 +91,11 @@ en:
   button_nav:
     back: Back
   _loading: Loading
+  search_ransack:
+    sort: Sort
+    add_conditions : Add Conditions
+    search: Search
+    remove: Remove
+    change_view:
+      hide: Hide search
+      show: Show search

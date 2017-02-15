@@ -3,7 +3,10 @@ class Admin::UsersController < ApplicationController
   before_action :correct_user, only: [:show, :update]
 
   def index
-    @users = User.sort_by_report_desc.page(params[:page]).per Settings.per_page
+    @search = User.search(params[:q])
+    @users = @search.result(distinct: true).sort_by_report_desc.page(params[:page]).per Settings.per_page
+    @search.build_condition if @search.conditions.empty?
+    @search.build_sort if @search.sorts.empty?
   end
 
   def show
