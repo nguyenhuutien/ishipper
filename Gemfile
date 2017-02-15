@@ -25,6 +25,7 @@ gem "ckeditor"
 gem "i18n-js", ">= 3.0.0.rc11"
 gem "bootstrap-kaminari-views"
 gem "remotipart", "~> 1.3", ">= 1.3.1"
+gem "ransack"
 
 group :development, :test do
   gem "pry"

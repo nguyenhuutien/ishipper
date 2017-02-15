@@ -1,8 +1,25 @@
-<div class="td-manage-user col-xs-10 col-sm-10 col-md-10 col-lg-10
+<div class="lvc-admin-content col-xs-10 col-sm-10 col-md-10 col-lg-10
   col-xs-offset-4 col-sm-offset-3 col-md-offset-2 col-lg-offset-2">
   <h1 class="text-center">
     <%= t "manage_invoices.index.title" %>
   </h1>
+  <hr>
+  <div class="hs-search" status="show" data="<%= t("search_ransack.change_view").to_json %>">
+    <%= t "search_ransack.change_view.hide" %>
+  </div>
+  <%= search_form_for [:admin, @search] do |f| %>
+    <%= f.condition_fields do |c| %>
+      <%= render "condition_fields", f: c %>
+    <% end %>
+    <p><%= link_to_add_fields t("search_ransack.add_conditions"), f, :condition %></p>
+    <div class="field">
+      <%= t "search_ransack.sort" %>
+      <%= f.sort_fields do |s| %>
+        <%= s.sort_select %>
+      <% end %>
+    </div>
+    <div class="actions"><%= f.submit t("search_ransack.search") %></div>
+  <% end %>
   <hr>
 
   <table class="td-table table">

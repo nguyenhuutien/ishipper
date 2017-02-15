@@ -6,3 +6,31 @@
 .td-background-highlight {
   background-color: white;
 }
+
+.lvc-admin-content{
+  padding: 50px;
+  .hs-search{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  form{
+    .field{
+      .remove_fields{
+        padding: 5px;
+      }
+    }
+
+    .add_fields{
+      margin-top: 10px;
+      padding: 5px;
+    }
+
+    .actions{
+      input{
+        margin-top: 10px;
+        padding: 5px;
+      }
+    }
+  }
+}
