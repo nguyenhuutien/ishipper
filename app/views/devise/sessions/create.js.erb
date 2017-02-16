@@ -1,4 +1,3 @@
 <% if @user.errors.full_messages.present? %>
   $('#nht-log_in-errors').html('<%= j render "shared/error_messages", object: @user %>');
-  reversePhoneNumber();
 <% end %>

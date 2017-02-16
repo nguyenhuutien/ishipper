@@ -10,7 +10,9 @@
             <i class="fa fa-phone-square nht-log_in-icon"></i>
             <%= select_tag :country_code, options_for_select(
               Settings.country_code), class: "form-control nht-country-code" %>
-            <%= f.text_field :phone_number, autofocus: true,
+            <%= text_field_tag :unphone_number, "",
+              class: "form-control log_in-input-phone" %>
+            <%= f.hidden_field :phone_number, autofocus: true,
               class: "form-control log_in-input-phone" %>
           </div>
         </div>
