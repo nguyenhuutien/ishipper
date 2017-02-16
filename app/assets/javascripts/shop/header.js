@@ -18,11 +18,13 @@ document.addEventListener("turbolinks:load", function() {
   }
 
   $(document).mouseup(function (e) {
-    containers = [$('.nht-dropdown'), $('.nht-notifications'),
-      $('.nht-dropdown-menu-invoices-status'), $('.hatd-dropdown-menu-actions')];
+    containers = [$('.td-notification-index-icon'), $('.td-a'),
+      $('.nht-dropdown-toggle-invoices-status'), $('.hatd-toggle')];
     $.each(containers, function (index, value) {
-      if (!value.is(e.target) && value.has(e.target).length === 0) {
-        value.hide();
+      if (!value.is(e.target) && value.has(e.target).length === 0 &&
+        !value.next().is(e.target.parentElement)) {
+        value.removeClass('fa-globe-focus');
+        value.next().hide();
       }
     });
   });

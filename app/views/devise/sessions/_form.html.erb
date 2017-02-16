@@ -21,7 +21,9 @@
             <%= f.label :phone_number %><br/>
             <div class="nht-input">
               <i class="fa fa-phone-square nht-log_in-icon"></i>
-              <%= f.text_field :phone_number, autofocus: true,
+              <%= text_field_tag :unphone_number, "",
+                class: "form-control log_in-input-phone" %>
+              <%= f.hidden_field :phone_number, autofocus: true,
                 class: "form-control log_in-input-phone" %>
             </div>
           </div>
