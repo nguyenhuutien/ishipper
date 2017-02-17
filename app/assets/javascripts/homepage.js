@@ -1,4 +1,5 @@
 document.addEventListener("turbolinks:load", function() {
+  $allow_reload_data = false;
   on_loading_after();
   on_reload_data();
   var flash = function slide_up_flash(){
@@ -56,10 +57,12 @@ function order_reload_data(link){
 }
 
 function reload_data_by_request(){
-  $('#area_hidden').children().trigger('click');
+  if($allow_reload_data)
+    $('#area_hidden').children().trigger('click');
 }
 
 function reset_reload_data(){
+  $allow_reload_data = false;
   $('#area_hidden').html('');
 }
 

@@ -1,6 +1,7 @@
 clear_then_show_flash('<%= j render "shared/flash_mesage" %>');
 <% if @invoice.type_update == Settings.type_update.status %>
   $('#id-lvc-invoices-show').html('<%= j render @invoice %>');
+  $allow_reload_data = true;
 <% elsif @invoice.type_update == Settings.type_update.invoice %>
   $('.lvc-back-edit-modal').trigger('click');
 <% end %>
