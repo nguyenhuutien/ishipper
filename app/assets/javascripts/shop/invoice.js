@@ -64,6 +64,8 @@ function dropMenuStatus() {
     reset_invoice_search();
     $current_invoice_status = $(this).attr('data');
     $('#add_more_status_invoice').html('<input name="status" value="' + $current_invoice_status + '" />');
+    link = '/shop/invoices/status/' + $current_invoice_status;
+    $('#area_hidden').html('<a data-remote="true" href="' + link + '"></a>');
     $('#form-search-invoice').submit();
   });
 
