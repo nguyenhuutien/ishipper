@@ -17,76 +17,82 @@
 
 #id-lvc-invoices-show {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
   margin-top: 0px !important;
 
   .lvc-invoice.modal-dialog {
     width: 80%;
     min-width: 80%;
-    border-radius: 30px;
     margin-top: 75px;
+    border-radius: 3px;
 
     .modal-content {
-      .back {
-        float: left;
+      .nht-invoice-detail-box {
+        margin-top: 60px;
+        height: 76vh;
+        overflow-y: scroll;
 
-        .btn-back {
-          padding: 17px;
-          color: #FFF;
-          background-color: transparent;
-          border: none;
+        .back {
+          float: left;
 
-          .nht-icon {
-            font-size: 25px !important;
+          .btn-back {
+            padding: 17px;
+            color: #FFF;
+            background-color: transparent;
+            border: none;
+
+            .nht-icon {
+              font-size: 25px !important;
+            }
           }
         }
-      }
 
-      .show-invoice-action {
-        float: right;
-        padding: 10px;
-        display: flex;
-
-        .invoice-status-change{
+        .show-invoice-action {
           float: right;
-        }
+          padding: 10px;
+          display: flex;
 
-        .invoice-status-change:hover{
-          color: white;
-        }
+          .invoice-status-change{
+            float: right;
+          }
 
-        #lvc-rate-invoice-form{
-          float: right;
-        }
-
-        #lvc-report-invoice{
-
-          a:hover{
+          .invoice-status-change:hover{
             color: white;
           }
 
-          float: right;
-        }
-
-        .invoice-status-change {
-          margin: 10px;
-        }
-
-        .nht-invoice-rate {
-          padding: 5px;
-          background-color: #FFF;
-          width: 100%;
-
-          .nht-star {
-            color: #f3ce51;
+          #lvc-rate-invoice-form{
+            float: right;
           }
 
-          #avatar {
-            margin-bottom: 10px;
+          #lvc-report-invoice{
+
+            a:hover{
+              color: white;
+            }
+
+            float: right;
           }
 
-          .nht-owner-rate {
-            text-align: center;
+          .invoice-status-change {
+            margin: 10px;
+          }
+
+          .nht-invoice-rate {
+            padding: 5px;
+            background-color: #FFF;
+            width: 100%;
+
+            .nht-star {
+              color: #f3ce51;
+            }
+
+            #avatar {
+              margin-bottom: 10px;
+            }
+
+            .nht-owner-rate {
+              text-align: center;
+            }
           }
         }
       }
@@ -94,9 +100,11 @@
       .lvc-invoice-title {
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
-        position: relative;
+        position: fixed;
         min-height: 60px;
         min-width: 560px;
+        width: 100%;
+        z-index: 2;
 
         .lvc-invoice-search {
           position: relative;
