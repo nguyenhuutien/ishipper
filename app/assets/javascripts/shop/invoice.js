@@ -12,6 +12,12 @@ document.addEventListener('turbolinks:load', function() {
       railpadding: {top: 0},
     });
 
+    $('.nht-invoice-detail-box').niceScroll({
+      cursorwidth: "10px",
+      cursorcolor: "rgba(0, 0, 0, 0.4)",
+      railpadding: {top: 0},
+    });
+
     $('.close').on('click', function(event) {
       event.preventDefault();
       $('.modal').each(function() {
