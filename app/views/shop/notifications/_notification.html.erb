@@ -1,0 +1,25 @@
+<div class="shop_invoice_row" id="<%= notification.invoice_id %>">
+  <li class="nht-notification notification-<%= notification.id %>
+    <%= notification.read %>-notification ">
+    <span class="col-md-2 col-lg-2 nht-notification-avatar">
+      <%= image_tag avatar_profile(notification.owner.avatar.url),
+        id: "avatar-#{notification.id}", class: "img-responsive nht-avatar" %>
+      <div class="clearfix"></div>
+    </span>
+    <span class="col-md-10 col-lg-10 nht-notification-content">
+      <div class="content">
+        <b><%= notification.owner.name %></b>
+        <%= t "notifications.web.#{notification.status}" %>
+        <b><%= truncate notification.invoice.name,
+          length: Settings.length_notification %></b>
+      </div>
+      <div class="small">
+        <i class="td-noti-time-ago">
+          <%= time_ago_in_words notification.created_at %>
+        </i>
+      </div>
+    </span>
+    <div class="clearfix"></div>
+  </li>
+  <div class="clearfix"></div>
+</div>

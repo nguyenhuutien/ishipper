@@ -1,6 +1,9 @@
 module Authenticable
   def current_user
-    @current_user ||= User.find_by authentication_token: request.headers["Authorization"]
+    @user_token ||= UserToken.includes(:user).find_by authentication_token: request.headers["Authorization"]
+    if @user_token
+      @current_user ||= @user_token.user
+    end
   end
 
   def authenticate_with_token!

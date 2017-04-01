@@ -1,0 +1,104 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="nht-invoices-index-header base-color">
+      <div class="nht-invoices-title">
+        <%= t("invoices.status", status: (@status ? @status : Settings.invoice.status.all)).upcase %>
+      </div>
+
+      <div class="nht-invoices-search">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-search nht-icon-search" aria-hidden="true"></i>
+          </span>
+          <%= form_tag shop_invoices_path, method: :get, remote: true, id: "form-search-invoice" do %>
+            <%= text_field_tag "search[query]", "", class: "form-control", id: "search_invoice_query",
+              placeholder: t("invoices.search") %>
+            <div class="nht-options-invoices-search">
+              <%= select_tag "search[type]", options_for_select(Settings.invoice.search_attributes.
+                map {|s| [t("invoices.select.#{s}").to_s, s]}), class: "form-control" %>
+            </div>
+            <div hidden id="add_more_status_invoice">
+              <%= text_field_tag "status", "init" %>
+            </div>
+            <div hidden id="add_more_column_invoice"></div>
+            <div hidden id="add_more_loadmore_invoice"></div>
+            <div hidden id="add_more_page_invoice"></div>
+        <% end %>
+        </div>
+      </div>
+
+      <div class="dropdown nht-dropdown-invoices-status">
+        <button class="dropdown-toggle nht-dropdown-toggle-invoices-status" data-toggle="dropdown">
+          <b><%= (@status ? @status : Settings.invoice.status.all).capitalize %></b>
+          <b class="caret"></b>
+        </button>
+
+        <ul class="dropdown-menu nht-dropdown-menu-invoices-status">
+          <li class="nht-item-invoices-status" data="all">
+            <b><%= Settings.invoice.status.all.capitalize %></b>
+          </li>
+          <% Settings.invoice_status.status.each do |status| %>
+            <li class="nht-item-invoices-status" data="<%= status %>">
+              <b><%= status.capitalize %></b>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="close">
+        <%= link_to "#", data: {dismiss: "modal"} do %>
+          <i><%= image_tag "cut.png" %></i>
+        <% end %>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="panel panel-default">
+      <table class="table table-condensed" >
+        <thead>
+          <tr class="nht-invoice-table-title">
+            <th>
+              <strong class="i-column-info" data="name">
+                <%= t "invoices.name_invoice" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="created_at">
+                <%= t "invoices.created_at" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="customer_name">
+                <%= t "invoices.customers.name" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="customer_number">
+                <%= t "invoices.customers.phone_number" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="i-column-info" data="status">
+                <%= t "invoices._status" %>
+              </strong>
+            </th>
+            <th>
+              <strong>
+                <%= t "invoices.action" %>
+              </strong>
+            </th>
+          </tr>
+        </thead>
+      </table>
+
+      <div class="div-table-content load-more-invoice">
+        <table class="table table-condensed">
+          <tbody class="nht-table-invoice-body" id="nht-table-invoice-content">
+            <%= render "invoice_content" %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+en:
+  status_history:
+    init: Đối tác bán hàng đã tạo đơn hàng thành công
+    waiting: Đơn vị vận chuyển đã được chấp nhận và chờ đến lấy hàng
+    shipping: Đơn vị vận chuyển đang giao hàng
+    shipped: Đơn vị vận chuyển đã giao hàng thành công
+    finished: Đối tác bán hàng đã xác nhận cho đơn hàng
+    cancel: Đơn hàng đã bị hủy

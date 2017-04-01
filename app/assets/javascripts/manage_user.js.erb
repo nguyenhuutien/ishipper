@@ -1,0 +1,22 @@
+document.addEventListener("turbolinks:load", function() {
+  $('.td-manage-status').each(function(datakey){
+    var check_key = $(this).data('key');
+    if(check_key == 0) {$(this).addClass('btn btn-info')}
+    if(check_key == 1) {$(this).addClass('btn btn-primary')}
+    if(check_key == 2) {$(this).addClass('btn btn-warning')}
+    if(check_key == 3) {$(this).addClass('btn btn-danger')}
+  });
+
+  $('.td-manage-user-button').each(function(datakey){
+    var check_key = $(this).data('key');
+    if(check_key == 0) {$(this).addClass('btn btn-info')}
+    if(check_key == 1) {$(this).addClass('btn btn-primary')}
+    if(check_key == 2) {$(this).addClass('btn btn-warning')}
+    if(check_key == 3) {$(this).addClass('btn btn-danger')}
+  });
+
+  $('.td-table-data').each(function(datakey){
+    var check_report = $(this).data('report');
+    if(check_report != 0) {$(this).addClass('td-background-highlight')}
+  });
+});

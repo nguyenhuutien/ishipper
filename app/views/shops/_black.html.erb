@@ -1,0 +1,14 @@
+<ul id="black-users">
+  <% blacks.each do |user| %>
+    <li class="user-black-form">
+      <%= link_to user do %>
+        <div class="user-avatar">
+          <%= image_tag "profile.jpg", id: "user-avatar" %>
+        </div>
+        <div class="user-name">
+          <%= user.name %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

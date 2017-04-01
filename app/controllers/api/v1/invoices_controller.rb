@@ -3,12 +3,14 @@ class Api::V1::InvoicesController < Api::BaseController
 
   def index
     params[:black_list_user_id] = current_user.id
-    invoices = Invoice.search params
-    if invoices.any?
-      serializers = ActiveModelSerializers::SerializableResource.new(invoices,
-        each_serializer: InvoiceSerializer, scope: current_user).as_json
+    @invoices = Invoice.load_init_invoice params
+    if @invoices.any?
+      invoices_simple = Simples::Invoice::ShipperInvoicesSimple.
+        new object: @invoices.includes(:status_invoice_histories, :user_invoices,
+        user: [:user_setting, :user_tokens]), scope: {current_user: current_user}
+      @invoices = invoices_simple.simple
       render json: {message: I18n.t("invoices.messages.get_invoices_success"),
-        data: {invoices: serializers}, code: 1}, status: 200
+        data: {invoices: @invoices}, code: 1}, status: 200
     else
       render json: {message: I18n.t("invoices.messages.get_invoices_fails"),
         data: {}, code: 1}, status: 200

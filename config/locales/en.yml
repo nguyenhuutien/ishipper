@@ -4,11 +4,11 @@
 #
 # To use the locales, use `I18n.t`:
 #
-#     I18n.t 'hello'
+#     I18n.t "hello"
 #
 # In views, this is aliased to just `t`:
 #
-#     <%= t('hello') %>
+#     <%= t("hello") %>
 #
 # To use a different locale, set it with `I18n.locale`:
 #
@@ -20,6 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  datetime: &datetime
+    formats:
+      default: "%d/%m/%Y"
+      short: "%m - %Y"
+      day_month: "%d/%m"
+      long: "%H:%M:%S, %d/%m/%Y"
+
+  date:
+    <<: *datetime
+
+  time:
+    <<: *datetime
+
   hello: "Hello world"
   your_pin: Your PIN is %{pin}
   messages:
@@ -30,3 +43,59 @@ en:
   failed: "false"
   shop_ability: "You are not a shop, you can not perform this action"
   ship_ability: "You are not a shipper, you can not perform this action"
+  error:
+    _error: error
+  _create: Create
+  _update: Update
+  _cancel: Cancel
+  permission_denied: You do not permission to do that
+  number:
+    currency:
+      format:
+        unit: " VND"
+        delimiter: ","
+        separator: "."
+        precision: 0
+        format: "%n%u"
+    precision:
+      format:
+        precision: 1
+    distance:
+      format:
+        precision: 1
+  _your_invoices: Your invoices
+  _profile: Profile
+  close: Close
+  from: "From "
+  to: " to "
+  confirm:
+    you_sure: Are you sure?
+  rate:
+    format:
+    delimiter: ","
+    separator: "."
+  time_ago: ago
+  address: Search address
+  address_start: Shop's address
+  address_finish: Customer's address
+  distance: Distance
+  create_invoice:
+    shop_information: Shop's Information
+    customer_information: Customer's Information
+    invoice_information: Invoice's Information
+  back: Back
+  confirm_invoice:
+    title: Are you sure ?
+    ok: Ok
+    cancel: Cancel
+  button_nav:
+    back: Back
+  _loading: Loading
+  search_ransack:
+    sort: Sort
+    add_conditions : Add Conditions
+    search: Search
+    remove: Remove
+    change_view:
+      hide: Hide search
+      show: Show search

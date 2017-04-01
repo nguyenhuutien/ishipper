@@ -1,0 +1,25 @@
+en:
+  td_login: You have an account?
+  td_signup: Don't have an account?
+  devise:
+    login: Log in
+    log_out: Log out
+    sign_up: Sign up
+    edit: Edit
+    forgot: Forgot your password?
+    not_recevive: Didn't receive confirmation instructions?
+    not_unlock: Didn't receive unlock instructions?
+    omniauth: Sign in with Facebook
+    validate: characters minimum
+    need: (we need your current password to confirm your changes)
+    update: Update
+    unhappy: Unhappy?
+    cancel: Cancel my account
+    currently: Currently waiting confirmation for
+    confirm: Are you sure?
+    back: Back
+    character: characters minimum
+    cant_signup: You can't Sign Up!!!
+    signup: Sign Up successfully
+    resend_email: Resend confirmation instructions
+    send: Send

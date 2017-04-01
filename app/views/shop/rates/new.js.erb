@@ -1,0 +1,25 @@
+$rate_modal = $('#rate-modal');
+$rate_modal.html('<%= j render "form" %>');
+$rate_modal.modal({show: true});
+$('#dis-rate-modal').click(function(){
+  event.preventDefault();
+  $('#rate-modal').modal('toggle');
+});
+
+CKEDITOR.replace('ckeditor');
+$('.nht-review-rate i').on('mouseover', function(evt){
+  var name = this.className.split(' ');
+  name = name[2].split('-');
+  var number = parseInt(name[name.length-1]);
+  if (isNaN(number)) {
+    number = 0;
+  }
+  number++;
+  $('.nht-review-rate i').removeClass('nht-star');
+  var a = $(this);
+  for (var i = 0; i < number; i++) {
+    a.addClass('nht-star');
+    a = a.prev();
+  }
+  $('#rate_rating_point').val(number);
+});

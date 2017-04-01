@@ -1,0 +1,8 @@
+<% Settings.invoice_status.status.each do |status| %>
+  <% if @invoice.send "#{status}?" %>
+    <% Settings.invoice_status.status.without(status).each do |f| %>
+      <%= link_to t("manage_users.edit.#{f}"), admin_invoice_path(invoice: {status: f}),
+        method: :patch, class: "lvc-invoice-action", "data-status": "#{Invoice.statuses[f]}" %>
+    <% end %>
+  <% end %>
+<% end %>

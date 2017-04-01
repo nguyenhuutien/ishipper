@@ -1,0 +1,187 @@
+#id-nht-invoice-shipper {
+  margin-top: 0px !important;
+
+  .td-shipper-show {
+    width: 70%;
+    margin-top: 75px;
+
+    .modal-content {
+      height: auto;
+      position: relative;
+      padding-bottom: 30px;
+
+      .td-shipper-show-title {
+        height: 60px;
+        .back {
+          .btn-back {
+            padding: 16px;
+            color: #FFF;
+            background-color: transparent;
+            border: none;
+            .icon {
+              font-size: 25px !important;
+            }
+          }
+        }
+
+        .td-shipper-show-name {
+          h4 {
+            margin: 0;
+            line-height: 55px;
+            font-weight: 600;
+            color: #FFF;
+          }
+        }
+      }
+
+      .nht-profile-shipper {
+        .nht-user-right {
+          .nht-user-rate {
+            padding-bottom: 20px;
+            border-bottom: 2px solid #D9D9D9;
+          }
+
+          .td-shipper-show-reviews {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px 0;
+            margin-top: 10px;
+            .td-user-review {
+              padding-right: 10px;
+            }
+          }
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+      }
+
+      .accept {
+        float: right;
+        margin: 15px;
+      }
+
+      .title {
+        .nht-invoice-name {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 50px;
+          word-wrap: break-word;
+        }
+
+        .nht-invoice-address {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 50px;
+        }
+      }
+
+      .nht-profile-shipper {
+
+        .nht-user-left {
+
+          .td-shipper-show-avatar {
+            padding-top: 20px;
+            width: 45%;
+            margin: 0 auto;
+            img {
+              border-radius: 100%;
+              width: 100%;
+            }
+          }
+
+          .nht-user-info-left {
+            text-align: center ;
+          }
+        }
+
+        .nht-user-right {
+          padding: 20px;
+          height: 100%;
+          position: relative;
+
+          .td-p-flex {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .td-p-flex:hover {
+            overflow: visible;
+            white-space: normal;
+            height:auto;
+            word-break: break-all;
+          }
+
+          .nht-user-rate {
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .nht-user-rate-left {
+              h1 {
+                font-size: 3em;
+                color: #009688 !important;
+              }
+            }
+
+            .nht-user-rate-right {
+
+              .five {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #88b131;
+                }
+              }
+
+              .four {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #99cc00;
+                }
+              }
+
+              .three {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #ffcf02;
+                }
+              }
+
+              .two {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #ff9f02;
+                }
+              }
+
+              .one {
+                .bar {
+                  padding-left: 5px;
+                  display: inline;
+                  width: 80%;
+                  background-color: #ff6f31;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

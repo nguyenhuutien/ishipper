@@ -1,0 +1,70 @@
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top
+  nht-navbar base-color">
+  <div class="navbar-header page-scroll">
+    <ul class="td-header-left">
+      <li>
+        <%= link_to shop_root_path, class: "navbar-brand page-scroll" do %>
+          <%= image_tag "logo.png", id: "logo" %>
+        <% end %>
+      </li>
+      <li class="td-button-create-invoice">
+        <div class="td-button-create-invoice-content">
+          <i class="fa fa-plus-circle td-icon" aria-hidden="true"></i>
+          <span><%= t "invoices.create_button" %></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right td-navbar-right">
+      <li class="hidden">
+        <a href="#page-top"></a>
+      </li>
+      <li class="nht-notification-icon">
+        <i class="fa fa-globe td-notification-index-icon">
+          <div class="nht-notification-count">
+            <%= current_user.user_setting.unread_notification %>
+          </div>
+        </i>
+
+        <div class="nht-notifications">
+          <div class="notification-title">
+            <%= t "notifications.title" %>
+          </div>
+          <ul class="nht-noti-list" id="td-notification-index">
+          </ul>
+          <div class="td-loadmore text-center">
+            <%= image_tag "ajax-loader.gif", class: "loading-gif" %>
+          </div>
+        </div>
+      </li>
+
+      <li class="dropdown header-item" id="_profile">
+        <a href="#" class="dropdown-toggle td-a" data-toggle="dropdown">
+          <%= image_tag avatar_profile(current_user.avatar.url), id: "avatar" %>
+          <%= truncate current_user.name, length: Settings.max_length_name %><b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu nht-dropdown">
+          <li class="hatd-profile">
+            <%= link_to edit_shop_path(current_user), class: "loading-after", remote: true do %>
+              <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+              <span ><%= t "_profile" %></span>
+            <% end %>
+          </li>
+
+          <li class="hatd-profile" data-toggle="modal" data-target="#myModal-edit-password">
+            <i class="glyphicon glyphicon-wrench" aria-hidden="true"></i>
+            <span ><%= t "users.edit.change_password" %></span>
+          </li>
+
+          <li class="hatd-profile">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="glyphicon glyphicon-off" aria-hidden="true"></i>
+              <span><%= t "devise.log_out" %></span>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

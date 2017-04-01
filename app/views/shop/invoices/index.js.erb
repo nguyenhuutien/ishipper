@@ -1,0 +1,15 @@
+close_loading_after();
+<% if @load_more %>
+  $('#nht-table-invoice-content').append('<%= j render "invoice_content" %>');
+<% else %>
+  if ($('#id-nht-invoices-index').is(':visible')) {
+    $('#nht-table-invoice-content').html('<%= j render "invoice_content" %>');
+  } else {
+    $('#id-nht-invoices-index').html('<%= j render "invoice_index" %>').modal(
+      {show: true});
+    $list_invoice_page = 1;
+    on_load_more_invoice();
+  }
+<% end %>
+$max_page_list = '<%= @invoices.total_pages %>';
+$on_load_invoice = false;

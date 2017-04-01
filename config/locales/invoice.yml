@@ -28,3 +28,91 @@ en:
     accept_shipper:
       success: "Accept shipper success"
       fail: "Accept shipper fail"
+      button: Accept
+    shipper_receive_invoice: Shipper Receive Invoice
+    name: Enter name of invoice
+    weight: Enter weight of invoice
+    price: Enter price of invoice
+    shipping_price: Enter shipping price of invoice
+    delivery_time_input: Enter delivery time of invoice
+    customer_name: Enter customer name
+    customer_number: Enter phone number of customer
+    description: Enter description of invoice
+    title: Invoice
+    customer: Customer
+    shop: Shop
+    new: New Invoice
+    title-2: Menu
+    all: All Invoices
+    init: Init Invoices
+    waiting: Waiting Invoices
+    shipping: Shipping Invoices
+    shipped: Shipped Invoices
+    finished: Finished Invoices
+    cancel: Invoices Cancel
+    index:
+      ship_price: Ship Price
+    distance: Distance
+    delivery_time: Delivery Time
+    cost: Cost
+    weight_invoice: Weight
+    km: Km
+    shipping_price: Shipping price
+    _info_invoice: INFORMATION OF INVOICE
+    _edit_invoice: EDIT OF INVOICE
+    _detail: DETAIL
+    _name_invoice: Name of invoice
+    _status: Status
+    _distance: Distance
+    _customer: CUSTOMER
+    _shipping_price: Shipping price
+    _price: Price
+    _delivery_time: Delivery time
+    _description: Description
+    _show_route: Show route
+    _name_customer: Customer
+    _number_customer: Phone number
+    address_start: Address start
+    address_finish: Address finish
+    enter_address_start: Enter address start
+    enter_address_finish: Enter address finish
+    cannot_blank: can't blank
+    next: Next
+    draw: Draw routes
+    invalid: Invalid
+    list_shippers: Shipper near by
+    choose_shipper: Choose Shipper
+    received_shippers: Shippers revceived this invoice
+    edit_invoice: Edit this invoice
+    update:
+      cancel: Cancel
+      finished: Finished
+      edit: Edit
+    _name: "Name :"
+    from: "From :"
+    to: "To :"
+    rate: "Rate : %{rate}"
+    name_invoice: Name
+    manage_invoices: Manage invoices
+    manage_shippers: Manage shippers
+    create_button: Create Invoice
+    status: "%{status} invoices"
+    action: Action
+    created_at: Created at
+    finished: Finished
+    cancel: Cancel this invoice
+    customers:
+      name: Name of customer
+      phone_number: Phone number
+    search: Search...
+    select:
+      customer_number: Phone number
+      customer_name: Customer Name
+      name: Invoice name
+      address_start: Address start
+      address_finish: Address finish
+  vnd: " VND"
+  kg: Kg
+  km: " KM"
+  none: None
+

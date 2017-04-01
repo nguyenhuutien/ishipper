@@ -15,6 +15,7 @@ module IShipper
   end
 
   class Application < Rails::Application
+<<<<<<< HEAD
     include IShipper
 
     config.after_initialize do
@@ -36,5 +37,11 @@ module IShipper
         end
       end
     end
+=======
+    config.time_zone = "Hanoi"
+    config.active_record.default_timezone = :local
+    config.assets.initialize_on_precompile = true
+    config.middleware.use I18n::JS::Middleware
+>>>>>>> cb207c84301ec9ecd6856e472d2e8d0ab0774750
   end
 end

@@ -7,8 +7,12 @@ en:
     get_black_list_success: Get Blacklist successful
     get_black_list_fail: Get Blacklist fail
     destroy_success: Remove from Blacklist successful
+    destroy_all_success: Remove all from Blacklist successful
     destroy_fail: You are not permission to destroy
-    black_list_shop_exist: "This shop has been added black list"
-    black_list_shipper_exist: "This shipper has been added black list"
+    destroy_all_fail: Your black list is empty
+    black_list_shop_exist: "This shop has been added BlackList"
+    shop_in_favorite_list: This shop was in FavoriteList, can't add to Blacklist
+    black_list_shipper_exist: "This shipper has been added BlackList"
+    shipper_in_favorite_list: This shipper was in FavoriteList, can't add to Blacklist
     user: "This user can't add in black list"
     permission_denied: Permission denied

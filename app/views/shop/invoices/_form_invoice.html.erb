@@ -1,0 +1,116 @@
+<div class="lvc-invoice modal-dialog">
+  <div class="modal-content">
+    <div class="lvc-invoice-title base-color">
+      <div class="back">
+        <button type="button" class="btn-back reload-data">
+          <i class="fa fa-arrow-circle-left nht-icon" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="lvc-invoice-status">
+        <%= t "invoices._edit_invoice" %>
+      </div>
+      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+        <i><%= image_tag "cut.png" %></i>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
+    <div class="form">
+      <%= form_for [:shop, @invoice], remote: true do |f| %>
+        <div id="td-create-error"></div>
+
+        <div>
+          <p class="td-shop-title">
+            <%= t "create_invoice.info_information" %>
+          </p>
+          <div>
+            <%= f.label t("address_start") %>
+            <span id="address_start" class="label label-info"><%= @invoice.address_start %></span>
+          </div>
+        </div>
+
+        <div>
+          <p class="td-shop-title">
+            <%= t "create_invoice.customer_information" %>
+          </p>
+          <div>
+            <%= f.label t("address_finish"), for: :address_start %>
+            <span id="address_finish" class="label label-info"><%= @invoice.address_finish %></span>
+          </div>
+          <div>
+            <%= f.label t("distance"), for: :distance_invoice %>
+            <span id="distance" class="label label-info"><%= @invoice.distance_invoice %></span>
+          </div>
+          <div>
+            <%= f.label t("invoices.customer_name"), for: :customer_name %>
+            <%= f.text_field :customer_name, class: "form-control td-input",
+              placeholder: t("invoices.customer_name") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.delivery_time_input"), for: :customer_number %>
+            <%= f.text_field :customer_number, class: "form-control td-input",
+              placeholder: t("invoices.customer_number") %>
+          </div>
+          <div>
+            <%= f.label t("distance"), for: :delivery_time %>
+            <%= f.text_field :delivery_time, class: "form-control td-input clockpicker",
+              placeholder: t("invoices.delivery_time_input"),
+              "data-autoclose": "true", "data-placement": "top" %>
+          </div>
+          <div>
+            <%= f.label t("invoices.description"), for: :description %>
+            <%= f.text_area :description, class: "form-control td-input td-textarea-fix",
+              placeholder: t("invoices.description"), "data-autoresize": "nil" %>
+          </div>
+        </div>
+
+        <div>
+          <p class="td-shop-title">
+            <%= t "create_invoice.invoice_information" %>
+          </p>
+          <div class="td-line"></div>
+          <div>
+            <%= f.label t("invoices.name"), for: :name %>
+            <%= f.text_field :name, class: "form-control td-input",
+              placeholder: t("invoices.name") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.price"), for: :price %>
+            <%= f.text_field :price, class: "form-control td-input",
+              placeholder: t("invoices.price") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.shipping_price"), for: :shipping_price %>
+            <%= f.text_field :shipping_price, class: "form-control td-input",
+              placeholder: t("invoices.shipping_price") %>
+          </div>
+          <div>
+            <%= f.label t("invoices.weight"), for: :weight %>
+            <%= f.text_field :weight, class: "form-control td-input",
+              placeholder: t("invoices.weight") %>
+          </div>
+        </div>
+
+        <div class="hidden">
+          <%= f.text_field :latitude_start, class: "form-control td-input",
+            id: "td-invoice-latitude_start" %>
+
+          <%= f.text_field :longitude_start, class: "form-control td-input",
+            id: "td-invoice-longitude_start" %>
+
+          <%= f.text_field :latitude_finish, class: "form-control td-input",
+            id: "td-invoice-latitude_finish" %>
+
+          <%= f.text_field :longitude_finish, class: "form-control td-input",
+            id: "td-invoice-longitude_finish" %>
+        </div>
+        <div class="lvc-btn-edit_invoice">
+          <%= button_tag type: "submit", class: "btn btn-primary loading-after
+            base-color" do %>
+            <i class="ace-icon fa fa-check"></i>
+            <span><%= t :_update %></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

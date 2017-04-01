@@ -1,0 +1,15 @@
+close_loading_after();
+<% if @supports.load_more %>
+  $('#hatd-shipper-table-content').append('<%= j render "shipper_content" %>');
+<% else %>
+if ($('#id-hatd-shippers-index').is(':visible')) {
+  $('#hatd-shipper-table-content').html('<%= j render "shipper_content" %>');
+} else {
+  $('#id-hatd-shippers-index').html('<%= j render "shipper_index" %>');
+  $('#id-hatd-shippers-index').modal('show');
+  $list_shipper_page = 1;
+  on_load_more_shipper();
+}
+<% end %>
+$on_load_shipper = false;
+$max_page_list = '<%= @supports.total_pages %>';

@@ -1,0 +1,224 @@
+.nht-nearby-shippers {
+  position: relative;
+
+  #map-base {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+  }
+
+  .nht-nav-left {
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    height: auto;
+    background-color: #FFF;
+    z-index: 1;
+
+    ul {
+      margin-bottom: 0px !important;
+
+      li {
+        border-bottom: 1px solid #e5e5e5;
+
+        a {
+          display: inline-flex;
+        }
+
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .nht-item {
+      padding: 10px;
+      cursor: pointer;
+
+      .invoice {
+        background-image: image-url("invoice.png");
+      }
+
+      .clock {
+        background-image: image-url("clock.png");
+      }
+
+      .shippers {
+        background-image: image-url("shippers.png");
+      }
+
+      .nht-icon {
+        width: 25px;
+        background-position: center;
+        background-size: cover;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .nht-item-content {
+        display: none;
+        margin-left: 10px;
+        vertical-align: middle;
+        line-height: 25px;
+      }
+    }
+  }
+
+  .td-create-invoice-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 370px;
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    z-index: 2;
+    background-color: #FFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding: 30px 15px;
+    display: none;
+    .td-create-invoice-close {
+      position: fixed;
+      top: 60px;
+      left: 340px;
+      z-index: 2;
+      width: 30px;
+      height: 30px;
+      background-color: #00be45;
+      border-bottom-left-radius: 100%;
+      cursor: pointer;
+      i {
+        margin-left: 12px;
+      }
+    }
+
+    form{
+      padding-bottom: 30px;
+    }
+
+    form {
+
+      .td-shop-title {
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .td-line {
+        position: relative;
+        width: 100%;
+        height: 1px;
+        background-color: #D9D9D9;
+      }
+
+      .td-line:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 25%;
+        height: 2px;
+        background-color: #00be45;
+      }
+
+      .td-input {
+        border: none;
+        border-bottom: 1px solid #D9D9D9;
+        box-shadow: none;
+        margin-top: 10px;
+      }
+
+      .td-input:focus {
+        border-color: #00be45;
+      }
+
+      .td-textarea-fix {
+        resize: none;
+        line-height: 12px;
+      }
+
+      .td-shop-information {
+        .td-shop-address {
+          margin-top: 15px;
+        }
+      }
+
+      .td-customer-information {
+        margin-top: 30px;
+        .td-customer-address {
+          margin-top: 15px;
+        }
+      }
+
+      .td-invoice-information {
+        margin-top: 30px;
+        .td-invoice-address {
+          margin-top: 15px;
+        }
+
+        .td-invoice-infomation-content {
+          .td-currency {
+            white-space: pre;
+          }
+        }
+      }
+
+      .td-btn-invoice {
+        padding-top: 30px;
+        .td-create-button {
+          width: 100%;
+          background-color: #00be45;
+          border: none;
+          height: 50px;
+          color: #FFF;
+          font-size: 20px;
+          font-weight: 600;
+          border-radius: 5px;
+        }
+      }
+    }
+
+  }
+
+  .nht-nav-left:hover .nht-item-content {
+    display: block !important;
+  }
+
+  .nht-search-address {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    width: 30%;
+
+    .input-group {
+      position: relative;
+      width: 100%;
+
+      .nht-icon-search {
+        position: absolute;
+        border: none !important;
+        top: 0px;
+        right: 25px;
+        font-size: 20px;
+        line-height: 50px;
+        width: 10px;
+        z-index: 2;
+      }
+
+      #nht-search-address-input {
+        height: 50px;
+        width: 100%;
+        float: left;
+        padding-right: 40px;
+        border-right: none;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+    }
+  }
+}
+
+.pac-container {
+  box-shadow: 0 0;
+}

@@ -5,37 +5,40 @@ class Api::V1::UsersController < Api::BaseController
   before_action :ensure_params_true, only: :index
 
   def show
-    serializer = ActiveModelSerializers::SerializableResource.new(@user,
-      params).as_json
+    users_simple = Simples::UsersSimple.new object: @user
+    @user = users_simple.simple
     render json: {message: I18n.t("users.show.success"),
-      data: {user: serializer}, code: 1}, status: 200
+      data: {user: @user}, code: 1}, status: 200
   end
 
   def index
     if params[:user][:search]
-      role = if current_user.shop?
-        2
+      q = Hash.new
+      q[:role] = if current_user.shop?
+        "Shipper"
       elsif current_user.shipper?
-        1
+        "Shop"
       end
-      users = User.search_user role, params[:user][:search]
+      q[:data] = params[:user][:search]
+      @users = current_user.search_user q
     else
-      users = User.near [params[:user][:latitude], params[:user][:longitude]],
-        params[:user][:distance]
-      users = users.shipper
+      shipper_settings = ShipperSetting.near([current_user.user_setting.latitude,
+        current_user.user_setting.longitude], Settings.max_distance, order: false).
+        includes :shipper
+      @users = User.users_by_user_setting(shipper_settings).users_online
     end
-    users = ActiveModelSerializers::SerializableResource.new(users,
-      each_serializer: UserSerializer)
+    users_simple = Simples::Shipper::ListShippersSimple.new object: @users.includes(:user_setting, :user_tokens)
+    @users = users_simple.simple
     render json: {message: I18n.t("users.messages.get_shipper_success"),
-      data: {users: users.as_json}, code: 1}, status: 200
+      data: {users: @users}, code: 1}, status: 200
   end
 
   def update
     if @user.update_with_password user_params
-      serializer = ActiveModelSerializers::SerializableResource.new(@user,
-        params).as_json
+      users_simple = Simples::UsersSimple.new object: @user
+      @user = users_simple.simple
       render json: {message: I18n.t("users.messages.update_success"),
-        data: {user: serializer}, code: 1}, status: 200
+        data: {user: @user}, code: 1}, status: 200
     else
       render json: {message: error_messages(@user.errors.messages),
         data: {}, code: 0}, status: 200
@@ -53,9 +56,9 @@ class Api::V1::UsersController < Api::BaseController
         status: 422
     else
       unless (params[:user][:distance] && params[:user][:latitude] && params[:user][:longitude]) ||
-      params[:user][:search]
-      render json: {message: I18n.t("api.missing_params"), data: {}, code: 0},
-        status: 422
+        params[:user][:search]
+        render json: {message: I18n.t("api.missing_params"), data: {}, code: 0},
+          status: 422
       end
     end
   end

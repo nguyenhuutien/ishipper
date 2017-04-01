@@ -1,0 +1,64 @@
+<% @invoices.each do |invoice| %>
+  <tr data-href="<%= shop_invoice_path(invoice) %>" id="<%= invoice.id %>"
+    class="nht-invoices-show shop_invoice_row">
+    <td><%= invoice.name %></td>
+    <td><%= l invoice.created_at, format: :default %></td>
+    <td><%= invoice.customer_name %></td>
+    <td><%= invoice.customer_number %></td>
+    <td><b><%= invoice.status %></b></td>
+    <td>
+      <div class="nht-btn-action-invoices">
+        <% if invoice.init? %>
+          <%= link_to shop_list_shippers_path(invoice_id: invoice.id), remote: true,
+            class: "btn loading-after" do %>
+            <i title="<%= t "invoices.received_shippers" %>"><%= image_tag "receive.png" %></i>
+            <span>(<%= invoice.number_of_recipients %>)</span>
+          <% end %>
+          <%= link_to edit_shop_invoice_path(invoice), remote: true,
+            class: "btn loading-after" do %>
+            <i title="<%= t "invoices.edit_invoice" %>"><%= image_tag "edit.png" %></i>
+          <% end %>
+        <% end %>
+
+        <% if invoice.shipped? %>
+          <%= form_for [:shop, invoice], remote: true, method: :patch do |f| %>
+            <%= hidden_field_tag :status, "finished" %>
+            <%= hidden_field_tag :list_back_status, invoice.status %>
+            <%= button_tag type: "submit", class: "btn btn-default loading-after" do %>
+              <i><%= image_tag "finished.png", class: "nht-icon" %></i>
+              <span><%= t "invoices.finished" %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+  <tr class="lvc-invoive-info">
+    <td>
+      <b><%= t "invoices._shipping_price" %>: </b><br>
+      <%= number_to_currency invoice.shipping_price %>
+    </td>
+    <td>
+      <b><%= t "invoices._price" %>: </b><br>
+      <%= number_to_currency invoice.price %>
+    </td>
+    <td>
+      <b><%= t "invoices._delivery_time" %>: </b><br>
+      <%= invoice.delivery_time %>
+    </td>
+    <td>
+      <b><%= t "invoices._distance" %>: </b><br>
+      <p class="nht-text-center nht-color nht-number">
+        <%= invoice.distance_invoice.to_i %> <%= t :km %>
+      </p>
+    </td>
+    <td>
+      <b><%= t "invoices.address_start" %>: </b><br>
+      <p class="nht-invoice-address-top"><%= invoice.address_start %></p>
+    </td>
+    <td>
+      <b><%= t "invoices.address_finish" %>: </b><br>
+      <p class="nht-invoice-address-bottom"><%= invoice.address_finish %></p>
+    </td>
+  </tr>
+<% end %>

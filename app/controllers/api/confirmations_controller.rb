@@ -26,6 +26,10 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
     if @user.check_pin user_params[:pin]
       if @user.unactive?
         @user.activate
+        generate_user_token
+        users_simple = Simples::User::LoginUsersSimple.
+          new object: @user, scope: {user_token: @user_token}
+        @user = users_simple.simple
         render json:
           {message: t("api.update.success"), data: {user: @user}, code: 1},
           status: 200
@@ -44,6 +48,12 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
 
   private
   def user_params
-    params.require(:user).permit :phone_number, :pin
+    params.require(:user).permit :phone_number, :pin, :notification_token, :device_id
+  end
+
+  def generate_user_token
+    @user_token = @user.user_tokens.create! authentication_token: Devise.friendly_token,
+      registration_id: user_params[:registration_id],
+      device_id: user_params[:device_id]
   end
 end

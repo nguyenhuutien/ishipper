@@ -1,0 +1,118 @@
+<div class="modal-dialog td-shipper-show">
+  <div class="modal-content">
+
+    <div class="td-shipper-show-title base-color">
+      <div class="back pull-left">
+        <button type="button" class="btn-back base-color">
+          <i class="fa fa-arrow-circle-left icon" aria-hidden="true"></i>
+        </button>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="td-shipper-show-name">
+        <h4><%= @shipper.name %></h4>
+      </div>
+
+      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+        <i><%= image_tag "cut.png" %></i>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="nht-profile-shipper">
+      <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2
+        col-md-5 col-md-offset-0 col-lg-5 col-lg-offset-0 nht-user-left">
+
+        <div class="td-shipper-show-avatar">
+          <%= image_tag avatar_profile(@shipper.avatar.url), id: "nht-user-avatar",
+            class: "img-responsive" %>
+        </div>
+
+        <div class="nht-user-info-left">
+          <h1 class="nht-user_name">
+            <%= @shipper.name %>
+          </h1>
+
+          <div class="td-shipper-show-content">
+            <p class="td-p-flex text-left">
+              <i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal">
+              </i>
+              <span class="nht-user_role">
+                <%= @shipper.role %>
+              </span>
+            </p>
+            <p class="td-p-flex text-left">
+              <i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal">
+              </i>
+              <span class="nht-user_address">
+                <%= @shipper.address %>
+              </span>
+            </p>
+            <p class="td-p-flex text-left">
+              <i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal">
+              </i>
+              <span class="nht-user_email">
+                <%= @shipper.email %>
+              </span>
+            </p>
+            <p class="td-p-flex text-left">
+              <i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal">
+              </i><%= @shipper.phone_number %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+        col-md-7 col-md-offset-0 col-lg-7 col-lg-offset-0 nht-user-right">
+
+        <div class="nht-user-rate">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4
+            nht-user-rate-left">
+            <div class="nht-user-rate-content">
+              <h1><%= @shipper.rate %></h1>
+            </div>
+            <div class="nht-user-rate-sum">
+              <%= t "users.sum_rate", sum: @support.sum_rate %>
+            </div>
+          </div>
+
+          <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8 nht-user-rate-right">
+            <% Settings.rate.list_stars.each do |numstar| %>
+              <div class="bar-content <%= numstar %>">
+                <i class="fa fa-star star"><%= Settings.rate.send "load_#{numstar}_star" %></i>
+                <span class="bar" data-id="<%= @support.send "load_#{numstar}_star" %>">
+                  <%= @support.send "load_#{numstar}_star" %>
+                </span>
+                <div class="clearfix"></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="td-shipper-show-reviews">
+          <% @support.reviews.each do |review| %>
+            <div class="td-user-review">
+              <div class="td-user-review-title">
+                <span class="pull-left td-user-review-name">
+                  <%= review.owner.name %>
+                </span>
+                <span class="pull-right">
+                  <%= review.rating_point %>
+                </span>
+                <div class="clearfix"></div>
+              </div>
+              <i class="td-review-content"><%= review.content %></i>
+              <hr>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="accept">
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

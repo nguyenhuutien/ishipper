@@ -6,6 +6,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   def create
+    params[:user][:role] = params[:user][:role].capitalize
     user = User.new user_params
     if user.save
       if user.send_pin

@@ -1,0 +1,82 @@
+<div class="index-shipper modal-dialog">
+  <div class="modal-content">
+    <div class="index-shipper-header base-color">
+      <div class="index-shipper-title">
+        <%= t "users.shipper_index.title" %>
+      </div>
+
+      <div class="index-shipper-search">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-search icon-search" aria-hidden="true"></i>
+          </span>
+          <%= form_tag shop_shippers_path, method: :get, remote: true, id: "form-search-shipper" do %>
+            <%= text_field_tag "search[query]", "", class: "form-control", id: "search_shipper_query",
+              placeholder: t("users.search") %>
+            <div class="nht-options-shippers-search">
+              <%= select_tag "search[type]", options_for_select(Settings.shipper.search_attributes.
+                map {|s| [s.humanize, s]}), class: "form-control" %>
+            </div>
+            <div hidden id="add_more_type_shipper">
+              <%= text_field_tag "type", "list_shipper_received" %>
+            </div>
+            <div hidden id="add_more_search_shipper"></div>
+            <div hidden id="add_more_loadmore_shipper"></div>
+            <div hidden id="add_more_page_shipper"></div>
+        <% end %>
+        </div>
+      </div>
+
+      <%= link_to "#", data: {dismiss: "modal"}, class: "close" do %>
+        <i><%= image_tag "cut.png" %></i>
+      <% end %>
+
+      <div class="dropdown hatd-dropdown-actions">
+        <button class="dropdown-toggle hatd-toggle" data-toggle="dropdown">
+          <b><%= t "users.shipper_index.#{Settings.shipper.types.list_shipper_received}" %></b>
+          <b class="caret"></b>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-actions hatd-dropdown-menu-actions">
+          <% Settings.shipper.types.keys.each do |type| %>
+            <li class="hatd-item-actions" data="<%= type %>">
+              <%= t "users.shipper_index.#{type}" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="panel panel-default">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="hatd-shippers-table-title">
+            <th>
+              <strong>
+                <%= t "users.table.avatar" %>
+              </strong>
+            </th>
+            <th>
+              <strong class="s-column-info" data="name">
+                <%= t "users.table.name" %>
+              </strong></th>
+            <th>
+              <strong class="s-column-info" data="phone_number">
+                <%= t "users.table.phone_number" %>
+              </strong></th>
+            <th><strong><%= t "users.table.success_invoices" %></strong></th>
+            <th class="hatd-td"><strong class="hatd-dropdown"><%= t "users.table.action" %></strong></th>
+          </tr>
+        </thead>
+      </table>
+      <div class="div-table-content load-more-shipper">
+        <table class="table table-condensed">
+          <tbody class="index-shipper-table-body" id="hatd-shipper-table-content">
+            <%= render "shipper_content" %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

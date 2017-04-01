@@ -1,19 +1,19 @@
 class Api::V1::Shop::RatesController < Api::ShopBaseController
   before_action :ensure_params_exist, :find_invoice, :find_user_invoice,
     :check_rate_conditions, except: :destroy
-  before_action :check_exist_rate, only: :create
+  before_action :check_exist_rate, :check_black_list, only: :create
   before_action :find_rate, except: :create
-  before_action :check_black_list
 
   def create
-    rate = Review.new rate_params
-    rate.owner = current_user
-    rate.recipient = @user_invoice.user
-    if rate.save
+    @rate = Review.new rate_params
+    @rate.owner = current_user
+    @rate.recipient = @user_invoice.user
+    @rate.review_type = "rate"
+    if @rate.save
       render json: {message: I18n.t("rate.create_success"),
-        data: {rate: rate}, code: 1}, status: 200
+        data: {rate: @rate}, code: 1}, status: 200
     else
-      render json: {message: error_messages(rate.errors.messages), data: {},
+      render json: {message: error_messages(@rate.errors.messages), data: {},
         code: 0}, status: 200
     end
   end
@@ -44,7 +44,9 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   end
 
   def ensure_params_exist
-    unless CheckParams.new(Review::RATE_ATTRIBUTES_PARAMS, params[:rate]).params_exist?
+    check_params = CheckParams.new attributes_params: Review::RATE_ATTRIBUTES_PARAMS,
+      params: params[:rate]
+    unless check_params.perform?
       render json: {message: I18n.t("rate.missing_params"), data: {}, code: 0},
         status: 422
     end
@@ -68,18 +70,17 @@ class Api::V1::Shop::RatesController < Api::ShopBaseController
   end
 
   def check_rate_conditions
-    if CheckRateConditions.new(@invoice, @user_invoice,
-      params[:rate][:review_type], current_user).shop_check_rate?
+    shop_condition = ConditionRateServices::ShopConditionService.new invoice: @invoice,
+      user_invoice: @user_invoice, current_user: current_user
+    if !shop_condition.perform?
       render json: {message: I18n.t("rate.create_fail"), data: {}, code: 0}, status: 200
     end
   end
 
   def check_exist_rate
-    rate = @invoice.reviews.find_by review_type: params[:rate][:review_type], owner: current_user
-    unless rate.nil?
-      render json: {message: I18n.t("rate.exist_rate"), data: {},
-        code: 0}, status: 200
-    end
+    @rate = @invoice.reviews.find_by review_type: "rate", owner: current_user
+    render json: {message: I18n.t("rate.exist_rate"), data: {},
+      code: 0}, status: 200 if @rate
   end
 
   def find_rate

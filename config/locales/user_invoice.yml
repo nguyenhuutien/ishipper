@@ -9,3 +9,9 @@ en:
       success: "Cancel receive invoice"
       fails: "Delete request receive invoice fails"
       nil: "Doesn't have user_invoices"
+    messages:
+      user_invoice_not_found: User invoice not found
+    cancel_request:
+      success: Cancel request success
+      fail: Cancel request fail
+      cant_cancel: Can't cancel request

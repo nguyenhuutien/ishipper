@@ -1,0 +1,399 @@
+.nht-list-shippers {
+  margin-top: 60px;
+  padding: 0px;
+
+  #map-list-shippers {
+    height: calc(100vh - 60px);
+    width: auto;
+  }
+}
+
+.nht-invoice-content {
+  position: relative;
+
+  .nht-btn-list-shippers {
+    position: absolute;
+    float: right;
+    top: 5px;
+    right: 40px;
+  }
+
+  .nht-btn-update-invoice {
+    position: absolute;
+    float: right;
+    top: 80px;
+    right: 40px;
+  }
+}
+
+.td-all {
+  margin-bottom: 150px;
+}
+
+.td-init {
+  margin-bottom: 150px;
+}
+
+.td-waiting {
+  margin-bottom: 150px;
+}
+
+.td-shipping {
+  margin-bottom: 150px;
+}
+
+.td-shipped {
+  margin-bottom: 150px;
+}
+
+.td-finished {
+  margin-bottom: 150px;
+}
+
+.td-cancel {
+  margin-bottom: 150px;
+}
+
+.td-reject {
+  margin-bottom: 150px;
+}
+
+.index-shipper.modal-dialog {
+  min-width: 80%;
+  border-radius: 30px;
+
+  .modal-content {
+
+    .index-shipper-header {
+      $height-header: 60px;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      min-height: $height-header;
+      position: relative;
+      .index-shipper-search {
+        position: relative;
+        float: left;
+        height: $height-header;
+        padding: 13px;
+        width: 45%;
+
+        .input-group {
+          width: 100%;
+
+          .input-group-addon {
+            border: none;
+
+            .icon-search {
+              position: absolute;
+              top: 7px;
+              left: 10px;
+              z-index: 3;
+            }
+          }
+          #name_shipper {
+            padding-left: 30px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+          }
+
+          #search_shipper_query{
+            padding-left: 30px;
+            border-radius: 15px;
+          }
+        }
+      }
+      .close {
+        float: right;
+        width: 20px;
+        height: 20px;
+        line-height: 52px;
+        font-size: 1.5em;
+        margin-right: 25px;
+      }
+    }
+    .panel {
+      table {
+        table-layout: fixed;
+      }
+      .index-shipper-table-title {
+        cursor: pointer;
+        background-color: #f5f5f5;
+
+        th {
+          vertical-align: middle;
+          text-align: center;
+          padding: 10px;
+        }
+      }
+      .div-table-content {
+        overflow-y: scroll;
+        overflow-y: hidden;
+        max-height: 67vh;
+
+        tr {
+          cursor: pointer;
+        }
+        tr:hover {
+          background-color: rgba(0, 190, 69, 0.2);
+          td {
+            border: none;
+          }
+        }
+        .index-shipper-table-body {
+          cursor: pointer;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          padding: 10px;
+          .favorite_user {
+            background-color: rgba(255, 255, 0, 0.54);
+          }
+          .index-shipper-avatar {
+            height: 50px;
+            width: 50px;
+            margin-left: 37%;
+          }
+        }
+      }
+      td {
+        vertical-align: middle;
+        text-align: center;
+        padding: 10px;
+      }
+    }
+  }
+}
+#id-nht-list-shippers {
+  overflow-y: hidden;
+  .modal-content {
+
+    .index-shipper-header {
+      .back {
+        float: left;
+
+        .btn-back {
+          padding: 17px;
+          color: #FFF;
+          background-color: transparent;
+          border: none;
+
+          .icon {
+            font-size: 25px !important;
+          }
+        }
+      }
+      .invoice-name {
+        float: left;
+        margin-left: 10px;
+        vertical-align: middle;
+        font-weight: bold;
+        color: #FFF;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 20px;
+        line-height: 60px;
+      }
+    }
+  }
+}
+#id-hatd-shippers-index {
+  overflow-y: hidden;
+  margin-top: 0px !important;
+
+  .index-shipper {
+    margin-top: 75px;
+
+    .modal-content {
+
+      .index-shipper-header {
+        $height-header: 60px;
+
+        .index-shipper-title {
+          float: left;
+          margin-left: 10px;
+          vertical-align: middle;
+          font-weight: bold;
+          color: #FFF;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 20px;
+          line-height: 60px;
+        }
+        .hatd-dropdown-actions {
+          float: right;
+          overflow: visible;
+          background-color: #FFF;
+          margin-right: 20px;
+          text-align: center;
+          min-height: 60px;
+          min-width: 80px;
+          cursor: pointer;
+
+          .dropdown-toggle {
+            line-height: 60px;
+            min-width: 120px;
+            background-color: #FFF;
+            border: none;
+          }
+
+          .dropdown-menu-actions {
+            min-width: 120px;
+          }
+
+          a:hover {
+            text-decoration: none;
+            color: #000;
+          }
+
+          li {
+            padding: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+          }
+
+          li:hover {
+            background-color: #f5f5f5;
+
+          }
+        }
+
+      .index-shipper-search {
+          position: relative;
+          float: left;
+          height: $height-header;
+          padding: 13px;
+          width: 45%;
+
+          .input-group {
+            width: 100%;
+
+            .input-group-addon {
+              border: none;
+
+              .icon-search {
+                position: absolute;
+                top: 7px;
+                left: 10px;
+                z-index: 3;
+              }
+            }
+
+            #q_data {
+              padding-left: 30px;
+              box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+              border-top-left-radius: 3px;
+              border-bottom-left-radius: 3px;
+            }
+
+            .nht-options-shippers-search {
+              position: absolute;
+              top: 0px;
+              right: 0px;
+
+              #search_type {
+                border-radius: 15px;
+              }
+            }
+          }
+        }
+
+      }
+      .panel {
+
+        .hatd-shippers-table-title {
+          background-color: #f5f5f5;
+
+          .nht-btn-sortable {
+            border: none;
+            background-color: #f5f5f5;
+          }
+
+          th {
+            vertical-align: middle;
+            text-align: center;
+
+            .s-column-info{
+              cursor: pointer;
+            }
+
+            .reverse {
+              transform: rotate(180deg) !important;
+            }
+
+            strong{
+              font-size: 13px;
+            }
+          }
+        }
+
+        .div-table-content {
+          overflow-y: hidden;
+          max-height: 67vh;
+
+          .index-shipper-table-body {
+            .hatd_dropdown_toggle_shipper {
+              color: #333;
+              background-color: #e6e6e6;
+              border-color: #adadad;
+            }
+            .hatd_dropdown_toggle_shipper:hover {
+              color: #333;
+              background-color: #e6e6e6;
+              border-color: #adadad;
+            }
+            .hatd_dropdown_toggle_black_user {
+              color:#fff;
+              background-color:#d9534f;
+              border-color:#d43f3a;
+            }
+            .hatd_dropdown_toggle_black_user:hover {
+              background-color:#d9534f;
+              border-color:#d43f3a;
+            }
+            .hatd_dropdown_toggle_favorite_user {
+              color:#fff;
+              background-color:#5cb85c;
+              border-color:#4cae4c;
+            }
+            .hatd_dropdown_toggle_favorite_user:hover {
+              background-color:#5cb85c;
+              border-color:#4cae4c;
+            }
+            .hatd-shipper-content-submit {
+              border: none;
+              background-color: transparent;
+            }
+            .hatd-shipper-content-li {
+              display: block;
+              padding: 3px 0;
+              clear: both;
+              font-weight: 400;
+              line-height: 1.42857143;
+              color: #333;
+              white-space: nowrap;
+            }
+            .hatd-shipper-content-li:hover {
+              background-color: rgba(0, 190, 69, 0.2);
+            }
+            .hatd-shipper-content-label {
+              width: 100%;
+              cursor: pointer;
+              margin: 0;
+              padding: 0 20px;
+            }
+          }
+          .hatd-td {
+            text-align: right;
+            .hatd-dropdown {
+              margin-right: 15%;
+            }
+            .hatd-dropdown-menu {
+              right: 0;
+              left: auto;
+              .hatd-form {
+                text-align: right;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

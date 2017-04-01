@@ -1,0 +1,12 @@
+if ($('#td-notification-index').is(':visible')) {
+  $('#td-notification-index').append('<%= j render @notifications %>');
+  $('.td-loadmore img').hide();
+
+  bind_for_loading_more_notification();
+
+  <% if @notifications.next_page %>
+    $('.pagination').html('<%= j render "layouts/pagination" %>');
+  <% else %>
+    $('.nht-noti-list').unbind("scroll");
+  <% end %>
+}

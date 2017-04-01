@@ -1,0 +1,22 @@
+<% if devise_mapping.registerable? && controller_name != "registrations" %>
+  <p><%= t :td_signup %></p>
+  <%= link_to t("devise.sign_up"), new_user_registration_path,
+    class: "btn btn-primary base-color hvr-pulse-shrink" %><br />
+<% end %>
+
+<% unless controller_name == "sessions" %>
+  <p><%= t :td_login %></p>
+  <%= link_to t("devise.login"), new_user_session_path,
+    class: "btn btn-primary base-color hvr-pulse-shrink" %><br />
+<% end %>
+
+<% if devise_mapping.recoverable? &&
+  controller_name != "passwords" && controller_name != "registrations" %>
+  <%= link_to t("devise.forgot"), new_password_path(resource_name) %>
+  <br />
+<% end %>
+
+<% if devise_mapping.confirmable? && controller_name != "confirmations" %>
+  <%= link_to t("devise.not_recevive"),
+    new_confirmation_path(resource_name) %><br />
+<% end %>

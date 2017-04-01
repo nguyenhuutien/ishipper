@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915042125) do
+ActiveRecord::Schema.define(version: 20161125104513) do
 
   create_table "black_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "black_list_user_id"
     t.integer  "owner_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
   create_table "favorite_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -26,16 +41,25 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.datetime "updated_at",            null: false
   end
 
+  create_table "feed_backs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "address_start"
-    t.float    "latitude_start",   limit: 24
-    t.float    "longitude_start",  limit: 24
+    t.float    "latitude_start",   limit: 53
+    t.float    "longitude_start",  limit: 53
     t.string   "address_finish"
-    t.float    "latitude_finish",  limit: 24
-    t.float    "longitude_finish", limit: 24
+    t.float    "latitude_finish",  limit: 53
+    t.float    "longitude_finish", limit: 53
     t.string   "delivery_time"
-    t.float    "distance",         limit: 24
+    t.float    "distance_invoice", limit: 24
     t.string   "description"
     t.float    "price",            limit: 24
     t.float    "shipping_price",   limit: 24
@@ -52,13 +76,13 @@ ActiveRecord::Schema.define(version: 20160915042125) do
   create_table "invoices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "address_start"
-    t.float    "latitude_start",   limit: 24
-    t.float    "longitude_start",  limit: 24
+    t.float    "latitude_start",   limit: 53
+    t.float    "longitude_start",  limit: 53
     t.string   "address_finish"
-    t.float    "latitude_finish",  limit: 24
-    t.float    "longitude_finish", limit: 24
+    t.float    "latitude_finish",  limit: 53
+    t.float    "longitude_finish", limit: 53
     t.string   "delivery_time"
-    t.float    "distance",         limit: 24
+    t.float    "distance_invoice", limit: 24
     t.string   "description"
     t.float    "price",            limit: 24
     t.float    "shipping_price",   limit: 24
@@ -75,9 +99,14 @@ ActiveRecord::Schema.define(version: 20160915042125) do
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "owner_id"
     t.integer  "recipient_id"
-    t.string   "key"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "status"
+    t.integer  "user_invoice_id"
+    t.string   "click_action"
+    t.boolean  "read",            default: false
+    t.integer  "invoice_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["invoice_id"], name: "index_notifications_on_invoice_id", using: :btree
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -85,11 +114,20 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.integer  "recipient_id"
     t.integer  "invoice_id"
     t.integer  "review_type"
-    t.float    "rating_point", limit: 24
+    t.float    "rating_point", limit: 24, default: 1.0
     t.string   "content"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["invoice_id"], name: "index_reviews_on_invoice_id", using: :btree
+  end
+
+  create_table "status_invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "time"
+    t.integer  "status"
+    t.integer  "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_status_invoice_histories_on_invoice_id", using: :btree
   end
 
   create_table "user_invoice_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -110,21 +148,46 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.index ["user_id"], name: "index_user_invoices_on_user_id", using: :btree
   end
 
+  create_table "user_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.boolean  "receive_notification",            default: true
+    t.integer  "unread_notification",             default: 0
+    t.boolean  "favorite_location",               default: false
+    t.string   "favorite_address"
+    t.float    "favorite_latitude",    limit: 53
+    t.float    "favorite_longitude",   limit: 53
+    t.string   "current_location"
+    t.float    "latitude",             limit: 53
+    t.float    "longitude",            limit: 53
+    t.boolean  "signed_in"
+    t.integer  "radius_display",                  default: 5
+    t.string   "role"
+    t.integer  "user_id"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.index ["user_id"], name: "index_user_settings_on_user_id", using: :btree
+  end
+
+  create_table "user_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "authentication_token"
+    t.string   "device_id"
+    t.string   "registration_id"
+    t.boolean  "online",               default: true
+    t.integer  "user_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["user_id"], name: "index_user_tokens_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
     t.string   "address"
-    t.string   "current_location"
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
     t.string   "phone_number"
     t.string   "plate_number"
     t.integer  "status",                            default: 0
-    t.integer  "role"
+    t.string   "role"
     t.float    "rate",                   limit: 24
     t.string   "pin"
-    t.string   "authentication_token"
-    t.boolean  "signed_in"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "encrypted_password",                default: "", null: false
@@ -139,13 +202,17 @@ ActiveRecord::Schema.define(version: 20160915042125) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "avatar"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "invoices", "users"
+  add_foreign_key "notifications", "invoices"
   add_foreign_key "reviews", "invoices"
+  add_foreign_key "status_invoice_histories", "invoices"
   add_foreign_key "user_invoices", "invoices"
   add_foreign_key "user_invoices", "users"
+  add_foreign_key "user_settings", "users"
 end

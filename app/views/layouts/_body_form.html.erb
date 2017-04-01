@@ -1,0 +1,16 @@
+<div class="container-fluid status" id="main">
+  <div class="row">
+    <div id="flash">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %> nht-flash"><%= message %></div>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
+      <%= yield %>
+  </div>
+</div>
+<% unless signed_in? %>
+  <footer class="footer">
+    <%= render "layouts/footer" %>
+  </footer>
+<% end %>
